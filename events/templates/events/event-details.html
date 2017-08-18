@@ -1,0 +1,176 @@
+
+    {% extends 'events/base.html' %}
+    {% block content %}
+    
+    {% load staticfiles %}
+
+    <header id="masthead" class="site-header">
+
+        <div class="top-nav">
+
+            <div class="container container-960">
+
+                <a href="index.html" class="site-logo" rel="home"><img src="{% static 'events/img/logo.png' %}" alt="" srcset="{% static 'events/img/logo.png' %} 1x, {% static 'events/img/logo@2x.png' %} 2x"></a>
+
+                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+                    <span class="lines line-top"></span>
+                    <span class="lines line-middle"></span>
+                    <span class="lines line-bottom"></span>
+                </button><!-- /.lines-button -->
+
+                <nav id="primary-navigation" class="site-navigation">
+
+                    <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'events/img/logo.png' %}" alt="" srcset="{% static 'events/img/logo.png' %} 1x, {% static 'events/img/logo@2x.png' %} 2x"></a>
+
+                    <ul>
+                        <li><a href="/news">News</a></li>
+                        <li class="active"><a href="/events">Events</a></li>
+                        <li><a href="#">Startups</a></li>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Companies</a></li>
+                    </ul>
+
+                </nav><!-- /.site-navigation -->
+
+                <div class="user-profile dropdown">
+
+                    <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
+                        <div class="user-profile-thumb"><img src="{% static 'events/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
+                        <div class="user-profile-meta hidden-xs">
+                            <div class="user-profile-meta-inner">
+                                Nick B.
+                            </div>
+                        </div>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
+                        <li><a href="person-profile.html">Profile</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li class="logout-btn"><a href="/logout">Logout</a></li>
+                    </ul>
+
+                </div><!-- /.user-profile -->
+
+            </div><!-- /.container -->
+
+        </div><!-- /.top-nav -->
+
+        <div class="hero event-details-hero">
+
+            <div class="container">
+            
+                <div class="hero-text">
+                    <p class="event-hero-date">{{ event.start_date|date:"fA j N Y"}}</p>
+                    <h1 class="hero-title">{{event.title}}</h1>
+                    <p>posted by <a href="">MediHealth</a></p>
+                    <a class="btn btn-transparent-white" href="#">RSVP</a>
+                </div>
+
+            </div>
+
+        </div>        
+
+    </header><!-- /#header -->
+    <div id="main" class="site-main">
+
+        <section class="event-details-content">
+
+            <div class="container container-960">
+
+                <div class="row">
+
+                    <div class="col-sm-8">
+                        <h3>Description</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo congue pharetra. Curabitur sollicitudin bibendum vehicula. Maecenas rutrum volutpat ligula sed porta. Donec viverra ultrices augue, egestas accumsan velit elementum nec. Curabitur vitae lacus vitae leo bibendum sodales. Aenean semper nunc nec purus feugiat, id vestibulum risus lacinia. Cras mollis mauris quam. In hac habitasse platea dictumst. Nunc dui leo, euismod sed dui non, ullamcorper laoreet dui. Pellentesque imperdiet, mi nec ultricies tristique, lorem arcu vestibulum leo, id egestas metus erat vitae magna.</p>
+
+                        <div class="content-img"><img src="{% static 'events/img/event_detail.jpg' %}" alt=""></div>
+
+                        <p>Phasellus lacinia maximus aliquet. Nulla vitae consequat risus, ac varius ligula. In varius eu sem quis egestas. Nullam at magna vitae leo eleifend volutpat id in lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque id orci aliquet, congue mauris quis, commodo odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam dignissim diam non lectus consequat feugiat. Sed eget commodo odio. Nunc ut semper elit. In imperdiet varius elit eget consectetur. Nullam eros tortor, blandit ut interdum vel, posuere in enim. </p>
+                    </div>
+
+                    <div class="col-sm-4">
+
+                        <div class="event-details-sidebar">
+
+                            <h3>Event Details</h3>
+                            <p>{{ event.start_date|date:"fA j N Y"}}<br>
+                            <strong>Venue</strong>: Your Butter Factory<br>
+                            <strong>Cost</strong>: Free</p>
+                            
+                            <div class="event-details-buttons">
+                                <a href="#" class="btn btn-transparent-dark">RSVP to this event</a>
+                                <a href="#" class="btn btn-transparent-dark">Add to calendar</a>
+                                <a href="#" class="btn btn-transparent-dark">Get directions</a>
+                            </div>
+
+                            <p class="view-event-btn"><a href="#">View event on Meetup.com</a></p>
+
+                            <div class="social-share">
+                                <h3>Share Event</h3>
+                                <a class="twitter" href="#">Twitter</a>
+                                <a class="facebook" href="#">Facebook</a>
+                                <a class="email" href="#">Email</a>
+                                <a class="reddit" href="#">Reddit</a>
+                                <a class="weibo" href="#">Weibo</a>
+                                <a class="linkedin" href="#">LinkedIn</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div><!-- /.container -->
+            
+        </section>
+
+        <section class="events-list">
+
+            <div class="container container-960">
+                
+                <p class="events-date">Related events</p>
+                  
+                <div class="row row-eq-height row-margin-1">
+                        
+                    <div class="col-md-3 col-xs-12">
+                        <div class="event-item">
+                            <p class="event-date">11am 8 Aug 2017</p>
+                            <h2 class="event-name"><a href="#">Fintech Australia: R&amp;D Tech Grants 101 Workshop</a></h2>
+                            <a href="#" class="event-attending">posted by</a>
+                        </div><!-- /.event-item -->
+                    </div>  
+                    
+                    <div class="col-md-3 col-xs-12">
+                        <div class="event-item">
+                            <p class="event-date">11am 8 Aug 2017</p>
+                            <h2 class="event-name"><a href="#">Fintech Australia: R&amp;D Tech Grants 101 Workshop</a></h2>
+                            <a href="#" class="event-attending">246 attending</a>
+                        </div><!-- /.event-item -->
+                    </div>  
+                    
+                    <div class="col-md-3 col-xs-12">
+                        <div class="event-item">
+                            <p class="event-date">5pm 18 Aug 2017</p>
+                            <h2 class="event-name"><a href="#">Afternoon Chat</a></h2>
+                            <a href="#" class="event-attending">246 attending</a>
+                        </div><!-- /.event-item -->
+                    </div>  
+                    
+                    <div class="col-md-3 col-xs-12">
+                        <div class="event-item">
+                            <p class="event-date">11am 8 Aug 2017</p>
+                            <h2 class="event-name"><a href="#">Fintech Australia: R&amp;D Tech Grants 101 Workshop</a></h2>
+                            <a href="#" class="event-attending">246 attending</a>
+                        </div><!-- /.event-item -->
+                    </div>  
+                    
+                </div><!-- /.row -->
+
+            </div>
+
+        </section>
+
+    </div><!-- /#main -->
+
+    {% endblock %}

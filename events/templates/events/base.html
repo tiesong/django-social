@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load staticfiles %}
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Butter Factory - Event List</title>
+
+    <meta name="description" content="At YBF, we have one goal: To maximise the success of startups that call YBF ... we've designed and built an ecosystem to maximise your startups' success.">
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- Favicon
+    ================================================== -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'events/img/favicon.ico' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'events/img/favicon.ico' %}">
+
+    <!-- Stylesheets
+    ================================================== -->
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'events/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'events/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'events/css/responsive.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    {% block content %}
+    {% endblock %}
+
+    
+    <footer id="colophon" class="site-footer pages-footer">
+
+        <div class="container container-960">
+		
+			<div class="row">
+		
+				<div class="footer-col">
+					<a href="#" class="site-logo" rel="home"><img src="{% static 'events/img/logo.png' %}" alt=""></a>
+				</div><!-- /.footer-col -->
+
+				<div class="footer-col">
+					<h4>News</h4>
+					<ul>
+						<li><a href="#">Current</a></li>
+						<li><a href="#">Archive</a></li>
+						<li><a href="#">Submit a story</a></li>
+					</ul>
+				</div><!-- /.footer-col -->
+				
+				<div class="footer-col">
+					<h4>Events</h4>
+					<ul>
+						<li><a href="#">Browse</a></li>
+						<li><a href="#">Attending</a></li>
+						<li><a href="#">Manage</a></li>
+					</ul>
+				</div><!-- /.footer-col -->
+				
+				<div class="footer-col">
+					<h4>Startups</h4>
+					<ul>
+						<li><a href="#">Browse</a></li>
+						<li><a href="#">Manage</a></li>
+					</ul>
+				</div><!-- /.footer-col -->
+				
+				<div class="footer-col">
+					<h4>Companies</h4>
+					<ul>
+						<li><a href="#">Browse</a></li>
+						<li><a href="#">Manage</a></li>
+					</ul>
+				</div><!-- /.footer-col -->
+				
+				<div class="footer-col">
+					<h4>Jobs</h4>
+					<ul>
+						<li><a href="#">Browse</a></li>
+						<li><a href="#">Manage</a></li>
+					</ul>
+				</div><!-- /.footer-col -->
+				
+				<div class="footer-col">
+					<h4>Profile</h4>
+					<ul>
+						<li><a href="#">Your Activity</a></li>
+						<li><a href="#">Edit Profile</a></li>
+					</ul>
+				</div><!-- /.footer-col -->
+				
+				<div class="footer-col">
+					<h4>Company</h4>
+					<ul>
+						<li><a href="#">Support</a></li>
+						<li><a href="#">About YBF</a></li>
+						<li><a href="#">Terms of service</a></li>
+						<li><a href="#">Legal</a></li>
+					</ul>
+				</div><!-- /.footer-col -->
+				
+				<div class="footer-col pull-right text-right">
+					<ul>
+						<li><a href="#">Twitter</a></li>
+						<li><a href="#">Instagram</a></li>
+						<li><a href="#">Facebook</a></li>
+						<li><a href="#">LinkedIn</a></li>
+					</ul>
+				</div><!-- /.footer-col -->
+
+			</div>	
+					
+        </div><!-- /.container -->
+
+    </footer><!-- /#footer -->
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+    <script src="{% static 'events/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'events/js/script.js' %}"></script>
+  
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {% load staticfiles %}
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Butter Factory</title>
+
+    <meta name="description" content="At YBF, we have one goal: To maximise the success of startups that call YBF ... we've designed and built an ecosystem to maximise your startups' success.">
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- Favicon
+    ================================================== -->
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{% static 'home/img/favicon.ico' %}">
+
+    <!-- Stylesheets
+    ================================================== -->
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'home/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'home/css/responsive.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <header id="masthead" class="site-header">
+
+        <div class="top-nav">
+
+            <div class="container container-960">
+
+                <a href="index.html" class="site-logo" rel="home"><img src="{% static 'home/img/logo.png' %}" alt="" srcset="{% static 'home/img/logo.png' %} 1x, {% static 'home/img/logo@2x.png' %} 2x"></a>
+
+
+            </div><!-- /.container -->
+
+        </div><!-- /.top-nav -->
+
+        <div class="hero">
+
+            <div class="container">
+            
+                <div class="hero-text">
+                    <h1 class="hero-title">Create communities and work together.</h1>
+                    <p>York Butter Factory brings companies, startups and people together. Book events, find work or network with a vibrant community in the famous Melbourne co-working space.</p>
+                </div>
+                <form class="hero-form">
+                    <div class="form-group mb-30">
+                        <label for="user-email">Email</label>
+                        <input type="email" id="user-email" class="form-control" placeholder="hello@teamedup.com.au">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-white" type="button" data-toggle="modal" data-target="#signup-modal">Sign up</button>
+                        <button class="btn btn-transparent-white" type="button" data-toggle="modal" data-target="#login-modal">Log in to your account...</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div><!-- /.hero -->      
+
+    </header><!-- /#header -->
+
+
+    <div id="main" class="site-main">
+
+        <section class="home-news">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-sm-6">
+
+                        <p class="news-category">News // <span>Enterprise</span></p>
+
+                        <br>
+
+                        <h2 class="news-title">Autodesk looks to future of 3d printing with Project Escher.</h2>
+                        <p class="news-author">by <a href="#">Mark Butcher</a></p>
+
+                        <p class="news-description">Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses…</p>
+
+                        <a href="#" class="read-more">Keep reading &rarr;</a>
+
+                    </div>
+
+                </div>
+
+            </div><!-- /.container -->
+            
+        </section><!-- /.home-news -->
+
+        <section class="home-jobs">
+
+            <div class="container container-960">
+
+                <div class="row jobs-list">
+
+                    <div class="col-sm-3">
+                        <div class="job-item">
+                            <p class="job-category">Jobs // <span>Design</span></p>
+                            <h3 class="job-title"><a href="#">Junior UI/UX Designer</a></h3>
+                            <p class="job-posted-by">posted by <a href="#">iCore.io</a></p>
+                            <p class="job-description">iCore is looking for a passionate designer who wants their first break out of Uni or similar. This is the ideal opportunity for someone looking for a...</p>
+                        </div><!-- /.job-item -->
+                    </div>  
+                    <div class="col-sm-3">
+                        <div class="job-item">
+                            <p class="job-category">Jobs // <span>Engineering</span></p>
+                            <h3 class="job-title"><a href="#">Chief Technology Officer / Co-Founder</a></h3>
+                            <p class="job-posted-by">posted by <a href="#">Alex k.</a></p>
+                            <p class="job-description">I’m the founder of a stealth startup, looking for a CTO/Co-Founder. This is ideal for someone with experience working with aviation tech…</p>
+                        </div><!-- /.job-item -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="job-item">
+                            <p class="job-category">Jobs // <span>Marketing</span></p>
+                            <h3 class="job-title"><a href="#">Social Media X2 (Intern, Paid)</a></h3>
+                            <p class="job-posted-by">posted by <a href="#">YBF</a></p>
+                            <p class="job-description">We have two spaces for social media interns. This is a paid position but you must be studying a degree in marketing or simiar...</p>
+                        </div><!-- /.job-item -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="job-item">
+                            <p class="job-category">Jobs // <span>Business</span></p>
+                            <h3 class="job-title"><a href="#">Finance Officer</a></h3>
+                            <p class="job-posted-by">posted by <a href="#">Xchange</a></p>
+                            <p class="job-description">Unique opportunity for an accountant or similar to take a leadership position at our cryptocurrency startup...</p>
+                        </div><!-- /.job-item -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="job-item">
+                            <p class="job-category">Jobs // <span>Design</span></p>
+                            <h3 class="job-title"><a href="#">Junior UI/UX Designer</a></h3>
+                            <p class="job-posted-by">posted by <a href="#">iCore.io</a></p>
+                            <p class="job-description">iCore is looking for a passionate designer who wants their first break out of Uni or similar. This is the ideal opportunity for someone looking for a...</p>
+                        </div><!-- /.job-item -->
+                    </div>  
+                    <div class="col-sm-3">
+                        <div class="job-item">
+                            <p class="job-category">Jobs // <span>Engineering</span></p>
+                            <h3 class="job-title"><a href="#">Chief Technology Officer / Co-Founder</a></h3>
+                            <p class="job-posted-by">posted by <a href="#">Alex k.</a></p>
+                            <p class="job-description">I’m the founder of a stealth startup, looking for a CTO/Co-Founder. This is ideal for someone with experience working with aviation tech…</p>
+                        </div><!-- /.job-item -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="job-item">
+                            <p class="job-category">Jobs // <span>Marketing</span></p>
+                            <h3 class="job-title"><a href="#">Social Media X2 (Intern, Paid)</a></h3>
+                            <p class="job-posted-by">posted by <a href="#">YBF</a></p>
+                            <p class="job-description">We have two spaces for social media interns. This is a paid position but you must be studying a degree in marketing or simiar...</p>
+                        </div><!-- /.job-item -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="job-item">
+                            <p class="job-category">Jobs // <span>Business</span></p>
+                            <h3 class="job-title"><a href="#">Finance Officer</a></h3>
+                            <p class="job-posted-by">posted by <a href="#">Xchange</a></p>
+                            <p class="job-description">Unique opportunity for an accountant or similar to take a leadership position at our cryptocurrency startup...</p>
+                        </div><!-- /.job-item -->
+                    </div>   
+                    
+                </div><!-- /.jobs-list -->
+
+            </div><!-- /.container-fluid -->
+            
+        </section><!-- /.home-jobs -->
+
+        <section class="home-overviews text-center">
+
+            <div class="container container-960">
+
+                <h3 class="section-title">Startups // <span>Overview</span></h3>     
+
+                <div class="startups-logos">
+                    <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
+                    <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
+                    <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
+                    <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
+                    <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
+                    <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
+                    <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
+                    <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
+                    <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
+                    <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
+                    <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
+                </div><!-- /.startups-logos -->      
+
+            </div><!-- /.container -->
+            
+        </section><!-- /.home-overviews -->
+
+    </div><!-- /#main -->
+
+    
+    <footer id="colophon" class="site-footer">
+
+        <div class="container">
+
+            <h3>Ready to join?</h3>
+
+            <form class="hero-form">
+                <div class="form-group mb-30">
+                    <label for="footer-user-email">Email</label>
+                    <input type="text" id="footer-user-email" class="form-control" placeholder="hello@teamedup.com.au">
+                </div>
+                <div class="form-group ">
+                    <button class="btn btn-white" type="button" data-toggle="modal" data-target="#signup-modal">Sign up</button>
+                    <button class="btn btn-transparent-white" type="button" data-toggle="modal" data-target="#login-modal">Log in to your account...</button>
+                </div>
+            </form><!-- /.user-form -->
+
+        </div><!-- /.container -->
+
+    </footer><!-- /#footer -->
+
+
+    <div id="login-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                
+                <div class="modal-body">
+
+                    <div class="modal-body-left">
+
+                        <button type="button" class="close visible-xs" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    
+                        <h4 class="modal-title">Log In</h4>
+
+                        <form method="post" action="/">
+
+                          {% csrf_token %}
+
+                            <div class="form-group">
+                                <label for="login-email">Email Address</label>
+                                <input type="email" name="login-email" id="login-email" class="form-control" placeholder="hello@teamedup.com.au">
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password">Password</label>
+                                <input type="password" name="login-password" id="login-password" class="form-control" placeholder="Enter your password">
+                            </div>
+                            <div class="modal-form-buttons">
+                                <button class="logBut btn btn-dark" type="submit">Log In</button>
+                                <a class="forget-password" href="#">Forget your password?</a>
+                            </div>
+                        </form>
+
+                        <!-- /START styled form -->
+                        <!--
+                        <form class="login login-form" method="POST" action="/login">
+                            <div class="form-group">
+                                <label for="login-email">Email Address</label>
+                                <input type="email" id="login-email" class="form-control" placeholder="hello@teamedup.com.au">
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password">Password</label>
+                                <input type="password" id="login-password" class="form-control" placeholder="Enter your password">
+                            </div>
+                            <div class="modal-form-buttons">
+                                <input class="logBut btn btn-dark" type="submit">Log In</input>
+                                <a class="forget-password" href="#">Forget your password?</a>
+                            </div>
+                        </form>
+                        -->
+                        <!-- /END -->
+
+                    </div>
+
+                    <div class="modal-body-right">
+
+                        <h5>New to York Butter Factory</h5>
+                        <p>Proin ac felis aliquam lacus dictum euismod et vitae libero. Nullam sollicitudin ultricies.</p>
+
+                        <button class="btn btn-transparent-white" type="button" data-toggle="modal" data-target="#signup-modal" data-dismiss="modal">Sign Up</button>
+
+                    </div>
+                    
+                </div>
+               
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /#login-modal -->
+
+
+    <div id="signup-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                
+                <div class="modal-body">
+
+                    <div class="modal-body-left">
+
+                        <button type="button" class="close visible-xs" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    
+                        <h4 class="modal-title">Sign Up</h4>
+                        <form class="signup-form">
+                            <div class="form-group">
+                                <label for="signup-name">Full Name</label>
+                                <input type="text" id="signup-name" class="form-control" placeholder="Nick Byrne">
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-email">Email Address</label>
+                                <input type="email" id="signup-email" class="form-control" placeholder="hello@teamedup.com.au">
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-password">Password</label>
+                                <input type="password" id="signup-password" class="form-control" placeholder="Enter your password">
+                            </div>
+                            <div class="modal-form-buttons">
+                                <button class="btn btn-dark" type="button">Sign Up</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="modal-body-right">
+
+                        <h5>Have an account already?</h5>
+                        <p>Whoa! What are you doing here!? Log in and get cracking!</p>
+
+                        <button class="btn btn-transparent-white" type="button" data-toggle="modal" data-target="#login-modal" data-dismiss="modal">Log In</button>
+
+                    </div>
+                    
+                </div>
+               
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /#signup-modal -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+    <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'home/js/script.js' %}"></script>
+  
+</body>
+</html>
