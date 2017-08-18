@@ -46,12 +46,12 @@
 
 @font-face {
   font-family: 'Apercu';
-  src: url("assets/fonts/Apercu-Bold.eot");
-  src: url("assets/fonts/Apercu-Bold.eot?#iefix") format("embedded-opentype"), 
-       url("assets/fonts/Apercu-Bold.woff2") format("woff2"), 
-       url("assets/fonts/Apercu-Bold.woff") format("woff"), 
-       url("assets/fonts/Apercu-Bold.ttf") format("truetype"), 
-       url("assets/fonts/Apercu-Bold.svg") format("svg");
+  src: url("../fonts/Apercu-Bold.eot");
+  src: url("../fonts/Apercu-Bold.eot?#iefix") format("embedded-opentype"), 
+       url("../fonts/Apercu-Bold.woff2") format("woff2"), 
+       url("../fonts/Apercu-Bold.woff") format("woff"), 
+       url("../fonts/Apercu-Bold.ttf") format("truetype"), 
+       url("../fonts/Apercu-Bold.svg") format("svg");
   font-weight: 700;
   font-style: normal;
 }
