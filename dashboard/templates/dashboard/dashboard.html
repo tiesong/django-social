@@ -50,7 +50,7 @@
 
             <div class="container container-960">
 
-                <a href="index.html" class="site-logo" rel="home"><img src="assets/img/logo.png" alt="" srcset="assets/img/logo.png 1x, assets/img/logo@2x.png 2x"></a>
+                <a href="index.html" class="site-logo" rel="home"><img src="{% static 'dashboard/img/logo.png' %}" alt="" srcset="{% static 'dashboard/img/logo.png' %}" 1x, "{% static 'dashboard/assets/img/logo@2x.png' %}" 2x"></a>
 
                 <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
                     <span class="lines line-top"></span>
@@ -74,7 +74,7 @@
                 <div class="user-profile dropdown">
 
                     <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="assets/img/avatar.jpg" alt=""> <span class="visible-xs caret"></span></div>
+                        <div class="user-profile-thumb"><img src="{% static 'dashboard/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
                         <div class="user-profile-meta hidden-xs">
                         	<div class="user-profile-meta-inner">
                         		Admin <br> Nick Byrne 
