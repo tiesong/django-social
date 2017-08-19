@@ -13,6 +13,7 @@ class Category(models.Model):
     def __str__(self):
         return self.tag
 
+
 class News(models.Model):
     category = models.ManyToManyField(Category)
 
