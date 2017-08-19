@@ -18,7 +18,7 @@ def index(request):
     primary_feature = News.objects.filter(featured=True).order_by('-pub_date')[0]
 
     # pagination of news results
-    paginator = Paginator(news_list, 5) #show X results per page
+    paginator = Paginator(news_list, 5)  # show X results per page
     page = request.GET.get('page')
     try:
         latest_news_list = paginator.page(page)
@@ -30,39 +30,41 @@ def index(request):
         latest_news_list = paginator.page(paginator.num_pages)
 
     context = {
-    	'latest_news_list':latest_news_list,
-    	'primary_feature': primary_feature,
-    	'featured_news_list': featured_news_list,
-    	'total_articles': total_articles
+        'latest_news_list': latest_news_list,
+        'primary_feature': primary_feature,
+        'featured_news_list': featured_news_list,
+        'total_articles': total_articles
     }
     return render(request, 'news/news.html', context)
+
 
 @login_required
 def detail(request, news_article_id):
     # return HttpResponse('Hello from Python!')
 
- 	# return latest four articles to present as 'related news'. Change to be related to tags in future (so that it is genuinely related news)
-
-    news_article = News.objects.get(id=news_article_id)
-    related_news = News.objects.filter().order_by('-pub_date')[0:4]
-
-    context = {
-    	'news_article':news_article,
-    	'related_news': related_news,
-    }
-
-    return render(request, 'news/news-details.html', context);
-
-@login_required
-def edit(request, news_article_id):
-    # return HttpResponse('Hello from Python!')
     # return latest four articles to present as 'related news'. Change to be related to tags in future (so that it is genuinely related news)
 
     news_article = News.objects.get(id=news_article_id)
     related_news = News.objects.filter().order_by('-pub_date')[0:4]
 
     context = {
-        'news_article':news_article,
+        'news_article': news_article,
+        'related_news': related_news,
+    }
+
+    return render(request, 'news/news-details.html', context)
+
+
+@login_required
+def edit(request, news_article_id):
+    # return HttpResponse('Hello from Python!')
+    # return latest four articles to present as 'related news'. Change to be related to tags in future (so that it is genuinely related news)
+    print "request: {}".format(request)
+    news_article = News.objects.get(id=news_article_id)
+    related_news = News.objects.filter().order_by('-pub_date')[0:4]
+
+    context = {
+        'news_article': news_article,
         'related_news': related_news,
     }
 
@@ -80,8 +82,3 @@ def edit(request, news_article_id):
         return redirect('detail', news_article_id=news_article.id)
 
     return render(request, 'news/news-edit.html', context);
-
-
-
-
-
