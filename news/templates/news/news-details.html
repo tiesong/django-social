@@ -34,7 +34,7 @@
                 <div class="user-profile dropdown">
 
                     <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
+                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.png' %}" alt=""> <span class="visible-xs caret"></span></div>
                         <div class="user-profile-meta hidden-xs">
                             <div class="user-profile-meta-inner">
                                 {{request.user.username}}
@@ -127,9 +127,9 @@
                     {% for related_news in related_news %}
                     <div class="col-md-3 col-xs-12">
                         <div class="event-item">
-                            <p class="event-date">11am 8 Aug 2017</p>
+                            <p class="event-date">{{ related_news.pub_date|date:"M d, Y" }}</p>
                             <h2 class="event-name"><a href="/news/{{ related_news.id }}">{{related_news.title|slice:":60"}}</a></h2>
-                            <a href="#" class="event-attending">posted by</a>
+                            <a href="/c/people/{{ related_news.owner.id }}" class="event-attending">posted by {{ related_news.owner.first_name }}</a>
                         </div><!-- /.event-item -->
                     </div>  
                     {% endfor %}

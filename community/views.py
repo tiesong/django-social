@@ -30,6 +30,14 @@ def profile(request, profile_id):
 	}
 	return render(request, 'community/profile.html', context)
 
+def edit_profile(request, profile_id):
+	user = User.objects.get(pk=profile_id)
+
+	context = {
+		'user': user,
+	}
+	return render(request, 'community/profile-edit.html', context)
+
 def companies(request):
 	context = {}
 	return render(request, 'community/company.html', context)

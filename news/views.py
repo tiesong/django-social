@@ -55,6 +55,7 @@ def detail(request, news_article_id):
 
     news_article = News.objects.get(id=news_article_id)
     related_news = News.objects.filter().order_by('-pub_date')[0:4]
+    
     try:
         next_url = request.GET['next']
     except:
