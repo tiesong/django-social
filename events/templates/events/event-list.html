@@ -201,25 +201,26 @@
                     <div class="modal-body-left">
                     
                         <h4 class="modal-title">Add Event</h4>
-                        <form class="create-event-form">
+                        <form class="create-event-form" action="new" method="post">
+                            {% csrf_token %}
                             <div class="form-group">
                                 <label for="event-name">Event Name</label>
-                                <input type="text" id="event-name" class="form-control" placeholder="Some event">
+                                <input type="text" name="event_name" id="event-name" class="form-control" placeholder="Some event">
                             </div>
                             <div class="form-group">
                                 <label for="event-time">Event Date</label>
                                 <div class="date-group">
-	                                <input type="text" id="event-time" class="form-control" placeholder="6pm">
-	                                <input type="text" id="event-date" class="form-control" placeholder="August 17 2017">
+	                                <input type="text" name="event_time" id="event-time" class="form-control" placeholder="6pm">
+	                                <input type="text" name="event_date" id="event-date" class="form-control" placeholder="August 17 2017">
 	                            </div>
                             </div>
                             <div class="form-group">
                                 <label for="event-url">Event URL</label>
-                                <input type="text" id="event-url" class="form-control" placeholder="https://meetup.com/event/21312312321">
+                                <input type="text" name="event_url" id="event-url" class="form-control" placeholder="https://meetup.com/event/21312312321">
                             </div>
                             <div class="modal-form-buttons">
                             	<a class="pull-left close-btn hidden-xs" href="#">Close</a>
-                                <button class="btn btn-dark pull-right" type="button">Add Event</button>
+                                <button class="btn btn-dark pull-right" type="submit">Add Event</button>
                             </div>
                         </form>
 

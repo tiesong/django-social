@@ -1,0 +1,12 @@
+    {% extends 'events/base.html' %}
+	{% block content %}
+
+	{% load staticfiles %}
+
+    <h1>Event Show!!!!</h1>
+    <form class="create-event-form" action="detail" method="GET">
+        {% for event in event_data %}
+            <p><a href="#">{{ event.title }}</a></p>
+        {% endfor %}
+    </form>
+    {% endblock %}
