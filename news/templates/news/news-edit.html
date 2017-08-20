@@ -11,7 +11,7 @@
         tinymce.init({
             selector: '#body',
             plugins: 'image',
-{#            extended_valid_elements : 'img[class|src|border=0|alt|title|width=100|height=500]',#}
+            extended_valid_elements : 'img[class|src|border=0|alt|title|width=100|height=500]',
             image_description: false,
             file_picker_types: 'image',
 
@@ -38,8 +38,7 @@
                 input.click();
                 $("")
             },
-            height: 500,
-            content_css: "{% static 'news/css/tinyimg.css' %}"
+            height: 500
         });
 
     </script>
