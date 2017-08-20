@@ -372,7 +372,7 @@
                 var ItemContentDiv = ItemsElements[i].children[1];
                 var ItemCategory = ItemContentDiv.children[0].innerHTML.split("//")[1].replace(/\s+/g, "");
 
-                if (ItemCategory.toLowerCase() !== category.toLowerCase()){
+                if (ItemCategory.toLowerCase() !== category.replace(/\s+/g, "").toLowerCase()){
 
                     ItemsElements.splice(i, 1);
                 }
