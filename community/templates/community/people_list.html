@@ -116,10 +116,10 @@
                             
                             <p class="news-author">
 
-                                <a href="#"> {{ user.email }} </a> | <a href="#"> {{ user.profile.phone_number }} </a>
+                                <a href="#"> {{ user.email }} </a> {% if {{ user.profile.phone_number }}%}| <a href="#"> {{ user.profile.phone_number }} </a>{% endif %}
 
                             </p>
-                            <p class="news-description">{{ user.profile.bio|slice:":150" }}</p>
+                            <p class="news-description">{{ user.profile.bio|safe|slice:":150" }}</p>
                             <a href="{{ user.id }}" class="read-more">View profile &rarr;</a>
                         </div>
                     </div><!-- /.news-single-item -->

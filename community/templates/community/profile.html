@@ -131,7 +131,7 @@
                             <strong>Weibo</strong>: <a href="{{.user.profile.weibo }}">{{ user.profile.weibo }}</a></p>
                             {% endif %}
 
-                            <p class="mb-30"><strong>Company</strong>: TeamedUP<br></p>
+                            <p class="mb-30"><strong>Company</strong>: {{ user.profile.companies.first }}<br></p>
                             
                             <div class="event-details-buttons mb-30">
                                 <a href="#" class="btn btn-transparent-dark" data-toggle="modal" data-target="#edit-profile-modal">Edit Profile</a>
