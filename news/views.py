@@ -86,10 +86,15 @@ def create(request):
 
         feature_rank = request.POST.get('feature_rank', None)
         pub_date = datetime.datetime.now()
+        selected_tag = request.POST.get('category', None)
+
+        tag = Category.objects.filter(tag=selected_tag).first()
 
         news_article = News(title=title, article=body, feature_rank=feature_rank, pub_date=pub_date, owner=owner)
         news_article.save()
-
+        
+        news_article.category.add(tag)
+        
         return redirect('/dashboard')
 
 
