@@ -9,7 +9,7 @@
 
             <div class="container container-960">
 
-                <a href="index.html" class="site-logo" rel="home"><img src="{% static 'people/img/logo.png' %}" alt="" srcset="{% static 'people/img/logo.png' %} 1x, {% static 'people/img/logo@2x.png' %} 2x"></a>
+                <a href="index.html" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
 
                 <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
                     <span class="lines line-top"></span>
@@ -19,7 +19,7 @@
 
                 <nav id="primary-navigation" class="site-navigation">
 
-                    <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'people/img/logo.png' %}" alt="" srcset="{% static 'people/img/logo.png' %} 1x, {% static 'people/img/logo@2x.png' %} 2x"></a>
+                    <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
 
                     <ul class="dropdown">
                         <li><a href="/news">News</a></li>
@@ -38,7 +38,7 @@
                         {% if request.user.profile.image %}
                             <img src="{{ request.user.profile.image.url }}" alt="">
                         {% else %}
-                            <img src="{% static 'people/img/avatar.jpg' %}" alt="">
+                            <img src="{% static 'community/img/avatar.jpg' %}" alt="">
                         {% endif %}
 
 
@@ -70,7 +70,7 @@
                     {% if user.profile.image %}
                         <img src="{{ user.profile.image.url }}" alt="" class="company-page-thumb">
                     {% else %}
-                        <img src="{% static 'people/img/company-profile.jpg' %}" alt="" class="company-page-thumb">
+                        <img src="{% static 'community/img/company-profile.jpg' %}" alt="" class="company-page-thumb">
                     {% endif %}
 
                     <h1>{{ user.first_name }} {{ user.last_name }}</h1>
@@ -169,7 +169,7 @@
             <div class="row">
         
                 <div class="footer-col">
-                    <a href="#" class="site-logo" rel="home"><img src="{% static 'people/img/logo.png' %}" alt=""></a>
+                    <a href="#" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt=""></a>
                 </div><!-- /.footer-col -->
 
                 <div class="footer-col">
@@ -300,8 +300,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
-    <script src="{% static 'people/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'people/js/script.js' %}"></script>
+    <script src="{% static 'community/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'community/js/script.js' %}"></script>
   
 </body>
 {% endblock %}
