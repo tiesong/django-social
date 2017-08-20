@@ -90,16 +90,16 @@
 
                     <div class="col-sm-6">
 
-                        <p class="news-category">News // <span>Enterprise</span></p>
+                        <p class="news-category">News // <span>{{ feature_list.category.all|first }}</span></p>
 
                         <br>
 
-                        <h2 class="news-title">Autodesk looks to future of 3d printing with Project Escher.</h2>
-                        <p class="news-author">by <a href="#">Mark Butcher</a></p>
+                        <h2 class="news-title">{{feature_list.title}}</h2>
+                        <p class="news-author">by <a href="/c/people/{{feature_list.owner.id}}">{{feature_list.owner}}</a></p>
 
-                        <p class="news-description">Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses…</p>
+                        <p class="news-description">{{ feature_list.article|safe|slice:":40" }}</p>
 
-                        <a href="#" class="read-more">Keep reading &rarr;</a>
+                        <a href="/news/{{ feature_list.id }}" class="read-more">Keep reading &rarr;</a>
 
                     </div>
 
@@ -109,83 +109,7 @@
             
         </section><!-- /.home-news -->
 
-        <section class="home-jobs">
-
-            <div class="container container-960">
-
-                <div class="row jobs-list">
-
-                    <div class="col-sm-3">
-                        <div class="job-item">
-                            <p class="job-category">Jobs // <span>Design</span></p>
-                            <h3 class="job-title"><a href="#">Junior UI/UX Designer</a></h3>
-                            <p class="job-posted-by">posted by <a href="#">iCore.io</a></p>
-                            <p class="job-description">iCore is looking for a passionate designer who wants their first break out of Uni or similar. This is the ideal opportunity for someone looking for a...</p>
-                        </div><!-- /.job-item -->
-                    </div>  
-                    <div class="col-sm-3">
-                        <div class="job-item">
-                            <p class="job-category">Jobs // <span>Engineering</span></p>
-                            <h3 class="job-title"><a href="#">Chief Technology Officer / Co-Founder</a></h3>
-                            <p class="job-posted-by">posted by <a href="#">Alex k.</a></p>
-                            <p class="job-description">I’m the founder of a stealth startup, looking for a CTO/Co-Founder. This is ideal for someone with experience working with aviation tech…</p>
-                        </div><!-- /.job-item -->
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="job-item">
-                            <p class="job-category">Jobs // <span>Marketing</span></p>
-                            <h3 class="job-title"><a href="#">Social Media X2 (Intern, Paid)</a></h3>
-                            <p class="job-posted-by">posted by <a href="#">YBF</a></p>
-                            <p class="job-description">We have two spaces for social media interns. This is a paid position but you must be studying a degree in marketing or simiar...</p>
-                        </div><!-- /.job-item -->
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="job-item">
-                            <p class="job-category">Jobs // <span>Business</span></p>
-                            <h3 class="job-title"><a href="#">Finance Officer</a></h3>
-                            <p class="job-posted-by">posted by <a href="#">Xchange</a></p>
-                            <p class="job-description">Unique opportunity for an accountant or similar to take a leadership position at our cryptocurrency startup...</p>
-                        </div><!-- /.job-item -->
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="job-item">
-                            <p class="job-category">Jobs // <span>Design</span></p>
-                            <h3 class="job-title"><a href="#">Junior UI/UX Designer</a></h3>
-                            <p class="job-posted-by">posted by <a href="#">iCore.io</a></p>
-                            <p class="job-description">iCore is looking for a passionate designer who wants their first break out of Uni or similar. This is the ideal opportunity for someone looking for a...</p>
-                        </div><!-- /.job-item -->
-                    </div>  
-                    <div class="col-sm-3">
-                        <div class="job-item">
-                            <p class="job-category">Jobs // <span>Engineering</span></p>
-                            <h3 class="job-title"><a href="#">Chief Technology Officer / Co-Founder</a></h3>
-                            <p class="job-posted-by">posted by <a href="#">Alex k.</a></p>
-                            <p class="job-description">I’m the founder of a stealth startup, looking for a CTO/Co-Founder. This is ideal for someone with experience working with aviation tech…</p>
-                        </div><!-- /.job-item -->
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="job-item">
-                            <p class="job-category">Jobs // <span>Marketing</span></p>
-                            <h3 class="job-title"><a href="#">Social Media X2 (Intern, Paid)</a></h3>
-                            <p class="job-posted-by">posted by <a href="#">YBF</a></p>
-                            <p class="job-description">We have two spaces for social media interns. This is a paid position but you must be studying a degree in marketing or simiar...</p>
-                        </div><!-- /.job-item -->
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="job-item">
-                            <p class="job-category">Jobs // <span>Business</span></p>
-                            <h3 class="job-title"><a href="#">Finance Officer</a></h3>
-                            <p class="job-posted-by">posted by <a href="#">Xchange</a></p>
-                            <p class="job-description">Unique opportunity for an accountant or similar to take a leadership position at our cryptocurrency startup...</p>
-                        </div><!-- /.job-item -->
-                    </div>   
-                    
-                </div><!-- /.jobs-list -->
-
-            </div><!-- /.container-fluid -->
-            
-        </section><!-- /.home-jobs -->
-
+        <!-- 
         <section class="home-overviews text-center">
 
             <div class="container container-960">
@@ -205,10 +129,11 @@
                     <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
                     <a href="#"><img src="{% static 'home/img/startup-logo-tmp.jpg' %}" alt=""></a>
                 </div><!-- /.startups-logos -->      
-
+            <!--
             </div><!-- /.container -->
-            
+            <!--
         </section><!-- /.home-overviews -->
+        -->
 
     </div><!-- /#main -->
 
