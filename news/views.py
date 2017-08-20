@@ -4,7 +4,10 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
-from .models import News
+from .models import News, Category
+import datetime
+
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -46,13 +49,52 @@ def detail(request, news_article_id):
 
     news_article = News.objects.get(id=news_article_id)
     related_news = News.objects.filter().order_by('-pub_date')[0:4]
+    try:
+        next_url = request.GET['next']
+    except:
+        next_url = False
 
     context = {
         'news_article': news_article,
         'related_news': related_news,
+        'next': next_url,
     }
 
     return render(request, 'news/news-details.html', context)
+
+@login_required
+def create(request):
+
+    try:
+        next_url = request.GET['next']
+    except:
+        next_url = False
+
+    categories = Category.objects.all()
+
+    context = {
+        'categories': categories,
+        'create': True,
+        'next': next_url
+    }
+
+    if request.POST:
+        owner = request.user
+
+        body = request.POST['body']
+        title = request.POST['title']
+
+        feature_rank = request.POST.get('feature_rank', None)
+        pub_date = datetime.datetime.now()
+
+        news_article = News(title=title, article=body, feature_rank=feature_rank, pub_date=pub_date, owner=owner)
+        news_article.save()
+
+        return redirect('/dashboard')
+
+
+    return render(request, 'news/news-edit.html', context);
+
 
 
 @login_required
@@ -62,10 +104,18 @@ def edit(request, news_article_id):
 
     news_article = News.objects.get(id=news_article_id)
     related_news = News.objects.filter().order_by('-pub_date')[0:4]
+    try:
+        next_url = request.GET['next']
+    except:
+        next_url = False
+
+    categories = Category.objects.all()
 
     context = {
+        'categories': categories,
         'news_article': news_article,
         'related_news': related_news,
+        'next': next_url,
     }
 
     if request.POST:
@@ -73,12 +123,27 @@ def edit(request, news_article_id):
         title = request.POST['title']
 
         feature_rank = request.POST.get('feature_rank', None)
+        selected_tag = request.POST.get('category', None)
+
+        tag = Category.objects.filter(tag=selected_tag).first()
 
         news_article.article = body
         news_article.title = title
         news_article.feature_rank = feature_rank
+        news_article.category.add(tag)
 
         news_article.save()
+
         return redirect('detail', news_article_id=news_article.id)
 
     return render(request, 'news/news-edit.html', context);
+
+@login_required
+def delete(request, news_article_id):
+    
+    news_article = News.objects.get(id=news_article_id)
+    news_article.delete()
+    
+    context = {}
+
+    return redirect('/dashboard')

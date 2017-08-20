@@ -103,10 +103,22 @@
             <div class="container">
 
                 <div class="hero-text">
+                    {% if create %}
+                    <h1 class="hero-title">Publish News Article</h1>
+                    {% else %}
                     <p class="event-hero-date">{{ pub_date }}</p>
                     <h1 class="hero-title">{{ news_article.title }}</h1>
                     <p>Posted by <a href="">Nick Byrne</a></p>
-                    <a class="btn btn-transparent-white" href="/news"><< Back</a>
+                    
+                    {% endif %}
+                        {% if next %}
+                        <a class="btn btn-transparent-white"  href="{{ next }}"><< Back</a>
+                        {% else %}
+                        <a class="btn btn-transparent-white" href="/news"><< Back</a>
+                        {% endif %}
+
+
+                    
                 </div>
             </div>
         </div>
@@ -142,6 +154,18 @@
                             </select>
 
                             <br>
+
+                            <h3>Category </h3>
+                            <p>Please select a category for this article (current: {{news_article.category.first}})</p>
+                            <select title="category" class="form-control" id="category" name="category">
+                                
+                                {% for category in categories %}
+                                <option value="{{category}}">{{ category }}</option>
+                                {% endfor %}
+
+                            </select>
+
+                            <br>
                             <h3>Description</h3>
                             <p>
                                 <textarea id="body" name="body">{{ news_article.article }}</textarea>
@@ -154,8 +178,13 @@
                                 <div class="event-details-sidebar">
 
                                     <button class="btn btn-transparent-dark" type="submit">Save</button>
+                                    {% if next %}
                                     <a class="btn btn-transparent-dark" type="button"
-                                       href="/news/{{ news_article.id }}">Cancel</a>
+                                       href="{{ next }}">Cancel</a>
+                                    {% else %}
+                                    <a class="btn btn-transparent-dark" type="button"
+                                       href="/news/{{news_article.id}}">Cancel</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 from tinymce.models import HTMLField
 
+from django.contrib.auth.models import User
+
 from django.db import models
 
 
@@ -17,7 +19,7 @@ class Category(models.Model):
 class News(models.Model):
     category = models.ManyToManyField(Category)
 
-    #need to add author relationship
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     title = models.CharField(max_length=150)
     article_text = models.TextField()

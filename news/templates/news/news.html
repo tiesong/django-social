@@ -40,7 +40,7 @@
                         <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
                         <div class="user-profile-meta hidden-xs">
                             <div class="user-profile-meta-inner">
-                                Nick B.
+                                {{request.user.username}}
                             </div>
                         </div>
                     </a>
@@ -64,7 +64,7 @@
                 <div class="hero-text">
                     <p class="news-category">News // {{news_article.category.all|first}}</p>
                     <h1 class="hero-title">{{primary_feature.title}}</h1>
-                    <p>by <a href="#" class="no-underline">Alexandria Schultz</a></p>
+                    <p>by <a href="#" class="no-underline">{{primary_feature.owner.username}}</a></p>
                     <a href="{{ primary_feature.id }}" class="read-more">Keep reading &rarr;</a>
                 </div>
 
@@ -88,8 +88,8 @@
 
                         <p class="news-category">News // Technology</p>
                         <h2 class="news-title">{{featured_news.title}}</h2>
-                        <p class="posted-by">by <a href="#">Alex Scott</a></p>
-                        <p class="news-description">Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses…</p>
+                        <p class="posted-by">by <a href="#">{{featured_news.owner.username}}</a></p>
+                        <p class="news-description">{{featured_news.article|safe|slice:":20"}}</p>
                         <a href="{{ featured_news.id }}" class="read-more">Keep reading &rarr;</a>
 
                     </div>
@@ -138,7 +138,7 @@
                         <div class="news-single-content">
                             <p class="news-category">News // {{news_article.category.all|first}}</p>
                             <h3 class="news-title">{{ news_article.title }}</h3>
-                            <p class="news-author">by <a href="#">Alex Scott</a></p>
+                            <p class="news-author">by <a href="#">{{ news_article.owner.username }}</a></p>
                             <p class="news-description">{{ news_article.article_text|slice:":150" }}</p>
                             <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
                         </div>
