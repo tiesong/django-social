@@ -1,0 +1,283 @@
+{% extends 'news/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<body>
+
+    <header id="masthead" class="site-header company-profile-header">
+
+        <div class="top-nav">
+
+            <div class="container container-960">
+
+                <a href="index.html" class="site-logo" rel="home"><img src="{% static 'people/img/logo.png' %}" alt="" srcset="{% static 'people/img/logo.png' %} 1x, {% static 'people/img/logo@2x.png' %} 2x"></a>
+
+                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+                    <span class="lines line-top"></span>
+                    <span class="lines line-middle"></span>
+                    <span class="lines line-bottom"></span>
+                </button><!-- /.lines-button -->
+
+                <nav id="primary-navigation" class="site-navigation">
+
+                    <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'people/img/logo.png' %}" alt="" srcset="{% static 'people/img/logo.png' %} 1x, {% static 'people/img/logo@2x.png' %} 2x"></a>
+
+                    <ul class="dropdown">
+                        <li><a href="/news">News</a></li>
+                        <li><a href="/events">Events</a></li>
+                        <li><a href="#">Companies</a></li>
+                        <li class="active"><a href="/people">People</a></li>
+                    </ul>
+
+                </nav><!-- /.site-navigation -->
+
+                <div class="user-profile dropdown">
+
+                    <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
+                        <div class="user-profile-thumb"><img src="{% static 'people/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
+                        <div class="user-profile-meta hidden-xs">
+                            <div class="user-profile-meta-inner">
+                                Cade D.
+                            </div>
+                        </div>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
+                        <li><a href="person-profile.html">Profile</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li class="logout-btn"><a href="#">Logout</a></li>
+                    </ul>
+
+                </div><!-- /.user-profile -->
+
+            </div><!-- /.container -->
+
+        </div><!-- /.top-nav -->
+
+        <div class="hero">
+
+            <div class="container container-960">
+            
+                <div class="hero-text">
+                    <img src="{% static 'people/img/company-profile.jpg' %}" alt="" class="company-page-thumb">
+                    <h1>Nick Byrne</h1>
+                    <p>CEO, TeamedUP</p>
+                </div>
+
+            </div>
+
+        </div><!-- /.event-details-hero -->        
+
+    </header><!-- /#header -->
+
+
+    <div id="main" class="site-main">
+
+        <section class="event-details-content">
+
+            <div class="container container-960">
+
+                <div class="row">
+
+                    <div class="col-sm-8">
+                        <h3>Description</h3>
+    
+                        <p class="mb-20 profile-logos-list">
+                            <a href="#"><img src="{% static 'people/img/prof-tmp1.png' %}" alt=""></a>
+                            <a href="#"><img src="{% static 'people/img/prof-tmp2.png' %}" alt=""></a>
+                            <a href="#"><img src="{% static 'people/img/prof-tmp3.png' %}" alt=""></a>
+                        </p>
+
+                        <p class="mb-20">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo congue pharetra. Curabitur sollicitudin bibendum vehicula. Maecenas rutrum volutpat ligula sed porta. Donec viverra ultrices augue, egestas accumsan velit elementum nec. Curabitur vitae lacus vitae leo bibendum sodales. Aenean semper nunc nec purus feugiat, id vestibulum risus lacinia. Cras mollis mauris quam. In hac habitasse platea dictumst. Nunc dui leo, euismod sed dui non, ullamcorper laoreet dui. Pellentesque imperdiet, mi nec ultricies tristique, lorem arcu vestibulum leo, id egestas metus erat vitae magna.</p>
+
+                        <p class="mb-20">Phasellus lacinia maximus aliquet. Nulla vitae consequat risus, ac varius ligula. In varius eu sem quis egestas. Nullam at magna vitae leo eleifend volutpat id in lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque id orci aliquet, congue mauris quis, commodo odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam dignissim diam non lectus consequat feugiat. Sed eget commodo odio. Nunc ut semper elit. In imperdiet varius elit eget consectetur. Nullam eros tortor, blandit ut interdum vel, posuere in enim.</p>
+
+                        <div class="content-img"><img src="{% static 'people/img/phones.jpg' %}" alt=""></div>
+                    </div>
+
+                    <div class="col-sm-4">
+
+                        <div class="event-details-sidebar">
+ 
+                            <h3>Details</h3>
+                            <p class="mb-30"><strong>Company</strong>: TeamedUP<br>
+                            <strong>Email</strong>: <a href="mailto:nick@teamedup.co">nick@teamedup.co</a><br>
+                            <strong>Phone</strong>: <a href="tel:0400123456">0400 123 456</a><br>
+                            <strong>Website</strong>: <a href="#">https://nick.com</a></p>
+
+                            <p class="mb-30"><strong>Twitter</strong>: <a href="#">@teamedup</a><br>
+                            <strong>Facebook</strong>: <a href="#">fb.me/teamedup</a><br>
+                            <strong>LinkedIn</strong>: <a href="#">linkedin.com/teamedup</a><br>
+                            <strong>Weibo</strong>: <a href="#">teamedup</a></p>
+                            
+                            <div class="event-details-buttons mb-30">
+                                <a href="#" class="btn btn-transparent-dark" data-toggle="modal" data-target="#edit-profile-modal">Edit Profile</a>
+                                <hr>
+                                <a href="#" class="btn btn-transparent-dark">Add to Contacts</a>
+                            </div>
+
+                            <div class="social-share">
+                                <h3>Share Company</h3>
+                                <a class="twitter" href="#">Twitter</a>
+                                <a class="facebook" href="#">Facebook</a>
+                                <a class="email" href="#">Email</a>
+                                <a class="reddit" href="#">Reddit</a>
+                                <a class="weibo" href="#">Weibo</a>
+                                <a class="linkedin" href="#">LinkedIn</a>
+                            </div>
+
+                        </div><!-- /.event-details-sidebar -->
+
+                    </div>
+
+                </div>
+
+            </div><!-- /.container -->
+            
+        </section><!-- /.event-details-content -->
+
+    </div><!-- /#main -->
+
+    
+    <footer id="colophon" class="site-footer pages-footer">
+
+        <div class="container container-960">
+        
+            <div class="row">
+        
+                <div class="footer-col">
+                    <a href="#" class="site-logo" rel="home"><img src="{% static 'people/img/logo.png' %}" alt=""></a>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>News</h4>
+                    <ul>
+                        <li><a href="#">Current</a></li>
+                        <li><a href="#">Archive</a></li>
+                        <li><a href="#">Submit a story</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+                
+                <div class="footer-col">
+                    <h4>Events</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Attending</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+                
+                <div class="footer-col">
+                    <h4>Startups</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+                
+                <div class="footer-col">
+                    <h4>Companies</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+                
+                <div class="footer-col">
+                    <h4>Jobs</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+                
+                <div class="footer-col">
+                    <h4>Profile</h4>
+                    <ul>
+                        <li><a href="#">Your Activity</a></li>
+                        <li><a href="#">Edit Profile</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+                
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">About YBF</a></li>
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">Legal</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+                
+                <div class="footer-col pull-right text-right">
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+            </div>  
+                    
+        </div><!-- /.container -->
+
+    </footer><!-- /#footer -->
+
+
+    <div id="edit-profile-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                
+                <div class="modal-body">
+
+                    <div class="modal-body-left">
+                    
+                        <h4 class="modal-title">Edit Profile</h4>
+                        <form class="edit-profile-form">
+                            <div class="form-group">
+                                <label for="edit-profile-name">Full Name</label>
+                                <input type="text" id="edit-profile-name" class="form-control" placeholder="Nick Byrne">
+                                <a href="#" class="change-btn">Change</a>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-profile-email">Email</label>
+                                <input type="email" id="edit-profile-email" class="form-control" placeholder="hello@teamedup.com.au">
+                                <a href="#" class="change-btn">Change</a>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-profile-password">Password</label>
+                                <input type="password" id="edit-profile-password" class="form-control" placeholder="Enter your password">
+                                <a href="#" class="change-btn">Change</a>
+                            </div>
+                            <div class="form-group avatar-wrapper">
+                                <label for="edit-profile-avatar">Avatar</label>
+                                <div class="avatar-img-wrapper">
+                                    <img src="assets/img/avatar.jpg" alt="Avatar">
+                                </div>
+                                <a href="#" class="change-btn">Change</a>
+                            </div>
+                            <div class="modal-form-buttons">
+                                <a href="#" class="close-btn pull-right hidden-xs" data-dismiss="modal">Close</a>
+                                <button class="btn btn-dark" type="button">Save Changes</button>
+                            </div>
+                        </form><!-- /.edit-profile-form -->
+
+                    </div>
+
+                    <div class="modal-body-right"></div>
+                    
+                </div>
+               
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /#edit-profile-modal -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+    <script src="{% static 'people/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'people/js/script.js' %}"></script>
+  
+</body>
+{% endblock %}
