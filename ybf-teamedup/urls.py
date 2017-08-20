@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^$', home.views.index, name='index'),
 	url(r'^tinymce/', include('tinymce.urls')),
     url(r'^news/', include('news.urls')),
+    url(r'^c/', include('community.urls')),
     url(r'^dashboard/', include('dashboard.urls')),
 	url(r'^events/', include('events.urls')),
     url(r'^admin/', include(admin.site.urls)),
