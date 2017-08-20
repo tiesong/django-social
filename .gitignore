@@ -1,1 +1,6 @@
 /staticfiles/*
+*.py[cod]
+
+# virtualenv
+venv/
+env/
