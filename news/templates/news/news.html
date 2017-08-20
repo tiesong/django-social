@@ -62,10 +62,10 @@
             <div class="container">
             
                 <div class="hero-text">
-                    <p class="news-category">News // {{news_article.category.all|first}}</p>
-                    <h1 class="hero-title">{{primary_feature.title}}</h1>
-                    <p>by <a href="#" class="no-underline">{{primary_feature.owner.username}}</a></p>
-                    <a href="{{ primary_feature.id }}" class="read-more">Keep reading &rarr;</a>
+                    <p class="news-category">News // {{feature_list.0.category.all|first}}</p>
+                    <h1 class="hero-title">{{feature_list.0.title}}</h1>
+                    <p>by <a href="#" class="no-underline">{{feature_list.0.owner.username}}</a></p>
+                    <a href="{{ feature_list.0.id }}" class="read-more">Keep reading &rarr;</a>
                 </div>
 
             </div>
@@ -90,7 +90,7 @@
                         <h2 class="news-title">{{feature_list.1.title}}</h2>
                         <p class="posted-by">by <a href="#">{{feature_list.1.owner.username}}</a></p>
                         <p class="news-description">{{feature_list.1.article|safe|slice:":20"}}</p>
-                        <a href="{{ featured_news.id }}" class="read-more">Keep reading &rarr;</a>
+                        <a href="{{ feature_list.1.id }}" class="read-more">Keep reading &rarr;</a>
 
                     </div>
                     {% endif %}
@@ -101,7 +101,7 @@
                         <h2 class="news-title">{{feature_list.2.title}}</h2>
                         <p class="posted-by">by <a href="#">{{feature_list.2.owner.username}}</a></p>
                         <p class="news-description">{{feature_list.2.article|safe|slice:":20"}}</p>
-                        <a href="{{ featured_news.id }}" class="read-more">Keep reading &rarr;</a>
+                        <a href="{{ feature_list.2.id }}" class="read-more">Keep reading &rarr;</a>
 
                     </div>
                     {% endif %}
