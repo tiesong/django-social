@@ -1,39 +1,48 @@
 {% extends 'news/base.html' %}
 {% block content %}
-{% load staticfiles %}
-<body>
+    {% load staticfiles %}
+    <style>
+    img {max-width: 100% !important;
+    display: block;}
+    </style>
+    <body>
 
-  <script>
-  tinymce.init({
-    selector: '#body',
-    plugins: 'image',
-    file_picker_types: 'image',
-    file_picker_callback: function (callback, value, meta) {
-        var input = document.createElement('input');
-        input.setAttribute('type', 'file');
-        input.setAttribute('accept', 'image/*');
+    <script>
+        tinymce.init({
+            selector: '#body',
+            plugins: 'image',
+{#            extended_valid_elements : 'img[class|src|border=0|alt|title|width=100|height=500]',#}
+            image_description: false,
+            file_picker_types: 'image',
 
-        input.onchange = function(){
-            var file = this.files[0];
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
+            file_picker_callback: function (callback, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
 
-            reader.onload = function () {
-                var id = 'blobid' + (new Date()).getTime();
-                var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                var base64 = reader.result.split(',')[1];
-                var blobInfo = blobCache.create(id, file, base64);
-                blobCache.add(blobInfo);
+                input.onchange = function () {
+                    var file = this.files[0];
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
 
-                callback(blobInfo.blobUri(), {title: file.name});
-            };
-        };
-        input.click();
-    },
-    height: 500
-  });
+                    reader.onload = function () {
+                        var id = 'blobid' + (new Date()).getTime();
+                        var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        var base64 = reader.result.split(',')[1];
+                        var blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
 
-  </script>
+                        callback(blobInfo.blobUri(), {title: file.name});
+                    };
+                };
+                input.click();
+                $("")
+            },
+            height: 500,
+            content_css: "{% static 'news/css/tinyimg.css' %}"
+        });
+
+    </script>
 
     <header id="masthead" class="site-header">
 
@@ -41,7 +50,8 @@
 
             <div class="container container-960">
 
-                <a href="/" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt="" srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+                <a href="/" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""
+                                                              srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
                 <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
                     <span class="lines line-top"></span>
@@ -51,7 +61,9 @@
 
                 <nav id="primary-navigation" class="site-navigation">
 
-                    <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}" alt="" srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+                    <a href="index.html" class="site-logo visible-xs" rel="home"><img
+                            src="{% static 'news/img/logo.png' %}" alt=""
+                            srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
                     <ul>
                         <li class="active"><a href="/news">News</a></li>
@@ -66,7 +78,8 @@
                 <div class="user-profile dropdown">
 
                     <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
+                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.jpg' %}" alt=""> <span
+                                class="visible-xs caret"></span></div>
                         <div class="user-profile-meta hidden-xs">
                             <div class="user-profile-meta-inner">
                                 Nick B.
@@ -89,17 +102,15 @@
         <div class="hero event-details-hero">
 
             <div class="container">
-            
+
                 <div class="hero-text">
                     <p class="event-hero-date">{{ pub_date }}</p>
                     <h1 class="hero-title">{{ news_article.title }}</h1>
                     <p>Posted by <a href="">Nick Byrne</a></p>
                     <a class="btn btn-transparent-white" href="/news"><< Back</a>
                 </div>
-
             </div>
-
-        </div>        
+        </div>
 
     </header><!-- /#header -->
 
@@ -115,27 +126,27 @@
                         {% csrf_token %}
                         <div class="col-sm-8">
                             <h3>Title</h3>
-                            <p><input class="form-control" id="title" name="title" value="{{news_article.title}}"></input></p>
+                            <p><input class="form-control" id="title" name="title" value="{{ news_article.title }}"></input></p>
                             <br>
-                            
-                                <h3>Feature priority</h3>
-                                <p>0 = not featured | 5 means feature priority</p>
-                                <select title = "feature_rank" class="form-control" id="feature_rank" name="feature_rank">
-                                  <option value="{{news_article.feature_rank}}" selected>{{news_article.feature_rank}}</option>
-                                  <option value="0">0</option>
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                                  <option value="4">4</option>
-                                  <option value="5">5</option>
-                                </select>
-                            
+
+                            <h3>Feature priority</h3>
+                            <p>0 = not featured | 5 means feature priority</p>
+                            <select title="feature_rank" class="form-control" id="feature_rank" name="feature_rank">
+                                <option value="{{ news_article.feature_rank }}"
+                                        selected>{{ news_article.feature_rank }}</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+
                             <br>
                             <h3>Description</h3>
                             <p>
-                                <textarea id="body" name="body">{{news_article.article}}</textarea>
+                                <textarea id="body" name="body">{{ news_article.article }}</textarea>
                                 <br>
-
                             </p>
                         </div>
 
@@ -144,51 +155,49 @@
                                 <div class="event-details-sidebar">
 
                                     <button class="btn btn-transparent-dark" type="submit">Save</button>
-                                    <a class="btn btn-transparent-dark" type="button" href="/news/{{news_article.id}}">Cancel</a>
+                                    <a class="btn btn-transparent-dark" type="button"
+                                       href="/news/{{ news_article.id }}">Cancel</a>
                                 </div>
                             </div>
-
-
                         </div>
                     </form>
                 </div>
 
             </div><!-- /.container -->
-            
+
         </section>
 
         <section class="events-list">
 
             <div class="container container-960">
-                
+
                 <p class="events-date">Related news</p>
-                  
+
                 <div class="row row-eq-height row-margin-1">
                     {% for related_news in related_news %}
-                    <div class="col-md-3 col-xs-12">
-                        <div class="event-item">
-                            <p class="event-date">11am 8 Aug 2017</p>
-                            <h2 class="event-name"><a href="/news/{{ related_news.id }}">{{related_news.title|slice:":60"}}</a></h2>
-                            <a href="#" class="event-attending">posted by</a>
-                        </div><!-- /.event-item -->
-                    </div>  
+                        <div class="col-md-3 col-xs-12">
+                            <div class="event-item">
+                                <p class="event-date">11am 8 Aug 2017</p>
+                                <h2 class="event-name"><a
+                                        href="/news/{{ related_news.id }}">{{ related_news.title|slice:":60" }}</a></h2>
+                                <a href="#" class="event-attending">posted by</a>
+                            </div><!-- /.event-item -->
+                        </div>
                     {% endfor %}
 
                 </div><!-- /.row -->
-
             </div>
-
         </section>
 
     </div><!-- /#main -->
 
-    
+
     <footer id="colophon" class="site-footer pages-footer">
 
         <div class="container container-960">
-        
+
             <div class="row">
-        
+
                 <div class="footer-col">
                     <a href="#" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""></a>
                 </div><!-- /.footer-col -->
@@ -201,7 +210,7 @@
                         <li><a href="#">Submit a story</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Events</h4>
                     <ul>
@@ -210,7 +219,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Startups</h4>
                     <ul>
@@ -218,7 +227,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Companies</h4>
                     <ul>
@@ -226,7 +235,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Jobs</h4>
                     <ul>
@@ -234,7 +243,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Profile</h4>
                     <ul>
@@ -242,7 +251,7 @@
                         <li><a href="#">Edit Profile</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
@@ -252,7 +261,7 @@
                         <li><a href="#">Legal</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col pull-right text-right">
                     <ul>
                         <li><a href="#">Twitter</a></li>
@@ -261,9 +270,7 @@
                         <li><a href="#">LinkedIn</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-
-            </div>  
-                    
+            </div>
         </div><!-- /.container -->
 
     </footer><!-- /#footer -->
