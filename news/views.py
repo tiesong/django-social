@@ -21,7 +21,7 @@ def index(request):
     primary_feature = News.objects.order_by('feature_rank').order_by('-pub_date')[0]
 
     try:
-        feature_list = News.objects.order_by('feature_rank').order_by('-pub_date')[0:3]
+        feature_list = News.objects.order_by('-pub_date').order_by('-feature_rank')[0:3]
     except:
         feature_list = False
 
