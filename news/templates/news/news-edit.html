@@ -15,7 +15,7 @@
             image_description: false,
             image_dimensions: false,
             file_picker_types: 'image',
-
+            content_css: "{% static 'news/css/popup.css' %}",
             file_picker_callback: function (callback, value, meta) {
                 var input = document.createElement('input');
                 input.setAttribute('type', 'file');
