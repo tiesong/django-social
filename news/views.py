@@ -18,7 +18,12 @@ def index(request):
 
     # Return three articles to render in the featured articles fields in template
     featured_news_list = News.objects.filter(featured=True).order_by('-pub_date')[1:3]
-    primary_feature = News.objects.filter(featured=True).order_by('-pub_date')[0]
+    primary_feature = News.objects.order_by('feature_rank').order_by('-pub_date')[0]
+
+    try:
+        feature_list = News.objects.order_by('feature_rank').order_by('-pub_date')[0:3]
+    except:
+        feature_list = False
 
     # pagination of news results
     paginator = Paginator(news_list, 5)  # show X results per page
@@ -36,6 +41,7 @@ def index(request):
         'latest_news_list': latest_news_list,
         'primary_feature': primary_feature,
         'featured_news_list': featured_news_list,
+        'feature_list': feature_list,
         'total_articles': total_articles
     }
     return render(request, 'news/news.html', context)

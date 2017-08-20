@@ -83,17 +83,28 @@
 
                 <div class="row">
 
-                {% for featured_news in featured_news_list %}
+                    {% if feature_list.1 %}
                     <div class="col-sm-6">
 
-                        <p class="news-category">News // Technology</p>
-                        <h2 class="news-title">{{featured_news.title}}</h2>
-                        <p class="posted-by">by <a href="#">{{featured_news.owner.username}}</a></p>
-                        <p class="news-description">{{featured_news.article|safe|slice:":20"}}</p>
+                        <p class="news-category">News // {{feature_list.1.category.all|first}}</p>
+                        <h2 class="news-title">{{feature_list.1.title}}</h2>
+                        <p class="posted-by">by <a href="#">{{feature_list.1.owner.username}}</a></p>
+                        <p class="news-description">{{feature_list.1.article|safe|slice:":20"}}</p>
                         <a href="{{ featured_news.id }}" class="read-more">Keep reading &rarr;</a>
 
                     </div>
-                {% endfor %}
+                    {% endif %}
+                    {% if feature_list.2 %}
+                    <div class="col-sm-6">
+
+                        <p class="news-category">News // {{feature_list.2.category.all|first}}</p>
+                        <h2 class="news-title">{{feature_list.2.title}}</h2>
+                        <p class="posted-by">by <a href="#">{{feature_list.2.owner.username}}</a></p>
+                        <p class="news-description">{{feature_list.2.article|safe|slice:":20"}}</p>
+                        <a href="{{ featured_news.id }}" class="read-more">Keep reading &rarr;</a>
+
+                    </div>
+                    {% endif %}
 
                 </div>
 
@@ -139,7 +150,7 @@
                             <p class="news-category">News // {{news_article.category.all|first}}</p>
                             <h3 class="news-title">{{ news_article.title }}</h3>
                             <p class="news-author">by <a href="#">{{ news_article.owner.username }}</a></p>
-                            <p class="news-description">{{ news_article.article_text|slice:":150" }}</p>
+                            <p class="news-description">{{ news_article.article|slice:":150" }}</p>
                             <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
                         </div>
                     </div><!-- /.news-single-item -->
