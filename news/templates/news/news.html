@@ -1,78 +1,83 @@
 {% extends 'news/base.html' %}
 {% block content %}
-{% load staticfiles %}
-<body>
+    {% load staticfiles %}
+    <body>
 
-{% if featured_image %}
-    <header id="masthead" class="site-header" style="background:{{ featured_image.url }} no-repeat center / cover;">
-{% else %}
-    <header id="masthead" class="site-header" style="background:{% static 'news/img/ybf-bg.jpg' %} no-repeat center / cover;">
-{% endif %}
-        <div class="top-nav">
+    {% if featured_image %}
+        <header id="masthead" class="site-header" style="background:{{ featured_image.url }} no-repeat center / cover;">
+    {% else %}
+        <header id="masthead" class="site-header"
+                style="background:{% static 'news/img/ybf-bg.jpg' %} no-repeat center / cover;">
+    {% endif %}
+<div class="top-nav">
 
-            <div class="container container-960">
+    <div class="container container-960">
 
-                <a href="index.html" class="site-logo" rel="home"><img src="{% static 'news/assets/img/logo.png' %}" alt="" srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+        <a href="index.html" class="site-logo" rel="home"><img src="{% static 'news/assets/img/logo.png' %}" alt=""
+                                                               srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
-                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
-                    <span class="lines line-top"></span>
-                    <span class="lines line-middle"></span>
-                    <span class="lines line-bottom"></span>
-                </button><!-- /.lines-button -->
+        <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+            <span class="lines line-top"></span>
+            <span class="lines line-middle"></span>
+            <span class="lines line-bottom"></span>
+        </button><!-- /.lines-button -->
 
-                <nav id="primary-navigation" class="site-navigation">
+        <nav id="primary-navigation" class="site-navigation">
 
-                    <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}" alt="" srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+            <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}"
+                                                                              alt=""
+                                                                              srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
-                    <ul>
-                        <li class="active"><a href="/news">News</a></li>
-                        <li><a href="/events">Events</a></li>
-                        <li><a href="#">Startups</a></li>
-                        <li><a href="jobs.html">Jobs</a></li>
-                        <li><a href="company-profile.html">Companies</a></li>
-                    </ul>
+            <ul>
+                <li class="active"><a href="/news">News</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="#">Startups</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="company-profile.html">Companies</a></li>
+            </ul>
 
-                </nav><!-- /.site-navigation -->
+        </nav><!-- /.site-navigation -->
 
-                <div class="user-profile dropdown">
+        <div class="user-profile dropdown">
 
-                    <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
-                        <div class="user-profile-meta hidden-xs">
-                            <div class="user-profile-meta-inner">
-                                {{request.user.username}}
-                            </div>
-                        </div>
-                    </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
-                        <li><a href="person-profile.html">Profile</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li class="logout-btn"><a href="/logout">Logout</a></li>
-                    </ul>
-
-                </div><!-- /.user-profile -->
-
-            </div><!-- /.container -->
-
-        </div><!-- /.top-nav -->
-
-        <div class="hero event-details-hero">
-
-            <div class="container">
-            
-                <div class="hero-text">
-                    <p class="news-category">News // {{feature_list.0.category.all|first}}</p>
-                    <h1 class="hero-title">{{feature_list.0.title}}</h1>
-                    <p>by <a href="#" class="no-underline">{{feature_list.0.owner.username}}</a></p>
-                    <a href="{{ feature_list.0.id }}" class="read-more">Keep reading &rarr;</a>
+            <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
+                <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.jpg' %}" alt=""> <span
+                        class="visible-xs caret"></span></div>
+                <div class="user-profile-meta hidden-xs">
+                    <div class="user-profile-meta-inner">
+                        {{ request.user.username }}
+                    </div>
                 </div>
+            </a>
 
-            </div>
+            <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
+                <li><a href="person-profile.html">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li class="logout-btn"><a href="/logout">Logout</a></li>
+            </ul>
 
-        </div>        
+        </div><!-- /.user-profile -->
 
-    </header><!-- /#header -->
+    </div><!-- /.container -->
+
+</div><!-- /.top-nav -->
+
+<div class="hero event-details-hero">
+
+    <div class="container">
+
+        <div class="hero-text">
+            <p class="news-category">News // {{ feature_list.0.category.all|first }}</p>
+            <h1 class="hero-title">{{ feature_list.0.title }}</h1>
+            <p>by <a href="#" class="no-underline">{{ feature_list.0.owner.username }}</a></p>
+            <a href="{{ feature_list.0.id }}" class="read-more">Keep reading &rarr;</a>
+        </div>
+
+    </div>
+
+</div>
+
+</header><!-- /#header -->
 
 
     <div id="main" class="site-main">
@@ -84,32 +89,32 @@
                 <div class="row">
 
                     {% if feature_list.1 %}
-                    <div class="col-sm-6">
+                        <div class="col-sm-6">
 
-                        <p class="news-category">News // {{feature_list.1.category.all|first}}</p>
-                        <h2 class="news-title">{{feature_list.1.title}}</h2>
-                        <p class="posted-by">by <a href="#">{{feature_list.1.owner.username}}</a></p>
-                        <p class="news-description">{{feature_list.1.article|safe|slice:":20"}}</p>
-                        <a href="{{ feature_list.1.id }}" class="read-more">Keep reading &rarr;</a>
+                            <p class="news-category">News // {{ feature_list.1.category.all|first }}</p>
+                            <h2 class="news-title">{{ feature_list.1.title }}</h2>
+                            <p class="posted-by">by <a href="#">{{ feature_list.1.owner.username }}</a></p>
+                            <p class="news-description">{{ feature_list.1.article|safe|slice:":20" }}</p>
+                            <a href="{{ feature_list.1.id }}" class="read-more">Keep reading &rarr;</a>
 
-                    </div>
+                        </div>
                     {% endif %}
                     {% if feature_list.2 %}
-                    <div class="col-sm-6">
+                        <div class="col-sm-6">
 
-                        <p class="news-category">News // {{feature_list.2.category.all|first}}</p>
-                        <h2 class="news-title">{{feature_list.2.title}}</h2>
-                        <p class="posted-by">by <a href="#">{{feature_list.2.owner.username}}</a></p>
-                        <p class="news-description">{{feature_list.2.article|safe|slice:":20"}}</p>
-                        <a href="{{ feature_list.2.id }}" class="read-more">Keep reading &rarr;</a>
+                            <p class="news-category">News // {{ feature_list.2.category.all|first }}</p>
+                            <h2 class="news-title">{{ feature_list.2.title }}</h2>
+                            <p class="posted-by">by <a href="#">{{ feature_list.2.owner.username }}</a></p>
+                            <p class="news-description">{{ feature_list.2.article|safe|slice:":20" }}</p>
+                            <a href="{{ feature_list.2.id }}" class="read-more">Keep reading &rarr;</a>
 
-                    </div>
+                        </div>
                     {% endif %}
 
                 </div>
 
             </div><!-- /.container -->
-            
+
         </section><!-- /.next-events -->
 
         <section class="news-page">
@@ -117,82 +122,73 @@
             <div class="container container-960">
 
                 <div class="filters-fix">
-                
-                    <div class="filters-wrapper" data-spy="affix">
+
+                    <div class="filters-wrapper">
 
                         <div class="events-filter news-filter">
-                            <span class="filter-label">Search</span>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Popular</a></li>
-                                <li><a href="#">New</a></li>
-                                <li><a href="#">Featured</a></li>
-                            </ul>
-                            <a href="#" class="all-events pull-right">All Articles...</a>
+                            <span class="filter-label">
+                                <ul class="list-unstyled">
+                                    <li><a id="search" href="javascript:void(0)">Search</a></li>
+                                    {% for category in category_list %}
+                                        {% if  category != "" %}
+                                            <li><a href="javascript:void(0)"
+                                                   onclick="clickTag('{{ category }}');">{{ category }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </span>
+                            <a href="javascript:void(0)" class="all-events pull-right" onclick="clickAllArticles();">All
+                                Articles...</a>
                         </div>
 
+                        <div class="events-filter news-filter">
+                            <span class="filter-label">
+                                <input id="searchBar" type="text" placeholder="keyword..." onkeyup="realFilter()"
+                                       style="display: none; width: 100%; "/>
+                            </span>
+                        </div>
                     </div>
-
                 </div>
 
-                <div class="news-page-list">
+                <div id="article_list" class="news-page-list">
 
-                {% for news_article in latest_news_list %}
-                    <div class="news-single-item">
-                        <div class="news-single-thumb">
-                        {% if news_article.image %}
-                            <img src="{{ news_article.image.url }}" alt="">
-                        {% else %}
-                            <img src="{% static 'news/img/news-tmp.png' %}" alt="">
-                        {% endif %}
-                        
-                        </div>
-                        <div class="news-single-content">
-                            <p class="news-category">News // {{news_article.category.all|first}}</p>
-                            <h3 class="news-title">{{ news_article.title }}</h3>
-                            <p class="news-author">by <a href="#">{{ news_article.owner.username }}</a></p>
-                            <p class="news-description">{{ news_article.article|slice:":150" }}</p>
-                            <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
-                        </div>
-                    </div><!-- /.news-single-item -->
-                {% endfor %}
+                    {% for news_article in latest_news_list %}
+                        <div id="article_{{ news_article.id }}" class="news-single-item">
+                            <div class="news-single-thumb">
+                                {% if news_article.image %}
+                                    <img src="{{ news_article.image.url }}" alt="">
+                                {% else %}
+                                    <img src="{% static 'news/img/news-tmp.png' %}" alt="">
+                                {% endif %}
+
+                            </div>
+                            <div class="news-single-content">
+                                <p class="news-category">News // {{ news_article.category.all|first }}</p>
+                                <h3 class="news-title">{{ news_article.title }}</h3>
+                                <p class="news-author">by <a href="#">{{ news_article.owner.username }}</a></p>
+                                <p class="news-description">{{ news_article.article|slice:":150" }}</p>
+                                <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
+                            </div>
+                        </div><!-- /.news-single-item -->
+                    {% endfor %}
 
                 </div><!-- /.news-list -->
-            
-                <nav aria-label="News list navigation">
-                    <ul class="pagination text-center">
-                        {% if latest_news_list.has_previous %}
-                        <li class="pull-left text-pagination">
-                            <a href="?page={{ latest_news_list.previous_page_number }}" aria-label="Previous">
-                                <span aria-hidden="true">&larr; Prev Page</span>
-                            </a>
-                        </li>
-                        {% endif %}
+                <nav class="pagination-page pull-right" aria-label="News list navigation" style="padding-top: 10px">
 
-                        {% if latest_news_list.has_next %}
-                        <li class="pull-right text-pagination">
-                            <a href="?page={{ latest_news_list.next_page_number }}" aria-label="Next">
-                                <span aria-hidden="true">Next Page &rarr;</span>
-                            </a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                    <p class="total-items">Page {{ latest_news_list.number }} of {{ latest_news_list.paginator.num_pages }}.</p>
-                    <p class="total-items">{{total_articles}} total items</p>
                 </nav>
-
             </div><!-- /.container -->
-            
+
         </section><!-- /.news-page -->
 
     </div><!-- /#main -->
 
-    
+
     <footer id="colophon" class="site-footer pages-footer">
 
         <div class="container container-960">
-        
+
             <div class="row">
-        
+
                 <div class="footer-col">
                     <a href="#" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""></a>
                 </div><!-- /.footer-col -->
@@ -205,7 +201,7 @@
                         <li><a href="#">Submit a story</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Events</h4>
                     <ul>
@@ -214,7 +210,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Startups</h4>
                     <ul>
@@ -222,7 +218,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Companies</h4>
                     <ul>
@@ -230,7 +226,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Jobs</h4>
                     <ul>
@@ -238,7 +234,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Profile</h4>
                     <ul>
@@ -246,7 +242,7 @@
                         <li><a href="#">Edit Profile</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
@@ -256,7 +252,7 @@
                         <li><a href="#">Legal</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col pull-right text-right">
                     <ul>
                         <li><a href="#">Twitter</a></li>
@@ -266,10 +262,127 @@
                     </ul>
                 </div><!-- /.footer-col -->
 
-            </div>  
-                    
+            </div>
+
         </div><!-- /.container -->
 
     </footer><!-- /#footer -->
 
+{% endblock %}
+
+{% block customscript %}
+    <script type="text/javascript">
+        var AllItemsElements;
+        var searchInput, filter;
+
+        // after loading page
+        $(document).ready(function () {
+
+            // show content by page
+            var newsItemsElements = $("#article_list .news-single-item");
+            AllItemsElements = newsItemsElements;
+            newsPage(newsItemsElements);
+
+            // visible or invisible search box.
+            $('#search').click(function () {
+                if ($("#searchBar").is(':visible')) {
+                    $("#searchBar").fadeOut();
+                } else {
+                    $("#searchBar").fadeIn();
+                }
+            });
+
+            $(document.body).click(function (e) {
+                //Hide the search bar if visible
+                if (e.target.id !== "searchBar" && e.target.id !== "search")
+                    $("#searchBar").hide();
+            });
+        });
+
+        // search keyword in real time.
+        function realFilter() {
+            searchInput = document.getElementById("searchBar");
+            filter = searchInput.value.toLowerCase();
+            var newsItemsElements = $("#article_list .news-single-item");
+            newsItemsElements.hide();
+
+            for (var i = newsItemsElements.length; i--;) {
+
+                var newsItemId = newsItemsElements[i].id;
+                var newsItemContentDiv = newsItemsElements[i].children[1];
+                var newsItemCategory = newsItemContentDiv.children[0].innerHTML.toLowerCase().split("//")[1].replace(/\s+/g, "");
+                var newsItemContent = newsItemContentDiv.children[3].innerHTML.toLowerCase().replace(/\s+/g, "");
+
+                // search tag in category
+                if (newsItemCategory.indexOf(filter) > -1) {
+                    console.log('hide', "#article_" + newsItemId.toString());
+
+                }
+                // search tag in news body.
+                else if (newsItemContent.indexOf(filter) > -1) {
+                    console.log('show', "#article_" + newsItemId.toString());
+                }
+
+                else {
+                    console.log('hide', i);
+                    newsItemsElements.splice(i, 1);
+
+                }
+            }
+            console.log(newsItemsElements);
+           if( newsItemsElements.length !== 0)
+                newsPage(newsItemsElements);
+        }
+
+        // paginate contents.
+        function newsPage(newsItemsElements) {
+
+            var perPage = 5;
+            console.log('newsItems ', newsItemsElements);
+            newsItemsElements.show();
+            newsItemsElements.slice(perPage).hide();  // First 5 items show.
+
+            $(".pagination-page").pagination({
+                items: newsItemsElements.length,
+                itemsOnPage: perPage,
+                cssStyle: "light-theme",
+
+                onPageClick: function (pageNumber) {
+
+                    var showFrom = perPage * (pageNumber - 1);
+                    var showTo = showFrom + perPage;
+
+                    newsItemsElements.hide().slice(showFrom, showTo).show();
+                }
+            });
+
+        }
+
+        function clickAllArticles() {
+            AllItemsElements.show();
+            newsPage(AllItemsElements);
+        }
+
+        function clickTag(category) {
+            console.log("category:", category.toLowerCase());
+            var ItemsElements = $("#article_list .news-single-item");
+            ItemsElements.hide();
+
+            for (var i = ItemsElements.length; i--;) {
+                var ItemContentDiv = ItemsElements[i].children[1];
+                var ItemCategory = ItemContentDiv.children[0].innerHTML.split("//")[1].replace(/\s+/g, "");
+
+                if (ItemCategory.toLowerCase() !== category.toLowerCase()){
+
+                    ItemsElements.splice(i, 1);
+                }
+
+            }
+            console.log(ItemsElements);
+            if( ItemsElements.length !== 0)
+                newsPage(ItemsElements);
+
+        }
+
+    </script>
 {% endblock %}
