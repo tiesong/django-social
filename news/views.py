@@ -19,30 +19,34 @@ def index(request):
     # Return three articles to render in the featured articles fields in template
     featured_news_list = News.objects.filter(featured=True).order_by('-pub_date')[1:3]
     primary_feature = News.objects.order_by('feature_rank').order_by('-pub_date')[0]
+    category_list = Category.objects.all()
 
     try:
         feature_list = News.objects.order_by('-pub_date').order_by('-feature_rank')[0:3]
+
     except:
         feature_list = False
 
     # pagination of news results
-    paginator = Paginator(news_list, 5)  # show X results per page
-    page = request.GET.get('page')
-    try:
-        latest_news_list = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        latest_news_list = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        latest_news_list = paginator.page(paginator.num_pages)
+    # paginator = Paginator(news_list, 5)  # show X results per page
+    # page = request.GET.get('page')
+    # try:
+    #     latest_news_list = paginator.page(page)
+    # except PageNotAnInteger:
+    #     # If page is not an integer, deliver first page.
+    #     latest_news_list = paginator.page(1)
+    # except EmptyPage:
+    #     # If page is out of range (e.g. 9999), deliver last page of results.
+    #     latest_news_list = paginator.page(paginator.num_pages)
 
     context = {
-        'latest_news_list': latest_news_list,
+        # 'latest_news_list': latest_news_list,
+        'latest_news_list': news_list,
         'primary_feature': primary_feature,
         'featured_news_list': featured_news_list,
         'feature_list': feature_list,
-        'total_articles': total_articles
+        'total_articles': total_articles,
+        'category_list': category_list
     }
     return render(request, 'news/news.html', context)
 
@@ -74,6 +78,7 @@ def create(request):
 
     try:
         next_url = request.GET['next']
+
     except:
         next_url = False
 
@@ -105,8 +110,7 @@ def create(request):
         return redirect('/dashboard')
 
 
-    return render(request, 'news/news-edit.html', context);
-
+    return render(request, 'news/news-edit.html', context)
 
 
 @login_required
@@ -148,7 +152,8 @@ def edit(request, news_article_id):
 
         return redirect('detail', news_article_id=news_article.id)
 
-    return render(request, 'news/news-edit.html', context);
+    return render(request, 'news/news-edit.html', context)
+
 
 @login_required
 def delete(request, news_article_id):
@@ -159,3 +164,4 @@ def delete(request, news_article_id):
     context = {}
 
     return redirect('/dashboard')
+
