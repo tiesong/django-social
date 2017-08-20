@@ -74,7 +74,7 @@
                     {% endif %}
 
                     <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-                    <p>{{ user.profile.tagline }}</p>
+                    <p>{{ user.profile.tagline|slice:":25" }}</p>
                 </div>
 
             </div>
