@@ -22,12 +22,8 @@ class News(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     title = models.CharField(max_length=150)
-    article_text = models.TextField()
 
     article = HTMLField(blank=True)
-
-    featured_image = models.ImageField(upload_to='news_images/%Y/%m/%d/', null=True, blank=True)
-    image = models.ImageField(upload_to='news_images/%Y/%m/%d/', null=True, blank=True)
 
     pub_date = models.DateTimeField('date published')
     featured = models.BooleanField(default=False)
