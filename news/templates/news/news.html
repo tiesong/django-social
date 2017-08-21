@@ -166,19 +166,19 @@
                                                style="width: 100%;"/>
                                     </div>
                                 </div>
-{#                                <div class="row" style="padding-bottom: 10px">#}
-{#                                    <ul>#}
-{#                                        <li><input#}
-{#                                                id="categoryCheck" type="checkbox" class="checkbox-inline"#}
-{#                                                placeholder="title" onchange='handleCategory(this);' checked><label#}
-{#                                                class="checkboxtext">Category</label></li>#}
-{##}
-{#                                        <li><input id="contentCheck" type="checkbox" class="checkbox-inline"#}
-{#                                                   placeholder="category" onchange='handleContent(this);'/><label#}
-{#                                                class="checkboxtext">News#}
-{#                                            Content</label></li>#}
-{#                                    </ul>#}
-{#                                </div>#}
+                                {#                                <div class="row" style="padding-bottom: 10px">#}
+                                {#                                    <ul>#}
+                                {#                                        <li><input#}
+                                {#                                                id="categoryCheck" type="checkbox" class="checkbox-inline"#}
+                                {#                                                placeholder="title" onchange='handleCategory(this);' checked><label#}
+                                {#                                                class="checkboxtext">Category</label></li>#}
+                                {##}
+                                {#                                        <li><input id="contentCheck" type="checkbox" class="checkbox-inline"#}
+                                {#                                                   placeholder="category" onchange='handleContent(this);'/><label#}
+                                {#                                                class="checkboxtext">News#}
+                                {#                                            Content</label></li>#}
+                                {#                                    </ul>#}
+                                {#                                </div>#}
 
                             </form>
                         </div>
@@ -190,11 +190,8 @@
                     {% for news_article in latest_news_list %}
                         <div id="article_{{ news_article.id }}" class="news-single-item">
                             <div class="news-single-thumb">
-                                {% if news_article.image %}
-                                    <img src="{{ news_article.image.url }}" alt="">
-                                {% else %}
-                                    <img src="{% static 'news/img/news-tmp.png' %}" alt="">
-                                {% endif %}
+
+                                    <img src="{{ news_article.article | safe |previewImage }}" alt="">
 
                             </div>
                             <div class="news-single-content">
@@ -211,12 +208,9 @@
 
                 </div><!-- /.news-list -->
                 <nav class="pagination-page pull-right" aria-label="News list navigation" style="padding-top: 10px">
-
                 </nav>
             </div><!-- /.container -->
-
         </section><!-- /.news-page -->
-
     </div><!-- /#main -->
 
 
