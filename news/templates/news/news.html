@@ -142,10 +142,15 @@
                         </div>
 
                         <div class="events-filter news-filter">
-                            <span class="filter-label">
+
+                            <div class="col-sm-12">
                                 <input id="searchBar" type="text" placeholder="keyword..." onkeyup="realFilter()"
-                                       style="display: none; width: 520%; "/>
-                            </span>
+                                       style="display: none; width: 100%;"/>
+                                <input id="titleRadio" type="radio" placeholder="title" >
+                                <input id="categoryRadio" type="radio" placeholder="category"
+                                       >
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -285,17 +290,21 @@
 
             // visible or invisible search box.
             $('#search').click(function () {
-                if ($("#searchBar").is(':visible')) {
+                if ($("#searchBar").is(':visible') && $("#titleRadio").is(':visible') && $("#categoryRadio").is(':visible')) {
                     $("#searchBar").fadeOut();
+                    $("#titleRadio").fadeOut();
+                    $("#categoryRadio").fadeOut();
                 } else {
                     $("#searchBar").fadeIn();
+                    $("#titleRadio").fadeOut();
+                    $("#categoryRadio").fadeOut();
                 }
             });
 
             $(document.body).click(function (e) {
                 //Hide the search bar if visible
-                if (e.target.id !== "searchBar" && e.target.id !== "search")
-                    $("#searchBar").hide();
+                if (e.target.id !== "searchBar" && e.target.id !== "search" && e.target.id !== "titleRadio" && e.target.id !== "categoryRadio")
+                    $("#searchDiv").hide();
             });
         });
 
@@ -330,7 +339,7 @@
                 }
             }
             console.log(newsItemsElements);
-           if( newsItemsElements.length !== 0)
+            if (newsItemsElements.length !== 0)
                 newsPage(newsItemsElements);
         }
 
@@ -372,14 +381,14 @@
                 var ItemContentDiv = ItemsElements[i].children[1];
                 var ItemCategory = ItemContentDiv.children[0].innerHTML.split("//")[1].replace(/\s+/g, "");
 
-                if (ItemCategory.toLowerCase() !== category.replace(/\s+/g, "").toLowerCase()){
+                if (ItemCategory.toLowerCase() !== category.replace(/\s+/g, "").toLowerCase()) {
 
                     ItemsElements.splice(i, 1);
                 }
 
             }
             console.log(ItemsElements);
-            if( ItemsElements.length !== 0)
+            if (ItemsElements.length !== 0)
                 newsPage(ItemsElements);
 
         }
