@@ -1,0 +1,46 @@
+{% extends 'officespace/base.html' %}
+{% block content %}
+    <h2 class="text-center">Office Space @ YBF</h2>
+    <div class="booking-action">
+		<a href="#" class="">New Booking</a>
+		<a href="#" class="">Your Bookings</a>
+    </div>
+    <div class="bookings">
+    	<div class="pull-left" style="width: 80%;">
+    		<div class="booking">
+    			<table id="bookings_table" class="table table-striped" cellspacing="0" width="100%">
+    				<thead style="display: none;">
+						<tr>
+							<th>Info</th>
+							<th>Action</th>
+						</tr>
+				    </thead>
+				    <tbody>
+					    <tr>
+					    	<td>
+    							<p>Space // Meeting Room</p>
+					    		<h2>Room A2</h2>
+		    					<span>11AM - 2:30PM</span>
+		    					<span>Tuesday, August 4.</span>
+					    	</td>
+						    <td class="actions text-right" style="vertical-align: middle;">
+						    	<a href="#"><span class="glyphicon glyphicon-eye-open"></span></a>
+						    	<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+						    	<a href="#" data-href="#" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-trash"></span></a>
+				        	</td>
+					    </tr>
+					</tbody>
+				</table>
+    		</div>
+    	</div>
+    	<div class="pull-right" style="width: 15%">
+    		<p>Filter by Type</p>
+    		<a href="">Meeting Space</a>
+    		<a href="">Teleconference Room</a>
+    		<a href="">Workspaces</a>
+    		<a href="">Misc</a>
+    	</div>
+    	<div class="clearfix"></div>
+    </div>
+	{% include "officespace/modal/delete_confirm.html" %}
+{% endblock %}

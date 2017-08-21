@@ -20,7 +20,6 @@ urlpatterns = [
     url(r'^dashboard/', include('dashboard.urls')),
 	url(r'^events/', include('events.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^officespace/', include('officespace.urls')),
     url('^', include('django.contrib.auth.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
