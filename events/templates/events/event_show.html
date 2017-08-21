@@ -4,9 +4,177 @@
 	{% load staticfiles %}
 
     <h1>Event Show!!!!</h1>
-    <form class="create-event-form" action="detail" method="GET">
-        {% for event in event_data %}
-            <p><a href="#">{{ event.title }}</a></p>
-        {% endfor %}
-    </form>
+        <header id="masthead" class="site-header event-list-header">
+
+            <div class="top-nav">
+
+                <div class="container container-960">
+
+                    <a href="index.html" class="site-logo" rel="home"><img src="{% static 'events/img/logo.png' %}" alt="" srcset="{% static 'events/img/logo.png' %} 1x, {% static 'events/img/logo@2x.png' %} 2x"></a>
+
+                    <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+                        <span class="lines line-top"></span>
+                        <span class="lines line-middle"></span>
+                        <span class="lines line-bottom"></span>
+                    </button><!-- /.lines-button -->
+
+                    <nav id="primary-navigation" class="site-navigation">
+
+                        <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'events/img/logo.png' %}" alt="" srcset="{% static 'events/img/logo.png' %} 1x, {% static 'events/img/logo@2x.png' %} 2x"></a>
+
+                        <ul>
+                            <li><a href="/news">News</a></li>
+                            <li class="active"><a href="/events">Events</a></li>
+                            <li><a href="#">Startups</a></li>
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Companies</a></li>
+                        </ul>
+
+                    </nav><!-- /.site-navigation -->
+
+                    <div class="user-profile dropdown">
+
+                        <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
+                            <div class="user-profile-thumb"><img src="assets/img/avatar.jpg" alt=""> <span class="visible-xs caret"></span></div>
+                            <div class="user-profile-meta hidden-xs">
+                                <div class="user-profile-meta-inner">
+                                    Cade D.
+                                </div>
+                            </div>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
+                            <li><a href="person-profile.html">Profile</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li class="logout-btn"><a href="/logout">Logout</a></li>
+                        </ul>
+
+                    </div><!-- /.user-profile -->
+
+                </div><!-- /.container -->
+
+            </div><!-- /.top-nav -->
+        </header><!-- /#header -->
+
+    <div id="main" class="site-main">
+        <section class="events-info">
+
+			<div class="container">
+
+				<div class="row">
+
+					<div class="col-sm-6">
+						<div class="events-info-inner">
+							<h2>Events</h2>
+							<p>126 events,<br>
+							2500 members,<br>
+							365 days a year</p>
+
+							<p>Post or attend for free.</p>
+						</div><!-- /.events-info-inner -->
+					</div>
+
+					<div class="col-sm-6">
+						<form class="event-form">
+		                    <div class="form-group mb-30">
+		                        <label for="find-event">Find an event</label>
+		                        <input type="text" id="find-event" class="form-control" placeholder="Beginner’s Code Group">
+		                    </div>
+		                    <div class="form-group">
+		                        <button class="btn btn-dark" type="button">Search YFB events</button>
+		                        <button class="btn btn-transparent-dark" type="button" data-toggle="modal" data-target="#create-event-modal">Create new event</button>
+		                    </div>
+		                </form><!-- /.event-form -->
+					</div>
+
+				</div>
+
+			</div>
+		</section><!-- /.events-info -->
+
+        <section class="next-events">
+
+            <div class="container container-960">
+
+                <div class="row">
+
+                    <div class="col-sm-6">
+
+                        <p class="news-category">11am 8 Aug 2017</p>
+                        <h2 class="news-title">Fintech Australia:<br> R&amp;D Tech Grants 101 Workshop</h2>
+                        <p class="news-description"><span class="posted-by">posted by<br> <a href="#">Xero</a></span> <a href="#" class="rsvp-btn">RSVP</a></p>
+
+                    </div>
+
+					<div class="col-sm-6">
+
+                        <p class="news-category">11am 8 Aug 2017</p>
+                        <h2 class="news-title">DisruptHealth: A Primer for Entrepenuers, Professionals and Patients.</h2>
+                        <p class="news-description"><span class="posted-by">posted by<br> <a href="#">BlockChain AU</a></span> <a href="#" class="rsvp-btn">RSVP</a></p>
+
+                    </div>
+
+                </div>
+
+            </div><!-- /.container -->
+
+        </section><!-- /.next-events -->
+
+        <section class="events-list">
+
+            {% for event in event_data %}
+              <p><a href="?id={{ event.id }}">{{ event.title }}</a></p>
+            {% endfor %}
+        </section><!-- /.events-list -->
+    </div><!-- /#main -->
+
+    <div id="create-event-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+
+                    <div class="modal-body-left">
+
+                        <h4 class="modal-title">Add Event</h4>
+                        <form class="create-event-form" action="new" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="event-name">Event Name</label>
+                                <input type="text" name="event_name" id="event-name" class="form-control" placeholder="Some event">
+                            </div>
+                            <div class="form-group">
+                                <label for="event-time">Event Date</label>
+                                <div class="date-group">
+	                                <input type="text" name="event_time" id="event-time" class="form-control" placeholder="6pm">
+	                                <input type="text" name="event_date" id="event-date" class="form-control" placeholder="August 17 2017">
+	                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-url">Event URL</label>
+                                <input type="text" name="event_url" id="event-url" class="form-control" placeholder="https://meetup.com/event/21312312321">
+                            </div>
+                            <div class="modal-form-buttons">
+                            	<a class="pull-left close-btn hidden-xs" href="#">Close</a>
+                                <button class="btn btn-dark pull-right" type="submit">Add Event</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="modal-body-right">
+
+						<div class="create-event-inner">
+							<p>Help your event stand out.</p>
+							<a href="#">Add image</a>
+						</div>
+
+                    </div>
+
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /#create-event-modal -->
+
     {% endblock %}

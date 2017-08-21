@@ -55,14 +55,15 @@ def event_create(request):
         if form.is_valid():
             event = Event(title=request.POST['event_name'], image='', start_date='2010-10-6', pub_date='2010-10-6', featured=True)
             event.save()
-            return HttpResponseRedirect('show')
-    else:
-        form = EventForm()
-    return render(request, 'events/events-detail.html', {'form': form})
+	context = {
+		'event': event,
+	}
+    return render(request, 'events/event-details.html', context)
 
 def event_show(request):
 	event_data = Event.objects.all()
 	context = {
 		'event_data': event_data,
 	}
-	return render(request, 'events/event_show.html', context)
+	return render(request, 'events/event-details.html', context)
+
