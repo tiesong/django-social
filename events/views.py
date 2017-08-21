@@ -9,9 +9,14 @@ from django.forms import ModelForm
 from .forms import EventForm
 from datetime import datetime, timedelta
 from .models import Event
+from django.contrib import messages
+from django.views.decorators.http import require_http_methods
 
 from django.http import HttpResponseRedirect
 from .forms import EventForm
+
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 import pdb
 
@@ -48,17 +53,18 @@ def detail(request, event_id):
 	}
 	return render(request, 'events/event-details.html', context)
 
-
+@require_http_methods(["POST"])
 def event_create(request):
-    if request.method == 'POST':
-        form = EventForm(request.POST)
-        if form.is_valid():
-            event = Event(title=request.POST['event_name'], image='', start_date='2010-10-6', pub_date='2010-10-6', featured=True)
-            event.save()
-	context = {
-		'event': event,
-	}
-    return render(request, 'events/event-details.html', context)
+	form = EventForm(request.POST)
+	if form.is_valid():
+		event = Event(title=request.POST['event_name'], image='', start_date=request.POST['event_datetime_start'], end_date=request.POST['event_datetime_end'], event_url=request.POST['event_url'], featured=True, description=request.POST['event_description'])
+		event.save()
+		context = {
+			'event': event,
+		}
+		return render(request, 'events/event-details.html', context)
+	messages.error(request, "Form Validation Error! Please check types of Input Data.")
+	return HttpResponseRedirect('/events')
 
 def event_show(request):
 	event_data = Event.objects.all()
@@ -66,4 +72,16 @@ def event_show(request):
 		'event_data': event_data,
 	}
 	return render(request, 'events/event-details.html', context)
+
+
+# def simple_upload(request):
+#     if request.method == 'POST' and request.FILES['myfile']:
+#         myfile = request.FILES['myfile']
+#         fs = FileSystemStorage()
+#         filename = fs.save(myfile.name, myfile)
+#         uploaded_file_url = fs.url(filename)
+#         return render(request, 'core/simple_upload.html', {
+#             'uploaded_file_url': uploaded_file_url
+#         })
+#     return render(request, '')
 

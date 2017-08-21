@@ -60,7 +60,8 @@
             <div class="container">
             
                 <div class="hero-text">
-                    <p class="event-hero-date">{{ event.start_date|date:"fA j N Y"}}</p>
+                    <p class="event-start-date">From: {{event.start_date}}</p>
+                    <p class="event-end-date">To: {{event.end_date}}</p>
                     <h1 class="event.title">{{event.title}}</h1>
                     <p>posted by <a href="">MediHealth</a></p>
                     <a class="btn btn-transparent-white" href="#">RSVP</a>
@@ -81,11 +82,10 @@
 
                     <div class="col-sm-8">
                         <h3>Description</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo congue pharetra. Curabitur sollicitudin bibendum vehicula. Maecenas rutrum volutpat ligula sed porta. Donec viverra ultrices augue, egestas accumsan velit elementum nec. Curabitur vitae lacus vitae leo bibendum sodales. Aenean semper nunc nec purus feugiat, id vestibulum risus lacinia. Cras mollis mauris quam. In hac habitasse platea dictumst. Nunc dui leo, euismod sed dui non, ullamcorper laoreet dui. Pellentesque imperdiet, mi nec ultricies tristique, lorem arcu vestibulum leo, id egestas metus erat vitae magna.</p>
 
                         <div class="content-img"><img src="{% static 'events/img/event_detail.jpg' %}" alt=""></div>
+                        <p>{{event.description}}</p>
 
-                        <p>Phasellus lacinia maximus aliquet. Nulla vitae consequat risus, ac varius ligula. In varius eu sem quis egestas. Nullam at magna vitae leo eleifend volutpat id in lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque id orci aliquet, congue mauris quis, commodo odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam dignissim diam non lectus consequat feugiat. Sed eget commodo odio. Nunc ut semper elit. In imperdiet varius elit eget consectetur. Nullam eros tortor, blandit ut interdum vel, posuere in enim. </p>
                     </div>
 
                     <div class="col-sm-4">

@@ -6,6 +6,7 @@
     
     <header id="masthead" class="site-header event-list-header">
 
+
         <div class="top-nav">
 
             <div class="container container-960">
@@ -57,7 +58,14 @@
 
     </header><!-- /#header -->
     <div id="main" class="site-main">
-	
+
+        {% if messages %}
+        <ul class="alert alert-danger">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
 		<section class="events-info">
 		
 			<div class="container">
@@ -204,22 +212,31 @@
                         <form class="create-event-form" action="new" method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="event-name">Event Name</label>
+                                <label for="event-name">Title</label>
                                 <input type="text" name="event_name" id="event-name" class="form-control" placeholder="Some event">
                             </div>
                             <div class="form-group">
-                                <label for="event-time">Event Date</label>
+                                <label for="event-datetime-start">Start Date</label>
                                 <div class="date-group">
-	                                <input type="text" name="event_time" id="event-time" class="form-control" placeholder="6pm">
-	                                <input type="text" name="event_date" id="event-date" class="form-control" placeholder="August 17 2017">
+	                                <input type="text" name="event_datetime_start" id="event-datetime-start" class="form-control" placeholder="2017-08-16 08:25">
+	                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-datetime-end">End Date</label>
+                                <div class="date-group">
+	                                <input type="text" name="event_datetime_end" id="event-datetime-end" class="form-control" placeholder="2017-08-18 20:12">
 	                            </div>
                             </div>
                             <div class="form-group">
                                 <label for="event-url">Event URL</label>
                                 <input type="text" name="event_url" id="event-url" class="form-control" placeholder="https://meetup.com/event/21312312321">
                             </div>
+                            <div class="form-group">
+                                <label for="event-description">Description</label>
+                                <input type="text" name="event_description" id="event_description" class="form-control" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo congue pharetra. Curabitur sollicitudin bibendum vehicula. Maecenas rutrum volutpat ligula sed porta. Donec viverra ultrices augue, egestas accumsan velit elementum nec. Curabitur vitae lacus vitae leo bibendum sodales. Aenean semper nunc nec purus feugiat, id vestibulum risus lacinia. Cras mollis mauris quam. In hac habitasse platea dictumst. Nunc dui leo, euismod sed dui non, ullamcorper laoreet dui. Pellentesque imperdiet, mi nec ultricies tristique, lorem arcu vestibulum leo, id egestas metus erat vitae magna. Phasellus lacinia maximus aliquet. Nulla vitae consequat risus, ac varius ligula. In varius eu sem quis egestas. Nullam at magna vitae leo eleifend volutpat id in lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque id orci aliquet, congue mauris quis, commodo odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam dignissim diam non lectus consequat feugiat. Sed eget commodo odio. Nunc ut semper elit. In imperdiet varius elit eget consectetur. Nullam eros tortor, blandit ut interdum vel, posuere in enim. ">
+                            </div>
                             <div class="modal-form-buttons">
-                            	<a class="pull-left close-btn hidden-xs" href="#">Close</a>
+                            	<a class="pull-left close-btn hidden-xs" href="">Close</a>
                                 <button class="btn btn-dark pull-right" type="submit">Add Event</button>
                             </div>
                         </form>
@@ -230,7 +247,7 @@
 					
 						<div class="create-event-inner">
 							<p>Help your event stand out.</p>
-							<a href="#">Add image</a>
+							<a href="">Add image</a>
 						</div>
     	
                     </div>
