@@ -1,6 +1,8 @@
 {% extends 'news/base.html' %}
 {% block content %}
     {% load staticfiles %}
+    {% load app_filter %}
+
     <style>
         input[type=checkbox] {
             /* Double-sized Checkboxes */
@@ -201,7 +203,9 @@
                                 <p class="news-category">News // {{ news_article.category.all|first }}</p>
                                 <h3 class="news-title">{{ news_article.title }}</h3>
                                 <p class="news-author">by <a href="#">{{ news_article.owner.username }}</a></p>
-                                <p class="news-description">{{ news_article.article|slice:":150" }}</p>
+                                <p class="news-description">
+                                    {{ news_article.article | snippet}}</p>
+{#                                {{ news_article.article|slice:":150" }}</p>#}
                                 <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
                             </div>
                         </div><!-- /.news-single-item -->
