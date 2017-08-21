@@ -19,7 +19,7 @@ def snippet(html_body):
     soup = BeautifulSoup(html_body, "html.parser")
 
     for p in soup.select("p"):
-        print(p.text)
+
         snippet_txt += p.text
 
     return snippet_txt[:150]

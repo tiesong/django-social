@@ -165,7 +165,7 @@
                             <form id="search-form" class="container col-sm-12" style="display: none;">
                                 <div class="row">
                                     <div class="controls">
-                                        <input id="searchBar" type="text" placeholder="keyword..."
+                                        <input id="searchBar" class="form-control" type="text" placeholder="keyword..."
                                                onkeyup="realFilter()"
                                                style="width: 100%;"/>
                                     </div>
@@ -206,7 +206,7 @@
                                 <p class="news-author">by <a href="#">{{ news_article.owner.username }}</a></p>
                                 <p class="news-description">
                                     {{ news_article.article | snippet}}</p>
-{#                                {{ news_article.article|slice:":150" }}</p>#}
+
                                 <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
                             </div>
                         </div><!-- /.news-single-item -->
