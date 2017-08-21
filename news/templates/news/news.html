@@ -1,26 +1,75 @@
 {% extends 'news/base.html' %}
 {% block content %}
-{% load staticfiles %}
-<body>
 
-{% if featured_image %}
-    <header id="masthead" class="site-header" style="background:{{ featured_image.url }} no-repeat center / cover;">
-{% else %}
-    <header id="masthead" class="site-header" style="background:{% static 'news/img/ybf-bg.jpg' %} no-repeat center / cover;">
-{% endif %}
-        <div class="top-nav">
+    {% load staticfiles %}
+    {% load app_filter %}
 
-            <div class="container container-960">
+    <style>
+        input[type=checkbox] {
+            /* Double-sized Checkboxes */
+            -ms-transform: scale(2); /* IE */
+            -moz-transform: scale(2); /* FF */
+            -webkit-transform: scale(2); /* Safari and Chrome */
+            -o-transform: scale(2); /* Opera */
+            padding: 10px;
+        }
 
-                <a href="index.html" class="site-logo" rel="home"><img src="{% static 'news/assets/img/logo.png' %}" alt="" srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+        .checkboxtext {
+            /* Checkbox text */
+            font-size: 110%;
+            display: inline;
+            padding-left: 10px;
+        }</style>
+    <body>
 
-                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
-                    <span class="lines line-top"></span>
-                    <span class="lines line-middle"></span>
-                    <span class="lines line-bottom"></span>
-                </button><!-- /.lines-button -->
+    {% if featured_image %}
+        <header id="masthead" class="site-header" style="background:{{ featured_image.url }} no-repeat center / cover;">
+    {% else %}
+        <header id="masthead" class="site-header"
+                style="background:{% static 'news/img/ybf-bg.jpg' %} no-repeat center / cover;">
+    {% endif %}
+<div class="top-nav">
 
-                <nav id="primary-navigation" class="site-navigation">
+    <div class="container container-960">
+
+        <a href="index.html" class="site-logo" rel="home"><img src="{% static 'news/assets/img/logo.png' %}" alt=""
+                                                               srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+
+        <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+            <span class="lines line-top"></span>
+            <span class="lines line-middle"></span>
+            <span class="lines line-bottom"></span>
+        </button><!-- /.lines-button -->
+
+        <nav id="primary-navigation" class="site-navigation">
+
+            <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}"
+                                                                              alt=""
+                                                                              srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+
+            <ul>
+                <li class="active"><a href="/news">News</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="#">Startups</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="company-profile.html">Companies</a></li>
+                <li><a href="/officespace">Officespace</a></li>
+            </ul>
+
+        </nav><!-- /.site-navigation -->
+
+        <div class="user-profile dropdown">
+
+            <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
+                <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.jpg' %}" alt=""> <span
+                        class="visible-xs caret"></span></div>
+                <div class="user-profile-meta hidden-xs">
+                    <div class="user-profile-meta-inner">
+                        {{ request.user.username }}
+                    </div>
+                </div>
+            </a>
+
 
                     <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}" alt="" srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
@@ -133,10 +182,29 @@
                         </div>
 
                         <div class="events-filter news-filter">
-                            <span class="filter-label">
-                                <input id="searchBar" type="text" placeholder="keyword..." onkeyup="realFilter()"
-                                       style="display: none; width: 520%; "/>
-                            </span>
+
+                            <form id="search-form" class="container col-sm-12" style="display: none;">
+                                <div class="row">
+                                    <div class="controls">
+                                        <input id="searchBar" class="form-control" type="text" placeholder="keyword..."
+                                               onkeyup="realFilter()"
+                                               style="width: 100%;"/>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-bottom: 10px">
+                                        <ul>
+                                            <li><input
+                                                    id="categoryCheck" type="checkbox" class="checkbox-inline"
+                                                    placeholder="title" onchange='handleCategory(this);' checked><label
+                                                    class="checkboxtext">Category</label></li>
+
+                                            <li><input id="contentCheck" type="checkbox" class="checkbox-inline"
+                                                       placeholder="category" onchange='handleContent(this);' /><label class="checkboxtext">News
+                                            Content</label></li>
+                                        </ul>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -157,7 +225,9 @@
                                 <p class="news-category">News // {{ news_article.category.all|first }}</p>
                                 <h3 class="news-title">{{ news_article.title }}</h3>
                                 <p class="news-author">by <a href="#">{{ news_article.owner.username }}</a></p>
-                                <p class="news-description">{{ news_article.article|slice:":150" }}</p>
+                                <p class="news-description">
+                                    {{ news_article.article | snippet}}</p>
+
                                 <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
                             </div>
                         </div><!-- /.news-single-item -->
@@ -227,6 +297,10 @@
                 </div><!-- /.footer-col -->
 
                 <div class="footer-col">
+                    <h4>Officespace</h4>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
                     <h4>Profile</h4>
                     <ul>
                         <li><a href="#">Your Activity</a></li>
@@ -262,118 +336,6 @@
 {% endblock %}
 
 {% block customscript %}
-    <script type="text/javascript">
-        var AllItemsElements;
-        var searchInput, filter;
+    <script type="text/javascript" src="{% static "news/js/newsscript.js" %}"></script>
 
-        // after loading page
-        $(document).ready(function () {
-
-            // show content by page
-            var newsItemsElements = $("#article_list .news-single-item");
-            AllItemsElements = newsItemsElements;
-            newsPage(newsItemsElements);
-
-            // visible or invisible search box.
-            $('#search').click(function () {
-                if ($("#searchBar").is(':visible')) {
-                    $("#searchBar").fadeOut();
-                } else {
-                    $("#searchBar").fadeIn();
-                }
-            });
-
-            $(document.body).click(function (e) {
-                //Hide the search bar if visible
-                if (e.target.id !== "searchBar" && e.target.id !== "search")
-                    $("#searchBar").hide();
-            });
-        });
-
-        // search keyword in real time.
-        function realFilter() {
-            searchInput = document.getElementById("searchBar");
-            filter = searchInput.value.toLowerCase();
-            var newsItemsElements = $("#article_list .news-single-item");
-            newsItemsElements.hide();
-
-            for (var i = newsItemsElements.length; i--;) {
-
-                var newsItemId = newsItemsElements[i].id;
-                var newsItemContentDiv = newsItemsElements[i].children[1];
-                var newsItemCategory = newsItemContentDiv.children[0].innerHTML.toLowerCase().split("//")[1].replace(/\s+/g, "");
-                var newsItemContent = newsItemContentDiv.children[3].innerHTML.toLowerCase().replace(/\s+/g, "");
-
-                // search tag in category
-                if (newsItemCategory.indexOf(filter) > -1) {
-                    console.log('hide', "#article_" + newsItemId.toString());
-
-                }
-                // search tag in news body.
-                else if (newsItemContent.indexOf(filter) > -1) {
-                    console.log('show', "#article_" + newsItemId.toString());
-                }
-
-                else {
-                    console.log('hide', i);
-                    newsItemsElements.splice(i, 1);
-
-                }
-            }
-            console.log(newsItemsElements);
-           if( newsItemsElements.length !== 0)
-                newsPage(newsItemsElements);
-        }
-
-        // paginate contents.
-        function newsPage(newsItemsElements) {
-
-            var perPage = 5;
-            console.log('newsItems ', newsItemsElements);
-            newsItemsElements.show();
-            newsItemsElements.slice(perPage).hide();  // First 5 items show.
-
-            $(".pagination-page").pagination({
-                items: newsItemsElements.length,
-                itemsOnPage: perPage,
-                cssStyle: "light-theme",
-
-                onPageClick: function (pageNumber) {
-
-                    var showFrom = perPage * (pageNumber - 1);
-                    var showTo = showFrom + perPage;
-
-                    newsItemsElements.hide().slice(showFrom, showTo).show();
-                }
-            });
-
-        }
-
-        function clickAllArticles() {
-            AllItemsElements.show();
-            newsPage(AllItemsElements);
-        }
-
-        function clickTag(category) {
-            console.log("category:", category.toLowerCase());
-            var ItemsElements = $("#article_list .news-single-item");
-            ItemsElements.hide();
-
-            for (var i = ItemsElements.length; i--;) {
-                var ItemContentDiv = ItemsElements[i].children[1];
-                var ItemCategory = ItemContentDiv.children[0].innerHTML.split("//")[1].replace(/\s+/g, "");
-
-                if (ItemCategory.toLowerCase() !== category.replace(/\s+/g, "").toLowerCase()){
-
-                    ItemsElements.splice(i, 1);
-                }
-
-            }
-            console.log(ItemsElements);
-            if( ItemsElements.length !== 0)
-                newsPage(ItemsElements);
-
-        }
-
-    </script>
 {% endblock %}
