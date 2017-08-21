@@ -61,7 +61,7 @@ def detail(request, news_article_id):
     # return latest four articles to present as 'related news'. Change to be related to tags in future (so that it is genuinely related news)
 
     news_article = News.objects.get(id=news_article_id)
-    related_news = News.objects.filter().order_by('-pub_date')[0:4]
+    related_news = News.objects.filter().exclude(is_page=True).order_by('-pub_date')[0:4]
     navbar_pages = News.objects.filter(display_in_navbar=True)
     
     try:
@@ -107,7 +107,20 @@ def create(request):
 
         tag = Category.objects.filter(tag=selected_tag).first()
 
-        news_article = News(title=title, article=body, feature_rank=feature_rank, pub_date=pub_date, owner=owner)
+        is_page = request.POST.get('is_page', None)
+        if is_page == 'OK':
+            is_page = True
+        else:
+            is_page=False
+
+
+        display_in_navbar = request.POST.get('display_in_navbar', None)
+        if display_in_navbar == 'OK':
+            display_in_navbar = True
+        else:
+            display_in_navbar=False
+
+        news_article = News(title=title, article=body, feature_rank=feature_rank, pub_date=pub_date, owner=owner, is_page=is_page, display_in_navbar=display_in_navbar)
         news_article.save()
         
         news_article.category.add(tag)
