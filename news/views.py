@@ -88,11 +88,13 @@ def create(request):
         next_url = False
 
     categories = Category.objects.all()
+    navbar_pages = News.objects.filter(display_in_navbar=True)
 
     context = {
         'categories': categories,
         'create': True,
-        'next': next_url
+        'next': next_url,
+        'navbar_pages': navbar_pages
     }
 
     if request.POST:
@@ -144,12 +146,14 @@ def edit(request, news_article_id):
         next_url = False
 
     categories = Category.objects.all()
-
+    navbar_pages = News.objects.filter(display_in_navbar=True)
+    
     context = {
         'categories': categories,
         'news_article': news_article,
         'related_news': related_news,
         'next': next_url,
+        'navbar_pages': navbar_pages,
     }
 
     if request.POST:

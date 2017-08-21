@@ -26,6 +26,9 @@
                         <li><a href="/events">Events</a></li>
                         <li class="active"><a href="#">Companies</a></li>
                         <li><a href="/c/people">People</a></li>
+                        {% for page in navbar_pages %}
+                            <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
+                        {% endfor %}         
                     </ul>
 
                 </nav><!-- /.site-navigation -->

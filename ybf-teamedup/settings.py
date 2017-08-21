@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'events',
     'dashboard',
     'community',
+    'officespace',
 )
 
 MIDDLEWARE_CLASSES = (
