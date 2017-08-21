@@ -67,9 +67,11 @@
                     <ul>
                         <li class="active"><a href="/news">News</a></li>
                         <li><a href="/events">Events</a></li>
-                        <li><a href="#">Startups</a></li>
-                        <li><a href="jobs.html">Jobs</a></li>
-                        <li><a href="company-profile.html">Companies</a></li>
+                        <li><a href="/c/companies">Companies</a></li>
+                        <li><a href="/c/people">People</a></li>
+                        {% for page in navbar_pages %}
+                            <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
+                        {% endfor %}
                     </ul>
 
                 </nav><!-- /.site-navigation -->
@@ -77,7 +79,7 @@
                 <div class="user-profile dropdown">
 
                     <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.jpg' %}" alt=""> <span
+                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.png' %}" alt=""> <span
                                 class="visible-xs caret"></span></div>
                         <div class="user-profile-meta hidden-xs">
                             <div class="user-profile-meta-inner">
@@ -139,6 +141,20 @@
                             <h3>Title</h3>
                             <p><input class="form-control" id="title" name="title" value="{{ news_article.title }}"></input></p>
                             <br>
+                            
+                            <p>
+                            <div class="form-check form-check-inline">
+                              <label class="form-check-label">
+                                <input {% if news_article.is_page %} checked {% endif %}class="form-check-input" type="checkbox" name="is_page" id="is_page" value="OK"> Is page?
+                              </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <label class="form-check-label">
+                                <input {% if news_article.display_in_navbar %} checked {% endif %} class="form-check-input" type="checkbox" name="display_in_navbar" id="display_in_navbar" value='OK'> Display in navbar?
+                              </label>
+                            </div></p>
+                            <br>
+
 
                             <h3>Feature priority</h3>
                             <p>0 = not featured | 5 means feature priority</p>

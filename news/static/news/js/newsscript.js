@@ -59,50 +59,20 @@ function realFilter() {
         var newsItemCategory = newsItemContentDiv.children[0].innerHTML.toLowerCase().split("//")[1].replace(/\s+/g, "");
         var newsItemContent = newsItemContentDiv.children[3].innerHTML.toLowerCase().replace(/\s+/g, "");
 
-        if (contentChecked && categoryChecked) {
-            // search tag in category
-            if (newsItemCategory.indexOf(filter) > -1) {
-                console.log('hide', "#article_" + newsItemId.toString());
-            }
-            // search tag in news body.
-            else if (newsItemContent.indexOf(filter) > -1) {
-                console.log('show', "#article_" + newsItemId.toString());
-            }
-
-            else {
-                console.log('hide', i);
-                newsItemsElements.splice(i, 1);
-
-            }
+        // search tag in category
+        if (newsItemCategory.indexOf(filter) > -1) {
+            console.log('hide', "#article_" + newsItemId.toString());
+        }
+        // search tag in news body.
+        else if (newsItemContent.indexOf(filter) > -1) {
+            console.log('show', "#article_" + newsItemId.toString());
         }
 
-        else if (contentChecked){
-            // search tag in news body.
-            if (newsItemContent.indexOf(filter) > -1) {
-                console.log('show', "#article_" + newsItemId.toString());
-            }
-            else{
-                console.log('hide', i);
-                newsItemsElements.splice(i, 1);
-            }
-        }
-
-        else if (categoryChecked) {
-
-            // search tag in category
-            if (newsItemCategory.indexOf(filter) > -1) {
-                console.log('hide', "#article_" + newsItemId.toString());
-            }
-            else {
-                console.log('hide', i);
-                newsItemsElements.splice(i, 1);
-            }
-        }
         else {
-            alert("please select search option.");
-            return;
-        }
+            console.log('hide', i);
+            newsItemsElements.splice(i, 1);
 
+        }
     }
     console.log(newsItemsElements);
     if (newsItemsElements.length !== 0)
