@@ -132,7 +132,7 @@
                         <div class="events-filter news-filter">
                             <span class="filter-label">
                                 <input id="searchBar" type="text" placeholder="keyword..." onkeyup="realFilter()"
-                                       style="display: none; width: 100%; "/>
+                                       style="display: none; width: 520%; "/>
                             </span>
                         </div>
                     </div>
@@ -360,7 +360,7 @@
                 var ItemContentDiv = ItemsElements[i].children[1];
                 var ItemCategory = ItemContentDiv.children[0].innerHTML.split("//")[1].replace(/\s+/g, "");
 
-                if (ItemCategory.toLowerCase() !== category.toLowerCase()){
+                if (ItemCategory.toLowerCase() !== category.replace(/\s+/g, "").toLowerCase()){
 
                     ItemsElements.splice(i, 1);
                 }
