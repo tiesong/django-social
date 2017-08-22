@@ -1,6 +1,7 @@
 {% extends 'news/base.html' %}
 {% block content %}
 {% load staticfiles %}
+
 <body>
 
     <header id="masthead" class="site-header">
@@ -24,9 +25,11 @@
                     <ul>
                         <li class="active"><a href="/news">News</a></li>
                         <li><a href="/events">Events</a></li>
-                        <li><a href="#">Startups</a></li>
-                        <li><a href="jobs.html">Jobs</a></li>
-                        <li><a href="company-profile.html">Companies</a></li>
+                        <li><a href="/c/companies">Companies</a></li>
+                        <li><a href="/c/people">People</a></li>
+                        {% for page in navbar_pages %}
+                            <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
+                        {% endfor %}                        
                     </ul>
 
                 </nav><!-- /.site-navigation -->
@@ -34,10 +37,10 @@
                 <div class="user-profile dropdown">
 
                     <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
+                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.png' %}" alt=""> <span class="visible-xs caret"></span></div>
                         <div class="user-profile-meta hidden-xs">
                             <div class="user-profile-meta-inner">
-                                Nick B.
+                                {{request.user.username}}
                             </div>
                         </div>
                     </a>
@@ -59,10 +62,14 @@
             <div class="container">
             
                 <div class="hero-text">
-                    <p class="news-category">News // {{news_article.category.all|first}}</p>
+                    <p class="news-category">News // {{news_article.category.first}}</p>
                     <h1 class="hero-title">{{ news_article.title }}</h1>
-                    <p>Posted by <a href="">Nick Byrne</a></p>
+                    <p>Posted by <a href="#">{{ news_article.owner.username }}</a></p>
+                    {% if next %}
+                    <a class="btn btn-transparent-white"  href="{{ next }}"><< Back</a>
+                    {% else %}
                     <a class="btn btn-transparent-white" href="/news"><< Back</a>
+                    {% endif %}
                 </div>
 
             </div>
@@ -113,6 +120,7 @@
             
         </section>
 
+        {% if not news_article.is_page %}
         <section class="events-list">
 
             <div class="container container-960">
@@ -123,9 +131,9 @@
                     {% for related_news in related_news %}
                     <div class="col-md-3 col-xs-12">
                         <div class="event-item">
-                            <p class="event-date">11am 8 Aug 2017</p>
+                            <p class="event-date">{{ related_news.pub_date|date:"M d, Y" }}</p>
                             <h2 class="event-name"><a href="/news/{{ related_news.id }}">{{related_news.title|slice:":60"}}</a></h2>
-                            <a href="#" class="event-attending">posted by</a>
+                            <a href="/c/people/{{ related_news.owner.id }}" class="event-attending">posted by {{ related_news.owner.first_name }}</a>
                         </div><!-- /.event-item -->
                     </div>  
                     {% endfor %}
@@ -135,6 +143,7 @@
             </div>
 
         </section>
+        {% endif %}
 
     </div><!-- /#main -->
 

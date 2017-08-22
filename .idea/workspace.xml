@@ -2,11 +2,263 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a9082a1-8c27-42eb-a761-c705e4664084" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ybf-teamedup/media/event_images/2017/07/22/Screen_Shot_2017-07-21_at_8.08.18_pm.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/static/events/css/style.css" afterPath="$PROJECT_DIR$/events/static/events/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/templates/events/event-list.html" afterPath="$PROJECT_DIR$/events/templates/events/event-list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/views.py" afterPath="$PROJECT_DIR$/events/views.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Bold.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Bold.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Bold.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Bold.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Light.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Light.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Light.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Light.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Medium.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Medium.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Medium.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Medium.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Regular.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Regular.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/glyphicons-halflings-regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/glyphicons-halflings-regular.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/glyphicons-halflings-regular.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/article.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/article@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/avatar.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/bg-tmp.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/company-profile.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/edit.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/edit@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/event_detail.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/logo@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/news-tmp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/phones.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/prof-tmp1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/prof-tmp2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/prof-tmp3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/search.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/search@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/startup-logo-tmp.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/trash.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/trash@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/view.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/view@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/img/ybf-bg.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-cool.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-cry.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-embarassed.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-frown.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-innocent.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-kiss.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-laughing.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-sealed.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-smile.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-surprised.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-undecided.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-wink.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/img/smiley-yell.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/help/img/logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/fonts/tinymce-small.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/fonts/tinymce-small.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/fonts/tinymce-small.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/fonts/tinymce.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/fonts/tinymce.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/fonts/tinymce.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/img/anchor.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/img/loader.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/img/object.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/img/trans.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/news/static/news/img/avatar.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Bold.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Bold.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Bold.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Bold.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Light.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Light.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Light.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Light.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Medium.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Medium.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Medium.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Medium.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Regular.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Regular.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/glyphicons-halflings-regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/glyphicons-halflings-regular.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/glyphicons-halflings-regular.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/article.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/article@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/avatar.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/bg-tmp.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/company-profile.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/edit.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/edit@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/event_detail.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/logo@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/news-tmp.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/phones.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/prof-tmp1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/prof-tmp2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/prof-tmp3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/search.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/search@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/startup-logo-tmp.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/trash.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/trash@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/view.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/view@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/img/ybf-bg.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ybf-teamedup/media/profile_images/2017/08/20/TkjbAgqf_400x400.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/admin.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/apps.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/migrations/0001_initial.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/migrations/0002_auto_20170820_1453.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/migrations/0003_auto_20170820_1509.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/migrations/0004_auto_20170820_1517.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/migrations/0005_profile_image.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/migrations/0006_profile_tagline.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/migrations/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/models.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/css/bootstrap.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/css/popup.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/css/responsive.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/css/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Bold.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Light.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Medium.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/Apercu-Regular.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/fonts/glyphicons-halflings-regular.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/bootstrap.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/script.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/custom.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/jquery.tinymce.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/langs/readme.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/license.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/advlist/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/anchor/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/autolink/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/autoresize/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/autosave/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/bbcode/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/charmap/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/code/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/codesample/css/prism.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/codesample/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/colorpicker/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/contextmenu/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/directionality/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/emoticons/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/fullpage/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/fullscreen/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/help/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/hr/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/image/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/imagetools/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/importcss/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/insertdatetime/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/legacyoutput/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/link/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/lists/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/media/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/nonbreaking/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/noneditable/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/pagebreak/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/paste/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/preview/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/print/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/save/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/searchreplace/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/spellchecker/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/tabfocus/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/table/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/template/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/textcolor/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/textpattern/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/toc/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/visualblocks/css/visualblocks.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/visualblocks/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/visualchars/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/plugins/wordcount/plugin.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/content.inline.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/content.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/fonts/tinymce-small.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/fonts/tinymce.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/skins/lightgray/skin.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/themes/inlite/theme.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/themes/modern/theme.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/static/community/js/tinymce/tinymce.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/templates/community/base.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/templates/community/company.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/templates/community/profile-edit.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/templates/community/profile.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/tests.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/urls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/community/views.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dashboard/templates/dashboard/base.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dashboard/templates/dashboard/news_dashboard.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dashboard/templates/dashboard/users_dashboard.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/news/migrations/0013_news_owner.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/news/migrations/0014_auto_20170821_0031.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/news/migrations/0015_auto_20170821_0051.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/news/static/news/css/popup.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/news/static/news/css/simplePagination.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/news/static/news/js/newsscript.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/news/static/news/js/pagenation/jquery.simplePagination.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/news/templatetags/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/news/templatetags/app_filter.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/admin.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/apps.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/migrations/0001_initial.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/migrations/0002_auto_20170821_1540.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/migrations/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/models.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/css/bootstrap.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/css/responsive.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/css/simplePagination.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/css/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Bold.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Light.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Medium.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Regular.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/fonts/glyphicons-halflings-regular.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/js/bootstrap.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/static/officespace/js/script.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/templates/officespace/base.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/templates/officespace/bookings.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/templates/officespace/detail.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/templates/officespace/modal/delete_confirm.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/tests.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/urls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/officespace/views.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/templates/dashboard/dashboard.html" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/news/templates/news/news.html" afterPath="$PROJECT_DIR$/community/templates/community/people_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/urls.py" afterPath="$PROJECT_DIR$/dashboard/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/views.py" afterPath="$PROJECT_DIR$/dashboard/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home/templates/home/index.html" afterPath="$PROJECT_DIR$/home/templates/home/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home/views.py" afterPath="$PROJECT_DIR$/home/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/news/models.py" afterPath="$PROJECT_DIR$/news/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/image/plugin.min.js" afterPath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/image/plugin.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/news/templates/news/base.html" afterPath="$PROJECT_DIR$/news/templates/news/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/news/templates/news/news-details.html" afterPath="$PROJECT_DIR$/news/templates/news/news-details.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/news/templates/news/news-edit.html" afterPath="$PROJECT_DIR$/news/templates/news/news-edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/news/templates/news/news.html" afterPath="$PROJECT_DIR$/news/templates/news/news.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/news/urls.py" afterPath="$PROJECT_DIR$/news/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/news/views.py" afterPath="$PROJECT_DIR$/news/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ybf-teamedup/settings.py" afterPath="$PROJECT_DIR$/ybf-teamedup/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ybf-teamedup/urls.py" afterPath="$PROJECT_DIR$/ybf-teamedup/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,116 +272,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ybf-teamedup/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="151" column="21" lean-forward="true" selection-start-line="151" selection-start-column="21" selection-end-line="151" selection-end-column="21" />
-              <folding>
-                <element signature="e#333#342#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/events/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="693">
-              <caret line="73" column="64" lean-forward="true" selection-start-line="73" selection-start-column="64" selection-end-line="73" selection-end-column="64" />
-              <folding>
-                <element signature="e#26#62#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/events/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="88" lean-forward="false" selection-start-line="12" selection-start-column="88" selection-end-line="12" selection-end-column="88" />
-              <folding>
-                <element signature="e#24#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="apps.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/events/apps.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="event-details.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/events/templates/events/event-details.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="85" column="83" lean-forward="false" selection-start-line="85" selection-start-column="83" selection-end-line="85" selection-end-column="83" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ybf-teamedup/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="23" column="64" lean-forward="true" selection-start-line="23" selection-start-column="64" selection-end-line="23" selection-end-column="64" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="event-list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/events/templates/events/event-list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="242" column="44" lean-forward="false" selection-start-line="242" selection-start-column="39" selection-end-line="242" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/events/static/events/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="1153" column="19" lean-forward="false" selection-start-line="1153" selection-start-column="19" selection-end-line="1153" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/events/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="77" lean-forward="true" selection-start-line="7" selection-start-column="77" selection-end-line="7" selection-end-column="77" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="event_show.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/events/templates/events/event_show.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-540">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -138,8 +281,8 @@
       <find>messages</find>
       <find>main</find>
       <find>close</find>
-      <find>media</find>
       <find>form</find>
+      <find>media</find>
       <find>class=&quot;create-event-inner&quot;</find>
     </findStrings>
   </component>
@@ -202,68 +345,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="teamedup-ybf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="teamedup-ybf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="teamedup-ybf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="events" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="teamedup-ybf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="teamedup-ybf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="events" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="events" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="teamedup-ybf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="teamedup-ybf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="events" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="events" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -562,7 +643,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24461207" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26293105" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.8028017" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39978448" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -639,9 +720,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#63#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -657,9 +736,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -690,20 +767,16 @@
     <entry file="file://$PROJECT_DIR$/ybf-teamedup/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
-          <caret line="23" column="64" lean-forward="true" selection-start-line="23" selection-start-column="64" selection-end-line="23" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+          <caret line="23" column="64" lean-forward="false" selection-start-line="23" selection-start-column="64" selection-end-line="23" selection-end-column="64" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ybf-teamedup/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
-          <caret line="151" column="21" lean-forward="true" selection-start-line="151" selection-start-column="21" selection-end-line="151" selection-end-column="21" />
-          <folding>
-            <element signature="e#333#342#0" expanded="true" />
-          </folding>
+          <caret line="151" column="21" lean-forward="false" selection-start-line="151" selection-start-column="21" selection-end-line="151" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -719,9 +792,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="88" lean-forward="false" selection-start-line="12" selection-start-column="88" selection-end-line="12" selection-end-column="88" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -736,7 +807,7 @@
     <entry file="file://$PROJECT_DIR$/events/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
-          <caret line="7" column="77" lean-forward="true" selection-start-line="7" selection-start-column="77" selection-end-line="7" selection-end-column="77" />
+          <caret line="7" column="77" lean-forward="false" selection-start-line="7" selection-start-column="77" selection-end-line="7" selection-end-column="77" />
           <folding />
         </state>
       </provider>
@@ -776,10 +847,8 @@
     <entry file="file://$PROJECT_DIR$/events/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
-          <caret line="73" column="64" lean-forward="true" selection-start-line="73" selection-start-column="64" selection-end-line="73" selection-end-column="64" />
-          <folding>
-            <element signature="e#26#62#0" expanded="true" />
-          </folding>
+          <caret line="73" column="64" lean-forward="false" selection-start-line="73" selection-start-column="64" selection-end-line="73" selection-end-column="64" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -45,6 +45,8 @@ INSTALLED_APPS = (
     'news',
     'events',
     'dashboard',
+    'community',
+    'officespace',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -157,7 +159,8 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
+APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
+
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-

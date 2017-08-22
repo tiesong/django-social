@@ -1,0 +1,73 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<div id="main" class="site-main admin-page">
+
+    <section class="events-list">
+
+        <div class="container container-960">
+
+        	<h1 class="admin-page-title">Users</h1>
+
+			<div class="clearfix"></div>
+
+			<div class="table-responsive">
+			
+				<table class="admin-table table">
+					<thead> 
+						<tr> 
+							<th>Username</th> 
+							<th>Email</th> 
+							<th class="text-left">Firstname</th> 
+							<th class="text-left">Lastname</th>
+							<th class="text-left">Last active</th> 
+						</tr> 
+					</thead> 
+					<tbody> 
+
+					{% for user in user_list %}
+
+						<tr> 
+							<td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img"><a href="/c/people/{{user.id}}">{{user.username}}</a></td> 
+							<td>{{user.email}}</td> 
+							<td class="text-left">{{ user.first_name }}</td> 
+							<td class="text-left">{{ user.last_name }}</td> 							
+							<td class="text-left">{{ user.last_login }}</td>
+						</tr> 
+
+					{% endfor %}
+
+					</tbody> 
+				</table>
+
+			</div><!-- /.table-responsive -->
+			
+			<nav aria-label="News list navigation">
+                <ul class="pagination text-center">
+                    <li class="pull-left text-pagination">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&larr; Prev Page</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">6</a></li>
+                    <li class="pull-right text-pagination">
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">Next Page &rarr;</span>
+                        </a>
+                    </li>
+                </ul>
+                <p class="total-items">201 total items</p>
+            </nav>
+
+
+        </div><!-- /.container-fluid -->
+        
+    </section><!-- /.events-list -->
+
+</div><!-- /#main -->
+{% endblock %}

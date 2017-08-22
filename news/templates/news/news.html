@@ -1,78 +1,98 @@
 {% extends 'news/base.html' %}
 {% block content %}
-{% load staticfiles %}
-<body>
 
-{% if featured_image %}
-    <header id="masthead" class="site-header" style="background:{{ featured_image.url }} no-repeat center / cover;">
-{% else %}
-    <header id="masthead" class="site-header" style="background:{% static 'news/img/ybf-bg.jpg' %} no-repeat center / cover;">
-{% endif %}
-        <div class="top-nav">
+    {% load staticfiles %}
+    {% load app_filter %}
 
-            <div class="container container-960">
+    <style>
+        input[type=checkbox] {
+            /* Double-sized Checkboxes */
+            -ms-transform: scale(2); /* IE */
+            -moz-transform: scale(2); /* FF */
+            -webkit-transform: scale(2); /* Safari and Chrome */
+            -o-transform: scale(2); /* Opera */
+            padding: 10px;
+        }
 
-                <a href="index.html" class="site-logo" rel="home"><img src="{% static 'news/assets/img/logo.png' %}" alt="" srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+        .checkboxtext {
+            /* Checkbox text */
+            font-size: 110%;
+            display: inline;
+            padding-left: 10px;
+        }
+    </style>
+    <body>
 
-                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
-                    <span class="lines line-top"></span>
-                    <span class="lines line-middle"></span>
-                    <span class="lines line-bottom"></span>
-                </button><!-- /.lines-button -->
+    {% if featured_image %}
+        <header id="masthead" class="site-header" style="background:{{ featured_image.url }} no-repeat center / cover;">
+    {% else %}
+        <header id="masthead" class="site-header"
+                style="background:{% static 'news/img/ybf-bg.jpg' %} no-repeat center / cover;">
+    {% endif %}
+<div class="top-nav">
 
-                <nav id="primary-navigation" class="site-navigation">
+    <div class="container container-960">
 
-                    <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}" alt="" srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+        <a href="index.html" class="site-logo" rel="home"><img src="{% static 'news/assets/img/logo.png' %}" alt=""
+                                                               srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
-                    <ul>
-                        <li class="active"><a href="/news">News</a></li>
-                        <li><a href="/events">Events</a></li>
-                        <li><a href="#">Startups</a></li>
-                        <li><a href="jobs.html">Jobs</a></li>
-                        <li><a href="company-profile.html">Companies</a></li>
-                    </ul>
+        <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+            <span class="lines line-top"></span>
+            <span class="lines line-middle"></span>
+            <span class="lines line-bottom"></span>
+        </button><!-- /.lines-button -->
 
-                </nav><!-- /.site-navigation -->
+        <nav id="primary-navigation" class="site-navigation">
 
-                <div class="user-profile dropdown">
+            <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}"
+                                                                              alt=""
+                                                                              srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
-                    <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
-                        <div class="user-profile-meta hidden-xs">
-                            <div class="user-profile-meta-inner">
-                                Nick B.
-                            </div>
-                        </div>
-                    </a>
+            <ul>
+                <li class="active"><a href="/news">News</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="#">Startups</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="company-profile.html">Companies</a></li>
+                <li><a href="/officespace">Officespace</a></li>
+            </ul>
 
-                    <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
-                        <li><a href="person-profile.html">Profile</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li class="logout-btn"><a href="/logout">Logout</a></li>
-                    </ul>
+        </nav><!-- /.site-navigation -->
 
-                </div><!-- /.user-profile -->
-
-            </div><!-- /.container -->
-
-        </div><!-- /.top-nav -->
-
-        <div class="hero event-details-hero">
-
-            <div class="container">
-            
-                <div class="hero-text">
-                    <p class="news-category">News // {{news_article.category.all|first}}</p>
-                    <h1 class="hero-title">{{primary_feature.title}}</h1>
-                    <p>by <a href="#" class="no-underline">Alexandria Schultz</a></p>
-                    <a href="{{ primary_feature.id }}" class="read-more">Keep reading &rarr;</a>
+        <div class="user-profile dropdown">
+            <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
+                <div class="user-profile-thumb"><img src="{% static 'officespace/img/avatar.jpg' %}" alt=""> <span
+                        class="visible-xs caret"></span></div>
+                <div class="user-profile-meta hidden-xs">
+                    <div class="user-profile-meta-inner">
+                        {{ request.user.username }}
+                    </div>
                 </div>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
+                <li><a href="person-profile.html">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li class="logout-btn"><a href="/logout">Logout</a></li>
+            </ul>
+        </div><!-- /.user-profile -->
+    </div><!-- /.top-nav -->
+</div>
+<div class="hero event-details-hero">
 
-            </div>
+    <div class="container">
 
-        </div>        
+        <div class="hero-text">
+            <p class="news-category">News // {{ feature_list.0.category.all|first }}</p>
+            <h1 class="hero-title">{{ feature_list.0.title }}</h1>
+            <p>by <a href="#" class="no-underline">{{ feature_list.0.owner.username }}</a></p>
+            <a href="{{ feature_list.0.id }}" class="read-more">Keep reading &rarr;</a>
+        </div>
 
-    </header><!-- /#header -->
+    </div>
+
+</div>
+
+</header><!-- /#header -->
 
 
     <div id="main" class="site-main">
@@ -83,22 +103,33 @@
 
                 <div class="row">
 
-                {% for featured_news in featured_news_list %}
-                    <div class="col-sm-6">
+                    {% if feature_list.1 %}
+                        <div class="col-sm-6">
 
-                        <p class="news-category">News // Technology</p>
-                        <h2 class="news-title">{{featured_news.title}}</h2>
-                        <p class="posted-by">by <a href="#">Alex Scott</a></p>
-                        <p class="news-description">Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses…</p>
-                        <a href="{{ featured_news.id }}" class="read-more">Keep reading &rarr;</a>
+                            <p class="news-category">News // {{ feature_list.1.category.all|first }}</p>
+                            <h2 class="news-title">{{ feature_list.1.title }}</h2>
+                            <p class="posted-by">by <a href="#">{{ feature_list.1.owner.username }}</a></p>
+                            <p class="news-description">{{ feature_list.1.article|safe|slice:":20" }}</p>
+                            <a href="{{ feature_list.1.id }}" class="read-more">Keep reading &rarr;</a>
 
-                    </div>
-                {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if feature_list.2 %}
+                        <div class="col-sm-6">
+
+                            <p class="news-category">News // {{ feature_list.2.category.all|first }}</p>
+                            <h2 class="news-title">{{ feature_list.2.title }}</h2>
+                            <p class="posted-by">by <a href="#">{{ feature_list.2.owner.username }}</a></p>
+                            <p class="news-description">{{ feature_list.2.article|safe|slice:":20" }}</p>
+                            <a href="{{ feature_list.2.id }}" class="read-more">Keep reading &rarr;</a>
+
+                        </div>
+                    {% endif %}
 
                 </div>
 
             </div><!-- /.container -->
-            
+
         </section><!-- /.next-events -->
 
         <section class="news-page">
@@ -106,82 +137,95 @@
             <div class="container container-960">
 
                 <div class="filters-fix">
-                
-                    <div class="filters-wrapper" data-spy="affix">
+
+                    <div class="filters-wrapper">
 
                         <div class="events-filter news-filter">
-                            <span class="filter-label">Search</span>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Popular</a></li>
-                                <li><a href="#">New</a></li>
-                                <li><a href="#">Featured</a></li>
-                            </ul>
-                            <a href="#" class="all-events pull-right">All Articles...</a>
+                            <span class="filter-label">
+                                <ul class="list-unstyled">
+                                    <li><a id="search" href="javascript:void(0)">Search</a></li>
+                                    {% for category in category_list %}
+                                        {% if  category != "" %}
+                                            <li><a href="javascript:void(0)"
+                                                   onclick="clickTag('{{ category }}');">{{ category }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </span>
+                            <a href="javascript:void(0)" class="all-events pull-right" onclick="clickAllArticles();">All
+                                Articles...</a>
                         </div>
 
-                    </div>
+                        <div class="events-filter news-filter">
 
+                            <form id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
+                                <div class="row">
+                                    <div class="controls">
+                                        <input id="searchBar" class="form-control" type="text" placeholder="keyword..."
+                                               onkeyup="realFilter()"
+                                               style="width: 100%;"/>
+                                    </div>
+                                </div>
+{#                                <div class="row" style="padding-bottom: 10px">#}
+{#                                    <ul>#}
+{#                                        <li><input#}
+{#                                                id="categoryCheck" type="checkbox" class="checkbox-inline"#}
+{#                                                placeholder="title" onchange='handleCategory(this);' checked><label#}
+{#                                                class="checkboxtext">Category</label></li>#}
+{##}
+{#                                        <li><input id="contentCheck" type="checkbox" class="checkbox-inline"#}
+{#                                                   placeholder="category" onchange='handleContent(this);'/><label#}
+{#                                                class="checkboxtext">News#}
+{#                                            Content</label></li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="news-page-list">
+                <div id="article_list" class="news-page-list">
 
-                {% for news_article in latest_news_list %}
-                    <div class="news-single-item">
-                        <div class="news-single-thumb">
-                        {% if news_article.image %}
-                            <img src="{{ news_article.image.url }}" alt="">
-                        {% else %}
-                            <img src="{% static 'news/img/news-tmp.png' %}" alt="">
-                        {% endif %}
-                        
-                        </div>
-                        <div class="news-single-content">
-                            <p class="news-category">News // {{news_article.category.all|first}}</p>
-                            <h3 class="news-title">{{ news_article.title }}</h3>
-                            <p class="news-author">by <a href="#">Alex Scott</a></p>
-                            <p class="news-description">{{ news_article.article_text|slice:":150" }}</p>
-                            <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
-                        </div>
-                    </div><!-- /.news-single-item -->
-                {% endfor %}
+                    {% for news_article in latest_news_list %}
+                        <div id="article_{{ news_article.id }}" class="news-single-item">
+                            <div class="news-single-thumb">
+                                {% if news_article.image %}
+                                    <img src="{{ news_article.image.url }}" alt="">
+                                {% else %}
+                                    <img src="{% static 'news/img/news-tmp.png' %}" alt="">
+                                {% endif %}
+
+                            </div>
+                            <div class="news-single-content">
+                                <p class="news-category">News // {{ news_article.category.all|first }}</p>
+                                <h3 class="news-title">{{ news_article.title }}</h3>
+                                <p class="news-author">by <a href="#">{{ news_article.owner.username }}</a></p>
+                                <p class="news-description">
+                                    {{ news_article.article | snippet }}</p>
+
+                                <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
+                            </div>
+                        </div><!-- /.news-single-item -->
+                    {% endfor %}
 
                 </div><!-- /.news-list -->
-            
-                <nav aria-label="News list navigation">
-                    <ul class="pagination text-center">
-                        {% if latest_news_list.has_previous %}
-                        <li class="pull-left text-pagination">
-                            <a href="?page={{ latest_news_list.previous_page_number }}" aria-label="Previous">
-                                <span aria-hidden="true">&larr; Prev Page</span>
-                            </a>
-                        </li>
-                        {% endif %}
+                <nav class="pagination-page pull-right" aria-label="News list navigation" style="padding-top: 10px">
 
-                        {% if latest_news_list.has_next %}
-                        <li class="pull-right text-pagination">
-                            <a href="?page={{ latest_news_list.next_page_number }}" aria-label="Next">
-                                <span aria-hidden="true">Next Page &rarr;</span>
-                            </a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                    <p class="total-items">Page {{ latest_news_list.number }} of {{ latest_news_list.paginator.num_pages }}.</p>
-                    <p class="total-items">{{total_articles}} total items</p>
                 </nav>
-
             </div><!-- /.container -->
-            
+
         </section><!-- /.news-page -->
 
     </div><!-- /#main -->
 
-    
+
     <footer id="colophon" class="site-footer pages-footer">
 
         <div class="container container-960">
-        
+
             <div class="row">
-        
+
                 <div class="footer-col">
                     <a href="#" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""></a>
                 </div><!-- /.footer-col -->
@@ -194,7 +238,7 @@
                         <li><a href="#">Submit a story</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Events</h4>
                     <ul>
@@ -203,7 +247,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Startups</h4>
                     <ul>
@@ -211,7 +255,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Companies</h4>
                     <ul>
@@ -219,7 +263,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Jobs</h4>
                     <ul>
@@ -227,7 +271,11 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
+                <div class="footer-col">
+                    <h4>Officespace</h4>
+                </div><!-- /.footer-col -->
+
                 <div class="footer-col">
                     <h4>Profile</h4>
                     <ul>
@@ -235,7 +283,7 @@
                         <li><a href="#">Edit Profile</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
@@ -245,7 +293,7 @@
                         <li><a href="#">Legal</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col pull-right text-right">
                     <ul>
                         <li><a href="#">Twitter</a></li>
@@ -255,10 +303,15 @@
                     </ul>
                 </div><!-- /.footer-col -->
 
-            </div>  
-                    
+            </div>
+
         </div><!-- /.container -->
 
     </footer><!-- /#footer -->
+
+{% endblock %}
+
+{% block customscript %}
+    <script type="text/javascript" src="{% static "news/js/newsscript.js" %}"></script>
 
 {% endblock %}
