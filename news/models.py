@@ -33,7 +33,6 @@ class News(models.Model):
 
     feature_rank = models.IntegerField(default=0)
 
-
     def __str__(self):
     	return self.title
 
