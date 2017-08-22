@@ -2,8 +2,8 @@
 {% block content %}
     <h2 class="text-center">Office Space @ YBF</h2>
     <div class="booking-action">
-		<a href="#" class="">New Booking</a>
-		<a href="#" class="">Your Bookings</a>
+		<a href="{% url 'booking_create' %}" class="">New Booking</a>
+		<a href="{% url 'booking_list' %}" class="">Your Bookings</a>
     </div>
     <div class="bookings">
     	<div class="pull-left" style="width: 80%;">
@@ -16,19 +16,21 @@
 						</tr>
 				    </thead>
 				    <tbody>
+				    	{% for booking in object_list %}
 					    <tr>
 					    	<td>
-    							<p>Space // Meeting Room</p>
-					    		<h2>Room A2</h2>
-		    					<span>11AM - 2:30PM</span>
-		    					<span>Tuesday, August 4.</span>
+    							<p>Space // {{ booking.room.category }}</p>
+					    		<h2>{{ booking.room }}</h2>
+		    					<span>{{ booking.time_start }} - {{ booking.time_end }}</span>
+		    					<span>{{ booking.booked_date }}</span>
 					    	</td>
 						    <td class="actions text-right" style="vertical-align: middle;">
-						    	<a href="#"><span class="glyphicon glyphicon-eye-open"></span></a>
-						    	<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-						    	<a href="#" data-href="#" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-trash"></span></a>
+						    	<a href="{% url 'booking_detail' booking.id %}"><span class="glyphicon glyphicon-eye-open"></span></a>
+						    	<a href="{% url 'booking_edit' booking.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+						    	<a href="#" data-href="{% url 'booking_del' booking.id %}" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-trash"></span></a>
 				        	</td>
 					    </tr>
+					    {% endfor %}
 					</tbody>
 				</table>
     		</div>

@@ -1,17 +1,35 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-# Create your views here.
-from django.http import HttpResponse
 from django.shortcuts import render
-from django.template import loader
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib.auth.decorators import login_required
-
-from django.contrib.auth.models import User
-from news.models import News
-
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, DetailView
+from .models import Room, Booking
 
 # Create your views here.
-def index(request):
-    return render(request, 'officespace/bookings.html',)
+class BookingCreate(CreateView):
+    model = Booking
+    template_name = 'officespace/create.html'
+    success_url = reverse_lazy('booking_list')
+    
+class BookingList(ListView):
+    model = Booking
+    template_name = 'officespace/bookings.html'
+
+    def get_queryset(self):
+    	queryset = Booking.objects.filter(owner=self.request.user)
+    	return queryset
+
+class BookingUpdate(UpdateView):
+    model = Booking
+    template_name = 'officespace/edit.html'
+    success_url = reverse_lazy('booking_list')
+
+class BookingDelete(DeleteView):
+    model = Booking
+    success_url = reverse_lazy('booking_list')
+
+class BookingDetail(DetailView):
+    model = Booking
+    template_name = 'officespace/detail.html'
