@@ -91,7 +91,7 @@
                         <!-- update to test if user has profile image -->
 
                         {% if person.profile.image %}
-                            <img src="{{ person.profile.image.url }}" alt="">
+                            <img src="{{ person.profile.image.url|safe }}" alt="">
                         {% else %}
                             <img src="{% static 'community/img/news-tmp.png' %}" alt="">
                         {% endif %}
