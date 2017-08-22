@@ -48,7 +48,7 @@ def detail(request, event_id):
 
 
 @login_required
-def create(request):
+def event_create(request):
     """
     Create new event.
     :param request: 
