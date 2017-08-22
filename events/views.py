@@ -57,7 +57,7 @@ def detail(request, event_id):
 def event_create(request):
 	form = EventForm(request.POST)
 	if form.is_valid():
-		event = Event(title=request.POST['event_name'], image='', start_date=request.POST['event_datetime_start'], end_date=request.POST['event_datetime_end'], event_url=request.POST['event_url'], featured=True, description=request.POST['event_description'])
+		event = Event(title=request.POST['event_name'], image=request.POST['event_image'], start_date=request.POST['event_datetime_start'], end_date=request.POST['event_datetime_end'], event_url=request.POST['event_url'], featured=True, description=request.POST['event_description'])
 		event.save()
 		context = {
 			'event': event,
@@ -73,15 +73,4 @@ def event_show(request):
 	}
 	return render(request, 'events/event-details.html', context)
 
-
-# def simple_upload(request):
-#     if request.method == 'POST' and request.FILES['myfile']:
-#         myfile = request.FILES['myfile']
-#         fs = FileSystemStorage()
-#         filename = fs.save(myfile.name, myfile)
-#         uploaded_file_url = fs.url(filename)
-#         return render(request, 'core/simple_upload.html', {
-#             'uploaded_file_url': uploaded_file_url
-#         })
-#     return render(request, '')
 

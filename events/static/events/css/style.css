@@ -1150,6 +1150,10 @@ html, body {
     font-weight: 500;
 }
 
+.image_upload_button {
+    margin: 0 auto;
+    width: 70%;
+}
 .event-details-hero p.event-start-date {
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     padding: 0 30px 5px 0;

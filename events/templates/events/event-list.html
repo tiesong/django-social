@@ -203,13 +203,11 @@
 	<div id="create-event-modal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                
-                <div class="modal-body">
-
-                    <div class="modal-body-left">
-                    
-                        <h4 class="modal-title">Add Event</h4>
-                        <form class="create-event-form" action="new" method="post">
+                <form class="create-event-form" action="new" method="post">
+                    <div class="modal-body">
+                        <div class="modal-body-left">
+                            <h4 class="modal-title">Add Event</h4>
+    {#                        <form class="create-event-form" action="new" method="post">#}
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="event-name">Title</label>
@@ -218,14 +216,14 @@
                             <div class="form-group">
                                 <label for="event-datetime-start">Start Date</label>
                                 <div class="date-group">
-	                                <input type="text" name="event_datetime_start" id="event-datetime-start" class="form-control" placeholder="2017-08-16 08:25">
-	                            </div>
+                                    <input type="text" name="event_datetime_start" id="event-datetime-start" class="form-control" placeholder="2017-08-16 08:25">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="event-datetime-end">End Date</label>
                                 <div class="date-group">
-	                                <input type="text" name="event_datetime_end" id="event-datetime-end" class="form-control" placeholder="2017-08-18 20:12">
-	                            </div>
+                                    <input type="text" name="event_datetime_end" id="event-datetime-end" class="form-control" placeholder="2017-08-18 20:12">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="event-url">Event URL</label>
@@ -236,26 +234,37 @@
                                 <input type="text" name="event_description" id="event_description" class="form-control" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo congue pharetra. Curabitur sollicitudin bibendum vehicula. Maecenas rutrum volutpat ligula sed porta. Donec viverra ultrices augue, egestas accumsan velit elementum nec. Curabitur vitae lacus vitae leo bibendum sodales. Aenean semper nunc nec purus feugiat, id vestibulum risus lacinia. Cras mollis mauris quam. In hac habitasse platea dictumst. Nunc dui leo, euismod sed dui non, ullamcorper laoreet dui. Pellentesque imperdiet, mi nec ultricies tristique, lorem arcu vestibulum leo, id egestas metus erat vitae magna. Phasellus lacinia maximus aliquet. Nulla vitae consequat risus, ac varius ligula. In varius eu sem quis egestas. Nullam at magna vitae leo eleifend volutpat id in lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque id orci aliquet, congue mauris quis, commodo odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam dignissim diam non lectus consequat feugiat. Sed eget commodo odio. Nunc ut semper elit. In imperdiet varius elit eget consectetur. Nullam eros tortor, blandit ut interdum vel, posuere in enim. ">
                             </div>
                             <div class="modal-form-buttons">
-                            	<a class="pull-left close-btn hidden-xs" href="">Close</a>
+                                <a class="pull-left close-btn hidden-xs" href="">Close</a>
                                 <button class="btn btn-dark pull-right" type="submit">Add Event</button>
                             </div>
-                        </form>
-
+                        </div>
+                        <div class="modal-body-right">
+                            <div class="create-event-inner">
+                                <input class="image_upload_button" type="file" name="event_image" onchange="previewFile()"><br>
+{#                                <img src="" height="200" alt="Add image...">#}
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="modal-body-right">
-					
-						<div class="create-event-inner">
-							<p>Help your event stand out.</p>
-							<a href="">Add image</a>
-						</div>
-    	
-                    </div>
-                    
-                </div>
-               
+                </form>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
+        <script>
+            function previewFile(){
+                var preview = document.querySelector('img'); //selects the query named img
+                var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+                var reader  = new FileReader();
+                reader.onloadend = function () {
+                    preview.src = reader.result;
+                }
+                if (file){
+                    reader.readAsDataURL(file); //reads the data as a URL
+                    }
+                else{
+                    preview.src = "";
+                }
+            }
+            previewFile();  //calls the function named previewFile()
+        </script>
     </div><!-- /#create-event-modal -->
 
     {% endblock %}
