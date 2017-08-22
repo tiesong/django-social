@@ -90,6 +90,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'teamedupy',
+    #     'USER': 'teamedupyuser',
+    #     'PASSWORD': 'password',
+    #     'HOST': 'localhost',
+    #     'PORT': '',
+    # }
 }
 
 # Password validation
@@ -138,6 +146,7 @@ STATIC_URL = '/static/'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home2/media/media.lawrence.com/media/"
+# PROJECT_ROOT ="/home/angrybirds/Work/teamedup-ybf/ybf-teamedup/media"
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
