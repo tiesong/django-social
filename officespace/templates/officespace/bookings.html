@@ -1,48 +1,45 @@
 {% extends 'officespace/base.html' %}
 {% block content %}
     <h2 class="text-center">Office Space @ YBF</h2>
-    <div class="booking-action">
-		<a href="{% url 'booking_create' %}" class="">New Booking</a>
-		<a href="{% url 'booking_list' %}" class="">Your Bookings</a>
+    <div class="bookings-action">
+		<a href="{% url 'booking_create' %}" class="btn btn-default" style="margin-bottom: 10px;">New Booking</a>
+		<a href="{% url 'booking_list' %}" class="btn btn-default" style="margin-bottom: 10px;">Your Bookings</a>
     </div>
     <div class="bookings">
     	<div class="pull-left" style="width: 80%;">
-    		<div class="booking">
-    			<table id="bookings_table" class="table table-striped" cellspacing="0" width="100%">
-    				<thead style="display: none;">
-						<tr>
-							<th>Info</th>
-							<th>Action</th>
-						</tr>
-				    </thead>
-				    <tbody>
-				    	{% for booking in object_list %}
-					    <tr>
-					    	<td>
-    							<p>Space // {{ booking.room.category }}</p>
-					    		<h2>{{ booking.room }}</h2>
-		    					<span>{{ booking.time_start }} - {{ booking.time_end }}</span>
-		    					<span>{{ booking.booked_date }}</span>
-					    	</td>
-						    <td class="actions text-right" style="vertical-align: middle;">
-						    	<a href="{% url 'booking_detail' booking.id %}"><span class="glyphicon glyphicon-eye-open"></span></a>
-						    	<a href="{% url 'booking_edit' booking.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
-						    	<a href="#" data-href="{% url 'booking_del' booking.id %}" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-trash"></span></a>
-				        	</td>
-					    </tr>
-					    {% endfor %}
-					</tbody>
-				</table>
-    		</div>
+			<table id="bookings_table" class="table table-actions" cellspacing="0" width="100%">
+				<thead style="display: none;">
+					<tr>
+						<th>Info</th>
+						<th>Action</th>
+					</tr>
+			    </thead>
+			    <tbody>
+			    	{% for booking in object_list %}
+				    <tr style="background: #f9f9f9;">
+				    	<td>
+							<p>Space // {{ booking.room.category }}</p>
+				    		<h2>{{ booking.room }}</h2>
+	    					<span>{{ booking.start_book }} - {{ booking.end_book }}</span>
+				    	</td>
+					    <td class="actions text-right" style="vertical-align: middle;">
+					    	<a href="{% url 'booking_detail' booking.id %}"><span class="glyphicon glyphicon-eye-open"></span></a>
+					    	<a href="{% url 'booking_edit' booking.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+					    	<a href="#" data-href="{% url 'booking_del' booking.id %}" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-trash" style="color: red;"></span></a>
+			        	</td>
+				    </tr>
+				    {% endfor %}
+				</tbody>
+			</table>
     	</div>
-    	<div class="pull-right" style="width: 15%">
+    	<div class="pull-right" style="width: 17%">
     		<p>Filter by Type</p>
-    		<a href="">Meeting Space</a>
-    		<a href="">Teleconference Room</a>
-    		<a href="">Workspaces</a>
-    		<a href="">Misc</a>
+            <a href="{% url 'booking_list' %}?room_type=meeting" class="btn btn-success text-center" style="margin-bottom: 5px;width: 100%;">Meeting Space</a>
+            <a href="{% url 'booking_list' %}?room_type=tele" class="btn btn-success text-center" style="margin-bottom: 5px;width: 100%;">Teleconference Room</a>
+            <a href="{% url 'booking_list' %}?room_type=work" class="btn btn-success text-center" style="margin-bottom: 5px;width: 100%;">Workspaces</a>
+            <a href="{% url 'booking_list' %}?room_type=misc" class="btn btn-success text-center" style="margin-bottom: 5px;width: 100%;">Misc</a>
     	</div>
     	<div class="clearfix"></div>
     </div>
-	{% include "officespace/modal/delete_confirm.html" %}
+	{% include "officespace/modal/booking_delete_confirm.html" %}
 {% endblock %}
