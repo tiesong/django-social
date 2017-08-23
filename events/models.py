@@ -14,7 +14,7 @@ class Event(models.Model):
     image = models.ImageField(upload_to='event_images/%Y/%m/%d/', null=True, blank=True)
     start_date = models.DateTimeField('start date')
 
-    pub_date = models.DateTimeField('date published')
+    end_date = models.DateTimeField('date published')
     featured = models.BooleanField(default=False)
 
     def is_in_future(self):
