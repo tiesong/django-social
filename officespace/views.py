@@ -61,8 +61,8 @@ class BookingList(ListView):
             room = Room.objects.filter(category=cat)
             queryset = Booking.objects.filter(owner=self.request.user, room=room)
         else:
-    	    queryset = Booking.objects.filter(owner=self.request.user)
-    	return queryset
+            queryset = Booking.objects.filter(owner=self.request.user)
+        return queryset
 
 class BookingUpdate(UpdateView):
     model = Booking
