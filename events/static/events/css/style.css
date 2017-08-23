@@ -1150,12 +1150,26 @@ html, body {
     font-weight: 500;
 }
 
-.event-details-hero p.event-hero-date {
+.image_upload_button {
+    margin: 0 auto;
+    width: 70%;
+}
+.event-details-hero p.event-start-date {
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     padding: 0 30px 5px 0;
     margin: 0 0 10px;
     display: inline-block;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.event-details-hero p.event-end-date {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 0 30px 5px 0;
+    margin: 0 0 10px;
+    display: inline-block;
+    font-size: 14px;
     font-weight: 400;
     letter-spacing: 2px;
 }

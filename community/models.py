@@ -13,11 +13,12 @@ class Company(models.Model):
     def __str__(self):
         return self.name
 
+
 # Need to update settings.py to manage media files
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     tagline = models.CharField(max_length=155, null=True, blank=True)
-    
+
     image = models.ImageField(upload_to='profile_images/%Y/%m/%d/', null=True, blank=True)
 
     phone_number = models.CharField(max_length=30, blank=True, null=True, default=None)
@@ -32,10 +33,5 @@ class Profile(models.Model):
 
     companies = models.ManyToManyField(Company, blank=True)
 
-
     def __str__(self):
-    	return self.user.username
-
-
-
-    
+        return self.user.username

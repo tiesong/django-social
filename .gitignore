@@ -53,7 +53,6 @@ fabric.properties
 ### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
 *$py.class
 
 # C extensions
@@ -61,7 +60,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -137,7 +135,6 @@ celerybeat-schedule
 
 # virtualenv
 .venv
-venv/
 ENV/
 
 # Spyder project settings
@@ -146,3 +143,4 @@ ENV/
 # Rope project settings
 .ropeproject
 
+ybf-teamedup/media/profile_images/

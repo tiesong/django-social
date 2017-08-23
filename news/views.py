@@ -29,18 +29,6 @@ def index(request):
     except:
         feature_list = False
 
-    # pagination of news results
-    # paginator = Paginator(news_list, 5)  # show X results per page
-    # page = request.GET.get('page')
-    # try:
-    #     latest_news_list = paginator.page(page)
-    # except PageNotAnInteger:
-    #     # If page is not an integer, deliver first page.
-    #     latest_news_list = paginator.page(1)
-    # except EmptyPage:
-    #     # If page is out of range (e.g. 9999), deliver last page of results.
-    #     latest_news_list = paginator.page(paginator.num_pages)
-
     context = {
         # 'latest_news_list': latest_news_list,
         'latest_news_list': news_list,
@@ -63,7 +51,7 @@ def detail(request, news_article_id):
     news_article = News.objects.get(id=news_article_id)
     related_news = News.objects.filter().exclude(is_page=True).order_by('-pub_date')[0:4]
     navbar_pages = News.objects.filter(display_in_navbar=True)
-    
+
     try:
         next_url = request.GET['next']
     except:
@@ -78,9 +66,9 @@ def detail(request, news_article_id):
 
     return render(request, 'news/news-details.html', context)
 
+
 @login_required
 def create(request):
-
     try:
         next_url = request.GET['next']
 
@@ -113,22 +101,21 @@ def create(request):
         if is_page == 'OK':
             is_page = True
         else:
-            is_page=False
-
+            is_page = False
 
         display_in_navbar = request.POST.get('display_in_navbar', None)
         if display_in_navbar == 'OK':
             display_in_navbar = True
         else:
-            display_in_navbar=False
+            display_in_navbar = False
 
-        news_article = News(title=title, article=body, feature_rank=feature_rank, pub_date=pub_date, owner=owner, is_page=is_page, display_in_navbar=display_in_navbar)
+        news_article = News(title=title, article=body, feature_rank=feature_rank, pub_date=pub_date, owner=owner,
+                            is_page=is_page, display_in_navbar=display_in_navbar)
         news_article.save()
-        
-        news_article.category.add(tag)
-        
-        return redirect('/dashboard')
 
+        news_article.category.add(tag)
+
+        return redirect('/dashboard')
 
     return render(request, 'news/news-edit.html', context)
 
@@ -147,7 +134,7 @@ def edit(request, news_article_id):
 
     categories = Category.objects.all()
     navbar_pages = News.objects.filter(display_in_navbar=True)
-    
+
     context = {
         'categories': categories,
         'news_article': news_article,
@@ -167,14 +154,13 @@ def edit(request, news_article_id):
         if is_page == 'OK':
             is_page = True
         else:
-            is_page=False
-
+            is_page = False
 
         display_in_navbar = request.POST.get('display_in_navbar', None)
         if display_in_navbar == 'OK':
             display_in_navbar = True
         else:
-            display_in_navbar=False
+            display_in_navbar = False
 
         tag = Category.objects.filter(tag=selected_tag).first()
 
@@ -194,11 +180,9 @@ def edit(request, news_article_id):
 
 @login_required
 def delete(request, news_article_id):
-    
     news_article = News.objects.get(id=news_article_id)
     news_article.delete()
-    
+
     context = {}
 
     return redirect('/dashboard')
-
