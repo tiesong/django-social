@@ -1,22 +1,20 @@
 {% extends 'officespace/base.html' %}
 {% block content %}
     <h2 class="text-center">Office Space @ YBF</h2>
-    
-    <div class="col-xs-12 col-sm-6 col-md-6" style="margin: 0 auto;float: none;">
-	    <div class="well well-sm">
+
+    <div class="col-xs-12 col-sm-9 col-md-9" style="margin: 0 auto;float: none;">
+	    <div class="well">
 	        <div class="row">
 	            <div class="col-sm-6 col-md-4">
 	                <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
 	            </div>
 	            <div class="col-sm-6 col-md-8">
-	                <span><b>Room:</b></span>
+	                <label>Room:</label>
 	                <span>{{ booking.room }}</span><br>
-	                <span><b>Category:</b></span>
+	                <label>Category:</label>
 	                <span>{{ booking.room.category }}</span><br>
-	                <span><b>Date Booked:</b></span>
-	                <span>{{ booking.booked_date }}</span><br>
-	                <span><b>Time Booked:</b></span>
-	                <span>{{ booking.time_start }} - {{ booking.time_end }}</span>
+	                <label>Date Booked:</label>
+	                <span>{{ booking.start_book }} - {{ booking.end_book }}</span>
 	            </div>
 	        </div>
 	    </div>
