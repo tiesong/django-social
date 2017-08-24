@@ -21,6 +21,9 @@ LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+
+ALLOWED_HOSTS=['127.0.0.1:8000',
+               'https://york-butter-factory.herokuapp.com']
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: change this before deploying to production!
