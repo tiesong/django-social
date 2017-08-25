@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 import os
+
+import datetime
 import dj_database_url
 
 
@@ -21,14 +23,16 @@ LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# Quick-start development settings - unsuitable for production
+
+# ALLOWED_HOSTS=['127.0.0.1:8000',
+#                'https://york-butter-factory.herokuapp.com']
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: change this before deploying to production!
 SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # Application definition
@@ -40,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'tinymce',
     'home',
     'news',
@@ -142,26 +147,38 @@ ALLOWED_HOSTS = ['*']
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_URL = '/static/'
-
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home2/media/media.lawrence.com/media/"
-# PROJECT_ROOT ="/home/angrybirds/Work/teamedup-ybf/ybf-teamedup/media"
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/media/'
-
-
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
+# STATIC_URL = '/static/'
+#
+#
+# # Extra places for collectstatic to find static files.
+# STATICFILES_DIRS = (
+#     os.path.join(PROJECT_ROOT, 'static'),
+# )
 
 APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
 
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# S3 bucket serving media files.
+AWS_STORAGE_BUCKET_NAME = 'teamedup-ybf'
+AWS_ACCESS_KEY_ID = 'AKIAJJI3JVPRGV6BQKYA'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+# Static files
+STATICFILES_LOCATION = 'static'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+
+# Setting Media files
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+
+
+two_months = datetime.timedelta(days=61)
+date_two_months_later = datetime.date.today() + two_months
+expires = date_two_months_later.strftime("%A, %d %B %Y 20:00:00 GMT")
+
+AWS_HEADERS = {
+    'Expires': expires,
+    'Cache-Control': 'max-age=%d' % (int(two_months.total_seconds()),),
+}

@@ -3,6 +3,17 @@
   "description": "A barebones Python app, which can easily be deployed to Heroku.",
   "image": "heroku/python",
   "repository": "https://github.com/heroku/python-getting-started",
-  "keywords": ["python", "django" ],
-  "addons": [ "heroku-postgresql" ]
+  "keywords": [
+    "python",
+    "django"
+  ],
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "env": {
+    "DISABLE_COLLECTSTATIC": {
+      "description": "Don't run python manage.py collectstatic --noinput on deploy",
+      "value": "1"
+    }
+  }
 }
