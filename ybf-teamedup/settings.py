@@ -32,7 +32,7 @@ LOGOUT_REDIRECT_URL = '/'
 SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # Application definition
@@ -159,8 +159,8 @@ APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
 
 # S3 bucket serving media files.
 AWS_STORAGE_BUCKET_NAME = 'teamedup-ybf'
-AWS_ACCESS_KEY_ID = 'AKIAIRRNCU4ERE7F3X2A'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = 'AKIAJVGNEIVERLR7VNSA'
+AWS_SECRET_ACCESS_KEY = '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'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 # Static files
