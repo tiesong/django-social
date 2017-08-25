@@ -10,16 +10,22 @@
 			<table id="bookings_table" class="table table-actions" cellspacing="0" width="100%">
 				<thead style="display: none;">
 					<tr>
+                        <th></th>
 						<th>Info</th>
 						<th>Action</th>
+                        <th></th>
 					</tr>
 			    </thead>
 			    <tbody>
 			    	{% for booking in object_list %}
 				    <tr style="background: #f9f9f9;">
+                        <td>
+                            <span style="display: none;">{{ booking.id }}</span>
+                        </td>
 				    	<td>
 							<p>Space // {{ booking.room.category }}</p>
-				    		<h2>{{ booking.room }}</h2>
+				    		<h4>{{ booking.room }}</h4>
+                            <h3>{{ booking.title }}</h3>
 	    					<span>{{ booking.start_book }} - {{ booking.end_book }}</span>
 				    	</td>
 					    <td class="actions text-right" style="vertical-align: middle;">
@@ -27,6 +33,7 @@
 					    	<a href="{% url 'booking_edit' booking.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
 					    	<a href="#" data-href="{% url 'booking_del' booking.id %}" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-trash" style="color: red;"></span></a>
 			        	</td>
+                        <td></td>
 				    </tr>
 				    {% endfor %}
 				</tbody>

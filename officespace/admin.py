@@ -11,4 +11,4 @@ class RoomAdmin(admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'owner', 'start_book', 'end_book',)
+    list_display = ('__str__', 'owner', 'title', 'start_book', 'end_book',)
