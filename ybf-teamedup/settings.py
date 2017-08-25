@@ -159,8 +159,8 @@ APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
 
 # S3 bucket serving media files.
 AWS_STORAGE_BUCKET_NAME = 'teamedup-ybf'
-AWS_ACCESS_KEY_ID = 'AKIAJ4WUNDOTVXAMIMDQ'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = 'AKIAIRRNCU4ERE7F3X2A'
+AWS_SECRET_ACCESS_KEY = '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'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 # Static files
