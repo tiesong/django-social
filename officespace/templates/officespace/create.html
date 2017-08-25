@@ -11,6 +11,7 @@
     		<div class="choose-room pull-left col-xs-12 col-sm-5 col-md-5 well">
     			<span>Choose by Room</span>
     			<select class="form-control" id="search_room">
+    				<option value=""></option>
                     {% for room in rooms %}
     				<option value="{{ room.id }}">{{ room.name }}</option>
                     {% endfor %}
@@ -18,17 +19,19 @@
     		</div>
     		<div class="choose-time pull-right col-xs-12 col-sm-6 col-md-6 well" style="opacity: 0.3">
     			<span>Choose by Time</span>
-    			<div class="form-group">
-					<input type="text" class="form-control" id="time_start" placeholder="Start time" disabled style="display: inline-block; width: 35%">&nbsp&nbsp&nbspto&nbsp&nbsp
-					<input type="text" class="form-control" id="time_end" placeholder="End time" disabled style="display: inline-block; width: 35%;" >
-                    <input type="button" class="btn btn-default" id="search_time" value="Search" disabled style="vertical-align: unset; margin-left: 15px;">
-    			</div>
+                <form method="get" action="{% url 'booking_create' %}?type=search">
+        			<div class="form-group">
+                        <input type="hidden" value="search" name="type" />
+    					<input type="text" class="form-control" name="date_start" id="time_start" placeholder="Start time" disabled style="display: inline-block; width: 35%">&nbsp&nbsp&nbspto&nbsp&nbsp
+    					<input type="text" class="form-control" name="date_end" id="time_end" placeholder="End time" disabled style="display: inline-block; width: 35%;" >
+                        <input type="submit" class="btn btn-default" id="search_time" value="Search" disabled style="vertical-align: unset; margin-left: 15px;">
+        			</div>
+                </form>
     		</div>
             <div class="clearfix"></div>
     	</div>
         <div class="booking">
             <div class="choose-room">
-                <!-- <table id="bookings_table_time" class="table table-striped" cellspacing="0" width="100%"></table> -->
                 <div id='calendar'></div>
             </div>
             <div class="choose-time" style="display: none;">
@@ -36,23 +39,27 @@
         			<table id="bookings_table" class="table table-striped" cellspacing="0" width="100%">
         				<thead style="display: none;">
     						<tr>
+                                <th></th>
     							<th>Info</th>
     							<th>Action</th>
+                                <th></th>
     						</tr>
     				    </thead>
     				    <tbody>
     				    	{% for room in rooms %}
     					    <tr style="background: #f9f9f9;">
-                                <form>
-        					    	<td>
-            							<p>Space // {{ room.category }}</p>
-        					    		<h2>{{ room.name }}</h2>
-        					    	</td>
-        						    <td class="actions text-right" style="vertical-align: middle;">
-                                        <input type="hidden" id="room_id" value="{{ room.id }}" />
-        						    	<button type="button" id="book_room" class="btn btn-default">Book Room</button>
-        				        	</td>
-                                </form>
+                                <td>
+                                    <span style="display: none;">{{ room.id }}</span>
+                                </td>
+    					    	<td>
+        							<p>Space // {{ room.category }}</p>
+    					    		<h2>{{ room.name }}</h2>
+    					    	</td>
+    						    <td class="actions text-right" style="vertical-align: middle;">
+                                    <input type="hidden" class="room-id" value="{{ room.id }}" />
+    						    	<button type="button" class="btn btn-default">Book Room</button>
+    				        	</td>
+                                <td></td>
         				    </tr>
     					    {% endfor %}
     					</tbody>

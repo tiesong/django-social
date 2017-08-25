@@ -15,6 +15,7 @@ class Room(models.Model):
 class Booking(models.Model):
     room = models.ForeignKey(Room)
     owner = models.ForeignKey(User)
+    title = models.CharField(max_length=300)
     start_book = models.DateTimeField('start time')
     end_book = models.DateTimeField('end time')
 

@@ -1,1 +1,13 @@
-/* Officespace CSS */
+/* Calendar for Booking */
+#calendar .fc-time-grid .fc-slats td {
+    height: 40px !important;
+}
+
+#calendar .new-booking .book-room {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+#calendar .new-booking .fc-bg {
+    display: none;
+}
