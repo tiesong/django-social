@@ -8,8 +8,8 @@ import re
 register = template.Library()
 
 
-@register.filter(name="snippet")
-def snippet(html_body):
+@register.filter(name="fulltext")
+def fulltext(html_body):
     """
     Return snippet from html body
     :param html_body: 
