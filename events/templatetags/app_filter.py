@@ -51,11 +51,12 @@ def previewImage(html_body):
     """
     img_list = []
     soup = BeautifulSoup(html_body, "html.parser")
-    print('select: {}'.format(soup.select("img.src")))
+    print('select: {}'.format(soup.select("img")))
 
     for image in soup.select("img"):
         img_list.append(image)
 
+    print('img_list: {}'.format(img_list))
     # Return Sample Image
     if len(img_list) == 0:
         return '../static/news/img/news-tmp.png'
