@@ -18,4 +18,9 @@ class Migration(migrations.Migration):
             old_name='end_date',
             new_name='pub_date',
         ),
+        migrations.AlterField(
+            model_name='event',
+            name='description',
+            field=tinymce.models.HTMLField(blank=True, null=True),
+        ),
     ]
