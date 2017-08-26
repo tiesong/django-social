@@ -18,6 +18,7 @@ class Event(models.Model):
     description = HTMLField(blank=True, null=True)
 
     pub_date = models.DateTimeField('date published', null=True)
+
     featured = models.BooleanField(default=False)
     event_url = models.CharField(max_length=150, null=True)
 
