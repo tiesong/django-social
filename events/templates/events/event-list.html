@@ -282,6 +282,7 @@
 
                 reader.onload = function (e) {
                     $('#previewImage').attr('src', e.target.result);
+                    $('#featureImage').attr('src', e.target.result);
                 }
 
                 reader.readAsDataURL(input.files[0]);

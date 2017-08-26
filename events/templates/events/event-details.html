@@ -1,16 +1,16 @@
+{% extends 'events/base.html' %}
+{% block content %}
 
-    {% extends 'events/base.html' %}
-    {% block content %}
-    
     {% load staticfiles %}
-
+    {% load app_filter %}
     <header id="masthead" class="site-header">
 
         <div class="top-nav">
 
             <div class="container container-960">
 
-                <a href="index.html" class="site-logo" rel="home"><img src="{% static 'events/img/logo.png' %}" alt="" srcset="{% static 'events/img/logo.png' %} 1x, {% static 'events/img/logo@2x.png' %} 2x"></a>
+                <a href="index.html" class="site-logo" rel="home"><img src="{% static 'events/img/logo.png' %}" alt=""
+                                                                       srcset="{% static 'events/img/logo.png' %} 1x, {% static 'events/img/logo@2x.png' %} 2x"></a>
 
                 <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
                     <span class="lines line-top"></span>
@@ -20,7 +20,9 @@
 
                 <nav id="primary-navigation" class="site-navigation">
 
-                    <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'events/img/logo.png' %}" alt="" srcset="{% static 'events/img/logo.png' %} 1x, {% static 'events/img/logo@2x.png' %} 2x"></a>
+                    <a href="index.html" class="site-logo visible-xs" rel="home"><img
+                            src="{% static 'events/img/logo.png' %}" alt=""
+                            srcset="{% static 'events/img/logo.png' %} 1x, {% static 'events/img/logo@2x.png' %} 2x"></a>
 
                     <ul>
                         <li><a href="/news">News</a></li>
@@ -35,7 +37,8 @@
                 <div class="user-profile dropdown">
 
                     <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'events/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
+                        <div class="user-profile-thumb"><img src="{% static 'events/img/avatar.jpg' %}" alt=""> <span
+                                class="visible-xs caret"></span></div>
                         <div class="user-profile-meta hidden-xs">
                             <div class="user-profile-meta-inner">
                                 Nick B.
@@ -58,11 +61,11 @@
         <div class="hero event-details-hero">
 
             <div class="container">
-            
+
                 <div class="hero-text">
-                    <p class="event-start-date">From: {{event.start_date}}</p>
-                    <p class="event-end-date">To: {{event.end_date}}</p>
-                    <h1 class="event.title">{{event.title}}</h1>
+                    <p class="event-start-date">From: {{ event.start_date }}</p>
+                    <p class="event-end-date">To: {{ event.pub_date }}</p>
+                    <h1 class="event.title">{{ event.title }}</h1>
                     <p>posted by <a href="">MediHealth</a></p>
                     <a class="btn btn-transparent-white" href="#">RSVP</a>
                 </div>
@@ -80,9 +83,9 @@
 
                     <div class="col-sm-8">
                         <h3>Description</h3>
+                        <div class="content-img"><img src="{{ event.description | safe | previewImage }}" alt="No Description Image"></div>
+                        <p>{{ event.description | safe |snippet}}</p>
 
-                        <div class="content-img"><img src="{% static 'events/img/event_detail.jpg' %}" alt=""></div>
-                        <p>{{event.description}}</p>
 
                     </div>
 
@@ -92,10 +95,10 @@
                         <div class="event-details-sidebar">
 
                             <h3>Event Details</h3>
-                            <p>{{ event.start_date|date:"fA j N Y"}}<br>
-                            <strong>Venue</strong>: Your Butter Factory<br>
-                            <strong>Cost</strong>: Free</p>
-                            
+                            <p>{{ event.start_date|date:"fA j N Y" }}<br>
+                                <strong>Venue</strong>: Your Butter Factory<br>
+                                <strong>Cost</strong>: Free</p>
+
                             <div class="event-details-buttons">
                                 <a href="#" class="btn btn-transparent-dark">RSVP to this event</a>
                                 <a href="#" class="btn btn-transparent-dark">Add to calendar</a>
@@ -121,49 +124,52 @@
                 </div>
 
             </div><!-- /.container -->
-            
+
         </section>
 
         <section class="events-list">
 
             <div class="container container-960">
-                
+
                 <p class="events-date">Related events</p>
-                  
+
                 <div class="row row-eq-height row-margin-1">
-                        
+
                     <div class="col-md-3 col-xs-12">
                         <div class="event-item">
                             <p class="event-date">11am 8 Aug 2017</p>
-                            <h2 class="event-name"><a href="#">Fintech Australia: R&amp;D Tech Grants 101 Workshop</a></h2>
+                            <h2 class="event-name"><a href="#">Fintech Australia: R&amp;D Tech Grants 101 Workshop</a>
+                            </h2>
                             <a href="#" class="event-attending">posted by</a>
                         </div><!-- /.event-item -->
-                    </div>  
-                    
+                    </div>
+
                     <div class="col-md-3 col-xs-12">
                         <div class="event-item">
                             <p class="event-date">11am 8 Aug 2017</p>
-                            <h2 class="event-name"><a href="#">Fintech Australia: R&amp;D Tech Grants 101 Workshop</a></h2>
+                            <h2 class="event-name"><a href="#">Fintech Australia: R&amp;D Tech Grants 101 Workshop</a>
+                            </h2>
                             <a href="#" class="event-attending">246 attending</a>
                         </div><!-- /.event-item -->
-                    </div>  
-                    
+                    </div>
+
                     <div class="col-md-3 col-xs-12">
                         <div class="event-item">
                             <p class="event-date">5pm 18 Aug 2017</p>
                             <h2 class="event-name"><a href="#">Afternoon Chat</a></h2>
                             <a href="#" class="event-attending">246 attending</a>
                         </div><!-- /.event-item -->
-                    </div>  
-                    
+                    </div>
+
                     <div class="col-md-3 col-xs-12">
                         <div class="event-item">
                             <p class="event-date">11am 8 Aug 2017</p>
-                            <h2 class="event-name"><a href="#">Fintech Australia: R&amp;D Tech Grants 101 Workshop</a></h2>
+                            <h2 class="event-name"><a href="#">Fintech Australia: R&amp;D Tech Grants 101 Workshop</a>
+                            </h2>
                             <a href="#" class="event-attending">246 attending</a>
                         </div><!-- /.event-item -->
-                    </div>  
-                    
+                    </div>
+
                 </div><!-- /.row -->
 
             </div>
@@ -172,4 +178,4 @@
 
     </div><!-- /#main -->
 
-    {% endblock %}
+{% endblock %}

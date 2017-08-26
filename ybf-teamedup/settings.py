@@ -24,8 +24,9 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 
-# ALLOWED_HOSTS=['127.0.0.1:8000',
-#                'https://york-butter-factory.herokuapp.com']
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: change this before deploying to production!
@@ -140,8 +141,6 @@ DATABASES['default'].update(db_from_env)
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -181,4 +180,5 @@ expires = date_two_months_later.strftime("%A, %d %B %Y 20:00:00 GMT")
 AWS_HEADERS = {
     'Expires': expires,
     'Cache-Control': 'max-age=%d' % (int(two_months.total_seconds()),),
+    'Access-Control-Allow-Origin': '*'
 }

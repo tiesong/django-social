@@ -1,10 +1,239 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'news/base.html' %}
+{% block content %}
+    {% load staticfiles %}
+    <style>
+    img {max-width: 100% !important;
+    display: block;}
+    </style>
+    <body>
 
-</body>
-</html>
+    <script>
+        tinymce.init({
+            selector: '#body',
+            plugins: 'image',
+            extended_valid_elements : 'img[class|src|border=0|alt|title|width|height]',
+            image_description: false,
+            image_dimensions: false,
+            file_picker_types: 'image',
+            content_css: "{% static 'news/css/popup.css' %}",
+            file_picker_callback: function (callback, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+
+                input.onchange = function () {
+                    var file = this.files[0];
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+
+                    reader.onload = function () {
+                        var id = 'blobid' + (new Date()).getTime();
+                        var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        var base64 = reader.result.split(',')[1];
+                        var blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+
+                        callback(blobInfo.blobUri(), {title: file.name});
+                    };
+                };
+                input.click();
+            },
+            height: 500
+        });
+
+    </script>
+
+    <header id="masthead" class="site-header">
+
+        <div class="top-nav">
+
+            <div class="container container-960">
+
+                <a href="/" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""
+                                                              srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+
+                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+                    <span class="lines line-top"></span>
+                    <span class="lines line-middle"></span>
+                    <span class="lines line-bottom"></span>
+                </button><!-- /.lines-button -->
+
+                <nav id="primary-navigation" class="site-navigation">
+
+                    <a href="index.html" class="site-logo visible-xs" rel="home"><img
+                            src="{% static 'news/img/logo.png' %}" alt=""
+                            srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+
+                    <ul>
+                        <li class="active"><a href="/news">News</a></li>
+                        <li><a href="/events">Events</a></li>
+                        <li><a href="/c/companies">Companies</a></li>
+                        <li><a href="/c/people">People</a></li>
+                    </ul>
+
+                </nav><!-- /.site-navigation -->
+
+                <div class="user-profile dropdown">
+
+                    <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
+                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.png' %}" alt=""> <span
+                                class="visible-xs caret"></span></div>
+                        <div class="user-profile-meta hidden-xs">
+                            <div class="user-profile-meta-inner">
+                               {{request.user.username}}
+                            </div>
+                        </div>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
+                        <li><a href="person-profile.html">Profile</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li class="logout-btn"><a href="#">Logout</a></li>
+                    </ul>
+
+                </div><!-- /.user-profile -->
+
+            </div><!-- /.container -->
+
+        </div><!-- /.top-nav -->
+
+       <div class="hero event-details-hero">
+
+            <div class="container">
+
+                <div class="hero-text">
+                    <p class="event-start-date">From: {{start_date}}</p>
+                    <p class="event-end-date">To: {{pub_date}}</p>
+                    <h1 class="event.title">{{title}}</h1>
+                    <p>posted by <a href="">MediHealth</a></p>
+                    <a class="btn btn-transparent-white" href="{{ event_url }}">RSVP</a>
+                </div>
+            </div>
+        </div>
+
+
+    </header><!-- /#header -->
+
+
+    <div id="main" class="site-main">
+
+        <section class="event-details-content">
+
+            <div class="container container-960">
+
+                <div class="row">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="col-sm-8">
+                            <br>
+                            <h3>Description</h3>
+                            <p>
+                                <textarea id="body" name="body"></textarea>
+                                <br>
+                                <input type="text" id="event_id" name="event_id" value="{{ event_id }}" hidden/>
+                            </p>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <div class="event-details-sidebar">
+
+                                    <button class="btn btn-transparent-dark" type="submit">Save</button>
+                                    <a class="btn btn-transparent-dark" type="button"
+                                       href="/events/">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div><!-- /.container -->
+
+        </section>
+    </div><!-- /#main -->
+
+
+    <footer id="colophon" class="site-footer pages-footer">
+
+        <div class="container container-960">
+
+            <div class="row">
+
+                <div class="footer-col">
+                    <a href="#" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""></a>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>News</h4>
+                    <ul>
+                        <li><a href="#">Current</a></li>
+                        <li><a href="#">Archive</a></li>
+                        <li><a href="#">Submit a story</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Events</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Attending</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Startups</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Companies</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Jobs</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Profile</h4>
+                    <ul>
+                        <li><a href="#">Your Activity</a></li>
+                        <li><a href="#">Edit Profile</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">About YBF</a></li>
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">Legal</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col pull-right text-right">
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+            </div>
+        </div><!-- /.container -->
+
+    </footer><!-- /#footer -->
+
+{% endblock %}

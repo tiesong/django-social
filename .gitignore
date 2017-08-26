@@ -1,6 +1,5 @@
 /staticfiles/*
 *.py[cod]
-db.sqlite3
 .idea/
 
 # virtualenv
