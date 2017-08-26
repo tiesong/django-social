@@ -37,7 +37,6 @@ def index(request):
         'previous_week': previous_week,
         'event_list': event_list
     }
-    print event_list
 
     return render(request, 'events/event-list.html', context)
 
