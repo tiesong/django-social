@@ -61,10 +61,14 @@ def create(request):
     event_id = request.POST.get("event_id", None)
     print('event_id:', event_id)
     if event_id:
-        body = request.POST['body']
-        event = Event.objects.get(id=event_id)
-        event.description = body
-        event.save()
+        try:
+            body = request.POST['body']
+            print(body)
+            event = Event.objects.get(id=event_id)
+            event.description = body
+            event.save()
+        except Exception as e:
+            print(e)
 
         return redirect('/events/' + event_id)
 
