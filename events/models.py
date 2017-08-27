@@ -16,7 +16,7 @@ class Event(models.Model):
     start_date = models.DateTimeField('start date', null=True)
 
     description = HTMLField(blank=True, null=True)
-    detail = HTMLField(blank=True, null=True)
+    details = HTMLField(blank=True, null=True)
     pub_date = models.DateTimeField('date published', null=True)
 
     featured = models.BooleanField(default=False)
