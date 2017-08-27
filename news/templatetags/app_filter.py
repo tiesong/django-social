@@ -25,28 +25,6 @@ def snippet(html_body):
     return snippet_txt[:150]
 
 
-@register.filter(name="previewImage")
-def previewImage(html_body):
-    """
-    Preview image from article.
-    :param html_body: 
-    :return: 
-    """
-    img_list = []
-    soup = BeautifulSoup(html_body, "html.parser")
-    print('select: {}'.format(soup.select("img.src")))
-
-    for image in soup.select("img"):
-        img_list.append(image)
-
-    # Return Sample Image
-    if len(img_list) == 0:
-        return 'https://teamedup-ybf.s3.amazonaws.com/static/news/img/news-tmp.png'
-
-    # Return base64 image.
-    return img_list[0]["src"]
-
-
 @register.filter(name="fulltext")
 def fulltext(html_body):
     """
@@ -63,3 +41,26 @@ def fulltext(html_body):
 
     return snippet_txt
 
+
+@register.filter(name="previewImage")
+def previewImage(html_body):
+    """
+    Preview image from article.
+    :param html_body: 
+    :return: 
+    """
+    img_list = []
+    print('html body: {}'.format(html_body))
+    soup = BeautifulSoup(html_body, "html.parser")
+    print('select: {}'.format(soup.select("img")))
+
+    for image in soup.select("img"):
+        img_list.append(image)
+
+    print('img_list: {}'.format(img_list))
+    # Return Sample Image
+    if len(img_list) == 0:
+        return 'https://teamedup-ybf.s3.amazonaws.com/static/news/img/news-tmp.png'
+
+    # Return base64 image.
+    return img_list[0]["src"]

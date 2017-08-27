@@ -71,7 +71,7 @@ def create(request):
         except Exception as e:
             print('Excetion: {}'.format(e))
 
-        return redirect('detail', news_article_id=event_id)
+        return redirect('detail', event_id=event_id)
 
     else:
         title = request.POST.get("title", None)
