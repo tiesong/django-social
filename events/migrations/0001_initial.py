@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=150)),
                 ('image', models.ImageField(blank=True, null=True, upload_to='event_images/%Y/%m/%d/')),
                 ('start_date', models.DateTimeField(null=True, verbose_name='start date')),
-                ('description', tinymce.models.HTMLField(blank=True)),
+                ('detail', tinymce.models.HTMLField(blank=True, null=True)),
                 ('pub_date', models.DateTimeField(null=True, verbose_name='date published')),
                 ('featured', models.BooleanField(default=False)),
                 ('event_url', models.CharField(max_length=150, null=True)),
