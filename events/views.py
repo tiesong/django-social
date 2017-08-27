@@ -44,6 +44,7 @@ def index(request):
 @login_required
 def detail(request, event_id):
     event = Event.objects.get(id=event_id)
+    print ('event: {}'.format(event))
     context = {
         'event': event,
     }
@@ -61,16 +62,16 @@ def create(request):
     event_id = request.POST.get("event_id", None)
     print('event_id:', event_id)
     if event_id:
-
+        print('events add body')
         try:
             body = request.POST['body']
 
             Event.objects.filter(id=event_id).update(detail=body)
 
         except Exception as e:
-            print(e)
+            print('Excetion: {}'.format(e))
 
-        return redirect('/events/' + event_id)
+        return redirect('detail', news_article_id=event_id)
 
     else:
         title = request.POST["title"]
