@@ -102,11 +102,11 @@
             <div class="container">
 
                 <div class="hero-text">
-                    <p class="event-start-date">From: {{start_date}}</p>
-                    <p class="event-end-date">To: {{pub_date}}</p>
-                    <h1 class="event.title">{{title}}</h1>
+                    <p class="event-start-date">From: {{ event.start_date}}</p>
+                    <p class="event-end-date">To: {{ event.pub_date}}</p>
+                    <h1 class="event.title">{{event.title}}</h1>
                     <p>posted by <a href="">MediHealth</a></p>
-                    <a class="btn btn-transparent-white" href="{{ event_url }}">RSVP</a>
+                    <a class="btn btn-transparent-white" href="{{ event.event_url }}">RSVP</a>
                 </div>
             </div>
         </div>
@@ -122,16 +122,16 @@
             <div class="container container-960">
 
                 <div class="row">
-                    <form method="post" action="/events/create/">
+                    <form method="post">
                         {% csrf_token %}
                         <div class="col-sm-8">
                             <br>
                             <h3>Description</h3>
                             <p>
-                                <textarea id="body" name="body"></textarea>
+                                <textarea id="body" name="body">{{ event.detail }}</textarea>
                                 <br>
                             </p>
-                            <input type="text" id="event_id" name="event_id" value="{{ event_id }}" hidden/>
+                            <input type="text" id="event_id" name="event_id" value="{{ event.id }}" hidden/>
                         </div>
 
                         <div class="col-sm-4">

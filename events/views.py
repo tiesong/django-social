@@ -97,10 +97,7 @@ def create(request):
         new_event.save()
 
         context = {
-            'start_date': start_day + " " + start_time,
-            'pub_date': pub_day + " " + pub_time,
-            'title': title,
-            'event_id': new_event.id
+            'event': new_event
         }
 
         return render(request, 'events/event-edit.html', context=context)
