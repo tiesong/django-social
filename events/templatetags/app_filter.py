@@ -50,6 +50,7 @@ def previewImage(html_body):
     :return: 
     """
     img_list = []
+    print('html body: {}'.format(html_body))
     soup = BeautifulSoup(html_body, "html.parser")
     print('select: {}'.format(soup.select("img")))
 

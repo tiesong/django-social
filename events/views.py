@@ -63,7 +63,6 @@ def create(request):
     if event_id:
         try:
             body = request.POST['body']
-            print(body)
             event = Event.objects.get(id=event_id)
             event.detail = body
             event.save()
