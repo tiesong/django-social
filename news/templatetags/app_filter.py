@@ -41,7 +41,7 @@ def previewImage(html_body):
 
     # Return Sample Image
     if len(img_list) == 0:
-        return '../static/news/img/news-tmp.png'
+        return 'https://teamedup-ybf.s3.amazonaws.com/static/news/img/news-tmp.png'
 
     # Return base64 image.
     return img_list[0]["src"]
