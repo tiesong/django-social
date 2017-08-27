@@ -44,7 +44,7 @@ def index(request):
 @login_required
 def detail(request, event_id):
     event = Event.objects.get(id=event_id)
-    print ('event: {}'.format(event))
+    print ('event detail: {}'.format(event.detail))
     context = {
         'event': event,
     }
