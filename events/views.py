@@ -65,7 +65,7 @@ def create(request):
             body = request.POST['body']
             print(body)
             event = Event.objects.get(id=event_id)
-            event.description = body
+            event.detail = body
             event.save()
         except Exception as e:
             print(e)
