@@ -81,7 +81,7 @@ def create(request):
         pub_day = request.POST["end-date"]
         pub_date = dateutil.parser.parse(pub_time + ' ' + pub_day)
 
-        feature_image = request.POST["featureImage"]
+        feature_image = request.FILES["featureImage"]
         if feature_image:
             featured = True
         else:
