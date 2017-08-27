@@ -253,25 +253,38 @@ $(document).ready(function () {
     });
 
     // Booking Option Change
+    $('.bookings-option .choose-time').click(function() {
+        $('.bookings-option .choose-room').css('opacity', '0.3');
+        $('.bookings-option .choose-time').css('opacity', '1');
+        $('.bookings-option .choose-room select').attr('disabled', true);
+        $('.bookings-option .choose-room select').val('');
+        $('.bookings-option .choose-time .form-group input').attr('disabled', false);
+        $('.booking .choose-time').show();
+        $('.booking .choose-room').hide();
+        calendar.fullCalendar('removeEvents');
+    });
+    $('.bookings-option .choose-room').click(function() {
+        $('.bookings-option .choose-time').css('opacity', '0.3');
+        $('.bookings-option .choose-room').css('opacity', '1');
+        $('.bookings-option .choose-time .form-group input').attr('disabled', true);
+        $('.bookings-option .choose-time .form-group input#time_start').val('');
+        $('.bookings-option .choose-time .form-group input#time_end').val('');
+        $('.bookings-option .choose-room select').attr('disabled', false);
+        $('.booking .choose-room').show();
+        $('.booking .choose-time').hide();
+    });
     $('.bookings-action .start-over').click(function() {
-        if ($('.booking .choose-time').css('display') == 'none') {
-            $('.bookings-option .choose-room').css('opacity', '0.3');
-            $('.bookings-option .choose-time').css('opacity', '1');
-            $('.bookings-option .choose-room select').attr('disabled', true);
-            $('.bookings-option .choose-room select').val('');
-            $('.bookings-option .choose-time .form-group input').attr('disabled', false);
-            $('.booking .choose-room').hide();
-            $('.booking .choose-time').show();
-        } else if ($('.booking .choose-room').css('display') == 'none') {
-            $('.bookings-option .choose-time').css('opacity', '0.3');
-            $('.bookings-option .choose-room').css('opacity', '1');
-            $('.bookings-option .choose-time .form-group input').attr('disabled', true);
-            $('.bookings-option .choose-time .form-group input#time_start').val('');
-            $('.bookings-option .choose-time .form-group input#time_end').val('');
-            $('.bookings-option .choose-room select').attr('disabled', false);
-            $('.booking .choose-time').hide();
-            $('.booking .choose-room').show();
-        }
+        $('.bookings-option .choose-time').css('opacity', '0.3');
+        $('.bookings-option .choose-room').css('opacity', '1');
+        $('.bookings-option .choose-time .form-group input').attr('disabled', true);
+        $('.bookings-option .choose-time .form-group input#time_start').val('');
+        $('.bookings-option .choose-time .form-group input#time_end').val('');
+        $('.bookings-option .choose-room select').val('');
+        $('.bookings-option .choose-room select').attr('disabled', false);
+        $('.booking .choose-room').show();
+        $('.booking .choose-time').hide();
+        calendar.fullCalendar('removeEvents');
+        window.location.href = "/officespace/create";
     });
 
     // Search Room for Booking

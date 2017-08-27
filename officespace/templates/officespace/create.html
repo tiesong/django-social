@@ -8,7 +8,7 @@
     </div>
     <div class="bookings">
     	<div class="bookings-option">
-    		<div class="choose-room pull-left col-xs-12 col-sm-5 col-md-5 well">
+    		<div class="choose-room pull-left col-xs-12 col-sm-5 col-md-5 well" style="cursor:pointer;">
     			<span>Choose by Room</span>
     			<select class="form-control" id="search_room">
     				<option value=""></option>
@@ -17,9 +17,9 @@
                     {% endfor %}
     			</select>
     		</div>
-    		<div class="choose-time pull-right col-xs-12 col-sm-6 col-md-6 well" style="opacity: 0.3">
+    		<div class="choose-time pull-right col-xs-12 col-sm-6 col-md-6 well" style="opacity: 0.3; cursor:pointer;">
     			<span>Choose by Time</span>
-                <form method="get" action="{% url 'booking_create' %}?type=search">
+                <form method="get" action="{% url 'booking_create' %}?type=search" id="form_search_time">
         			<div class="form-group">
                         <input type="hidden" value="search" name="type" />
     					<input type="text" class="form-control" name="date_start" id="time_start" placeholder="Start time" disabled style="display: inline-block; width: 35%">&nbsp&nbsp&nbspto&nbsp&nbsp
