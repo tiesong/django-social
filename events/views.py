@@ -64,10 +64,10 @@ def create(request):
     if event_id:
         print('events add body')
         try:
-            body = request.POST.get('body', None)
+            body = request.POST.get('body', "")
             print('body: {}'.format(body))
 
-            Event.objects.filter(id=event_id).update(detail=body)
+            Event.objects.filter(id=event_id).update(description=body)
 
         except Exception as e:
             print('Excetion: {}'.format(e))
@@ -93,7 +93,7 @@ def create(request):
         event_url = request.POST.get("event-url", None)
 
         new_event = Event(title=title, image=feature_image, start_date=start_date,
-                          pub_date=pub_date, event_url=event_url, featured=featured)
+                          pub_date=pub_date, event_url=event_url, featured=featured, description="")
         new_event.save()
 
         context = {
