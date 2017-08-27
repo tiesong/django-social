@@ -64,7 +64,7 @@ def create(request):
     if event_id:
         print('events add body')
         try:
-            body = request.POST['body']
+            body = request.POST.get('body', None)
 
             Event.objects.filter(id=event_id).update(detail=body)
 
@@ -74,22 +74,22 @@ def create(request):
         return redirect('detail', news_article_id=event_id)
 
     else:
-        title = request.POST["title"]
-        start_time = request.POST["start-time"]
-        start_day = request.POST["start-date"]
+        title = request.POST.get("title", None)
+        start_time = request.POST.get("start-time", None)
+        start_day = request.POST.get("start-date", None)
         start_date = dateutil.parser.parse(start_time + ' ' + start_day)
 
-        pub_time = request.POST["end-time"]
-        pub_day = request.POST["end-date"]
+        pub_time = request.POST.get("end-time", None)
+        pub_day = request.POST.get("end-date", None)
         pub_date = dateutil.parser.parse(pub_time + ' ' + pub_day)
 
-        feature_image = request.FILES["featureImage"]
+        feature_image = request.FILES.get("featureImage", None)
         if feature_image:
             featured = True
         else:
             featured = False
 
-        event_url = request.POST["event-url"]
+        event_url = request.POST.get("event-url", None)
 
         new_event = Event(title=title, image=feature_image, start_date=start_date,
                           pub_date=pub_date, event_url=event_url, featured=featured)
