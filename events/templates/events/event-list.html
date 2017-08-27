@@ -214,7 +214,7 @@
                     <div class="modal-body-left">
 
                         <h4 class="modal-title">Add Event</h4>
-                        <form class="create-event-form" method="post" action="create/">{% csrf_token %}
+                        <form class="create-event-form" method="post" action="create/" enctype="multipart/form-data">{% csrf_token %}
                             <div class="form-group">
                                 <label for="event-name">Title</label>
                                 <input type="text" id="event-name" name="title" class="form-control" placeholder="Some event">
