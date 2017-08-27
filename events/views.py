@@ -65,13 +65,14 @@ def create(request):
         print('events add body')
         try:
             body = request.POST.get('body', None)
+            print('body: {}'.format(body))
 
             Event.objects.filter(id=event_id).update(detail=body)
 
         except Exception as e:
             print('Excetion: {}'.format(e))
 
-        return redirect('detail', event_id=event_id)
+        return redirect('/events/' + event_id)
 
     else:
         title = request.POST.get("title", None)
