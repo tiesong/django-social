@@ -1,0 +1,26 @@
+{% extends 'officespace/base.html' %}
+{% block content %}
+    <h2 class="text-center">Office Space @ YBF</h2>
+    <div class="bookings">
+        <a href="{% url 'booking_list' %}" class="btn btn-default">Back</a>
+        <input type="hidden" id="booking_id" value="{{ pk }}">
+    	<div class="bookings-option">
+    		<div class="choose-room pull-left col-xs-12 col-sm-5 col-md-5 well">
+    			<span>Choose by Room</span>
+    			<select class="form-control" id="search_room">
+    				<option value=""></option>
+                    {% for room in rooms %}
+    				<option value="{{ room.id }}" {% if room_id == room.id|stringformat:"i" %}selected{% endif %}>{{ room.name }}</option>
+                    {% endfor %}
+    			</select>
+    		</div>
+            <div class="clearfix"></div>
+    	</div>
+        <div class="booking">
+            <div class="choose-room">
+                <div id='edit_calendar'></div>
+            </div>
+        </div>
+    </div>
+    {% include "officespace/modal/booking_create.html" %}
+{% endblock %}

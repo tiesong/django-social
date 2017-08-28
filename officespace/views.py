@@ -47,9 +47,6 @@ def create(request):
         end_book = request.GET['date_end']
         booking = Booking.objects.filter(start_book=start_book, end_book=end_book)
         rooms = Room.objects.filter(~Q(id=booking[0].room.id))
-        # rooms = json.dumps([room for room in rooms.values()])
-        #
-        # return HttpResponse(rooms)
 
     else:
         rooms = Room.objects.all()
@@ -104,42 +101,44 @@ class BookingList(ListView):
         return queryset
 
 def edit(request, pk):
-    if request.GET.get('room_id'):
-        room_id = request.GET['room_id']
-        start_book = request.GET['start_book']
-        end_book = request.GET['end_book']
-        room = Room.objects.get(pk=room_id)
-        bookings = Booking.objects.filter(room=room, start_book__gte=start_book, end_book__lte=end_book)
-        response = []
-        for booking in bookings:
-            if request.user == booking.owner:
-                owner = 'true'
-            title = booking.title
-            start_book = booking.start_book
-            end_book = booking.end_book
-            response.append([owner, title, start_book, end_book])
-        response = json.dumps(response, default=datetime_handler)
+    if request.GET:
+        if request.GET.get('booking_id'):
+            booking_id = request.GET['booking_id']
+            room_id = request.GET['room_id']
+            start_book = request.GET['start_book']
+            end_book = request.GET['end_book']
+            room = Room.objects.get(pk=room_id)
+            bookings = Booking.objects.filter(room=room, start_book__gte=start_book, end_book__lte=end_book)
+            response = []
+            for booking in bookings:
+                if booking.pk == int(pk):
+                    editing = 'true'
+                else:
+                    editing = 'false'
+                if booking.owner == request.user:
+                    owner = 'true'
+                else:
+                    owner = 'false'
+                title = booking.title
+                start_book = booking.start_book
+                end_book = booking.end_book
+                response.append([owner, title, start_book, end_book, editing])
+            response = json.dumps(response, default=datetime_handler)
 
-        return HttpResponse(response)
+            return HttpResponse(response)
+        else:
+            room_id = request.GET['room']
+            rooms = Room.objects.all()
 
-    elif request.GET.get('type') == 'search':
-        start_book = request.GET['date_start']
-        end_book = request.GET['date_end']
-        booking = Booking.objects.filter(start_book=start_book, end_book=end_book)
-        rooms = Room.objects.filter(~Q(id=booking[0].room.id))
-        # rooms = json.dumps([room for room in rooms.values()])
-        #
-        # return HttpResponse(rooms)
-
-    else:
-        rooms = Room.objects.all()
-
-    context = {
-        'rooms': rooms,
-    }
+        context = {
+            'rooms': rooms,
+            'pk': pk,
+            'room_id': room_id
+        }
 
     if request.POST:
         owner = request.user
+        booking_id = request.POST['booking_id']
         room_id = request.POST['room_id']
         room = Room.objects.get(pk=room_id)
         date_start = request.POST['date_start']
@@ -147,16 +146,16 @@ def edit(request, pk):
         title = request.POST['title']
 
         try:
-            booking = Booking.objects.create(room=room, owner=owner, title=title, start_book=date_start, end_book=date_end)
-            response = []
-            title = booking.title
-            room = booking.room.name
-            start_book = booking.start_book
-            end_book = booking.end_book
-            response = [room, title, start_book, end_book]
-            response = json.dumps(response)
-
-            return HttpResponse(response)
+            booking = Booking.objects.filter(pk=booking_id).update(room=room, owner=owner, title=title, start_book=date_start, end_book=date_end)
+            if booking:
+                response = []
+                title = title
+                room = room.name
+                start_book = date_start
+                end_book = date_end
+                response = [room, title, start_book, end_book]
+                response = json.dumps(response)
+                return HttpResponse(response)
         except:
             return HttpResponse('error')
 
