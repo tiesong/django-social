@@ -220,27 +220,14 @@
                                        placeholder="Some event">
                             </div>
                             <div class="form-group">
-                                <label for="event-time">Start date & time</label>
-
-                                <div id="datetimepicker1" class="input-append date">
-                                    <input data-format="dd/MM/yyyy hh:mm:ss" type="text"/>
-                                    <span class="add-on">
-      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-      </i>
-    </span>
-                                </div>
-
-
+                                <label for="startdatetime">Start date & time</label>
+                                <input type="text" class="form-control" name="startdatetime" id="startdatetime" />
 
                             </div>
                             <div class="form-group">
-                                <label for="event-time">End date & time</label>
-                                <div class="date-group">
-                                    <input type="text" id="end-time" class="form-control" name="end-time"
-                                           placeholder="6pm">
-                                    <input type="text" id="end-date" class="form-control" name="end-date"
-                                           placeholder="August 17 2017">
-                                </div>
+                                <label for="enddatetime">End date & time</label>
+                                <input type="text" id="enddatetime" class="form-control" name="enddatetime" />
+
                             </div>
                             <div class="form-group">
                                 <label for="event-url">Event URL</label>
@@ -263,10 +250,15 @@
 
 {% block customscript %}
     <script>
-        $(function () {
-            $('#datetimepicker1').datetimepicker({
-                language: 'pt-BR'
-            });
+        $("#startdatetime").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            autoclose: true,
+            todayBtn: true
+        });
+        $("#enddatetime").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            autoclose: true,
+            todayBtn: true
         });
     </script>
 {% endblock %}
