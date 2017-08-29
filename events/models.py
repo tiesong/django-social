@@ -19,7 +19,7 @@ class Event(models.Model):
 
     pub_date = models.DateTimeField('date published', null=True)
 
-    # featured = models.BooleanField(default=False)
+    featured = models.BooleanField(default=False)
     event_url = models.CharField(max_length=150, null=True)
 
     def is_in_future(self):
