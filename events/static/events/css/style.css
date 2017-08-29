@@ -1635,7 +1635,7 @@ html, body {
 
 .modal-body-left {
     float: left;
-    width: 60%;
+    width: 100%;
     padding: 50px;
 }
 

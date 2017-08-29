@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['*']
 SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # Application definition
@@ -158,10 +158,16 @@ APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
 
 # S3 bucket serving media files.
 
-AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+
+# AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+# AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+# AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = 'teamedup-ybf'
+AWS_ACCESS_KEY_ID = 'AKIAJ6IWU4IQMMBJXN4A'
+AWS_SECRET_ACCESS_KEY = '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'
+
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
 
 # Static files
 STATICFILES_LOCATION = 'static'

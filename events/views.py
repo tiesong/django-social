@@ -65,7 +65,6 @@ def create(request):
         try:
             body = request.POST.get('body', "")
             print('body: {}'.format(body))
-
             Event.objects.filter(id=event_id).update(description=body)
 
         except Exception as e:
@@ -98,6 +97,7 @@ def create(request):
 
 @login_required
 def edit(request):
+
     if request.POST:
         pass
 
