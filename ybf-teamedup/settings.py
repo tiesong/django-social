@@ -160,6 +160,7 @@ APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
 # AWS_STORAGE_BUCKET_NAME = 'teamedup-ybf'
 # AWS_ACCESS_KEY_ID = 'AKIAJJI3JVPRGV6BQKYA'
 # AWS_SECRET_ACCESS_KEY = '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'
+
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 # Static files
