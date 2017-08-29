@@ -74,13 +74,11 @@ def create(request):
 
     else:
         title = request.POST.get("title", None)
-        start_time = request.POST.get("start-time", None)
-        start_day = request.POST.get("start-date", None)
-        start_date = dateutil.parser.parse(start_time + ' ' + start_day)
+        start_time = request.POST.get("startdatetime", None)
+        start_date = dateutil.parser.parse(start_time)
 
-        pub_time = request.POST.get("end-time", None)
-        pub_day = request.POST.get("end-date", None)
-        pub_date = dateutil.parser.parse(pub_time + ' ' + pub_day)
+        pub_time = request.POST.get("enddatetime", None)
+        pub_date = dateutil.parser.parse(pub_time)
 
         event_url = request.POST.get("event-url", None)
 
