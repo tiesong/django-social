@@ -182,7 +182,6 @@
                     <p>Nothing this week!</p>
                 {% endif %}
 
-
                 <nav aria-label="Events list navigation">
                     <ul class="pagination">
                         <li class="text-pagination">
@@ -196,7 +195,6 @@
                             </a>
                         </li>
                     </ul>
-
                 </nav>
 
             </div><!-- /.container-fluid -->
@@ -206,44 +204,35 @@
     </div><!-- /#main -->
 
     <div id="create-event-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+        <div class="modal-dialog" role="document" style="width: 60%">
+            <div class="modal-content" style="width: 60%;">
 
                 <div class="modal-body">
 
-                    <div class="modal-body-left">
+                    <div class="modal-body-left" style="width: 100%">
 
                         <h4 class="modal-title">Add Event</h4>
-                        <form class="create-event-form" method="post" action="create/" enctype="multipart/form-data">{% csrf_token %}
+                        <form class="create-event-form" method="post" action="create/"
+                              enctype="multipart/form-data">{% csrf_token %}
                             <div class="form-group">
                                 <label for="event-name">Title</label>
-                                <input type="text" id="event-name" name="title" class="form-control" placeholder="Some event">
+                                <input type="text" id="event-name" name="title" class="form-control"
+                                       placeholder="Some event">
                             </div>
                             <div class="form-group">
-                                <label for="event-time">Start date & time</label>
-                                <div class="date-group">
-                                    <input type="text" id="start-time" name="start-time" class="form-control" placeholder="6pm">
+                                <label for="startdatetime">Start date & time</label>
+                                <input type="text" class="form-control" name="startdatetime" id="startdatetime" />
 
-                                    <input type="text" id="start-date" class="form-control" name="start-date"
-                                           placeholder="August 17 2017">
-                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="event-time">End date & time</label>
-                                <div class="date-group">
-                                    <input type="text" id="end-time" class="form-control" name="end-time" placeholder="6pm">
-                                    <input type="text" id="end-date" class="form-control" name="end-date"
-                                           placeholder="August 17 2017">
+                                <label for="enddatetime">End date & time</label>
+                                <input type="text" id="enddatetime" class="form-control" name="enddatetime" />
 
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="event-url">Event URL</label>
                                 <input type="text" id="event-url" class="form-control" name="event-url"
                                        placeholder="https://meetup.com/event/21312312321">
-                            </div>
-                            <div style="height:0px;overflow: hidden;">
-                                <input type="file" id="featureImage" name="featureImage"/>
                             </div>
 
                             <div class="modal-form-buttons">
@@ -252,18 +241,7 @@
                             </div>
                         </form>
                     </div>
-
-                    <div class="modal-body-right">
-                        <div class="create-event-inner">
-                            <p>Help your event stand out.</p>
-                            <a href="javascript:void(0);" onclick="chooseFile();">Add image</a>
-                            <img id="previewImage" src="#" class="resize" style="padding-top: 10%"/>
-
-                        </div>
-                    </div>
-
                 </div>
-
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /#create-event-modal -->
@@ -272,27 +250,15 @@
 
 {% block customscript %}
     <script>
-        function chooseFile() {
-            $("#featureImage").click();
-        }
-        function readURL(input) {
-
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#previewImage').attr('src', e.target.result);
-                    $('#featureImage').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#featureImage").change(function () {
-            readURL(this);
+        $("#startdatetime").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            autoclose: true,
+            todayBtn: true
         });
-
+        $("#enddatetime").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            autoclose: true,
+            todayBtn: true
+        });
     </script>
-
 {% endblock %}

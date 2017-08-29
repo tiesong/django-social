@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['*']
 SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # Application definition
@@ -157,10 +157,15 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
 
 # S3 bucket serving media files.
-AWS_STORAGE_BUCKET_NAME = 'teamedup-ybf'
-AWS_ACCESS_KEY_ID = 'AKIAJJI3JVPRGV6BQKYA'
-AWS_SECRET_ACCESS_KEY = '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'
+
+
+AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+
+
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
 
 # Static files
 STATICFILES_LOCATION = 'static'
@@ -171,7 +176,6 @@ STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-
 
 two_months = datetime.timedelta(days=61)
 date_two_months_later = datetime.date.today() + two_months

@@ -10,8 +10,8 @@ import dateutil.parser
 # from .models import Event
 from .models import Event
 
-
 # Create your views here.
+
 
 @login_required
 def index(request):
@@ -44,7 +44,6 @@ def index(request):
 @login_required
 def detail(request, event_id):
     event = Event.objects.get(id=event_id)
-    print ('event detail: {}'.format(event.description))
     context = {
         'event': event,
     }
@@ -60,40 +59,31 @@ def create(request):
     """
 
     event_id = request.POST.get("event_id", None)
-    print('event_id:', event_id)
+
     if event_id:
-        print('events add body')
+
         try:
             body = request.POST.get('body', "")
             print('body: {}'.format(body))
-
             Event.objects.filter(id=event_id).update(description=body)
 
         except Exception as e:
-            print('Excetion: {}'.format(e))
+            print('Exception: {}'.format(e))
 
         return redirect('/events/' + event_id)
 
     else:
         title = request.POST.get("title", None)
-        start_time = request.POST.get("start-time", None)
-        start_day = request.POST.get("start-date", None)
-        start_date = dateutil.parser.parse(start_time + ' ' + start_day)
+        start_time = request.POST.get("startdatetime", None)
+        start_date = dateutil.parser.parse(start_time)
 
-        pub_time = request.POST.get("end-time", None)
-        pub_day = request.POST.get("end-date", None)
-        pub_date = dateutil.parser.parse(pub_time + ' ' + pub_day)
-
-        feature_image = request.FILES.get("featureImage", None)
-        if feature_image:
-            featured = True
-        else:
-            featured = False
+        pub_time = request.POST.get("enddatetime", None)
+        pub_date = dateutil.parser.parse(pub_time)
 
         event_url = request.POST.get("event-url", None)
 
-        new_event = Event(title=title, image=feature_image, start_date=start_date,
-                          pub_date=pub_date, event_url=event_url, featured=featured, description="")
+        new_event = Event(title=title, start_date=start_date,
+                          pub_date=pub_date, event_url=event_url, description="")
         new_event.save()
 
         context = {
@@ -105,6 +95,7 @@ def create(request):
 
 @login_required
 def edit(request):
+
     if request.POST:
         pass
 

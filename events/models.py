@@ -12,7 +12,7 @@ class Event(models.Model):
     # need to add author relationship
     # need to add tags
     title = models.CharField(max_length=150)
-    image = models.ImageField(upload_to='event_images/%Y/%m/%d/', null=True, blank=True)
+    # image = models.ImageField(upload_to='event_images/%Y/%m/%d/', null=True, blank=True)
     start_date = models.DateTimeField('start date', null=True)
 
     description = HTMLField(blank=True)
