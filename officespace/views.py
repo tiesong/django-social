@@ -50,7 +50,10 @@ def create(request):
         end_book = request.GET['date_end']
         if start_book != '' and end_book != '':
             booking = Booking.objects.filter(start_book=start_book, end_book=end_book)
-            rooms = Room.objects.filter(~Q(id=booking[0].room.id))
+            if booking:
+                rooms = Room.objects.filter(~Q(id=booking[0].room.id))
+            else:
+                rooms = Room.objects.all()
         else:
             rooms = Room.objects.all()
 

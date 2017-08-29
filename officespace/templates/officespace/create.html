@@ -1,78 +1,81 @@
 {% extends 'officespace/base.html' %}
 {% block content %}
     <h2 class="text-center">Office Space @ YBF</h2>
-    <div class="bookings-action">
-        <a href="{% url 'booking_create' %}" class="btn btn-default" style="margin-bottom: 10px;">New Booking</a>
-		<a href="{% url 'booking_list' %}" class="btn btn-default" style="margin-bottom: 10px;">Your Bookings</a>
-        <button type="button" class="pull-right start-over btn btn-default" style="margin-bottom: 10px;">Start Over</button>
-    </div>
-    <div class="bookings">
-    	<div class="bookings-option">
-    		<div class="choose-room pull-left col-xs-12 col-sm-5 col-md-5 well" style="cursor:pointer;">
-    			<span>Choose by Room</span>
-    			<select class="form-control" id="search_room">
-    				<option value=""></option>
-                    {% for room in rooms %}
-    				<option value="{{ room.id }}">{{ room.name }}</option>
-                    {% endfor %}
-    			</select>
-    		</div>
-    		<div class="choose-time pull-right col-xs-12 col-sm-6 col-md-6 well" style="opacity: 0.3; cursor:pointer;">
-    			<span>Choose by Time</span>
-                <form method="get" action="{% url 'booking_create' %}?type=search" id="form_search_time">
-        			<div class="form-group">
-                        <input type="hidden" value="search" name="type" />
-    					<input type="text" class="form-control" name="date_start" id="time_start" placeholder="Start time" disabled style="display: inline-block; width: 35%">&nbsp&nbsp&nbspto&nbsp&nbsp
-    					<input type="text" class="form-control" name="date_end" id="time_end" placeholder="End time" disabled style="display: inline-block; width: 35%;" >
-                        <input type="submit" class="btn btn-default" id="search_time" value="Search" disabled style="vertical-align: unset; margin-left: 15px;">
-        			</div>
-                </form>
-    		</div>
+    <div class="booking-create">
+        <div class="bookings-action">
+            <a href="{% url 'booking_create' %}" class="create-link mr-20">New Booking</a>
+    		<a href="{% url 'booking_list' %}" class="">Your Bookings</a>
+            <button type="button" class="pull-right start-over btn btn-transparent-dark">Start Over</button>
             <div class="clearfix"></div>
-    	</div>
-        <div class="booking">
-            <div class="choose-room">
-                <div id='calendar'></div>
-            </div>
-            <div class="choose-time" style="display: none;">
-            	<div class="pull-left" style="width: 80%;">
-        			<table id="bookings_table" class="table table-striped" cellspacing="0" width="100%">
-        				<thead style="display: none;">
-    						<tr>
-                                <th></th>
-    							<th>Info</th>
-    							<th>Action</th>
-                                <th></th>
-    						</tr>
-    				    </thead>
-    				    <tbody>
-    				    	{% for room in rooms %}
-    					    <tr style="background: #f9f9f9;">
-                                <td>
-                                    <span style="display: none;">{{ room.id }}</span>
-                                </td>
-    					    	<td>
-        							<p>Space // {{ room.category }}</p>
-    					    		<h2>{{ room.name }}</h2>
-    					    	</td>
-    						    <td class="actions text-right" style="vertical-align: middle;">
-                                    <input type="hidden" class="room-id" value="{{ room.id }}" />
-    						    	<button type="button" class="btn btn-default">Book Room</button>
-    				        	</td>
-                                <td></td>
-        				    </tr>
-    					    {% endfor %}
-    					</tbody>
-    				</table>
-            	</div>
-            	<div class="pull-right" style="width: 17%">
-            		<p>Filter by Type</p>
-            		<a href="{% url 'booking_create' %}?room_type=meeting" class="btn btn-success text-center" style="margin-bottom: 5px;width: 100%;">Meeting Space</a>
-            		<a href="{% url 'booking_create' %}?room_type=tele" class="btn btn-success text-center" style="margin-bottom: 5px;width: 100%;">Teleconference Room</a>
-            		<a href="{% url 'booking_create' %}?room_type=work" class="btn btn-success text-center" style="margin-bottom: 5px;width: 100%;">Workspaces</a>
-            		<a href="{% url 'booking_create' %}?room_type=misc" class="btn btn-success text-center" style="margin-bottom: 5px;width: 100%;">Misc</a>
-            	</div>
-            	<div class="clearfix"></div>
+        </div>
+        <div class="bookings">
+        	<div class="bookings-option">
+        		<div class="choose-room pull-left col-xs-12 col-sm-5 col-md-5 well">
+        			<span>Choose by Room</span>
+        			<select class="form-control" id="search_room">
+        				<option value=""></option>
+                        {% for room in rooms %}
+        				<option value="{{ room.id }}">{{ room.name }}</option>
+                        {% endfor %}
+        			</select>
+        		</div>
+        		<div class="choose-time pull-right col-xs-12 col-sm-6 col-md-6 well">
+        			<span>Choose by Time</span>
+                    <form method="get" action="{% url 'booking_create' %}?type=search" id="form_search_time">
+            			<div class="form-group">
+                            <input type="hidden" value="search" name="type" />
+        					<input type=text class="form-control" name="date_start" id="time_start" placeholder="Start time">&nbsp&nbsp&nbspto&nbsp&nbsp
+        					<input type="text" class="form-control" name="date_end" id="time_end" placeholder="End time">
+                            <input type="submit" class="btn btn-transparent-dark" id="search_time" disabled value="Search">
+            			</div>
+                    </form>
+        		</div>
+                <div class="clearfix"></div>
+        	</div>
+            <div class="booking">
+                <div class="choose-room">
+                    <div id='calendar'></div>
+                </div>
+                <div class="choose-time" style="display: none;">
+                	<div class="pull-left table-section">
+            			<table id="bookings_table" class="table table-striped" cellspacing="0" width="100%">
+            				<thead style="display: none;">
+        						<tr>
+                                    <th></th>
+        							<th>Info</th>
+        							<th>Action</th>
+                                    <th></th>
+        						</tr>
+        				    </thead>
+        				    <tbody>
+        				    	{% for room in rooms %}
+        					    <tr>
+                                    <td>
+                                        <span style="display: none;">{{ room.id }}</span>
+                                    </td>
+        					    	<td>
+            							<p>Space // {{ room.category }}</p>
+        					    		<h2>{{ room.name }}</h2>
+        					    	</td>
+        						    <td class="actions text-right">
+                                        <input type="hidden" class="room-id" value="{{ room.id }}" />
+        						    	<button type="button" class="btn btn-transparent-dark">Book Room</button>
+        				        	</td>
+                                    <td></td>
+            				    </tr>
+        					    {% endfor %}
+        					</tbody>
+        				</table>
+                	</div>
+                	<div class="pull-right filter-section">
+                		<p class="mb-20">Filter by Type</p>
+                		<a href="{% url 'booking_create' %}?room_type=meeting" class="{% if room_type == 'meeting' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Meeting Space</a>
+                		<a href="{% url 'booking_create' %}?room_type=tele" class="{% if room_type == 'tele' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Teleconference Room</a>
+                		<a href="{% url 'booking_create' %}?room_type=work" class="{% if room_type == 'work' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Workspaces</a>
+                		<a href="{% url 'booking_create' %}?room_type=misc" class="{% if room_type == 'misc' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Misc</a>
+                	</div>
+                	<div class="clearfix"></div>
+                </div>
             </div>
         </div>
     </div>
