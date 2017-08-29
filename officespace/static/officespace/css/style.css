@@ -128,7 +128,7 @@ label {
 
 
 /* Input.form-control */
-/*.form-control {
+.form-control {
     border: 0 none;
     border-bottom: 1px solid #272534;
     color: #272534;
@@ -154,14 +154,14 @@ label {
 .form-control::-webkit-input-placeholder {
   color: #272534;
 }
-*/
+
 
 /* Buttons */
-/*.btn {
+.btn {
     width: 100%;
     display: block;
     border-radius: 0;
-}*/
+}
 
 .btn-transparent-white,
 .btn-white:hover,
@@ -198,7 +198,7 @@ label {
 /*
  * Pagination
  */
-/*.pagination {
+.pagination {
     margin: 20px auto 0;
     padding-left: 0;
     width: 100%;
@@ -208,12 +208,12 @@ label {
 
 .pagination > li {
     display: inline-block;
-}*/
+}
 
 .pagination > li > a {
     border: 0 none;
     color: #aeaeae;
-    /*padding: 0 5px;*/
+    padding: 0 5px;
 }
 
 .pagination > .active > a,
@@ -1581,11 +1581,11 @@ html, body {
 .modal-body {
     padding: 0;
 
-	display: -webkit-box;      
-	display: -moz-box;        
-	display: -ms-flexbox;      
-	display: -webkit-flex; 
-	display: flex;          
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
 
 	flex-wrap: wrap;
 }

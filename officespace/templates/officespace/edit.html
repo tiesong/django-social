@@ -1,8 +1,8 @@
 {% extends 'officespace/base.html' %}
 {% block content %}
     <h2 class="text-center">Office Space @ YBF</h2>
-    <div class="bookings">
-        <a href="{% url 'booking_list' %}" class="btn btn-default">Back</a>
+    <div class="booking-edit">
+        <a href="{% url 'booking_list' %}" class="btn btn-transparent-dark back-link"><< Back</a>
         <input type="hidden" id="booking_id" value="{{ pk }}">
     	<div class="bookings-option">
     		<div class="choose-room pull-left col-xs-12 col-sm-5 col-md-5 well">
