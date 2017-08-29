@@ -206,24 +206,26 @@
     </div><!-- /#main -->
 
     <div id="create-event-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+        <div class="modal-dialog" role="document" style="width: 60%">
+            <div class="modal-content" style="width: 60%;">
 
-                <div class="modal-body">
+                <div class="modal-body" >
 
-                    <div class="modal-body-left">
+                    <div class="modal-body-left" style="width: 100%">
 
                         <h4 class="modal-title">Add Event</h4>
-                        <form class="create-event-form" method="post" action="create/" enctype="multipart/form-data">{% csrf_token %}
+                        <form class="create-event-form" method="post" action="create/"
+                              enctype="multipart/form-data">{% csrf_token %}
                             <div class="form-group">
                                 <label for="event-name">Title</label>
-                                <input type="text" id="event-name" name="title" class="form-control" placeholder="Some event">
+                                <input type="text" id="event-name" name="title" class="form-control"
+                                       placeholder="Some event">
                             </div>
                             <div class="form-group">
                                 <label for="event-time">Start date & time</label>
                                 <div class="date-group">
-                                    <input type="text" id="start-time" name="start-time" class="form-control" placeholder="6pm">
-
+                                    <input type="text" id="start-time" name="start-time" class="form-control"
+                                           placeholder="6pm">
                                     <input type="text" id="start-date" class="form-control" name="start-date"
                                            placeholder="August 17 2017">
                                 </div>
@@ -231,10 +233,10 @@
                             <div class="form-group">
                                 <label for="event-time">End date & time</label>
                                 <div class="date-group">
-                                    <input type="text" id="end-time" class="form-control" name="end-time" placeholder="6pm">
+                                    <input type="text" id="end-time" class="form-control" name="end-time"
+                                           placeholder="6pm">
                                     <input type="text" id="end-date" class="form-control" name="end-date"
                                            placeholder="August 17 2017">
-
                                 </div>
                             </div>
                             <div class="form-group">
@@ -249,6 +251,7 @@
                             </div>
                         </form>
                     </div>
+
                 </div>
 
             </div><!-- /.modal-content -->
@@ -258,28 +261,28 @@
 {% endblock %}
 
 {% block customscript %}
-{#    <script>#}
-{#        function chooseFile() {#}
-{#            $("#featureImage").click();#}
-{#        }#}
-{#        function readURL(input) {#}
-{##}
-{#            if (input.files && input.files[0]) {#}
-{#                var reader = new FileReader();#}
-{##}
-{#                reader.onload = function (e) {#}
-{#                    $('#previewImage').attr('src', e.target.result);#}
-{#                    $('#featureImage').attr('src', e.target.result);#}
-{#                }#}
-{##}
-{#                reader.readAsDataURL(input.files[0]);#}
-{#            }#}
-{#        }#}
-{##}
-{#        $("#featureImage").change(function () {#}
-{#            readURL(this);#}
-{#        });#}
-
-{#    </script>#}
+    {#    <script>#}
+    {#        function chooseFile() {#}
+    {#            $("#featureImage").click();#}
+    {#        }#}
+    {#        function readURL(input) {#}
+    {##}
+    {#            if (input.files && input.files[0]) {#}
+    {#                var reader = new FileReader();#}
+    {##}
+    {#                reader.onload = function (e) {#}
+    {#                    $('#previewImage').attr('src', e.target.result);#}
+    {#                    $('#featureImage').attr('src', e.target.result);#}
+    {#                }#}
+    {##}
+    {#                reader.readAsDataURL(input.files[0]);#}
+    {#            }#}
+    {#        }#}
+    {##}
+    {#        $("#featureImage").change(function () {#}
+    {#            readURL(this);#}
+    {#        });#}
+    {##}
+    {#    </script>#}
 
 {% endblock %}
