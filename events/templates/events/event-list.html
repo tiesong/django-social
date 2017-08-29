@@ -242,9 +242,6 @@
                                 <input type="text" id="event-url" class="form-control" name="event-url"
                                        placeholder="https://meetup.com/event/21312312321">
                             </div>
-                            <div style="height:0px;overflow: hidden;">
-                                <input type="file" id="featureImage" name="featureImage"/>
-                            </div>
 
                             <div class="modal-form-buttons">
                                 <a data-dismiss="modal" class="pull-left close-btn hidden-xs" href="#">Close</a>
@@ -252,16 +249,6 @@
                             </div>
                         </form>
                     </div>
-
-                    <div class="modal-body-right">
-                        <div class="create-event-inner">
-                            <p>Help your event stand out.</p>
-                            <a href="javascript:void(0);" onclick="chooseFile();">Add image</a>
-                            <img id="previewImage" src="#" class="resize" style="padding-top: 10%"/>
-
-                        </div>
-                    </div>
-
                 </div>
 
             </div><!-- /.modal-content -->
@@ -271,28 +258,28 @@
 {% endblock %}
 
 {% block customscript %}
-    <script>
-        function chooseFile() {
-            $("#featureImage").click();
-        }
-        function readURL(input) {
+{#    <script>#}
+{#        function chooseFile() {#}
+{#            $("#featureImage").click();#}
+{#        }#}
+{#        function readURL(input) {#}
+{##}
+{#            if (input.files && input.files[0]) {#}
+{#                var reader = new FileReader();#}
+{##}
+{#                reader.onload = function (e) {#}
+{#                    $('#previewImage').attr('src', e.target.result);#}
+{#                    $('#featureImage').attr('src', e.target.result);#}
+{#                }#}
+{##}
+{#                reader.readAsDataURL(input.files[0]);#}
+{#            }#}
+{#        }#}
+{##}
+{#        $("#featureImage").change(function () {#}
+{#            readURL(this);#}
+{#        });#}
 
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#previewImage').attr('src', e.target.result);
-                    $('#featureImage').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#featureImage").change(function () {
-            readURL(this);
-        });
-
-    </script>
+{#    </script>#}
 
 {% endblock %}
