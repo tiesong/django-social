@@ -1,13 +1,17 @@
 /* Calendar for Booking */
-#calendar .fc-time-grid .fc-slats td {
+#calendar .fc-time-grid .fc-slats td,
+#edit_calendar .fc-time-grid .fc-slats td {
     height: 40px !important;
 }
 
-#calendar .new-booking .book-room {
+#calendar .new-booking .book-room,
+#edit_calendar .edit-booking .book-room,
+#edit_calendar .edit-booking .title-change {
     margin-left: 20px;
     margin-top: 10px;
 }
 
-#calendar .new-booking .fc-bg {
+#calendar .new-booking .fc-bg,
+#edit_calendar .edit-booking .fc-bg {
     display: none;
 }
