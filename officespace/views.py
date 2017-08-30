@@ -163,15 +163,14 @@ def edit(request, pk):
 
         try:
             booking = Booking.objects.filter(pk=booking_id).update(room=room, owner=owner, title=title, start_book=date_start, end_book=date_end)
-            if booking:
-                response = []
-                title = title
-                room = room.name
-                start_book = date_start
-                end_book = date_end
-                response = [room, title, start_book, end_book]
-                response = json.dumps(response)
-                return HttpResponse(response)
+            response = []
+            title = title
+            room = room.name
+            start_book = date_start
+            end_book = date_end
+            response = [room, title, start_book, end_book]
+            response = json.dumps(response)
+            return HttpResponse(response)
         except:
             return HttpResponse('error')
 

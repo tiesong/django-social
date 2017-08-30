@@ -111,6 +111,22 @@ $(document).ready(function () {
                         var title = result[1];
                         var start = result[2];
                         var end = result[3];
+                        if (start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0].split('T')[1].length == 4) {
+                            var _start = start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0] + '00';
+                        } else {
+                            var _start = start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0];
+                        }
+                        if (end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0].split('T')[1].length == 4) {
+                            var _end = end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0] + '00';
+                        } else {
+                            var _end = end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0];
+                        }
+                        var link = 'https://www.google.com/calendar/render?action=TEMPLATE'+
+                            '&text=' + title +
+                            '&details=Room: '+ room +
+                            '&location=Your Butter Factory'+
+                            '&dates='+ _start +'/'+ _end;
+                        $('#createModal .modal-body .gCal').attr('href', link);
                         $('#createModal .modal-body .title').html(title);
                         $('#createModal .modal-body .time').html(start + ' - ' + end);
                         $('#createModal .modal-body .room').html(room);
@@ -186,6 +202,22 @@ $(document).ready(function () {
                                 var title = result[1];
                                 var start = result[2];
                                 var end = result[3];
+                                if (start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0].split('T')[1].length == 4) {
+                                    var _start = start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0] + '00';
+                                } else {
+                                    var _start = start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0];
+                                }
+                                if (end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0].split('T')[1].length == 4) {
+                                    var _end = end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0] + '00';
+                                } else {
+                                    var _end = end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0];
+                                }
+                                var link = 'https://www.google.com/calendar/render?action=TEMPLATE'+
+                                    '&text=' + title +
+                                    '&details=Room: '+ room +
+                                    '&location=Your Butter Factory'+
+                                    '&dates='+ _start +'/'+ _end;
+                                $('#createModal .modal-body .gCal').attr('href', link);
                                 $('#createModal .modal-body .title').html(title);
                                 $('#createModal .modal-body .time').html(start + ' - ' + end);
                                 $('#createModal .modal-body .room').html(room);
@@ -322,6 +354,22 @@ $(document).ready(function () {
                                 var title = result[1];
                                 var start = result[2];
                                 var end = result[3];
+                                if (start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0].split('T')[1].length == 4) {
+                                    var _start = start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0] + '00';
+                                } else {
+                                    var _start = start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0];
+                                }
+                                if (end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0].split('T')[1].length == 4) {
+                                    var _end = end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0] + '00';
+                                } else {
+                                    var _end = end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0];
+                                }
+                                var link = 'https://www.google.com/calendar/render?action=TEMPLATE'+
+                                    '&text=' + title +
+                                    '&details=Room: '+ room +
+                                    '&location=Your Butter Factory'+
+                                    '&dates='+ _start +'/'+ _end;
+                                $('#createModal .modal-body .gCal').attr('href', link);
                                 $('#createModal .modal-body .title').html(title);
                                 $('#createModal .modal-body .time').html(start + ' - ' + end);
                                 $('#createModal .modal-body .room').html(room);
@@ -458,6 +506,8 @@ $(document).ready(function () {
         $('.booking .choose-time').show();
         $('.booking .choose-room').hide();
     }
+
+    // $('#createModal').modal('show');
 
     // Search Room for Booking
     // $('.choose-time #search_time').click(function() {
