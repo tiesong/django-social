@@ -111,24 +111,38 @@ $(document).ready(function () {
                         var title = result[1];
                         var start = result[2];
                         var end = result[3];
-                        if (start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0].split('T')[1].length == 4) {
-                            var _start = start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0] + '00';
+                        if (start.indexOf('T') > 0) {
+                            start_ = start.replace(/\+.*/g, ' UTC');
+                            _start = start.replace(/[^\dT]/g, '').replace('0000', '');
                         } else {
-                            var _start = start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0];
+                            start_ = start + ' UTC';
+                            _start = start.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
                         }
-                        if (end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0].split('T')[1].length == 4) {
-                            var _end = end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0] + '00';
+                        if (end.indexOf('T') > 0) {
+                            end_ = end.replace(/\+.*/g, ' UTC');
+                            _end = end.replace(/[^\dT]/g, '').replace('0000', '');
                         } else {
-                            var _end = end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0];
+                            end_ =  end + ' UTC';
+                            _end = end.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
                         }
-                        var link = 'https://www.google.com/calendar/render?action=TEMPLATE'+
+                        var google_link = 'https://www.google.com/calendar/render?action=TEMPLATE'+
                             '&text=' + title +
                             '&details=Room: '+ room +
                             '&location=Your Butter Factory'+
                             '&dates='+ _start +'/'+ _end;
-                        $('#createModal .modal-body .gCal').attr('href', link);
+                        var iCal_link = 'http://addtocalendar.com/atc/ical?f=m'+
+                            '&e[0][date_start]='+ _start +
+                            '&e[0][date_end]='+ _end +
+                            '&e[0][timezone]=UTC'+
+                            '&e[0][title]='+ title +
+                            '&e[0][description]=Room: '+ room +
+                            '&e[0][location]=Your Butter Factory'+
+                            '&e[0][privacy]=public';
+                        $('#createModal .modal-body .gCal').attr('href', google_link);
+                        $('#createModal .modal-body .iCal').attr('href', iCal_link);
+                        $('#createModal .modal-body .oCal').attr('href', iCal_link);
                         $('#createModal .modal-body .title').html(title);
-                        $('#createModal .modal-body .time').html(start + ' - ' + end);
+                        $('#createModal .modal-body .time').html(start_ + ' - ' + end_);
                         $('#createModal .modal-body .room').html(room);
                         $('#createModal').modal('show');
                     },
@@ -179,8 +193,8 @@ $(document).ready(function () {
         allDaySlot: false,
         eventRender: function(event, element) {
             if (element.hasClass('new-booking')) {
-                var start_date = moment(event.start._d).format();
-                var end_date = moment(event.end._d).format();
+                var start_date = moment(event.start._d).tz("UTC").format();
+                var end_date = moment(event.end._d).tz("UTC").format();
                 title = event.title;
                 new_button = '<button type="button" class="btn btn-transparent-dark book-room">Book Room</button>';
                 element.append(new_button);
@@ -202,24 +216,38 @@ $(document).ready(function () {
                                 var title = result[1];
                                 var start = result[2];
                                 var end = result[3];
-                                if (start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0].split('T')[1].length == 4) {
-                                    var _start = start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0] + '00';
+                                if (start.indexOf('T') > 0) {
+                                    start_ = start.replace(/\+.*/g, ' UTC');
+                                    _start = start.replace(/[^\dT]/g, '').replace('0000', '');
                                 } else {
-                                    var _start = start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0];
+                                    start_ = start + ' UTC';
+                                    _start = start.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
                                 }
-                                if (end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0].split('T')[1].length == 4) {
-                                    var _end = end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0] + '00';
+                                if (end.indexOf('T') > 0) {
+                                    end_ = end.replace(/\+.*/g, ' UTC');
+                                    _end = end.replace(/[^\dT]/g, '').replace('0000', '');
                                 } else {
-                                    var _end = end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0];
+                                    end_ =  end + ' UTC';
+                                    _end = end.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
                                 }
-                                var link = 'https://www.google.com/calendar/render?action=TEMPLATE'+
+                                var google_link = 'https://www.google.com/calendar/render?action=TEMPLATE'+
                                     '&text=' + title +
                                     '&details=Room: '+ room +
                                     '&location=Your Butter Factory'+
                                     '&dates='+ _start +'/'+ _end;
-                                $('#createModal .modal-body .gCal').attr('href', link);
+                                var iCal_link = 'http://addtocalendar.com/atc/ical?f=m'+
+                                    '&e[0][date_start]='+ _start +
+                                    '&e[0][date_end]='+ _end +
+                                    '&e[0][timezone]=UTC'+
+                                    '&e[0][title]='+ title +
+                                    '&e[0][description]=Room: '+ room +
+                                    '&e[0][location]=Your Butter Factory'+
+                                    '&e[0][privacy]=public';
+                                $('#createModal .modal-body .gCal').attr('href', google_link);
+                                $('#createModal .modal-body .iCal').attr('href', iCal_link);
+                                $('#createModal .modal-body .oCal').attr('href', iCal_link);
                                 $('#createModal .modal-body .title').html(title);
-                                $('#createModal .modal-body .time').html(start + ' - ' + end);
+                                $('#createModal .modal-body .time').html(start_ + ' - ' + end_);
                                 $('#createModal .modal-body .room').html(room);
                                 $('#createModal').modal('show');
                             },
@@ -233,8 +261,8 @@ $(document).ready(function () {
         },
         events: function(start, end, timezone, callback) {
             var room_id = $('.bookings-option #search_room').val();
-            var start_book = moment(start._d).format();
-            var end_book = moment(end._d).format();
+            var start_book = moment(start._d).tz("UTC").format();
+            var end_book = moment(end._d).tz("UTC").format();
             var events = [];
             if (room_id != '') {
                 $.ajax({
@@ -319,8 +347,8 @@ $(document).ready(function () {
             if (element.hasClass('edit-booking')) {
                 var booking_id = $('.booking-edit #booking_id').val();
                 var room_id = $('.bookings-option #search_room').val();
-                var start_date = moment(event.start._d).format();
-                var end_date = moment(event.end._d).format();
+                var start_date = moment(event.start._d).tz("UTC").format();;
+                var end_date = moment(event.end._d).tz("UTC").format();;
                 var event_title = event.title;
                 if (event.id && event.id == booking_id ) {
                     var new_button = '<button type="button" class="btn btn-transparent-dark showing title-change">Edit Title</button><button type="button" class="btn btn-transparent-dark book-room">Edit Book</button>';
@@ -354,24 +382,38 @@ $(document).ready(function () {
                                 var title = result[1];
                                 var start = result[2];
                                 var end = result[3];
-                                if (start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0].split('T')[1].length == 4) {
-                                    var _start = start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0] + '00';
+                                if (start.indexOf('T') > 0) {
+                                    start_ = start.replace(/\+.*/g, ' UTC');
+                                    _start = start.replace(/[^\dT]/g, '').replace('0000', '');
                                 } else {
-                                    var _start = start.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0];
+                                    start_ = start + ' UTC';
+                                    _start = start.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
                                 }
-                                if (end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0].split('T')[1].length == 4) {
-                                    var _end = end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0] + '00';
+                                if (end.indexOf('T') > 0) {
+                                    end_ = end.replace(/\+.*/g, ' UTC');
+                                    _end = end.replace(/[^\dT]/g, '').replace('0000', '');
                                 } else {
-                                    var _end = end.replace(/-/g, '').replace(/:/g, '').replace(/ /g, 'T').split('+')[0];
+                                    end_ =  end + ' UTC';
+                                    _end = end.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
                                 }
-                                var link = 'https://www.google.com/calendar/render?action=TEMPLATE'+
+                                var google_link = 'https://www.google.com/calendar/render?action=TEMPLATE'+
                                     '&text=' + title +
                                     '&details=Room: '+ room +
                                     '&location=Your Butter Factory'+
                                     '&dates='+ _start +'/'+ _end;
-                                $('#createModal .modal-body .gCal').attr('href', link);
+                                var iCal_link = 'http://addtocalendar.com/atc/ical?f=m'+
+                                    '&e[0][date_start]='+ _start +
+                                    '&e[0][date_end]='+ _end +
+                                    '&e[0][timezone]=UTC'+
+                                    '&e[0][title]='+ title +
+                                    '&e[0][description]=Room: '+ room +
+                                    '&e[0][location]=Your Butter Factory'+
+                                    '&e[0][privacy]=public';
+                                $('#createModal .modal-body .gCal').attr('href', google_link);
+                                $('#createModal .modal-body .iCal').attr('href', iCal_link);
+                                $('#createModal .modal-body .oCal').attr('href', iCal_link);
                                 $('#createModal .modal-body .title').html(title);
-                                $('#createModal .modal-body .time').html(start + ' - ' + end);
+                                $('#createModal .modal-body .time').html(start_ + ' - ' + end_);
                                 $('#createModal .modal-body .room').html(room);
                                 $('#createModal').modal('show');
                             },
@@ -386,8 +428,8 @@ $(document).ready(function () {
         events: function(start, end, timezone, callback) {
             var booking_id = $('.booking-edit #booking_id').val();
             var room_id = $('.bookings-option #search_room').val();
-            var start_book = moment(start._d).format();
-            var end_book = moment(end._d).format();
+            var start_book = moment(start._d).tz("UTC").format();
+            var end_book = moment(end._d).tz("UTC").format();
             var events = [];
             if (room_id != '') {
                 $.ajax({
@@ -506,44 +548,5 @@ $(document).ready(function () {
         $('.booking .choose-time').show();
         $('.booking .choose-room').hide();
     }
-
-    // $('#createModal').modal('show');
-
-    // Search Room for Booking
-    // $('.choose-time #search_time').click(function() {
-        // date_start = $('#time_start').val();
-        // date_end = $('#time_end').val();
-        // if (date_start == '') {
-        //     alert('You should enter the start time.')
-        //     $('#time_start').focus();
-        // } else if (date_end == '') {
-        //     alert('You should enter the end time.')
-        //     $('#time_end').focus();
-        // }
-        // if (date_start != '' && date_end != '') {
-        //     $.ajax({
-        //         url: '/officespace/create',
-        //         dataType: 'json',
-        //         data: {
-        //             date_start: date_start,
-        //             date_end: date_end,
-        //             type: 'search'
-        //         },
-        //         success: function(result) {
-        //             console.log(result);
-        //             var table = '<thead><tr><th></th><th>Info</th><th>Action</th><th></th></tr></thead>' +'<tbody>';
-        //             $.each(result, function(index, value) {
-        //                 table += '<tr style="background: #f9f9f9;"><td><span style="display: none;">'+ value.id + '</span></td><td><p>Space // '+ value.category + '</p><h2>'+ value.name + '</h2></td><td class="actions text-right" style="vertical-align: middle;"><input type="hidden" class="room-id" value="'+ value.id + '" /><buttontype="button" class="btn btn-default">Book Room</button></td><td></td></tr>';
-        //             })
-        //             table += '</tbody>';
-        //             $('#bookings_table').html(table);
-        //         },
-        //         error: function(e) {
-        //             console.log(e);
-        //         }
-        //     });
-        //     booking_table.fnDraw();
-        // }
-    // });
 
 });

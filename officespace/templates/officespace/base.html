@@ -30,15 +30,19 @@
     <link href="{% static 'officespace/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+    <link href="{% static 'officespace/css/dataTables.bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{% static 'officespace/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'officespace/css/responsive.css' %}" rel="stylesheet">
     <link href="{% static 'officespace/css/officespace.css' %}" rel="stylesheet">
     <link href="{% static 'officespace/css/font-awesome.css' %}" rel="stylesheet">
+
+    <!-- Bootstrap Datetimepicker CSS -->
     <link href="{% static 'officespace/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css">
+
+    <!-- FullCalendar CSS -->
+    <link href="{% static 'officespace/css/fullcalendar.min.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -183,14 +187,15 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'officespace/js/jquery.min.js' %}"></script>
     <script src="{% static 'officespace/js/bootstrap.min.js' %}"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script src="{% static 'officespace/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'officespace/js/dataTables.bootstrap.min.js' %}"></script>
     <script src="{% static 'officespace/js/script.js' %}"></script>
     <script src="{% static 'officespace/js/bootstrap-datetimepicker.min.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    <script src="{% static 'officespace/js/moment.min.js' %}"></script>
+    <script src="{% static 'officespace/js/moment-timezone-with-data.js' %}"></script>
+    <script src="{% static 'officespace/js/fullcalendar.min.js' %}"></script>
     {% block customscript %}
     {% endblock %}
 
