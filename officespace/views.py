@@ -104,8 +104,7 @@ class BookingList(ListView):
                 cat = 'Workspaces'
             elif room_type == 'misc':
                 cat = 'Misc'
-            room = Room.objects.filter(category=cat)
-            queryset = Booking.objects.filter(owner=self.request.user, room=room)
+            queryset = Booking.objects.filter(owner=self.request.user, room__category=cat)
         else:
             queryset = Booking.objects.filter(owner=self.request.user)
         return queryset
