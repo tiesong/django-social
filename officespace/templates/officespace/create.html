@@ -38,7 +38,7 @@
                 </div>
                 <div class="choose-time" style="display: none;">
                 	<div class="pull-left table-section">
-            			<table id="bookings_table" class="table table-striped" cellspacing="0" width="100%">
+            			<table id="bookings_table" class="table" cellspacing="0" width="100%">
             				<thead style="display: none;">
         						<tr>
                                     <th></th>
@@ -53,9 +53,9 @@
                                     <td>
                                         <span style="display: none;">{{ room.id }}</span>
                                     </td>
-        					    	<td>
+        					    	<td class="details">
             							<p>Space // {{ room.category }}</p>
-        					    		<h2>{{ room.name }}</h2>
+        					    		<h4>{{ room.name }}</h4>
         					    	</td>
         						    <td class="actions text-right">
                                         <input type="hidden" class="room-id" value="{{ room.id }}" />
