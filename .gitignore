@@ -143,3 +143,4 @@ ENV/
 .ropeproject
 
 ybf-teamedup/media/profile_images/
+ybf-teamedup/settings.py
