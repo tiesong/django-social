@@ -187,7 +187,7 @@
                 {% endif %}
 
                 <nav aria-label="Events list navigation">
-                    {% if previous_week and next_week%}
+                    {% if previous_week or next_week%}
                     <ul class="pagination">
                         <li class="text-pagination">
                             <a href="?week={{ previous_week }}" aria-label="Previous">
