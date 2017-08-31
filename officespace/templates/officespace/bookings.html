@@ -2,11 +2,11 @@
 {% block content %}
     <h2 class="text-center">Office Space @ YBF</h2>
     <div class="bookings-action">
-		<a href="{% url 'booking_create' %}" class="btn btn-default" style="margin-bottom: 10px;">New Booking</a>
-		<a href="{% url 'booking_list' %}" class="btn btn-default" style="margin-bottom: 10px;">Your Bookings</a>
+		<a href="{% url 'booking_create' %}" class="mr-20">New Booking</a>
+		<a href="{% url 'booking_list' %}" class="list-link">Your Bookings</a>
     </div>
     <div class="bookings">
-    	<div class="pull-left" style="width: 80%;">
+    	<div class="pull-left table-section">
 			<table id="bookings_table" class="table table-actions" cellspacing="0" width="100%">
 				<thead style="display: none;">
 					<tr>
@@ -18,17 +18,17 @@
 			    </thead>
 			    <tbody>
 			    	{% for booking in object_list %}
-				    <tr style="background: #f9f9f9;">
+				    <tr>
                         <td>
                             <span style="display: none;">{{ booking.id }}</span>
                         </td>
-				    	<td>
+				    	<td class="details">
 							<p>Space // {{ booking.room.category }}</p>
 				    		<h4>{{ booking.room }}</h4>
                             <h3>{{ booking.title }}</h3>
 	    					<span>{{ booking.start_book }} - {{ booking.end_book }}</span>
 				    	</td>
-					    <td class="actions text-right" style="vertical-align: middle;">
+					    <td class="actions text-right">
 					    	<a href="{% url 'booking_detail' booking.id %}"><span class="glyphicon glyphicon-eye-open"></span></a>
 					    	<a href="{% url 'booking_edit' booking.id %}?room={{ booking.room.id }}"><span class="glyphicon glyphicon-pencil"></span></a>
 					    	<a href="#" data-href="{% url 'booking_del' booking.id %}" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-trash" style="color: red;"></span></a>
@@ -39,12 +39,12 @@
 				</tbody>
 			</table>
     	</div>
-    	<div class="pull-right" style="width: 17%">
-    		<p>Filter by Type</p>
-            <a href="{% url 'booking_list' %}?room_type=meeting" class="btn btn-success text-center" style="margin-bottom: 5px;width: 100%;">Meeting Space</a>
-            <a href="{% url 'booking_list' %}?room_type=tele" class="btn btn-success text-center" style="margin-bottom: 5px;width: 100%;">Teleconference Room</a>
-            <a href="{% url 'booking_list' %}?room_type=work" class="btn btn-success text-center" style="margin-bottom: 5px;width: 100%;">Workspaces</a>
-            <a href="{% url 'booking_list' %}?room_type=misc" class="btn btn-success text-center" style="margin-bottom: 5px;width: 100%;">Misc</a>
+    	<div class="pull-right filter-section">
+    		<p class="mb-20">Filter by Type</p>
+            <a href="{% url 'booking_list' %}?room_type=meeting" class="{% if room_type == 'meeting' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Meeting Space</a>
+            <a href="{% url 'booking_list' %}?room_type=tele" class="{% if room_type == 'tele' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Teleconference Room</a>
+            <a href="{% url 'booking_list' %}?room_type=work" class="{% if room_type == 'work' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Workspaces</a>
+            <a href="{% url 'booking_list' %}?room_type=misc" class="{% if room_type == 'misc' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Misc</a>
     	</div>
     	<div class="clearfix"></div>
     </div>

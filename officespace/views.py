@@ -13,6 +13,7 @@ from django.db.models import Q
 
 # Create your views here.
 def create(request):
+    room_type = ''
     if request.GET.get('room_type'):
         room_type = request.GET['room_type']
         if room_type == 'meeting':
@@ -34,6 +35,8 @@ def create(request):
         for booking in bookings:
             if request.user == booking.owner:
                 owner = 'true'
+            else:
+                owner = 'false'
             title = booking.title
             start_book = booking.start_book
             end_book = booking.end_book
@@ -45,14 +48,21 @@ def create(request):
     elif request.GET.get('type') == 'search':
         start_book = request.GET['date_start']
         end_book = request.GET['date_end']
-        booking = Booking.objects.filter(start_book=start_book, end_book=end_book)
-        rooms = Room.objects.filter(~Q(id=booking[0].room.id))
+        if start_book != '' and end_book != '':
+            booking = Booking.objects.filter(start_book=start_book, end_book=end_book)
+            if booking:
+                rooms = Room.objects.filter(~Q(id=booking[0].room.id))
+            else:
+                rooms = Room.objects.all()
+        else:
+            rooms = Room.objects.all()
 
     else:
         rooms = Room.objects.all()
 
     context = {
         'rooms': rooms,
+        'room_type': room_type
     }
 
     if request.POST:
@@ -94,11 +104,16 @@ class BookingList(ListView):
                 cat = 'Workspaces'
             elif room_type == 'misc':
                 cat = 'Misc'
-            room = Room.objects.filter(category=cat)
-            queryset = Booking.objects.filter(owner=self.request.user, room=room)
+            queryset = Booking.objects.filter(owner=self.request.user, room__category=cat)
         else:
             queryset = Booking.objects.filter(owner=self.request.user)
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(BookingList, self).get_context_data(**kwargs)
+        if self.request.GET.get('room_type'):
+            context['room_type'] = self.request.GET.get('room_type')
+        return context
 
 def edit(request, pk):
     if request.GET:
@@ -147,15 +162,14 @@ def edit(request, pk):
 
         try:
             booking = Booking.objects.filter(pk=booking_id).update(room=room, owner=owner, title=title, start_book=date_start, end_book=date_end)
-            if booking:
-                response = []
-                title = title
-                room = room.name
-                start_book = date_start
-                end_book = date_end
-                response = [room, title, start_book, end_book]
-                response = json.dumps(response)
-                return HttpResponse(response)
+            response = []
+            title = title
+            room = room.name
+            start_book = date_start
+            end_book = date_end
+            response = [room, title, start_book, end_book]
+            response = json.dumps(response)
+            return HttpResponse(response)
         except:
             return HttpResponse('error')
 

@@ -111,13 +111,40 @@ $(document).ready(function () {
                         var title = result[1];
                         var start = result[2];
                         var end = result[3];
+                        if (start.indexOf('T') > 0) {
+                            start_ = start.replace(/\+.*/g, ' UTC');
+                            _start = start.replace(/[^\dT]/g, '').replace('0000', '');
+                        } else {
+                            start_ = start + ' UTC';
+                            _start = start.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
+                        }
+                        if (end.indexOf('T') > 0) {
+                            end_ = end.replace(/\+.*/g, ' UTC');
+                            _end = end.replace(/[^\dT]/g, '').replace('0000', '');
+                        } else {
+                            end_ =  end + ' UTC';
+                            _end = end.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
+                        }
+                        var google_link = 'https://www.google.com/calendar/render?action=TEMPLATE'+
+                            '&text=' + title +
+                            '&details=Room: '+ room +
+                            '&location=Your Butter Factory'+
+                            '&dates='+ _start +'/'+ _end;
+                        var iCal_link = 'http://addtocalendar.com/atc/ical?f=m'+
+                            '&e[0][date_start]='+ _start +
+                            '&e[0][date_end]='+ _end +
+                            '&e[0][timezone]=UTC'+
+                            '&e[0][title]='+ title +
+                            '&e[0][description]=Room: '+ room +
+                            '&e[0][location]=Your Butter Factory'+
+                            '&e[0][privacy]=public';
+                        $('#createModal .modal-body .gCal').attr('href', google_link);
+                        $('#createModal .modal-body .iCal').attr('href', iCal_link);
+                        $('#createModal .modal-body .oCal').attr('href', iCal_link);
                         $('#createModal .modal-body .title').html(title);
-                        $('#createModal .modal-body .time').html(start + ' - ' + end);
+                        $('#createModal .modal-body .time').html(start_ + ' - ' + end_);
                         $('#createModal .modal-body .room').html(room);
                         $('#createModal').modal('show');
-                        window.setTimeout(function(){
-                            window.location.href = "/officespace";
-                        }, 5000);
                     },
                     error: function(e) {
                         console.log(e);
@@ -166,10 +193,10 @@ $(document).ready(function () {
         allDaySlot: false,
         eventRender: function(event, element) {
             if (element.hasClass('new-booking')) {
-                var start_date = moment(event.start._d).format();
-                var end_date = moment(event.end._d).format();
+                var start_date = moment(event.start._d).tz("UTC").format();
+                var end_date = moment(event.end._d).tz("UTC").format();
                 title = event.title;
-                new_button = '<button type="button" class="btn btn-default book-room">Book Room</button>';
+                new_button = '<button type="button" class="btn btn-transparent-dark book-room">Book Room</button>';
                 element.append(new_button);
                 $(element).find('button').click(function() {
                     var room_id = $('.bookings-option #search_room').val();
@@ -189,13 +216,40 @@ $(document).ready(function () {
                                 var title = result[1];
                                 var start = result[2];
                                 var end = result[3];
+                                if (start.indexOf('T') > 0) {
+                                    start_ = start.replace(/\+.*/g, ' UTC');
+                                    _start = start.replace(/[^\dT]/g, '').replace('0000', '');
+                                } else {
+                                    start_ = start + ' UTC';
+                                    _start = start.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
+                                }
+                                if (end.indexOf('T') > 0) {
+                                    end_ = end.replace(/\+.*/g, ' UTC');
+                                    _end = end.replace(/[^\dT]/g, '').replace('0000', '');
+                                } else {
+                                    end_ =  end + ' UTC';
+                                    _end = end.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
+                                }
+                                var google_link = 'https://www.google.com/calendar/render?action=TEMPLATE'+
+                                    '&text=' + title +
+                                    '&details=Room: '+ room +
+                                    '&location=Your Butter Factory'+
+                                    '&dates='+ _start +'/'+ _end;
+                                var iCal_link = 'http://addtocalendar.com/atc/ical?f=m'+
+                                    '&e[0][date_start]='+ _start +
+                                    '&e[0][date_end]='+ _end +
+                                    '&e[0][timezone]=UTC'+
+                                    '&e[0][title]='+ title +
+                                    '&e[0][description]=Room: '+ room +
+                                    '&e[0][location]=Your Butter Factory'+
+                                    '&e[0][privacy]=public';
+                                $('#createModal .modal-body .gCal').attr('href', google_link);
+                                $('#createModal .modal-body .iCal').attr('href', iCal_link);
+                                $('#createModal .modal-body .oCal').attr('href', iCal_link);
                                 $('#createModal .modal-body .title').html(title);
-                                $('#createModal .modal-body .time').html(start + ' - ' + end);
+                                $('#createModal .modal-body .time').html(start_ + ' - ' + end_);
                                 $('#createModal .modal-body .room').html(room);
                                 $('#createModal').modal('show');
-                                window.setTimeout(function(){
-                                    window.location.href = "/officespace";
-                                }, 5000);
                             },
                             error: function(e) {
                                 console.log(e);
@@ -207,8 +261,8 @@ $(document).ready(function () {
         },
         events: function(start, end, timezone, callback) {
             var room_id = $('.bookings-option #search_room').val();
-            var start_book = moment(start._d).format();
-            var end_book = moment(end._d).format();
+            var start_book = moment(start._d).tz("UTC").format();
+            var end_book = moment(end._d).tz("UTC").format();
             var events = [];
             if (room_id != '') {
                 $.ajax({
@@ -291,15 +345,15 @@ $(document).ready(function () {
         allDaySlot: false,
         eventRender: function(event, element) {
             if (element.hasClass('edit-booking')) {
-                var booking_id = $('.bookings #booking_id').val();
+                var booking_id = $('.booking-edit #booking_id').val();
                 var room_id = $('.bookings-option #search_room').val();
-                var start_date = moment(event.start._d).format();
-                var end_date = moment(event.end._d).format();
+                var start_date = moment(event.start._d).tz("UTC").format();;
+                var end_date = moment(event.end._d).tz("UTC").format();;
                 var event_title = event.title;
                 if (event.id && event.id == booking_id ) {
-                    var new_button = '<button type="button" class="btn btn-default showing title-change">Edit Title</button><button type="button" class="btn btn-default book-room">Edit Book</button>';
+                    var new_button = '<button type="button" class="btn btn-transparent-dark showing title-change">Edit Title</button><button type="button" class="btn btn-transparent-dark book-room">Edit Book</button>';
                 } else {
-                    var new_button = '<button type="button" class="btn btn-default title-change">Edit Title</button><button type="button" class="btn btn-default book-room">Edit Book</button>';
+                    var new_button = '<button type="button" class="btn btn-transparent-dark title-change">Edit Title</button><button type="button" class="btn btn-transparent-dark book-room">Edit Book</button>';
                 }
                 element.append(new_button);
                 $(element).find('button.title-change').click(function() {
@@ -328,13 +382,40 @@ $(document).ready(function () {
                                 var title = result[1];
                                 var start = result[2];
                                 var end = result[3];
+                                if (start.indexOf('T') > 0) {
+                                    start_ = start.replace(/\+.*/g, ' UTC');
+                                    _start = start.replace(/[^\dT]/g, '').replace('0000', '');
+                                } else {
+                                    start_ = start + ' UTC';
+                                    _start = start.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
+                                }
+                                if (end.indexOf('T') > 0) {
+                                    end_ = end.replace(/\+.*/g, ' UTC');
+                                    _end = end.replace(/[^\dT]/g, '').replace('0000', '');
+                                } else {
+                                    end_ =  end + ' UTC';
+                                    _end = end.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
+                                }
+                                var google_link = 'https://www.google.com/calendar/render?action=TEMPLATE'+
+                                    '&text=' + title +
+                                    '&details=Room: '+ room +
+                                    '&location=Your Butter Factory'+
+                                    '&dates='+ _start +'/'+ _end;
+                                var iCal_link = 'http://addtocalendar.com/atc/ical?f=m'+
+                                    '&e[0][date_start]='+ _start +
+                                    '&e[0][date_end]='+ _end +
+                                    '&e[0][timezone]=UTC'+
+                                    '&e[0][title]='+ title +
+                                    '&e[0][description]=Room: '+ room +
+                                    '&e[0][location]=Your Butter Factory'+
+                                    '&e[0][privacy]=public';
+                                $('#createModal .modal-body .gCal').attr('href', google_link);
+                                $('#createModal .modal-body .iCal').attr('href', iCal_link);
+                                $('#createModal .modal-body .oCal').attr('href', iCal_link);
                                 $('#createModal .modal-body .title').html(title);
-                                $('#createModal .modal-body .time').html(start + ' - ' + end);
+                                $('#createModal .modal-body .time').html(start_ + ' - ' + end_);
                                 $('#createModal .modal-body .room').html(room);
                                 $('#createModal').modal('show');
-                                window.setTimeout(function(){
-                                    window.location.href = "/officespace";
-                                }, 5000);
                             },
                             error: function(e) {
                                 console.log(e);
@@ -345,10 +426,10 @@ $(document).ready(function () {
             }
         },
         events: function(start, end, timezone, callback) {
-            var booking_id = $('.bookings #booking_id').val();
+            var booking_id = $('.booking-edit #booking_id').val();
             var room_id = $('.bookings-option #search_room').val();
-            var start_book = moment(start._d).format();
-            var end_book = moment(end._d).format();
+            var start_book = moment(start._d).tz("UTC").format();
+            var end_book = moment(end._d).tz("UTC").format();
             var events = [];
             if (room_id != '') {
                 $.ajax({
@@ -406,76 +487,66 @@ $(document).ready(function () {
         edit_calendar.fullCalendar('option', 'selectable', true);
     });
 
+    // Confirmation modal
+    $('#createModal .booking-confirm').click(function() {
+        window.location.href = "/officespace";
+    });
+
     // Booking Option Change
     $('.bookings-option .choose-time').click(function() {
-        $('.bookings-option .choose-room').css('opacity', '0.3');
-        $('.bookings-option .choose-time').css('opacity', '1');
+        $('.bookings-option .choose-room').css({'opacity': '0.3', 'cursor': 'pointer'});
+        $('.bookings-option .choose-time').css({'opacity': '1', 'cursor': 'default'});
+        // $('.bookings-option .choose-time .form-group input#search_time').attr('disabled', false);
+        $('.bookings-option .choose-time .form-group #search_time').attr('disabled', false);
         $('.bookings-option .choose-room select').attr('disabled', true);
         $('.bookings-option .choose-room select').val('');
-        $('.bookings-option .choose-time .form-group input').attr('disabled', false);
         $('.booking .choose-time').show();
         $('.booking .choose-room').hide();
         calendar.fullCalendar('removeEvents');
     });
     $('.bookings-option .choose-room').click(function() {
-        $('.bookings-option .choose-time').css('opacity', '0.3');
-        $('.bookings-option .choose-room').css('opacity', '1');
-        $('.bookings-option .choose-time .form-group input').attr('disabled', true);
+        $('.bookings-option .choose-time').css({'opacity': '0.3', 'cursor': 'pointer'});
+        $('.bookings-option .choose-room').css({'opacity': '1', 'cursor': 'default'});
+        $('.bookings-option .choose-time .form-group input#search_time').attr('disabled', true);
+        $('.bookings-option .choose-room select').attr('disabled', false);
         $('.bookings-option .choose-time .form-group input#time_start').val('');
         $('.bookings-option .choose-time .form-group input#time_end').val('');
-        $('.bookings-option .choose-room select').attr('disabled', false);
         $('.booking .choose-room').show();
         $('.booking .choose-time').hide();
     });
     $('.bookings-action .start-over').click(function() {
-        $('.bookings-option .choose-time').css('opacity', '0.3');
-        $('.bookings-option .choose-room').css('opacity', '1');
-        $('.bookings-option .choose-time .form-group input').attr('disabled', true);
+        $('.bookings-option .choose-time').css({'opacity': '0.3', 'cursor': 'pointer'});
+        $('.bookings-option .choose-room').css({'opacity': '1', 'cursor': 'default'});
+        $('.bookings-option .choose-time .form-group input#search_time').attr('disabled', true);
+        $('.bookings-option .choose-room select').attr('disabled', false);
         $('.bookings-option .choose-time .form-group input#time_start').val('');
         $('.bookings-option .choose-time .form-group input#time_end').val('');
         $('.bookings-option .choose-room select').val('');
-        $('.bookings-option .choose-room select').attr('disabled', false);
         $('.booking .choose-room').show();
         $('.booking .choose-time').hide();
         calendar.fullCalendar('removeEvents');
         window.location.href = "/officespace/create";
     });
 
-    // Search Room for Booking
-    // $('.choose-time #search_time').click(function() {
-    //     date_start = $('#time_start').val();
-    //     date_end = $('#time_end').val();
-    //     if (date_start == '') {
-    //         alert('You should enter the start time.')
-    //         $('#time_start').focus();
-    //     } else if (date_end == '') {
-    //         alert('You should enter the end time.')
-    //         $('#time_end').focus();
-    //     }
-    //     if (date_start != '' && date_end != '') {
-    //         $.ajax({
-    //             url: '/officespace/create',
-    //             dataType: 'json',
-    //             data: {
-    //                 date_start: date_start,
-    //                 date_end: date_end,
-    //                 type: 'search'
-    //             },
-    //             success: function(result) {
-    //                 console.log(result);
-    //                 var table = '<thead><tr><th></th><th>Info</th><th>Action</th><th></th></tr></thead>' +'<tbody>';
-    //                 $.each(result, function(index, value) {
-    //                     table += '<tr style="background: #f9f9f9;"><td><span style="display: none;">'+ value.id + '</span></td><td><p>Space // '+ value.category + '</p><h2>'+ value.name + '</h2></td><td class="actions text-right" style="vertical-align: middle;"><input type="hidden" class="room-id" value="'+ value.id + '" /><buttontype="button" class="btn btn-default">Book Room</button></td><td></td></tr>';
-    //                 })
-    //                 table += '</tbody>';
-    //                 $('#bookings_table').html(table);
-    //             },
-    //             error: function(e) {
-    //                 console.log(e);
-    //             }
-    //         });
-    //         booking_table.fnDraw();
-    //     }
-    // });
+    var path = window.location.href;
+    if (path.indexOf("type=search") >= 0) {
+        $('.bookings-option .choose-room').css({'opacity': '0.3', 'cursor': 'pointer'});
+        $('.bookings-option .choose-time').css({'opacity': '1', 'cursor': 'default'});
+        $('.bookings-option .choose-time .form-group input#search_time').attr('disabled', false);
+        $('.bookings-option .choose-room select').attr('disabled', true);
+        $('.bookings-option .choose-room select').val('');
+        $('.booking .choose-time').show();
+        $('.booking .choose-room').hide();
+    }
+
+    if (path.indexOf("room_type") >= 0) {
+        $('.bookings-option .choose-room').css({'opacity': '0.3', 'cursor': 'pointer'});
+        $('.bookings-option .choose-time').css({'opacity': '1', 'cursor': 'default'});
+        $('.bookings-option .choose-time .form-group input#search_time').attr('disabled', false);
+        $('.bookings-option .choose-room select').attr('disabled', true);
+        $('.bookings-option .choose-room select').val('');
+        $('.booking .choose-time').show();
+        $('.booking .choose-room').hide();
+    }
 
 });
