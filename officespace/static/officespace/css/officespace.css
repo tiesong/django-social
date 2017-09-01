@@ -199,6 +199,11 @@
     width: 70px;
 }
 
+#deleteModal .modal-footer .btn {
+    width: 100px;
+    display: inline-block;
+}
+
 /* Calendar for Booking */
 #calendar .fc-time-grid .fc-slats td,
 #edit_calendar .fc-time-grid .fc-slats td {

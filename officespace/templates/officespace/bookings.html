@@ -41,6 +41,7 @@
     	</div>
     	<div class="pull-right filter-section">
     		<p class="mb-20">Filter by Type</p>
+            <a href="{% url 'booking_list' %}?room_type=all" class="{% if room_type == 'all' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Reveals All</a>
             <a href="{% url 'booking_list' %}?room_type=meeting" class="{% if room_type == 'meeting' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Meeting Space</a>
             <a href="{% url 'booking_list' %}?room_type=tele" class="{% if room_type == 'tele' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Teleconference Room</a>
             <a href="{% url 'booking_list' %}?room_type=work" class="{% if room_type == 'work' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Workspaces</a>

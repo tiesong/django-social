@@ -191,6 +191,8 @@ $(document).ready(function () {
         },
         editable: false,
         allDaySlot: false,
+        eventOverlap: false,
+        longPressDelay: 300,
         eventRender: function(event, element) {
             if (element.hasClass('new-booking')) {
                 var start_date = moment(event.start._d).tz("UTC").format();
@@ -343,6 +345,8 @@ $(document).ready(function () {
         },
         editable: false,
         allDaySlot: false,
+        eventOverlap: false,
+        longPressDelay: 300,
         eventRender: function(event, element) {
             if (element.hasClass('edit-booking')) {
                 var booking_id = $('.booking-edit #booking_id').val();
