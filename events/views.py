@@ -15,28 +15,53 @@ from .models import Event
 
 @login_required
 def index(request):
-    try:
-        week = int(request.GET.get('week', ''))
-        next_week = week + 1
-        previous_week = week - 1
 
-    except:
-        week = 0
-        next_week = 1
-        previous_week = -1
+    # Search
+    if request.POST:
+        keyword = request.POST.get('keyword', None)
+        print(keyword)
+        if keyword:
+            event_list = Event.objects.filter(title__icontains=keyword)
 
-    # this sets up for a 10 day event view window in the template
-    base_date = datetime.now() + timedelta(week * 10)
-    limit_date = datetime.now() + timedelta(10 + week * 10)
-    print(base_date, limit_date)
-    event_list = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
-        'start_date')
+            context = {
+                'event_list': event_list
+            }
 
-    context = {
-        'next_week': next_week,
-        'previous_week': previous_week,
-        'event_list': event_list
-    }
+    # week, category
+    else:
+        week = int(request.GET.get('week', 0))
+        category = request.GET.get('category', None)
+
+        # When New or Featured.
+        if category:
+            event_list = Event.objects.filter(featured=1)
+            context = {
+                'event_list': event_list
+            }
+
+        # When week.
+        else:
+
+            if week:
+                next_week = week + 1
+                previous_week = week - 1
+            else:
+                week = 0
+                next_week = 1
+                previous_week = -1
+
+            # this sets up for a 10 day event view window in the template
+            base_date = datetime.now() + timedelta(week * 10)
+            limit_date = datetime.now() + timedelta(10 + week * 10)
+            print(base_date, limit_date)
+            event_list = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
+                'start_date')
+
+            context = {
+                'next_week': next_week,
+                'previous_week': previous_week,
+                'event_list': event_list
+            }
 
     return render(request, 'events/event-list.html', context)
 
@@ -64,11 +89,10 @@ def create(request):
 
         try:
             body = request.POST.get('body', "")
-            print('body: {}'.format(body))
             Event.objects.filter(id=event_id).update(description=body)
 
         except Exception as e:
-            print('Exception: {}'.format(e))
+            print('Error')
 
         return redirect('/events/' + event_id)
 

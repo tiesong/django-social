@@ -64,7 +64,6 @@
     </header><!-- /#header -->
     <div id="main" class="site-main">
 
-
         <section class="events-info">
 
             <div class="container">
@@ -97,13 +96,9 @@
                             </div>
                         </form><!-- /.event-form -->
                     </div>
-
                 </div>
-
             </div>
-
         </section><!-- /.events-info -->
-
 
         <section class="next-events">
 
@@ -111,12 +106,10 @@
 
                 <div class="row">
                     <div class="col-sm-6">
-
                         <p class="news-category">11am 8 Aug 2017</p>
                         <h2 class="news-title">Fintech Australia:<br> R&amp;D Tech Grants 101 Workshop</h2>
                         <p class="news-description"><span class="posted-by">posted by<br> <a href="#">Xero</a></span> <a
                                 href="#" class="rsvp-btn">RSVP</a></p>
-
                     </div>
 
                     <div class="col-sm-6">
@@ -143,17 +136,28 @@
 
                     <div class="filters-wrapper">
 
-                        <div class="events-filter">
-                            <span class="filter-label">Search</span>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Popular</a></li>
-                                <li><a href="#">New</a></li>
-                                <li><a href="#">Featured</a></li>
-                            </ul>
-                            <a href="#" class="all-events pull-right">All Events...</a>
-                        </div><!-- /.events-filter -->
-                    </div>
+                        <div class="events-filter  news-filter">
 
+                            <ul class="list-unstyled">
+                                <li><a id="search" href="javascript:void(0)">Search</a></li>
+                                <li><a href="?category=New">New</a></li>
+                                <li><a href="?category=Featured">Featured</a></li>
+                            </ul>
+                            <a href="/events/" class="all-events pull-right">All Events...</a>
+                        </div><!-- /.events-filter -->
+
+                        <div class="events-filter">
+
+                            <form method="post" id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <input id="searchBar" class="form-control" type="text" name='keyword' placeholder="keyword..."
+                                               style="width: 100%;"/>
+                                    <input type="submit" hidden>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
                 {% if event_list %}
@@ -170,7 +174,7 @@
                                     <div class="event-item">
                                         <p class="event-date">{{ event.start_date|date:"fA j N Y" }}</p>
                                         <h2 class="event-name"><a href="{{ event.id }}">{{ event.title }}</a></h2>
-                                        <a href="#" class="event-attending">posted by</a>
+                                        <a href="{{ event.id }}" class="event-attending">posted by {{ request.user.username }}</a>
                                     </div><!-- /.event-item -->
                                 </div>
                             {% endfor %}
@@ -183,6 +187,7 @@
                 {% endif %}
 
                 <nav aria-label="Events list navigation">
+                    {% if previous_week or next_week%}
                     <ul class="pagination">
                         <li class="text-pagination">
                             <a href="?week={{ previous_week }}" aria-label="Previous">
@@ -195,10 +200,9 @@
                             </a>
                         </li>
                     </ul>
+                    {% endif %}
                 </nav>
-
             </div><!-- /.container-fluid -->
-
         </section><!-- /.events-list -->
 
     </div><!-- /#main -->
@@ -221,12 +225,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="startdatetime">Start date & time</label>
-                                <input type="text" class="form-control" name="startdatetime" id="startdatetime" />
+                                <input type="text" class="form-control" name="startdatetime" id="startdatetime"/>
 
                             </div>
                             <div class="form-group">
                                 <label for="enddatetime">End date & time</label>
-                                <input type="text" id="enddatetime" class="form-control" name="enddatetime" />
+                                <input type="text" id="enddatetime" class="form-control" name="enddatetime"/>
 
                             </div>
                             <div class="form-group">
@@ -250,11 +254,31 @@
 
 {% block customscript %}
     <script>
+        $(document).ready(function () {
+
+            // visible or invisible search box.
+            $('#search').click(function () {
+                if ($("#search-form").is(':visible')) {
+                    $("#search-form").fadeOut();
+                } else {
+                    $("#search-form").fadeIn();
+                }
+            });
+
+            $(document.body).click(function (e) {
+                //Hide the search bar if visible
+                if (e.target.id !== "searchBar" && e.target.id !== "search")
+                    $("#search-form").hide();
+            });
+
+        });
+
         $("#startdatetime").datetimepicker({
             format: 'yyyy-mm-dd hh:ii',
             autoclose: true,
             todayBtn: true
         });
+
         $("#enddatetime").datetimepicker({
             format: 'yyyy-mm-dd hh:ii',
             autoclose: true,
