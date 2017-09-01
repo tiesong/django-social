@@ -244,16 +244,16 @@
 {% endblock %}
 
 {% block customscript %}
+    <script type="text/javascript" src="{% static "events/js/eventsscript.js" %}"></script>
     <script>
         var AllItemElements;  // save all Item Elements.
         var currentDay;
         var regroupElement = {};  // regroup all elements by week
-        var newElements = [];   // group new element only.
+        var newElements;   // group new element only.
         var weekCount = 0;  // calculate weekcount.
 
         $(document).ready(function () {
             AllItemElements = $("#event_items .row-margin-1");
-            console.log(AllItemElements);
 
             // visible or invisible search box.
             $('#search').click(function () {
@@ -293,155 +293,5 @@
             Regroup(currentDay, AllItemElements);
             showElements();
         });
-
-        // Run once time when loading.....
-        function Regroup(currentDay, Elements) {
-
-            for (var i = Elements.length; i--;) {
-                var itemId = Elements[i].id;
-                var a = moment(itemId, 'YYYY-MM-DD');
-                var b = moment(currentDay, 'YYYY-MM-DD');
-                var sameWeek = b.diff(a, 'week');
-                var diffDay = b.diff(a, 'day');
-                if (regroupElement.hasOwnProperty(sameWeek)) {
-                    regroupElement[sameWeek].push(itemId);
-                }
-                else {
-                    regroupElement[sameWeek] = [itemId];
-                }
-
-
-            }
-        }
-
-        // Reality Filter
-        function realFilter() {
-
-            searchInput = document.getElementById("searchBar");
-            filter = searchInput.value.toLowerCase();
-            AllItemElements.hide();
-            var AllElements = AllItemElements;
-            for (var i = AllElements.length; i--;) {
-
-                var newsItemId = AllElements[i].id;
-                var newsItemContentDiv = AllElements[i].children[1];
-                var newsItemCategory = newsItemContentDiv.children[0].innerHTML.toLowerCase().split("//")[1].replace(/\s+/g, "");
-                var newsItemContent = newsItemContentDiv.children[3].innerHTML.toLowerCase().replace(/\s+/g, "");
-
-                // search tag in category
-                if (newsItemCategory.indexOf(filter) > -1) {
-                    console.log('hide', "#article_" + newsItemId.toString());
-                }
-                // search tag in news body.
-                else if (newsItemContent.indexOf(filter) > -1) {
-                    console.log('show', "#article_" + newsItemId.toString());
-                }
-
-                else {
-                    console.log('hide', i);
-                    AllElements.splice(i, 1);
-
-                }
-            }
-            console.log(AllElements);
-            if (AllElements.length !== 0)
-                eventsPage(AllElements);
-
-        }
-        function showElements() {
-            console.log(weekCount);
-            if (regroupElement.hasOwnProperty(weekCount)) {
-                $("#weekNone").hide();
-                for (var i = 0; i < regroupElement[weekCount].length; i++) {
-                    $("#" + regroupElement[weekCount][i]).show();
-                }
-            }
-            else {
-                $("#weekNone").show();
-            }
-        }
-
-        function hideElements() {
-            console.log(weekCount);
-            if (regroupElement.hasOwnProperty(weekCount)) {
-                for (var i = 0; i < regroupElement[weekCount].length; i++) {
-                    $("#" + regroupElement[weekCount][i]).hide();
-                }
-            }
-        }
-
-        function showweekNav() {
-            $("#weekEvent").show();
-            $("#allEvent").hide();
-        }
-        function hideweekNav() {
-            $("#weekEvent").hide();
-            $("#allEvent").show();
-        }
-
-        // when click previous week.
-        function previous_week() {
-            console.log('previous_week');
-            showweekNav();
-            hideElements();
-            weekCount++;
-            showElements();
-        }
-
-        // when click next week.
-        function next_week() {
-            console.log('next_week');
-            showweekNav();
-            hideElements();
-            weekCount--;
-            showElements();
-        }
-
-        // when click new event.
-        function newEvent() {
-            console.log('newEvent');
-            hideweekNav();
-            hideElements();
-            eventsPage(newElements);
-        }
-
-        // when click featuredEvent
-        function featuredEvent() {
-            console.log('featuredEvent');
-            hideweekNav();
-            hideElements();
-        }
-
-        // when click allEvent
-        function allEvent() {
-            console.log('allEvent');
-            hideElements();
-            hideweekNav();
-            eventsPage(AllItemElements);
-        }
-
-        // paginate contents.
-        function eventsPage(eventItemsElements) {
-
-            var perPage = 5;
-            AllItemElements.hide();
-            eventItemsElements.slice(0, perPage).show();  // First 5 items show.
-
-            $(".pagination-page").pagination({
-                items: eventItemsElements.length,
-                itemsOnPage: perPage,
-                cssStyle: "light-theme",
-
-                onPageClick: function (pageNumber) {
-
-                    var showFrom = perPage * (pageNumber - 1);
-                    var showTo = showFrom + perPage;
-
-                    eventItemsElements.hide().slice(showFrom, showTo).show();
-                }
-            });
-
-        }
-
     </script>
 {% endblock %}
