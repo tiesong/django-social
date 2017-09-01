@@ -129,67 +129,69 @@
                         <div class="events-filter  news-filter">
                             <ul class="list-unstyled">
                                 <li><a id="search" href="javascript:void(0)">Search</a></li>
-                                <li><a href="?category=New">New</a></li>
-                                <li><a href="?category=Featured">Featured</a></li>
+                                <li><a href="javascript:newEvent();">New</a></li>
+                                <li><a href="javascript:featuredEvent();">Featured</a></li>
                             </ul>
-                            <a href="/events/" class="all-events pull-right">All Events...</a>
+                            <a href="javascript:allEvent();" class="all-events pull-right">All Events...</a>
                         </div><!-- /.events-filter -->
 
                         <div class="events-filter">
-
-                            <form method="post" id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
-                                {% csrf_token %}
-                                <div class="row">
-                                    <input id="searchBar" class="form-control" type="text" name='keyword' placeholder="keyword..."
-                                               style="width: 100%;"/>
-                                    <input type="submit" hidden>
-                                </div>
-                            </form>
+                            <div id="search-form" class="row" style="display: none; padding-left: 7%">
+                                <input id="searchBar" class="form-control" type="text"
+                                       placeholder="keyword..."
+                                       style="width: 100%;" onkeyup="realFilter()"/>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {% if event_list %}
+                <div id="event_items">
+                    {% if event_all %}
 
-                    {% regroup event_list by start_date|date:"Y-m-d" as events_by_day %}
+                        {% regroup event_all by start_date|date:"Y-m-d" as events_by_day %}
 
-                    {% for day in events_by_day %}
-                        <div class="row row-margin-1">
-                            <div class="col-sm-12 col-xs-12">
-                                <p class="events-date">{{ day.list.0.start_date|date:"l\, F j" }}</p>
-                            </div>
-                            {% for event in day.list %}
-                                <div class="col-sm-3 col-xs-12">
-                                    <div class="event-item">
-                                        <p class="event-date">{{ event.start_date|date:"fA j N Y" }}</p>
-                                        <h2 class="event-name"><a href="{{ event.id }}">{{ event.title }}</a></h2>
-                                        <a href="{{ event.id }}" class="event-attending">posted by {{ request.user.username }}</a>
-                                    </div><!-- /.event-item -->
+                        {% for day in events_by_day %}
+                            <div class="row row-margin-1" id="{{ day.list.0.start_date|date:"Y-m-j" }}"
+                                 style="display: none;">
+                                <div class="col-sm-12 col-xs-12">
+                                    <p class="events-date">{{ day.list.0.start_date|date:"l\, F j" }}</p>
                                 </div>
-                            {% endfor %}
+                                {% for event in day.list %}
+                                    <div class="col-sm-3 col-xs-12">
+                                        <div class="event-item">
+                                            <p class="event-date">{{ event.start_date|date:"fA j N Y" }}</p>
+                                            <h2 class="event-name"><a href="{{ event.id }}">{{ event.title }}</a></h2>
+                                            <a href="{{ event.id }}" class="event-attending">posted
+                                                by {{ request.user.username }}</a>
+                                        </div><!-- /.event-item -->
+                                    </div>
+                                {% endfor %}
 
-                        </div><!-- /.row -->
-                    {% endfor %}
+                            </div><!-- /.row -->
+                        {% endfor %}
 
-                {% else %}
-                    <p>Nothing this week!</p>
-                {% endif %}
+                    {% endif %}
 
-                <nav aria-label="Events list navigation">
-                    {% if previous_week or next_week%}
+                    <p id="weekNone" style="display: none;">Nothing this week!</p>
+
+                </div>
+                <nav id="weekEvent" aria-label="Events list navigation" style="display: block;">
                     <ul class="pagination">
                         <li class="text-pagination">
-                            <a href="?week={{ previous_week }}" aria-label="Previous">
+                            <a href="javascript:previous_week();" aria-label="Previous">
                                 <span aria-hidden="true">&larr; Prev Week</span>
                             </a>
                         </li>
                         <li class="text-pagination">
-                            <a href="?week={{ next_week }}" aria-label="Next">
+                            <a href="javascript:next_week();" aria-label="Next">
                                 <span aria-hidden="true">Next Week &rarr;</span>
                             </a>
                         </li>
                     </ul>
-                    {% endif %}
+
+                </nav>
+                <nav id="allEvent" class="pagination-page pull-right" aria-label="News list navigation"
+                     style="padding-top: 10px; display: none;">
                 </nav>
             </div><!-- /.container-fluid -->
         </section><!-- /.events-list -->
@@ -243,7 +245,15 @@
 
 {% block customscript %}
     <script>
+        var AllItemElements;  // save all Item Elements.
+        var currentDay;
+        var regroupElement = {};  // regroup all elements by week
+        var newElements = [];   // group new element only.
+        var weekCount = 0;  // calculate weekcount.
+
         $(document).ready(function () {
+            AllItemElements = $("#event_items .row-margin-1");
+            console.log(AllItemElements);
 
             // visible or invisible search box.
             $('#search').click(function () {
@@ -259,18 +269,179 @@
                 if (e.target.id !== "searchBar" && e.target.id !== "search")
                     $("#search-form").hide();
             });
+
+            $('#searchBar').keyup(function (event) {
+
+                if (event.which === 13) {
+                    alert('You pressed a "enter" key in textbox');
+                }
+            });
+
+            $("#startdatetime").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',
+                autoclose: true,
+                todayBtn: true
+            });
+
+            $("#enddatetime").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',
+                autoclose: true,
+                todayBtn: true
+            });
+            currentDay = "{{ current_day }}";
+
+            Regroup(currentDay, AllItemElements);
+            showElements();
         });
 
-        $("#startdatetime").datetimepicker({
-            format: 'yyyy-mm-dd hh:ii',
-            autoclose: true,
-            todayBtn: true
-        });
+        // Run once time when loading.....
+        function Regroup(currentDay, Elements) {
 
-        $("#enddatetime").datetimepicker({
-            format: 'yyyy-mm-dd hh:ii',
-            autoclose: true,
-            todayBtn: true
-        });
+            for (var i = Elements.length; i--;) {
+                var itemId = Elements[i].id;
+                var a = moment(itemId, 'YYYY-MM-DD');
+                var b = moment(currentDay, 'YYYY-MM-DD');
+                var sameWeek = b.diff(a, 'week');
+                var diffDay = b.diff(a, 'day');
+                if (regroupElement.hasOwnProperty(sameWeek)) {
+                    regroupElement[sameWeek].push(itemId);
+                }
+                else {
+                    regroupElement[sameWeek] = [itemId];
+                }
+
+
+            }
+        }
+
+        // Reality Filter
+        function realFilter() {
+
+            searchInput = document.getElementById("searchBar");
+            filter = searchInput.value.toLowerCase();
+            AllItemElements.hide();
+            var AllElements = AllItemElements;
+            for (var i = AllElements.length; i--;) {
+
+                var newsItemId = AllElements[i].id;
+                var newsItemContentDiv = AllElements[i].children[1];
+                var newsItemCategory = newsItemContentDiv.children[0].innerHTML.toLowerCase().split("//")[1].replace(/\s+/g, "");
+                var newsItemContent = newsItemContentDiv.children[3].innerHTML.toLowerCase().replace(/\s+/g, "");
+
+                // search tag in category
+                if (newsItemCategory.indexOf(filter) > -1) {
+                    console.log('hide', "#article_" + newsItemId.toString());
+                }
+                // search tag in news body.
+                else if (newsItemContent.indexOf(filter) > -1) {
+                    console.log('show', "#article_" + newsItemId.toString());
+                }
+
+                else {
+                    console.log('hide', i);
+                    AllElements.splice(i, 1);
+
+                }
+            }
+            console.log(AllElements);
+            if (AllElements.length !== 0)
+                eventsPage(AllElements);
+
+        }
+        function showElements() {
+            console.log(weekCount);
+            if (regroupElement.hasOwnProperty(weekCount)) {
+                $("#weekNone").hide();
+                for (var i = 0; i < regroupElement[weekCount].length; i++) {
+                    $("#" + regroupElement[weekCount][i]).show();
+                }
+            }
+            else {
+                $("#weekNone").show();
+            }
+        }
+
+        function hideElements() {
+            console.log(weekCount);
+            if (regroupElement.hasOwnProperty(weekCount)) {
+                for (var i = 0; i < regroupElement[weekCount].length; i++) {
+                    $("#" + regroupElement[weekCount][i]).hide();
+                }
+            }
+        }
+
+        function showweekNav() {
+            $("#weekEvent").show();
+            $("#allEvent").hide();
+        }
+        function hideweekNav() {
+            $("#weekEvent").hide();
+            $("#allEvent").show();
+        }
+
+        // when click previous week.
+        function previous_week() {
+            console.log('previous_week');
+            showweekNav();
+            hideElements();
+            weekCount++;
+            showElements();
+        }
+
+        // when click next week.
+        function next_week() {
+            console.log('next_week');
+            showweekNav();
+            hideElements();
+            weekCount--;
+            showElements();
+        }
+
+        // when click new event.
+        function newEvent() {
+            console.log('newEvent');
+            hideweekNav();
+            hideElements();
+            eventsPage(newElements);
+        }
+
+        // when click featuredEvent
+        function featuredEvent() {
+            console.log('featuredEvent');
+            hideweekNav();
+            hideElements();
+        }
+
+        // when click allEvent
+        function allEvent() {
+            console.log('allEvent');
+            hideElements();
+            hideweekNav();
+            eventsPage(AllItemElements);
+        }
+
+        // paginate contents.
+        function eventsPage(eventItemsElements) {
+
+            var perPage = 5;
+            AllItemElements.hide();
+            eventItemsElements.slice(0, perPage).show();  // First 5 items show.
+
+            $(".pagination-page").pagination({
+                items: eventItemsElements.length,
+                itemsOnPage: perPage,
+                cssStyle: "light-theme",
+
+                onPageClick: function (pageNumber) {
+
+                    var showFrom = perPage * (pageNumber - 1);
+                    var showTo = showFrom + perPage;
+
+                    eventItemsElements.hide().slice(showFrom, showTo).show();
+                }
+            });
+
+        }
+
     </script>
 {% endblock %}

@@ -1,4 +1,6 @@
 # Create your views here.
+import json
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
@@ -16,52 +18,16 @@ from .models import Event
 @login_required
 def index(request):
 
-    # Search
-    if request.POST:
-        keyword = request.POST.get('keyword', None)
-        print(keyword)
-        if keyword:
-            event_list = Event.objects.filter(title__icontains=keyword)
+    current_day = datetime.now().strftime("%Y-%m-%d")
+    print(current_day)
+    event_all = Event.objects.all()
+    event_featured = Event.objects.filter(featured=True)
 
-            context = {
-                'event_list': event_list
-            }
-
-    # week, category
-    else:
-        week = int(request.GET.get('week', 0))
-        category = request.GET.get('category', None)
-
-        # When New or Featured.
-        if category:
-            event_list = Event.objects.filter(featured=1)
-            context = {
-                'event_list': event_list
-            }
-
-        # When week.
-        else:
-
-            if week:
-                next_week = week + 1
-                previous_week = week - 1
-            else:
-                week = 0
-                next_week = 1
-                previous_week = -1
-
-            # this sets up for a 10 day event view window in the template
-            base_date = datetime.now() + timedelta(week * 10)
-            limit_date = datetime.now() + timedelta(10 + week * 10)
-            print(base_date, limit_date)
-            event_list = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
-                'start_date')
-
-            context = {
-                'next_week': next_week,
-                'previous_week': previous_week,
-                'event_list': event_list
-            }
+    context = {
+        'event_all': event_all,
+        'current_day': current_day,
+        'event_featured': event_featured
+    }
 
     return render(request, 'events/event-list.html', context)
 
