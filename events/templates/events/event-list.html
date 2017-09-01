@@ -13,7 +13,6 @@
         <div class="top-nav">
 
             <div class="container container-960">
-
                 <a href="index.html" class="site-logo" rel="home"><img src="{% static 'events/img/logo.png' %}" alt=""
                                                                        srcset="{% static 'events/img/logo.png' %} 1x, {% static 'events/img/logo@2x.png' %} 2x"></a>
 
@@ -113,31 +112,21 @@
                     </div>
 
                     <div class="col-sm-6">
-
                         <p class="news-category">11am 8 Aug 2017</p>
                         <h2 class="news-title">DisruptHealth: A Primer for Entrepenuers, Professionals and
                             Patients.</h2>
                         <p class="news-description"><span class="posted-by">posted by<br> <a href="#">BlockChain AU</a></span>
                             <a href="#" class="rsvp-btn">RSVP</a></p>
-
                     </div>
-
                 </div>
-
             </div><!-- /.container -->
-
         </section><!-- /.next-events -->
 
         <section class="events-list">
-
             <div class="container container-960">
-
                 <div class="filters-fix">
-
                     <div class="filters-wrapper">
-
                         <div class="events-filter  news-filter">
-
                             <ul class="list-unstyled">
                                 <li><a id="search" href="javascript:void(0)">Search</a></li>
                                 <li><a href="?category=New">New</a></li>
@@ -208,7 +197,7 @@
     </div><!-- /#main -->
 
     <div id="create-event-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document" style="width: 60%">
+        <div class="modal-dialog" role="document" style="width: 80%; padding-left: 20%">
             <div class="modal-content" style="width: 60%;">
 
                 <div class="modal-body">
@@ -270,7 +259,6 @@
                 if (e.target.id !== "searchBar" && e.target.id !== "search")
                     $("#search-form").hide();
             });
-
         });
 
         $("#startdatetime").datetimepicker({
