@@ -24,7 +24,13 @@ def create(request):
             cat = 'Workspaces'
         elif room_type == 'misc':
             cat = 'Misc'
-        rooms = Room.objects.filter(category=cat)
+        else:
+            cat = 'all'
+
+        if cat == 'all':
+            rooms = Room.objects.filter()
+        else:
+            rooms = Room.objects.filter(category=cat)
     elif request.GET.get('room_id'):
         room_id = request.GET['room_id']
         start_book = request.GET['start_book']
@@ -104,7 +110,13 @@ class BookingList(ListView):
                 cat = 'Workspaces'
             elif room_type == 'misc':
                 cat = 'Misc'
-            queryset = Booking.objects.filter(owner=self.request.user, room__category=cat)
+            else:
+                cat = 'all'
+
+            if cat == 'all':
+                queryset = Booking.objects.filter(owner=self.request.user)
+            else:
+                queryset = Booking.objects.filter(owner=self.request.user, room__category=cat)
         else:
             queryset = Booking.objects.filter(owner=self.request.user)
         return queryset
