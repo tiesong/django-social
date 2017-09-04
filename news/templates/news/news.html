@@ -340,7 +340,7 @@
 
         function clickTag(category) {
             method = "category";
-            value = category;
+            value = category.replace(" ", "-");
             pg_num = 1;
             update_item(value);
 

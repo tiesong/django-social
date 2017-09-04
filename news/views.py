@@ -74,7 +74,7 @@ def update(request):
 def category(request):
     category_name = request.GET.get('category')
     page_number = request.GET.get('pg_num', 0)
-
+    category_name = str(category_name).replace("-", " ")
     tag = Category.objects.filter(tag=category_name).first()
     news_list = News.objects.filter(category=tag).order_by('-pub_date').exclude(is_page=True)
     per = Paginator(news_list, 5)
