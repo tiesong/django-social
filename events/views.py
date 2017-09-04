@@ -11,6 +11,7 @@ import dateutil.parser
 
 # from .models import Event
 from .models import Event
+from news.models import News
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -29,13 +30,15 @@ def index(request):
     user_all = User.objects.all().count()
     event_featured = Event.objects.filter(featured=True)
     event_count = len(event_all)
+    navbar_pages = News.objects.filter(display_in_navbar=True)
 
     context = {
         'event_all': event_all,
         'current_day': current_day,
         'event_featured': event_featured,
         'event_count': event_count,
-        'user_all': user_all
+        'user_all': user_all,
+        'navbar_pages': navbar_pages,
     }
 
     return render(request, 'events/event-list.html', context)
@@ -49,9 +52,11 @@ def detail(request, event_id):
     :param event_id: 
     :return: 
     """
+    navbar_pages = News.objects.filter(display_in_navbar=True)
     event = Event.objects.get(id=event_id)
     context = {
         'event': event,
+        'navbar_pages': navbar_pages,
     }
     return render(request, 'events/event-details.html', context)
 
@@ -64,6 +69,7 @@ def create(request):
     :return: 
     """
     event_id = request.POST.get("event_id", None)
+    navbar_pages = News.objects.filter(display_in_navbar=True)
 
     if event_id:
         try:
@@ -90,7 +96,8 @@ def create(request):
         new_event.save()
 
         context = {
-            'event': new_event
+            'event': new_event,
+            'navbar_pages': navbar_pages,
         }
 
         return render(request, 'events/event-edit.html', context=context)
@@ -105,9 +112,11 @@ def edit(request, event_id):
     :return: 
     """
     event_detail = Event.objects.get(id=event_id)
+    navbar_pages = News.objects.filter(display_in_navbar=True)
 
     context = {
-        'event': event_detail
+        'event': event_detail,
+        'navbar_pages': navbar_pages,
     }
 
     if request.POST:
