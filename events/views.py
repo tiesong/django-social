@@ -11,6 +11,7 @@ import dateutil.parser
 
 # from .models import Event
 from .models import Event
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -25,12 +26,16 @@ def index(request):
 
     current_day = datetime.now().strftime("%Y-%m-%d")
     event_all = Event.objects.all()
+    user_all = User.objects.all().count()
     event_featured = Event.objects.filter(featured=True)
+    event_count = len(event_all)
 
     context = {
         'event_all': event_all,
         'current_day': current_day,
-        'event_featured': event_featured
+        'event_featured': event_featured,
+        'event_count': event_count,
+        'user_all': user_all
     }
 
     return render(request, 'events/event-list.html', context)
