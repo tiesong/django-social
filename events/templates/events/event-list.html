@@ -251,6 +251,7 @@
 
             // visible or invisible search box.
             $('#search').click(function () {
+
                 if ($("#search-form").is(':visible')) {
                     $("#search-form").fadeOut();
                 } else {
@@ -260,8 +261,10 @@
 
             $(document.body).click(function (e) {
                 //Hide the search bar if visible
-                if (e.target.id !== "searchBar" && e.target.id !== "search")
+                if (e.target.id !== "searchBar" && e.target.id !== "search") {
+                    document.getElementById("searchBar").value = "";
                     $("#search-form").hide();
+                }
             });
 
             $("#startdatetime").datetimepicker({
@@ -280,8 +283,6 @@
             Regroup(currentDay, AllItemElements);
             showElements();
         });
-
-
 
     </script>
 {% endblock %}
