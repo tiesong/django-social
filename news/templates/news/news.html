@@ -178,7 +178,7 @@
                 <div id="article_list" class="news-page-list">
 
                     {% for news_article in latest_news_list %}
-                        <div id="article_{{ news_article.id }}" class="news-single-item">
+                        <div id="article_{{ news_article.id }}" class="news-single-item" style="display: none;">
                             <div class="news-single-thumb">
 
                                     <img src="{{ news_article.article | safe |previewImage }}" alt="">
