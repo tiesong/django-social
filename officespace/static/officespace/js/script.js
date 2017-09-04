@@ -158,6 +158,10 @@ $(document).ready(function () {
 
     // Booking Create by Room
 	var calendar = $('#calendar').fullCalendar({
+        header: {
+            left: 'agendaWeek,agendaDay',
+            center: 'title',
+        },
         defaultView: 'agendaWeek',
         selectable: true,
         selectHelper: true,
@@ -263,8 +267,8 @@ $(document).ready(function () {
         },
         events: function(start, end, timezone, callback) {
             var room_id = $('.bookings-option #search_room').val();
-            var start_book = moment(start._d).tz("UTC").format();
-            var end_book = moment(end._d).tz("UTC").format();
+            // var start_book = moment(start._d).tz("UTC").format();
+            // var end_book = moment(end._d).tz("UTC").format();
             var events = [];
             if (room_id != '') {
                 $.ajax({
@@ -272,8 +276,8 @@ $(document).ready(function () {
                     dataType: 'json',
                     data: {
                         room_id: room_id,
-                        start_book: start_book,
-                        end_book: end_book
+                        // start_book: start_book,
+                        // end_book: end_book
                     },
                     success: function(result) {
                         $.each(result, function(index, value) {
@@ -287,7 +291,7 @@ $(document).ready(function () {
                                 });
                             } else {
                                 events.push({
-                                    title: value[1],
+                                    title: 'unavailable',
                                     start: value[2],
                                     end: value[3],
                                     allDay: false,
@@ -312,6 +316,10 @@ $(document).ready(function () {
 
     //Booking Edit
     var edit_calendar = $('#edit_calendar').fullCalendar({
+        header: {
+            left: 'agendaWeek,agendaDay',
+            center: 'title',
+        },
         defaultView: 'agendaWeek',
         selectable: true,
         selectHelper: true,
@@ -351,8 +359,8 @@ $(document).ready(function () {
             if (element.hasClass('edit-booking')) {
                 var booking_id = $('.booking-edit #booking_id').val();
                 var room_id = $('.bookings-option #search_room').val();
-                var start_date = moment(event.start._d).tz("UTC").format();;
-                var end_date = moment(event.end._d).tz("UTC").format();;
+                var start_date = moment(event.start._d).tz("UTC").format();
+                var end_date = moment(event.end._d).tz("UTC").format();
                 var event_title = event.title;
                 if (event.id && event.id == booking_id ) {
                     var new_button = '<button type="button" class="btn btn-transparent-dark showing title-change">Edit Title</button><button type="button" class="btn btn-transparent-dark book-room">Edit Book</button>';
@@ -432,8 +440,8 @@ $(document).ready(function () {
         events: function(start, end, timezone, callback) {
             var booking_id = $('.booking-edit #booking_id').val();
             var room_id = $('.bookings-option #search_room').val();
-            var start_book = moment(start._d).tz("UTC").format();
-            var end_book = moment(end._d).tz("UTC").format();
+            // var start_book = moment(start._d).tz("UTC").format();
+            // var end_book = moment(end._d).tz("UTC").format();
             var events = [];
             if (room_id != '') {
                 $.ajax({
@@ -442,8 +450,8 @@ $(document).ready(function () {
                     data: {
                         booking_id: booking_id,
                         room_id: room_id,
-                        start_book: start_book,
-                        end_book: end_book
+                        // start_book: start_book,
+                        // end_book: end_book
                     },
                     success: function(result) {
                         for (var i=0; i < result.length; i++) {
@@ -468,7 +476,7 @@ $(document).ready(function () {
                                 });
                             } else {
                                 events.push({
-                                    title: result[i][1],
+                                    title: 'unavailable',
                                     start: result[i][2],
                                     end: result[i][3],
                                     allDay: false,
