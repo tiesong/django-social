@@ -33,10 +33,10 @@ def create(request):
             rooms = Room.objects.filter(category=cat)
     elif request.GET.get('room_id'):
         room_id = request.GET['room_id']
-        start_book = request.GET['start_book']
-        end_book = request.GET['end_book']
+        # start_book = request.GET['start_book']
+        # end_book = request.GET['end_book']
         room = Room.objects.get(pk=room_id)
-        bookings = Booking.objects.filter(room=room, start_book__gte=start_book, end_book__lte=end_book)
+        bookings = Booking.objects.filter(room=room)
         response = []
         for booking in bookings:
             if request.user == booking.owner:
@@ -132,10 +132,10 @@ def edit(request, pk):
         if request.GET.get('booking_id'):
             booking_id = request.GET['booking_id']
             room_id = request.GET['room_id']
-            start_book = request.GET['start_book']
-            end_book = request.GET['end_book']
+            # start_book = request.GET['start_book']
+            # end_book = request.GET['end_book']
             room = Room.objects.get(pk=room_id)
-            bookings = Booking.objects.filter(room=room, start_book__gte=start_book, end_book__lte=end_book)
+            bookings = Booking.objects.filter(room=room)
             response = []
             for booking in bookings:
                 if booking.pk == int(pk):
