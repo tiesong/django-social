@@ -9,42 +9,45 @@ from news.models import News, Category
 # Create your views here.
 def index(request):
     
-    try:
-        feature_list = News.objects.order_by('-pub_date').order_by('-feature_rank')[0]
-    except:
-        feature_list = False
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/news')
+    else:
+        try:
+            feature_list = News.objects.order_by('-pub_date').order_by('-feature_rank')[0]
+        except:
+            feature_list = False
 
-    email = password = ''
+        email = password = ''
 
 
-    if request.POST:
-        #collect all potential field inputs
-        logout(request)
-        email = request.POST['login-email']
-        password = request.POST['login-password']
+        if request.POST:
+            #collect all potential field inputs
+            logout(request)
+            email = request.POST['login-email']
+            password = request.POST['login-password']
 
-        try: #we try logging a user in first
-            username = User.objects.get(email=email.lower()).username
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponseRedirect('/news/')
-                else:
-                    #user is not in the system
-                    message = "Sorry, but we could not find your username in our system. Please try again."
-                    request.session['error'] = message
-                    return HttpResponseRedirect('/error')
-        
-        except: #if logging in fails, let's try signing them up
-            request.session['error'] = "Sorry, the username / password combination could not be found. Please try again."
-            return HttpResponseRedirect('/error')
-  
-    context = {
-        'feature_list': feature_list,
-    }
+            try: #we try logging a user in first
+                username = User.objects.get(email=email.lower()).username
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    if user.is_active:
+                        login(request, user)
+                        return HttpResponseRedirect('/news/')
+                    else:
+                        #user is not in the system
+                        message = "Sorry, but we could not find your username in our system. Please try again."
+                        request.session['error'] = message
+                        return HttpResponseRedirect('/error')
+            
+            except: #if logging in fails, let's try signing them up
+                request.session['error'] = "Sorry, the username / password combination could not be found. Please try again."
+                return HttpResponseRedirect('/error')
+      
+        context = {
+            'feature_list': feature_list,
+        }
 
-    return render(request, 'home/index.html', context)
+        return render(request, 'home/index.html', context)
 
 def signup(request):
     try:
