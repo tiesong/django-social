@@ -19,7 +19,6 @@ from .models import Event
 def index(request):
 
     current_day = datetime.now().strftime("%Y-%m-%d")
-    print(current_day)
     event_all = Event.objects.all()
     event_featured = Event.objects.filter(featured=True)
 
