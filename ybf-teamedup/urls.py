@@ -15,6 +15,7 @@ import home.views
 
 urlpatterns = [
     url(r'^$', home.views.index, name='index'),
+    url(r'^error/', home.views.error, name='error'),
 	url(r'^tinymce/', include('tinymce.urls')),
     url(r'^news/', include('news.urls')),
     url(r'^c/', include('community.urls')),

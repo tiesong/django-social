@@ -19,16 +19,36 @@ def index(request):
         logout(request)
         email = request.POST['login-email']
         password = request.POST['login-password']
-        username = User.objects.get(email=email.lower()).username
 
-        user = authenticate(username=username, password=password)
+        try:
+            username = User.objects.get(email=email.lower()).username
+        except:
+            #no username found in system
+            return HttpResponseRedirect('/error')
+
+        try:
+            user = authenticate(username=username, password=password)
+        except:
+            return HttpResponseRedirect('/error')
+
         if user is not None:
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect('/news/')
+        else:
+            #user is not in the system
+            return HttpResponseRedirect('/error')
+
   
     context = {
         'feature_list': feature_list,
     }
 
     return render(request, 'home/index.html', context)
+
+def error(request):
+    message = "Sorry, your username and/or password were incorrect. Please go back and try again."
+    context = {
+        'message': message,
+    }
+    return render(request, 'home/error.html', context)

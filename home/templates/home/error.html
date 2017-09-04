@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {% load staticfiles %}
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Butter Factory</title>
+
+    <meta name="description" content="At YBF, we have one goal: To maximise the success of startups that call YBF ... we've designed and built an ecosystem to maximise your startups' success.">
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- Favicon
+    ================================================== -->
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{% static 'home/img/favicon.ico' %}">
+
+    <!-- Stylesheets
+    ================================================== -->
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'home/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'home/css/responsive.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+        
+
+    </div><!-- /#main -->
+
+    
+    <footer id="colophon" class="site-footer">
+
+        <div class="container" style="height:100vh">
+
+            <h3>{{message}}</h3>
+
+            <form class="hero-form">
+                <div class="form-group">
+                    <a href="/"><button href="/" class="btn btn-transparent-white" type="button"><< Back</button></a>
+                </div>
+            </form><!-- /.user-form -->
+
+        </div><!-- /.container -->
+
+    </footer><!-- /#footer -->
+
+
+   
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+    <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'home/js/script.js' %}"></script>
+  
+</body>
+</html>
