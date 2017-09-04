@@ -44,11 +44,10 @@ function realFilter() {
 
         // search tag in event title.
         if (eventsItemTitle.indexOf(filter) > -1) {
-            console.log('save');
+            console.log('event')
         }
 
         else {
-            console.log('hide', i);
             eventsItemsElements.splice(i, 1);
 
         }

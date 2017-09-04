@@ -58,7 +58,7 @@ def create(request):
             Event.objects.filter(id=event_id).update(description=body)
 
         except Exception as e:
-            print('Error')
+            print('Error : {}'.format(e))
 
         return redirect('/events/' + event_id)
 
@@ -84,10 +84,30 @@ def create(request):
 
 
 @login_required
-def edit(request):
+def edit(request, event_id):
+    """
+    Edit Event
+    :param request: 
+    :param event_id: 
+    :return: 
+    """
+    event_detail = Event.objects.get(id=event_id)
+
+    context = {
+        'event': event_detail
+    }
 
     if request.POST:
-        pass
+        try:
+            body = request.POST.get('body', "")
+            Event.objects.filter(id=event_id).update(description=body)
+
+        except Exception as e:
+            print('Error : {}'.format(e))
+
+        return redirect('/events/' + event_id)
+
+    return render(request, 'events/event-edit.html', context=context)
 
 
 @login_required
