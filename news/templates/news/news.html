@@ -177,7 +177,26 @@
 
                 <div id="article_list" class="news-page-list">
 
-                    {% for news_article in latest_news_list %}
+                    {% for news_article in firstpage_news_list %}
+                        <div id="article_{{ news_article.id }}" class="news-single-item">
+                            <div class="news-single-thumb">
+
+                                    <img src="{{ news_article.article | safe |previewImage }}" alt="">
+
+                            </div>
+                            <div class="news-single-content">
+                                <p class="news-category">News // {{ news_article.category.all|first }}</p>
+                                <h3 class="news-title">{{ news_article.title }}</h3>
+                                <p class="news-author">by <a href="#">{{ news_article.owner.username }}</a></p>
+                                <p class="news-description">
+                                    {{ news_article.article | snippet }}</p>
+
+                                <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
+                            </div>
+                        </div><!-- /.news-single-item -->
+                    {% endfor %}
+
+                {% for news_article in latest_news_list%}
                         <div id="article_{{ news_article.id }}" class="news-single-item" style="display: none;">
                             <div class="news-single-thumb">
 

@@ -16,6 +16,8 @@ def index(request):
     news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
     total_articles = news_list.count()
 
+    firstpage_news_list = news_list[0:5]
+    otherpage_news_list = news_list[5:]
     navbar_pages = News.objects.filter(display_in_navbar=True)
 
     # Return three articles to render in the featured articles fields in template
@@ -31,7 +33,8 @@ def index(request):
 
     context = {
         # 'latest_news_list': latest_news_list,
-        'latest_news_list': news_list,
+        'latest_news_list': otherpage_news_list,
+        'firstpage_news_list': firstpage_news_list,
         'primary_feature': primary_feature,
         'featured_news_list': featured_news_list,
         'feature_list': feature_list,
