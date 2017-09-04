@@ -57,7 +57,7 @@
                 <li><a href="/officespace">Officespace</a></li>
                 {% for page in navbar_pages %}
                     <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                {% endfor %}                
+                {% endfor %}
             </ul>
 
         </nav><!-- /.site-navigation -->
@@ -146,7 +146,7 @@
                         <div class="events-filter news-filter">
                             <span class="filter-label">
                                 <ul class="list-unstyled">
-                                    <li><a id="search" href="javascript:void(0)">Search</a></li>
+                                    <li><a id="search" href="javascript:void(0) ">Search</a></li>
                                     {% for category in category_list %}
                                         {% if  category != "" %}
                                             <li><a href="javascript:void(0)"
@@ -161,63 +161,41 @@
 
                         <div class="events-filter news-filter">
 
-                            <form id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
+                            <div id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
                                 <div class="row">
                                     <div class="controls">
                                         <input id="searchBar" class="form-control" type="text" placeholder="keyword..."
-                                               onkeyup="realFilter()"
+                                               onkeyup="realFilter(event)"
                                                style="width: 100%;"/>
                                     </div>
                                 </div>
 
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div id="article_list" class="news-page-list">
 
-                    {% for news_article in firstpage_news_list %}
-                        <div id="article_{{ news_article.id }}" class="news-single-item">
-                            <div class="news-single-thumb">
-
-                                    <img src="{{ news_article.article | safe |previewImage }}" alt="">
-
-                            </div>
-                            <div class="news-single-content">
-                                <p class="news-category">News // {{ news_article.category.all|first }}</p>
-                                <h3 class="news-title">{{ news_article.title }}</h3>
-                                <p class="news-author">by <a href="#">{{ news_article.owner.username }}</a></p>
-                                <p class="news-description">
-                                    {{ news_article.article | snippet }}</p>
-
-                                <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
-                            </div>
-                        </div><!-- /.news-single-item -->
-                    {% endfor %}
-
-                {% for news_article in latest_news_list%}
-                        <div id="article_{{ news_article.id }}" class="news-single-item" style="display: none;">
-                            <div class="news-single-thumb">
-
-                                    <img src="{{ news_article.article | safe |previewImage }}" alt="">
-
-                            </div>
-                            <div class="news-single-content">
-                                <p class="news-category">News // {{ news_article.category.all|first }}</p>
-                                <h3 class="news-title">{{ news_article.title }}</h3>
-                                <p class="news-author">by <a href="#">{{ news_article.owner.username }}</a></p>
-                                <p class="news-description">
-                                    {{ news_article.article | snippet }}</p>
-
-                                <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
-                            </div>
-                        </div><!-- /.news-single-item -->
-                    {% endfor %}
+                    {% include 'news/news-content.html' %}
 
                 </div><!-- /.news-list -->
-                <nav class="pagination-page pull-right" aria-label="News list navigation" style="padding-top: 10px">
+                <nav aria-label="Events list navigation" style="display: block;">
+                    <ul class="pagination">
+                        <li class="text-pagination">
+                            <a href="javascript:previous_week();" aria-label="Previous">
+                                <span aria-hidden="true">&larr; Prev Page</span>
+                            </a>
+                        </li>
+                        <li class="text-pagination">
+                            <a href="javascript:next_week();" aria-label="Next">
+                                <span aria-hidden="true">Next Page &rarr;</span>
+                            </a>
+                        </li>
+                    </ul>
+
                 </nav>
+
             </div><!-- /.container -->
         </section><!-- /.news-page -->
     </div><!-- /#main -->
@@ -315,6 +293,94 @@
 {% endblock %}
 
 {% block customscript %}
-    <script type="text/javascript" src="{% static "news/js/newsscript.js" %}"></script>
+
+    <script>
+        var pg_num;
+        var totalPage;
+        var method;
+        var value;
+        $(document).ready(function () {
+            pg_num = 1;
+            totalPage = "{{ total_page }}";
+            // visible or invisible search box.
+            $('#search').click(function () {
+                if ($("#search-form").is(':visible')) {
+                    $("#search-form").fadeOut();
+                } else {
+                    $("#search-form").fadeIn();
+                }
+            });
+
+            $(document.body).click(function (e) {
+                //Hide the search bar if visible
+                if (e.target.id !== "searchBar" && e.target.id !== "search" && e.target.id !== "contentCheck" && e.target.id !== "categoryCheck")
+                    $("#search-form").hide();
+            });
+
+        });
+
+        function update_item() {
+            if (method === 'category') {
+                console.log(value);
+                $('#article_list').html('').load(
+                    "{% url 'category' %}?category=" + value + "&&pg_num=" + pg_num
+                );
+            }
+            else if (method === 'search') {
+                $('#article_list').html('').load(
+                    "{% url 'search' %}?keyword=" + value + "&&pg_num=" + pg_num
+                );
+            }
+            else {
+                $('#article_list').html('').load(
+                    "{% url 'update' %}?pg_num=" + pg_num
+                );
+            }
+        }
+
+        function clickTag(category) {
+            method = "category";
+            value = category;
+            pg_num = 1;
+            update_item(value);
+
+        }
+
+        function realFilter(e) {
+            if (e.keyCode === 13) {
+                console.log('enter');
+                searchInput = document.getElementById("searchBar");
+                value = searchInput.value.toLowerCase();
+                method = 'search';
+                pg_num = 1;
+                update_item(value);
+            }
+        }
+
+        function previous_week() {
+            console.log(pg_num);
+            if (pg_num < 0) {
+                console.log('no page');
+            }
+            else {
+                pg_num--;
+                update_item();
+            }
+        }
+
+        function next_week() {
+            console.log(pg_num);
+            pg_num++;
+            update_item();
+
+        }
+
+        function clickAllArticles() {
+            method = "index";
+            pg_num = 1;
+            update_item();
+
+        }
+    </script>
 
 {% endblock %}
