@@ -87,7 +87,7 @@
                         <form class="event-form">
 
                             <div class="form-group">
-
+                                <a class="btn btn-dark" id="search_top" href="#filter_bar">Search events</a>
                                 <button class="btn btn-transparent-dark" type="button" data-toggle="modal"
                                         data-target="#create-event-modal">Create new event
                                 </button>
@@ -261,10 +261,18 @@
                     $("#search-form").fadeIn();
                 }
             });
+            $('#search_top').click(function () {
+
+                if ($("#search-form").is(':visible')) {
+                    $("#search-form").fadeOut();
+                } else {
+                    $("#search-form").fadeIn();
+                }
+            });
 
             $(document.body).click(function (e) {
                 //Hide the search bar if visible
-                if (e.target.id !== "searchBar" && e.target.id !== "search") {
+                if (e.target.id !== "searchBar" && e.target.id !== "search" && e.target.id !== "search_top") {
                     document.getElementById("searchBar").value = "";
                     $("#search-form").hide();
                 }
