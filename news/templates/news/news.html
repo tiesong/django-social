@@ -51,10 +51,13 @@
             <ul>
                 <li class="active"><a href="/news">News</a></li>
                 <li><a href="/events">Events</a></li>
-                <li><a href="#">Startups</a></li>
-                <li><a href="jobs.html">Jobs</a></li>
-                <li><a href="company-profile.html">Companies</a></li>
+                <!--<li><a href="#">Startups</a></li>-->
+                <!--<li><a href="jobs.html">Jobs</a></li>-->
+                <!--<li><a href="company-profile.html">Companies</a></li>-->
                 <li><a href="/officespace">Officespace</a></li>
+                {% for page in navbar_pages %}
+                    <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
+                {% endfor %}                
             </ul>
 
         </nav><!-- /.site-navigation -->
