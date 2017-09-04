@@ -51,10 +51,13 @@
             <ul>
                 <li class="active"><a href="/news">News</a></li>
                 <li><a href="/events">Events</a></li>
-                <li><a href="#">Startups</a></li>
-                <li><a href="jobs.html">Jobs</a></li>
-                <li><a href="company-profile.html">Companies</a></li>
+                <!--<li><a href="#">Startups</a></li>-->
+                <!--<li><a href="jobs.html">Jobs</a></li>-->
+                <!--<li><a href="company-profile.html">Companies</a></li>-->
                 <li><a href="/officespace">Officespace</a></li>
+                {% for page in navbar_pages %}
+                    <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
+                {% endfor %}                
             </ul>
 
         </nav><!-- /.site-navigation -->
@@ -166,19 +169,6 @@
                                                style="width: 100%;"/>
                                     </div>
                                 </div>
-                                {#                                <div class="row" style="padding-bottom: 10px">#}
-                                {#                                    <ul>#}
-                                {#                                        <li><input#}
-                                {#                                                id="categoryCheck" type="checkbox" class="checkbox-inline"#}
-                                {#                                                placeholder="title" onchange='handleCategory(this);' checked><label#}
-                                {#                                                class="checkboxtext">Category</label></li>#}
-                                {##}
-                                {#                                        <li><input id="contentCheck" type="checkbox" class="checkbox-inline"#}
-                                {#                                                   placeholder="category" onchange='handleContent(this);'/><label#}
-                                {#                                                class="checkboxtext">News#}
-                                {#                                            Content</label></li>#}
-                                {#                                    </ul>#}
-                                {#                                </div>#}
 
                             </form>
                         </div>

@@ -50,14 +50,12 @@ def previewImage(html_body):
     :return: 
     """
     img_list = []
-    print('html body: {}'.format(html_body))
+
     soup = BeautifulSoup(html_body, "html.parser")
-    print('select: {}'.format(soup.select("img")))
 
     for image in soup.select("img"):
         img_list.append(image)
 
-    print('img_list: {}'.format(img_list))
     # Return Sample Image
     if len(img_list) == 0:
         return 'https://teamedup-ybf.s3.amazonaws.com/static/news/img/news-tmp.png'

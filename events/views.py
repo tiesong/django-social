@@ -1,4 +1,6 @@
 # Create your views here.
+import json
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
@@ -9,65 +11,44 @@ import dateutil.parser
 
 # from .models import Event
 from .models import Event
+from django.contrib.auth.models import User
 
 # Create your views here.
 
 
 @login_required
 def index(request):
+    """
+    Index 
+    :param request: 
+    :return: 
+    """
 
-    # Search
-    if request.POST:
-        keyword = request.POST.get('keyword', None)
-        print(keyword)
-        if keyword:
-            event_list = Event.objects.filter(title__icontains=keyword)
+    current_day = datetime.now().strftime("%Y-%m-%d")
+    event_all = Event.objects.all()
+    user_all = User.objects.all().count()
+    event_featured = Event.objects.filter(featured=True)
+    event_count = len(event_all)
 
-            context = {
-                'event_list': event_list
-            }
-
-    # week, category
-    else:
-        week = int(request.GET.get('week', 0))
-        category = request.GET.get('category', None)
-
-        # When New or Featured.
-        if category:
-            event_list = Event.objects.filter(featured=1)
-            context = {
-                'event_list': event_list
-            }
-
-        # When week.
-        else:
-
-            if week:
-                next_week = week + 1
-                previous_week = week - 1
-            else:
-                week = 0
-                next_week = 1
-                previous_week = -1
-
-            # this sets up for a 10 day event view window in the template
-            base_date = datetime.now() + timedelta(week * 10)
-            limit_date = datetime.now() + timedelta(10 + week * 10)
-            print(base_date, limit_date)
-            event_list = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
-                'start_date')
-
-            context = {
-                'next_week': next_week,
-                'previous_week': previous_week,
-                'event_list': event_list
-            }
+    context = {
+        'event_all': event_all,
+        'current_day': current_day,
+        'event_featured': event_featured,
+        'event_count': event_count,
+        'user_all': user_all
+    }
 
     return render(request, 'events/event-list.html', context)
 
 
 @login_required
 def detail(request, event_id):
+    """
+    Event Detail.
+    :param request: 
+    :param event_id: 
+    :return: 
+    """
     event = Event.objects.get(id=event_id)
     context = {
         'event': event,
@@ -82,17 +63,15 @@ def create(request):
     :param request: 
     :return: 
     """
-
     event_id = request.POST.get("event_id", None)
 
     if event_id:
-
         try:
             body = request.POST.get('body', "")
             Event.objects.filter(id=event_id).update(description=body)
 
         except Exception as e:
-            print('Error')
+            print('Error : {}'.format(e))
 
         return redirect('/events/' + event_id)
 
@@ -118,12 +97,37 @@ def create(request):
 
 
 @login_required
-def edit(request):
+def edit(request, event_id):
+    """
+    Edit Event
+    :param request: 
+    :param event_id: 
+    :return: 
+    """
+    event_detail = Event.objects.get(id=event_id)
+
+    context = {
+        'event': event_detail
+    }
 
     if request.POST:
-        pass
+        try:
+            body = request.POST.get('body', "")
+            Event.objects.filter(id=event_id).update(description=body)
+
+        except Exception as e:
+            print('Error : {}'.format(e))
+
+        return redirect('/events/' + event_id)
+
+    return render(request, 'events/event-edit.html', context=context)
 
 
 @login_required
 def delete(request):
+    """
+    Delete Event.
+    :param request: 
+    :return: 
+    """
     pass

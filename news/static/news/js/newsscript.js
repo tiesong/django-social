@@ -84,8 +84,8 @@ function newsPage(newsItemsElements) {
 
     var perPage = 5;
     console.log('newsItems ', newsItemsElements);
-    newsItemsElements.show();
-    newsItemsElements.slice(perPage).hide();  // First 5 items show.
+    newsItemsElements.hide();
+    newsItemsElements.slice(0, perPage).show();  // First 5 items show.
 
     $(".pagination-page").pagination({
         items: newsItemsElements.length,

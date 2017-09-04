@@ -13,7 +13,6 @@
         <div class="top-nav">
 
             <div class="container container-960">
-
                 <a href="index.html" class="site-logo" rel="home"><img src="{% static 'events/img/logo.png' %}" alt=""
                                                                        srcset="{% static 'events/img/logo.png' %} 1x, {% static 'events/img/logo@2x.png' %} 2x"></a>
 
@@ -73,23 +72,19 @@
                     <div class="col-sm-6">
                         <div class="events-info-inner">
                             <h2>Events</h2>
-                            <p>126 events,<br>
-                                2500 members,<br>
+                            <p>{{ event_count }} events,<br>
+                                {{ user_all }} members,<br>
                                 365 days a year</p>
 
-                            <p>Post or attend for free.</p>
+                            <p>Share or attend events here.</p>
                         </div><!-- /.events-info-inner -->
                     </div>
 
                     <div class="col-sm-6">
                         <form class="event-form">
-                            <div class="form-group mb-30">
-                                <label for="find-event">Find an event</label>
-                                <input type="text" id="find-event" class="form-control"
-                                       placeholder="Beginner’s Code Group">
-                            </div>
+
                             <div class="form-group">
-                                <button class="btn btn-dark" type="button">Search YFB events</button>
+                                <a id="search" class="btn btn-dark" type="button" href="#filter_bar">Search YFB events</a>
                                 <button class="btn btn-transparent-dark" type="button" data-toggle="modal"
                                         data-target="#create-event-modal">Create new event
                                 </button>
@@ -113,94 +108,85 @@
                     </div>
 
                     <div class="col-sm-6">
-
                         <p class="news-category">11am 8 Aug 2017</p>
                         <h2 class="news-title">DisruptHealth: A Primer for Entrepenuers, Professionals and
                             Patients.</h2>
                         <p class="news-description"><span class="posted-by">posted by<br> <a href="#">BlockChain AU</a></span>
                             <a href="#" class="rsvp-btn">RSVP</a></p>
-
                     </div>
-
                 </div>
-
             </div><!-- /.container -->
-
         </section><!-- /.next-events -->
 
-        <section class="events-list">
-
+        <section id="filter_bar" class="events-list">
             <div class="container container-960">
-
                 <div class="filters-fix">
-
                     <div class="filters-wrapper">
-
-                        <div class="events-filter  news-filter">
-
+                        <div  class="events-filter  news-filter">
                             <ul class="list-unstyled">
-                                <li><a id="search" href="javascript:void(0)">Search</a></li>
-                                <li><a href="?category=New">New</a></li>
-                                <li><a href="?category=Featured">Featured</a></li>
+                                <li><a href="javascript:newEvent();">New</a></li>
+                                <li><a href="javascript:featuredEvent();">Featured</a></li>
                             </ul>
-                            <a href="/events/" class="all-events pull-right">All Events...</a>
+                            <a href="javascript:allEvent();" class="all-events pull-right">All Events...</a>
                         </div><!-- /.events-filter -->
 
                         <div class="events-filter">
-
-                            <form method="post" id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
-                                {% csrf_token %}
-                                <div class="row">
-                                    <input id="searchBar" class="form-control" type="text" name='keyword' placeholder="keyword..."
-                                               style="width: 100%;"/>
-                                    <input type="submit" hidden>
-                                </div>
-                            </form>
+                            <div id="search-form" class="row" style="display: none; padding-left: 7%">
+                                <input id="searchBar" class="form-control" type="text"
+                                       placeholder="keyword..."
+                                       style="width: 100%;" onkeyup="realFilter()"/>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {% if event_list %}
+                <div id="event_items">
+                    {% if event_all %}
 
-                    {% regroup event_list by start_date|date:"Y-m-d" as events_by_day %}
+                        {% regroup event_all by start_date|date:"Y-m-d" as events_by_day %}
 
-                    {% for day in events_by_day %}
-                        <div class="row row-margin-1">
-                            <div class="col-sm-12 col-xs-12">
-                                <p class="events-date">{{ day.list.0.start_date|date:"l\, F j" }}</p>
-                            </div>
-                            {% for event in day.list %}
-                                <div class="col-sm-3 col-xs-12">
-                                    <div class="event-item">
-                                        <p class="event-date">{{ event.start_date|date:"fA j N Y" }}</p>
-                                        <h2 class="event-name"><a href="{{ event.id }}">{{ event.title }}</a></h2>
-                                        <a href="{{ event.id }}" class="event-attending">posted by {{ request.user.username }}</a>
-                                    </div><!-- /.event-item -->
+                        {% for day in events_by_day %}
+                            <div class="row row-margin-1" id="{{ day.list.0.start_date|date:"Y-m-j" }}"
+                                 style="display: none;">
+                                <div class="col-sm-12 col-xs-12">
+                                    <p class="events-date">{{ day.list.0.start_date|date:"l\, F j" }}</p>
                                 </div>
-                            {% endfor %}
+                                {% for event in day.list %}
+                                    <div class="col-sm-3 col-xs-12">
+                                        <div class="event-item">
+                                            <p class="event-date">{{ event.start_date|date:"fA j N Y" }}</p>
+                                            <h2 class="event-name"><a href="{{ event.id }}">{{ event.title }}</a></h2>
+                                            <a href="{{ event.id }}" class="event-attending">posted
+                                                by {{ request.user.username }}</a>
+                                        </div><!-- /.event-item -->
+                                    </div>
+                                {% endfor %}
 
-                        </div><!-- /.row -->
-                    {% endfor %}
+                            </div><!-- /.row -->
+                        {% endfor %}
 
-                {% else %}
-                    <p>Nothing this week!</p>
-                {% endif %}
+                    {% endif %}
 
-                <nav aria-label="Events list navigation">
-                    {% if previous_week or next_week%}
+                    <p id="weekNone" style="display: none;">Nothing this week!</p>
+
+                </div>
+                <nav id="weekEvent" aria-label="Events list navigation" style="display: block;">
                     <ul class="pagination">
                         <li class="text-pagination">
-                            <a href="?week={{ previous_week }}" aria-label="Previous">
+                            <a href="javascript:previous_week();" aria-label="Previous">
                                 <span aria-hidden="true">&larr; Prev Week</span>
                             </a>
                         </li>
                         <li class="text-pagination">
-                            <a href="?week={{ next_week }}" aria-label="Next">
+                            <a href="javascript:next_week();" aria-label="Next">
                                 <span aria-hidden="true">Next Week &rarr;</span>
                             </a>
                         </li>
                     </ul>
-                    {% endif %}
+
+                </nav>
+                <nav id="allEvent" class="pagination-page pull-right" aria-label="News list navigation"
+                     style="padding-top: 10px; display: none;">
                 </nav>
             </div><!-- /.container-fluid -->
         </section><!-- /.events-list -->
@@ -208,7 +194,7 @@
     </div><!-- /#main -->
 
     <div id="create-event-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document" style="width: 60%">
+        <div class="modal-dialog" role="document" style="width: 80%; padding-left: 20%">
             <div class="modal-content" style="width: 60%;">
 
                 <div class="modal-body">
@@ -253,8 +239,16 @@
 {% endblock %}
 
 {% block customscript %}
+    <script type="text/javascript" src="{% static "events/js/eventsscript.js" %}"></script>
     <script>
+        var AllItemElements;  // save all Item Elements.
+        var currentDay;
+        var regroupElement = {};  // regroup all elements by week
+        var newElements;   // group new element only.
+        var weekCount = 0;  // calculate weekcount.
+
         $(document).ready(function () {
+            AllItemElements = $("#event_items .row-margin-1");
 
             // visible or invisible search box.
             $('#search').click(function () {
@@ -271,18 +265,21 @@
                     $("#search-form").hide();
             });
 
-        });
+            $("#startdatetime").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',
+                autoclose: true,
+                todayBtn: true
+            });
 
-        $("#startdatetime").datetimepicker({
-            format: 'yyyy-mm-dd hh:ii',
-            autoclose: true,
-            todayBtn: true
-        });
+            $("#enddatetime").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',
+                autoclose: true,
+                todayBtn: true
+            });
+            currentDay = "{{ current_day }}";
 
-        $("#enddatetime").datetimepicker({
-            format: 'yyyy-mm-dd hh:ii',
-            autoclose: true,
-            todayBtn: true
+            Regroup(currentDay, AllItemElements);
+            showElements();
         });
     </script>
 {% endblock %}
