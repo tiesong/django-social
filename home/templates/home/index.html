@@ -229,21 +229,27 @@
                         <button type="button" class="close visible-xs" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     
                         <h4 class="modal-title">Sign Up</h4>
-                        <form class="signup-form">
+                        
+                        <form class="signup-form" method="post" action="/signup/">
+                            {% csrf_token %}
                             <div class="form-group">
-                                <label for="signup-name">Full Name</label>
-                                <input type="text" id="signup-name" class="form-control" placeholder="Nick Byrne">
+                                <label for="signup-firstname">Firstname</label>
+                                <input type="text" id="signup-firstname" name="signup-firstname" class="form-control" placeholder="Sarah">
                             </div>
                             <div class="form-group">
+                                <label for="signup-lastname">Lastname</label>
+                                <input type="text" id="signup-lastname" name="signup-lastname" class="form-control" placeholder="Smith">
+                            </div>                            
+                            <div class="form-group">
                                 <label for="signup-email">Email Address</label>
-                                <input type="email" id="signup-email" class="form-control" placeholder="hello@teamedup.com.au">
+                                <input type="email" id="signup-email" name="signup-email" class="form-control" placeholder="hello@teamedup.com.au">
                             </div>
                             <div class="form-group">
                                 <label for="signup-password">Password</label>
-                                <input type="password" id="signup-password" class="form-control" placeholder="Enter your password">
+                                <input type="password" id="signup-password" name="signup-password" class="form-control" placeholder="Enter your password">
                             </div>
                             <div class="modal-form-buttons">
-                                <button class="btn btn-dark" type="button">Sign Up</button>
+                                <button class="btn btn-dark" type="submit">Sign Up</button>
                             </div>
                         </form>
 
