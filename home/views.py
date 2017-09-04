@@ -38,6 +38,9 @@ def index(request):
                         message = "Sorry, but we could not find your username in our system. Please try again."
                         request.session['error'] = message
                         return HttpResponseRedirect('/error')
+                else:
+                    request.session['error'] = "Sorry, the username / password combination could not be found. Please try again."
+                    return HttpResponseRedirect('/error')
             
             except: #if logging in fails, let's try signing them up
                 request.session['error'] = "Sorry, the username / password combination could not be found. Please try again."
