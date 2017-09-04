@@ -17,6 +17,11 @@ from .models import Event
 
 @login_required
 def index(request):
+    """
+    Index 
+    :param request: 
+    :return: 
+    """
 
     current_day = datetime.now().strftime("%Y-%m-%d")
     event_all = Event.objects.all()
@@ -33,6 +38,12 @@ def index(request):
 
 @login_required
 def detail(request, event_id):
+    """
+    Event Detail.
+    :param request: 
+    :param event_id: 
+    :return: 
+    """
     event = Event.objects.get(id=event_id)
     context = {
         'event': event,
@@ -47,11 +58,9 @@ def create(request):
     :param request: 
     :return: 
     """
-
     event_id = request.POST.get("event_id", None)
 
     if event_id:
-
         try:
             body = request.POST.get('body', "")
             Event.objects.filter(id=event_id).update(description=body)
@@ -111,4 +120,9 @@ def edit(request, event_id):
 
 @login_required
 def delete(request):
+    """
+    Delete Event.
+    :param request: 
+    :return: 
+    """
     pass
