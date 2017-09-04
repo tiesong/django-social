@@ -24,14 +24,20 @@
                     <form method="get" action="{% url 'booking_create' %}?type=search" id="form_search_time">
             			<div class="form-group">
                             <input type="hidden" value="search" name="type" />
-        					<input type=text class="form-control" name="date_start" id="time_start" placeholder="Start time">&nbsp&nbsp&nbspto&nbsp&nbsp
-        					<input type="text" class="form-control" name="date_end" id="time_end" placeholder="End time">
+        					<input type=text class="form-control" name="date_start" id="time_start" required placeholder="Start time" {% if start_date != '' and end_date != '' %}value="{{ start_date_value }}"{% endif %}>&nbsp&nbsp&nbspto&nbsp&nbsp
+        					<input type="text" class="form-control" name="date_end" id="time_end" required placeholder="End time" {% if start_date != '' and end_date != '' %}value="{{ end_date_value }}"{% endif %}>
                             <input type="submit" class="btn btn-transparent-dark" id="search_time" disabled value="Search">
             			</div>
                     </form>
         		</div>
                 <div class="clearfix"></div>
         	</div>
+            {% if start_date != '' and end_date != '' %}
+            <div class="alert alert-success alert-dismissable fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Showing available rooms from {{ start_date }} to {{ end_date }}
+            </div>
+            {% endif %}
             <div class="booking">
                 <div class="choose-room">
                     <div id='calendar'></div>
@@ -71,7 +77,7 @@
                 		<p class="mb-20">Filter by Type</p>
                         <a href="{% url 'booking_create' %}?room_type=all" class="{% if room_type == 'all' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Reveals All</a>
                 		<a href="{% url 'booking_create' %}?room_type=meeting" class="{% if room_type == 'meeting' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Meeting Space</a>
-                		<a href="{% url 'booking_create' %}?room_type=tele" class="{% if room_type == 'tele' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Teleconference Room</a>
+                		<a href="{% url 'booking_create' %}?room_type=tele" class="{% if room_type == 'tele' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Teleconference</a>
                 		<a href="{% url 'booking_create' %}?room_type=work" class="{% if room_type == 'work' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Workspaces</a>
                 		<a href="{% url 'booking_create' %}?room_type=misc" class="{% if room_type == 'misc' %}active-type{% endif %} btn btn-transparent-green text-center mb-10">Misc</a>
                 	</div>

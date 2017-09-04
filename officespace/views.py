@@ -7,13 +7,19 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import Room, Booking
+from news.models import News
 from django.contrib.auth.models import User
 import json, datetime
 from django.db.models import Q
 
 # Create your views here.
+navbar_pages = News.objects.filter(display_in_navbar=True)
 def create(request):
     room_type = ''
+    start_date = ''
+    end_date = ''
+    start_date_value = ''
+    end_date_value = ''
     if request.GET.get('room_type'):
         room_type = request.GET['room_type']
         if room_type == 'meeting':
@@ -55,11 +61,16 @@ def create(request):
         start_book = request.GET['date_start']
         end_book = request.GET['date_end']
         if start_book != '' and end_book != '':
-            booking = Booking.objects.filter(start_book=start_book, end_book=end_book)
-            if booking:
-                rooms = Room.objects.filter(~Q(id=booking[0].room.id))
-            else:
-                rooms = Room.objects.all()
+            room_ids= Booking.objects.values_list('room__id', flat=True).filter(
+                Q(start_book__gte=start_book, start_book__lt=end_book)
+                | Q(end_book__gt=start_book, end_book__lte=end_book)
+                | Q(start_book__gte=start_book, end_book__lte=end_book)
+                | Q(start_book__lte=start_book, end_book__gte=end_book))
+            rooms = Room.objects.filter(~Q(id__in=set(room_ids)))
+            start_date = datetime.datetime.strptime(start_book,'%Y-%m-%d %H:%M').strftime('%I%p, %d %B %Y')
+            start_date_value = start_book
+            end_date = datetime.datetime.strptime(end_book,'%Y-%m-%d %H:%M').strftime('%I%p, %d %B %Y')
+            end_date_value = end_book
         else:
             rooms = Room.objects.all()
 
@@ -68,7 +79,12 @@ def create(request):
 
     context = {
         'rooms': rooms,
-        'room_type': room_type
+        'room_type': room_type,
+        'start_date': start_date,
+        'end_date': end_date,
+        'start_date_value': start_date_value,
+        'end_date_value': end_date_value,
+        'navbar_pages': navbar_pages,
     }
 
     if request.POST:
@@ -125,6 +141,7 @@ class BookingList(ListView):
         context = super(BookingList, self).get_context_data(**kwargs)
         if self.request.GET.get('room_type'):
             context['room_type'] = self.request.GET.get('room_type')
+        context['navbar_pages'] = navbar_pages
         return context
 
 def edit(request, pk):
@@ -160,7 +177,8 @@ def edit(request, pk):
         context = {
             'rooms': rooms,
             'pk': pk,
-            'room_id': room_id
+            'room_id': room_id,
+            'navbar_pages': navbar_pages,
         }
 
     if request.POST:
@@ -194,6 +212,11 @@ class BookingDelete(DeleteView):
 class BookingDetail(DetailView):
     model = Booking
     template_name = 'officespace/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(BookingDetail, self).get_context_data(**kwargs)
+        context['navbar_pages'] = navbar_pages
+        return context
 
 def datetime_handler(x):
     if isinstance(x, datetime.datetime):

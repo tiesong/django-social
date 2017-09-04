@@ -159,10 +159,12 @@ $(document).ready(function () {
     // Booking Create by Room
 	var calendar = $('#calendar').fullCalendar({
         header: {
-            left: 'agendaWeek,agendaDay',
+            left: 'month,agendaWeek,agendaDay',
             center: 'title',
         },
         defaultView: 'agendaWeek',
+        dayOfMonthFormat: 'ddd D/M',
+        eventLimit: true,
         selectable: true,
         selectHelper: true,
         select: function(start, end, allDay)
@@ -317,10 +319,12 @@ $(document).ready(function () {
     //Booking Edit
     var edit_calendar = $('#edit_calendar').fullCalendar({
         header: {
-            left: 'agendaWeek,agendaDay',
+            left: 'month,agendaWeek,agendaDay',
             center: 'title',
         },
         defaultView: 'agendaWeek',
+        dayOfMonthFormat: 'ddd D/M',
+        eventLimit: true,
         selectable: true,
         selectHelper: true,
         select: function(start, end, allDay)
