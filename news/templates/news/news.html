@@ -314,6 +314,7 @@
             $(document.body).click(function (e) {
                 //Hide the search bar if visible
                 if (e.target.id !== "searchBar" && e.target.id !== "search" && e.target.id !== "contentCheck" && e.target.id !== "categoryCheck")
+                    document.getElementById("searchBar").value = "";
                     $("#search-form").hide();
             });
 
