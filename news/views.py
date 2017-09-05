@@ -273,25 +273,3 @@ def delete(request, news_article_id):
     context = {}
 
     return redirect('/dashboard')
-
-
-def previewImage(news_articleid, html_body):
-    """
-    Preview image from article.
-    :param html_body: 
-    :return: 
-    """
-    img_list = []
-
-    soup = BeautifulSoup(html_body, "html.parser")
-
-    for image in soup.select("img"):
-        img_list.append(image)
-
-    # Return Sample Image
-    if len(img_list) == 0:
-        return 'https://teamedup-ybf.s3.amazonaws.com/static/news/img/news-tmp.png'
-
-    print('img: {}'.format(img_list[0]["src"]))
-    # Return base64 image.
-    return img_list[0]["src"]
