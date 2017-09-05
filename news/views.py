@@ -1,10 +1,13 @@
 # Create your views here.
+import json
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from .models import News, Category
+from bs4 import BeautifulSoup
 import datetime
 
 from django.contrib.auth.models import User
@@ -16,8 +19,9 @@ def index(request):
     news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
     total_articles = news_list.count()
 
-    firstpage_news_list = news_list[0:5]
-    otherpage_news_list = news_list[5:]
+    per = Paginator(news_list, 5)
+    # total_page = per.count()
+    first_page = per.page(1)
     navbar_pages = News.objects.filter(display_in_navbar=True)
 
     # Return three articles to render in the featured articles fields in template
@@ -32,9 +36,7 @@ def index(request):
         feature_list = False
 
     context = {
-        # 'latest_news_list': latest_news_list,
-        'latest_news_list': otherpage_news_list,
-        'firstpage_news_list': firstpage_news_list,
+        'news_list': first_page,
         'primary_feature': primary_feature,
         'featured_news_list': featured_news_list,
         'feature_list': feature_list,
@@ -43,6 +45,83 @@ def index(request):
         'navbar_pages': navbar_pages,
     }
     return render(request, 'news/news.html', context)
+
+
+@login_required
+def update(request):
+
+    page_number = request.GET.get('pg_num', 0)
+
+    news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
+    per = Paginator(news_list, 5)
+
+    try:
+        per_page = per.page(page_number)
+    except Exception as e:
+        print('Error: {}'.format(e))
+        context = {
+            'news_list': False,
+        }
+        return render(request, 'news/news-content.html', context)
+
+    context = {
+        'news_list': per_page,
+    }
+    return render(request, 'news/news-content.html', context)
+
+
+@login_required
+def category(request):
+    category_name = request.GET.get('category')
+    page_number = request.GET.get('pg_num', 0)
+    category_name = str(category_name).replace("-", " ")
+    tag = Category.objects.filter(tag=category_name).first()
+    news_list = News.objects.filter(category=tag).order_by('-pub_date').exclude(is_page=True)
+    per = Paginator(news_list, 5)
+
+    try:
+        per_page = per.page(page_number)
+    except Exception as e:
+        print('Error: {}'.format(e))
+        context = {
+            'news_list': False,
+        }
+        return render(request, 'news/news-content.html', context)
+
+    context = {
+        'news_list': per_page,
+    }
+    return render(request, 'news/news-content.html', context)
+
+
+@login_required
+def search(request):
+    """
+    
+    :param request: 
+    :return: 
+    """
+
+    keyword = request.GET.get('keyword', "")
+    page_number = request.GET.get('pg_num', 0)
+
+    news_list = News.objects.filter(title__icontains=keyword).filter(article__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
+
+    per = Paginator(news_list, 5)
+
+    try:
+        per_page = per.page(page_number)
+    except Exception as e:
+        print('Error: {}'.format(e))
+        context = {
+            'news_list': False,
+        }
+        return render(request, 'news/news-content.html', context)
+
+    context = {
+        'news_list': per_page,
+    }
+    return render(request, 'news/news-content.html', context)
 
 
 @login_required
@@ -190,3 +269,38 @@ def delete(request, news_article_id):
     context = {}
 
     return redirect('/dashboard')
+
+
+# @login_required
+# def category(request, keyword):
+#     """
+#     arrange the list by category
+#     :param request:
+#     :param keyword:
+#     :return:
+#     """
+#     news_json = []
+#     try:
+#         tag = Category.objects.filter(tag=keyword).first()
+#         news_list = News.objects.filter(category=tag)
+#
+#         for news_item in news_list:
+#             print(news_item.owner)
+#             news_json.append({
+#                 'category': category,
+#                 'img': previewImage(news_item.article),
+#                 'title': news_item.title,
+#                 'id': news_item.id,
+#                 'snippet': snippet(news_item.article),
+#                 'owner': news_item.owner
+#             })
+#
+#     except Exception as e:
+#         print('error: {}'.format(e))
+#         news_json = []
+#
+#     # print('news_json: {}'.format(news_json))
+#     response = HttpResponse()
+#     response['Content-Type'] = "text/javascript"
+#     response.write(news_json)
+#     return response
