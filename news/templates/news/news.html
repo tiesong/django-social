@@ -20,6 +20,73 @@
             display: inline;
             padding-left: 10px;
         }
+
+        .loader {
+            position: relative;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Add animation to "page content" */
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
+
     </style>
     <body>
 
@@ -154,7 +221,7 @@
                                         {% endif %}
                                     {% endfor %}
                                 </ul>
-                            </span>
+                                </span>
                             <a href="javascript:void(0)" class="all-events pull-right" onclick="clickAllArticles();">All
                                 Articles...</a>
                         </div>
@@ -175,11 +242,12 @@
                     </div>
                 </div>
 
-                <div id="article_list" class="news-page-list">
+                <div id="article_list" class="news-page-list" style="display: none;">
 
                     {% include 'news/news-content.html' %}
 
                 </div><!-- /.news-list -->
+                <div class="loader" style="display: block; margin-top: 10%"></div>
                 <nav aria-label="Events list navigation" style="display: block;">
                     <ul class="pagination">
                         <li class="text-pagination">
@@ -321,9 +389,35 @@
                 }
             });
 
+            check_loading();
+
         });
 
+        function check_loading() {
+            var everythingLoaded = setInterval(function () {
+                if (/loaded|complete/.test(document.readyState)) {
+                    clearInterval(everythingLoaded);
+                    loaded(); // this is the function that gets called when everything is loaded
+                }
+            }, 10);
+
+        }
+
+        function loaded() {
+            console.log('loaded');
+            $('.loader').hide();
+            $("#article_list").show();
+
+        }
+
+        function loading() {
+            $('.loader').show();
+            $("#article_list").hide();
+        }
+
         function update_item() {
+            loading();
+            check_loading();
             if (method === 'category') {
                 console.log(value);
                 $('#article_list').html('').load(
