@@ -38,19 +38,19 @@ class News(models.Model):
     def __str__(self):
     	return self.title
 
-    # def _get_portal_image(self):
-    #     "Returns the person's full name."
-    #     img_list = []
-    #     soup = BeautifulSoup(self.article, "html.parser")
-    #
-    #     for image in soup.select("img"):
-    #         img_list.append(image)
-    #
-    #     # Return Sample Image
-    #     if len(img_list) == 0:
-    #         return 'https://teamedup-ybf.s3.amazonaws.com/static/news/img/news-tmp.png'
-    #
-    #     # Return base64 image.
-    #     return img_list[0]["src"]
-    #
-    # portal_image = property(_get_portal_image)
+    def _get_portal_image(self):
+        "Returns the person's full name."
+        img_list = []
+        soup = BeautifulSoup(self.article, "html.parser")
+
+        for image in soup.select("img"):
+            img_list.append(image)
+
+        # Return Sample Image
+        if len(img_list) == 0:
+            return 'https://teamedup-ybf.s3.amazonaws.com/static/news/img/news-tmp.png'
+
+        # Return base64 image.
+        return img_list[0]["src"]
+
+    portal_image = property(_get_portal_image)
