@@ -1,0 +1,28 @@
+{% load staticfiles %}
+
+{% if event_all %}
+
+    {% regroup event_all by start_date|date:"Y-m-d" as events_by_day %}
+
+    {% for day in events_by_day %}
+        <div class="row row-margin-1" id="{{ day.list.0.start_date|date:"Y-m-j" }}">
+            <div class="col-sm-12 col-xs-12">
+                <p class="events-date">{{ day.list.0.start_date|date:"l\, F j" }}</p>
+            </div>
+            {% for event in day.list %}
+                <div class="col-sm-3 col-xs-12">
+                    <div class="event-item">
+                        <p class="event-date">{{ event.start_date|date:"fA j N Y" }}</p>
+                        <h2 class="event-name"><a href="{{ event.id }}">{{ event.title }}</a></h2>
+                        <a href="{{ event.id }}" class="event-attending">posted
+                            by {{ request.user.username }}</a>
+                    </div><!-- /.event-item -->
+                </div>
+            {% endfor %}
+
+        </div><!-- /.row -->
+    {% endfor %}
+
+{% else %}
+    <p id="weekNone" >Nothing this week!</p>
+{% endif %}

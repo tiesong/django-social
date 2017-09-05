@@ -14,6 +14,7 @@ from .models import Event
 from news.models import News
 from django.contrib.auth.models import User
 
+
 # Create your views here.
 
 
@@ -25,7 +26,18 @@ def index(request):
     :return: 
     """
 
-    current_day = datetime.now().strftime("%Y-%m-%d")
+    week = int(request.GET.get('week_num', 0))
+    next_week = week + 1
+    previous_week = week - 1
+
+    # this sets up for a 10 day event view window in the template
+    base_date = datetime.now() + timedelta(week * 7)
+    limit_date = datetime.now() + timedelta(7 + week * 7)
+
+    print(base_date, limit_date)
+    event_list = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
+        'start_date')
+
     event_all = Event.objects.all()
     user_all = User.objects.all().count()
     event_featured = Event.objects.filter(featured=True)
@@ -33,8 +45,9 @@ def index(request):
     navbar_pages = News.objects.filter(display_in_navbar=True)
 
     context = {
-        'event_all': event_all,
-        'current_day': current_day,
+        'next_week': next_week,
+        'previous_week': previous_week,
+        'event_all': event_list,
         'event_featured': event_featured,
         'event_count': event_count,
         'user_all': user_all,
@@ -42,6 +55,101 @@ def index(request):
     }
 
     return render(request, 'events/event-list.html', context)
+
+
+@login_required
+def new(request):
+    week = int(request.GET.get('week_num', 0))
+
+    base_date = datetime.now()
+    limit_date = datetime.now() + timedelta(7)
+
+    event_list = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
+        'start_date')
+
+    if len(event_list):
+
+        context = {
+            'event_all': event_list
+        }
+
+        return render(request, 'events/event-content.html', context)
+
+    else:
+        context = {
+            'event_all': False
+        }
+        return render(request, 'events/event-content.html', context)
+
+
+@login_required
+def feature(request):
+    week = int(request.GET.get('week_num', 0))
+
+    base_date = datetime.now() + timedelta(week * 7)
+    limit_date = datetime.now() + timedelta(7 + week * 7)
+
+    event_list = Event.objects.filter(featured=True).order_by('start_date')
+
+    if len(event_list):
+        base_date = event_list[0].start_date + timedelta(week * 7)
+        limit_date = event_list[0].start_date + timedelta(7 + week * 7)
+        event_list = Event.objects.filter(featured=True).filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by('start_date')
+        context = {
+
+            'event_all': event_list
+        }
+
+        return render(request, 'events/event-content.html', context)
+
+    else:
+        context = {
+            'event_all': False
+        }
+        return render(request, 'events/event-content.html', context)
+
+
+@login_required
+def search(request):
+    week = int(request.GET.get('week_num', 0))
+    keyword = request.GET.get('keyword', "")
+
+    event_list = Event.objects.filter(title__icontains=keyword).order_by('start_date')
+
+    if len(event_list):
+        base_date = event_list[0].start_date + timedelta(week * 7)
+        limit_date = event_list[0].start_date + timedelta(7 + week * 7)
+
+        event_list = Event.objects.filter(title__icontains=keyword).filter(start_date__gte=base_date)\
+            .filter(start_date__lte=limit_date).order_by('start_date')
+
+        context = {
+            'event_all': event_list
+        }
+
+    else:
+        context = {
+            'event_all': False
+        }
+
+    return render(request, 'events/event-content.html', context)
+
+
+@login_required
+def update(request):
+    week = int(request.GET.get('week_num', 0))
+
+    base_date = datetime.now() + timedelta(week * 7)
+    limit_date = datetime.now() + timedelta(7 + week * 7)
+
+    event_list = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
+        'start_date')
+
+    context = {
+        'event_all': event_list
+    }
+
+    return render(request, 'events/event-content.html', context)
 
 
 @login_required

@@ -32,8 +32,8 @@
                         <li><a href="/news">News</a></li>
                         <li><a href="/events" class="active">Events</a></li>
                         <li><a href="/officespace">Officespace</a></li>
-                        <!--<li><a href="/c/companies">Companies</a></li>-->
-                        <!--<li><a href="/c/people">People</a></li>-->
+                        <li><a href="/c/companies">Companies</a></li>
+                        <li><a href="/c/people">People</a></li>
                         {% for page in navbar_pages %}
                             <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
                         {% endfor %}  
@@ -138,40 +138,14 @@
                             <div id="search-form" class="row" style="display: none; padding-left: 7%">
                                 <input id="searchBar" class="form-control" type="text"
                                        placeholder="keyword..."
-                                       style="width: 100%;" onkeyup="realFilter()"/>
+                                       style="width: 100%;" onkeyup="realFilter(event)"/>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div id="event_items">
-                    {% if event_all %}
-
-                        {% regroup event_all by start_date|date:"Y-m-d" as events_by_day %}
-
-                        {% for day in events_by_day %}
-                            <div class="row row-margin-1" id="{{ day.list.0.start_date|date:"Y-m-j" }}"
-                                 style="display: none;">
-                                <div class="col-sm-12 col-xs-12">
-                                    <p class="events-date">{{ day.list.0.start_date|date:"l\, F j" }}</p>
-                                </div>
-                                {% for event in day.list %}
-                                    <div class="col-sm-3 col-xs-12">
-                                        <div class="event-item">
-                                            <p class="event-date">{{ event.start_date|date:"fA j N Y" }}</p>
-                                            <h2 class="event-name"><a href="{{ event.id }}">{{ event.title }}</a></h2>
-                                            <a href="{{ event.id }}" class="event-attending">posted
-                                                by {{ request.user.username }}</a>
-                                        </div><!-- /.event-item -->
-                                    </div>
-                                {% endfor %}
-
-                            </div><!-- /.row -->
-                        {% endfor %}
-
-                    {% endif %}
-
-                    <p id="weekNone" style="display: none;">Nothing this week!</p>
+                    {% include 'events/event-content.html' %}
 
                 </div>
                 <nav id="weekEvent" aria-label="Events list navigation" style="display: block;">
@@ -241,18 +215,15 @@
 {% endblock %}
 
 {% block customscript %}
-    <script type="text/javascript" src="{% static "events/js/eventsscript.js" %}"></script>
     <script>
-        var AllItemElements;  // save all Item Elements.
-        var currentDay;
-        var regroupElement = {};  // regroup all elements by week
-        var newElements;   // group new element only.
-        var weekCount = 0;  // calculate weekcount.
-
+        var week_num;
+        var totalPage;
+        var method;
+        var value;
         $(document).ready(function () {
-            AllItemElements = $("#event_items .row-margin-1");
+            week_num = 1;
+            method = 'index';
 
-            // visible or invisible search box.
             $('#search').click(function () {
 
                 if ($("#search-form").is(':visible')) {
@@ -261,6 +232,7 @@
                     $("#search-form").fadeIn();
                 }
             });
+
             $('#search_top').click(function () {
 
                 if ($("#search-form").is(':visible')) {
@@ -289,11 +261,74 @@
                 autoclose: true,
                 todayBtn: true
             });
-            currentDay = "{{ current_day }}";
 
-            Regroup(currentDay, AllItemElements);
-            showElements();
         });
+
+        function update_item() {
+            if (method === 'new') {
+                console.log(value);
+                $('#event_items').html('').load(
+                    "{% url 'new' %}?week_num=" + week_num
+                );
+            }
+
+            else if (method === 'feature') {
+                $('#event_items').html('').load(
+                    "{% url 'feature' %}?week_num=" + week_num
+                );
+            }
+
+            else if (method === 'search') {
+                $('#event_items').html('').load(
+                    "{% url 'search' %}?keyword=" + value + "&&week_num=" + week_num
+                );
+            }
+            else {
+                $('#event_items').html('').load(
+                    "{% url 'update' %}?week_num=" + week_num
+                );
+            }
+        }
+
+        function newEvent() {
+            week_num = 0;
+            method = 'new';
+            update_item();
+
+        }
+        function featuredEvent() {
+            week_num = 0;
+            method = 'feature';
+            update_item()
+        }
+        function allEvent() {
+            week_num = 0;
+            method = 'index';
+            update_item();
+        }
+
+        function realFilter(e) {
+            if (e.keyCode === 13) {
+                searchInput = document.getElementById("searchBar");
+                value = searchInput.value;
+                method = 'search';
+                week_num = 0;
+                update_item();
+            }
+        }
+
+        function previous_week() {
+            console.log(week_num);
+            week_num--;
+            update_item();
+
+        }
+
+        function next_week() {
+            week_num++;
+            update_item();
+
+        }
 
     </script>
 {% endblock %}
