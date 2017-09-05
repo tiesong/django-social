@@ -419,22 +419,28 @@
             if (method === 'category') {
                 console.log(value);
                 $('#article_list').html('').load(
-                    "{% url 'category' %}?category=" + value + "&&pg_num=" + pg_num, function () {
-                        loaded();
+                    "{% url 'category' %}?category=" + value + "&&pg_num=" + pg_num, function (response, status, xhr) {
+                       if (status === "success") {
+                           loaded();
+                       }
                     }
                 );
             }
             else if (method === 'search') {
                 $('#article_list').html('').load(
-                    "{% url 'searchNews' %}?keyword=" + value + "&&pg_num=" + pg_num, function () {
-                        loaded();
+                    "{% url 'searchNews' %}?keyword=" + value + "&&pg_num=" + pg_num, function (response, status, xhr) {
+                        if (status === "success") {
+                           loaded();
+                       }
                     }
                 );
             }
             else {
                 $('#article_list').html('').load(
-                    "{% url 'updateNews' %}?pg_num=" + pg_num, function () {
-                        loaded();
+                    "{% url 'updateNews' %}?pg_num=" + pg_num, function (response, status, xhr) {
+                        if (status === "success") {
+                           loaded();
+                       }
                     }
                 );
             }
