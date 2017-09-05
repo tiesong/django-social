@@ -49,14 +49,15 @@ def index(request):
 
 @login_required
 def update(request):
-
     page_number = request.GET.get('pg_num', 0)
 
     news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
     per = Paginator(news_list, 5)
 
     try:
-        per_page = per.page(page_number)
+        per_page = per.page(int(page_number))
+        print('per page;{}'.format(per_page))
+
     except Exception as e:
         print('Error: {}'.format(e))
         context = {
@@ -72,6 +73,7 @@ def update(request):
 
 @login_required
 def category(request):
+    print('category')
     category_name = request.GET.get('category')
     page_number = request.GET.get('pg_num', 0)
     category_name = str(category_name).replace("-", " ")
@@ -104,8 +106,11 @@ def search(request):
 
     keyword = request.GET.get('keyword', "")
     page_number = request.GET.get('pg_num', 0)
+    keyword = str(keyword).replace("-", " ")
+    news_list = News.objects.filter(title__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
 
-    news_list = News.objects.filter(title__icontains=keyword).filter(article__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
+    if len(news_list) == 0:
+        news_list = News.objects.filter(article__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
 
     per = Paginator(news_list, 5)
 

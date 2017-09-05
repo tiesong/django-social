@@ -135,7 +135,7 @@
 
         </section><!-- /.next-events -->
 
-        <section class="news-page">
+        <section id="filter_bar" class="news-page">
 
             <div class="container container-960">
 
@@ -143,10 +143,10 @@
 
                     <div class="filters-wrapper">
 
-                        <div class="events-filter news-filter">
+                        <div class="news-filter events-filter ">
                             <span class="filter-label">
                                 <ul class="list-unstyled">
-                                    <li><a id="search" href="javascript:void(0) ">Search</a></li>
+                                    <li><a id="search" href="javascript:void(0)">Search</a></li>
                                     {% for category in category_list %}
                                         {% if  category != "" %}
                                             <li><a href="javascript:void(0)"
@@ -159,7 +159,7 @@
                                 Articles...</a>
                         </div>
 
-                        <div class="events-filter news-filter">
+                        <div class="events-filter">
 
                             <div id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
                                 <div class="row">
@@ -304,6 +304,8 @@
             totalPage = "{{ total_page }}";
             // visible or invisible search box.
             $('#search').click(function () {
+                console.log('search');
+
                 if ($("#search-form").is(':visible')) {
                     $("#search-form").fadeOut();
                 } else {
@@ -313,9 +315,10 @@
 
             $(document.body).click(function (e) {
                 //Hide the search bar if visible
-                if (e.target.id !== "searchBar" && e.target.id !== "search" && e.target.id !== "contentCheck" && e.target.id !== "categoryCheck")
+                if (e.target.id !== "searchBar" && e.target.id !== "search" && e.target.id !== "contentCheck" && e.target.id !== "categoryCheck") {
                     document.getElementById("searchBar").value = "";
                     $("#search-form").hide();
+                }
             });
 
         });
@@ -329,12 +332,12 @@
             }
             else if (method === 'search') {
                 $('#article_list').html('').load(
-                    "{% url 'search' %}?keyword=" + value + "&&pg_num=" + pg_num
+                    "{% url 'searchNews' %}?keyword=" + value + "&&pg_num=" + pg_num
                 );
             }
             else {
                 $('#article_list').html('').load(
-                    "{% url 'update' %}?pg_num=" + pg_num
+                    "{% url 'updateNews' %}?pg_num=" + pg_num
                 );
             }
         }
@@ -351,7 +354,7 @@
             if (e.keyCode === 13) {
                 console.log('enter');
                 searchInput = document.getElementById("searchBar");
-                value = searchInput.value.toLowerCase();
+                value = searchInput.value.replace(" ", "-");
                 method = 'search';
                 pg_num = 1;
                 update_item(value);
