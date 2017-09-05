@@ -16,39 +16,38 @@ from django.contrib.auth.models import User
 # Create your views here.
 @login_required
 def index(request):
+
+    news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
+    total_articles = news_list.count()
+
+    per = Paginator(news_list, 5)
+    # total_page = per.count()
+    first_page = per.page(1)
+    navbar_pages = News.objects.filter(display_in_navbar=True)
+
+    # Return three articles to render in the featured articles fields in template
+    featured_news_list = News.objects.filter(featured=True).exclude(is_page=True).order_by('-pub_date')[1:3]
+    primary_feature = News.objects.order_by('feature_rank').exclude(is_page=True).order_by('-pub_date')[0]
+    category_list = Category.objects.all()
+
     try:
-        news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
-        total_articles = news_list.count()
+        feature_list = News.objects.order_by('-pub_date').exclude(is_page=True).order_by('-feature_rank')[0:3]
 
-        per = Paginator(news_list, 5)
-        # total_page = per.count()
-        first_page = per.page(1)
-        navbar_pages = News.objects.filter(display_in_navbar=True)
+    except:
+        feature_list = False
 
-        # Return three articles to render in the featured articles fields in template
-        featured_news_list = News.objects.filter(featured=True).exclude(is_page=True).order_by('-pub_date')[1:3]
-        primary_feature = News.objects.order_by('feature_rank').exclude(is_page=True).order_by('-pub_date')[0]
-        category_list = Category.objects.all()
+    context = {
+        'news_list': first_page,
+        'primary_feature': primary_feature,
+        'featured_news_list': featured_news_list,
+        'feature_list': feature_list,
+        'total_articles': total_articles,
+        'category_list': category_list,
+        'navbar_pages': navbar_pages,
+    }
+    return render(request, 'news/news.html', context)
 
-        try:
-            feature_list = News.objects.order_by('-pub_date').exclude(is_page=True).order_by('-feature_rank')[0:3]
 
-        except:
-            feature_list = False
-
-        context = {
-            'news_list': first_page,
-            'primary_feature': primary_feature,
-            'featured_news_list': featured_news_list,
-            'feature_list': feature_list,
-            'total_articles': total_articles,
-            'category_list': category_list,
-            'navbar_pages': navbar_pages,
-        }
-        return render(request, 'news/news.html', context)
-
-    except Exception as e:
-        print('error: {}'.format(e))
 @login_required
 def update(request):
     page_number = request.GET.get('pg_num', 0)
