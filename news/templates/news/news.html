@@ -88,7 +88,7 @@
         }
 
     </style>
-    <body>
+    <body onload="loaded()">
 
     {% if featured_image %}
         <header id="masthead" class="site-header" style="background:{{ featured_image.url }} no-repeat center / cover;">
@@ -388,8 +388,6 @@
                     $("#search-form").hide();
                 }
             });
-
-            check_updateloading();
 
         });
 
