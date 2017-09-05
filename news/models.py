@@ -38,7 +38,6 @@ class News(models.Model):
     def __str__(self):
     	return self.title
 
-'''
     def _get_portal_image(self):
         "Returns the person's full name."
         img_list = []
@@ -55,4 +54,3 @@ class News(models.Model):
         return img_list[0]["src"]
 
     portal_image = property(_get_portal_image)
-'''
