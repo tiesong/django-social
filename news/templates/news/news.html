@@ -394,7 +394,7 @@
 
         function check_loading() {
             var everythingLoaded = setInterval(function () {
-                if (/complete/.test(document.readyState)) {
+                if (document.readyState === 'complete') {
                     clearInterval(everythingLoaded);
                     loaded(); // this is the function that gets called when everything is loaded
                 }
