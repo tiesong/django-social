@@ -103,20 +103,16 @@
             <div class="container container-960">
 
                 <div class="row">
+                    {% for event_top in event_top_list %}
                     <div class="col-sm-6">
-                        <p class="news-category">11am 8 Aug 2017</p>
-                        <h2 class="news-title">Fintech Australia:<br> R&amp;D Tech Grants 101 Workshop</h2>
-                        <p class="news-description"><span class="posted-by">posted by<br> <a href="#">Xero</a></span> <a
-                                href="#" class="rsvp-btn">RSVP</a></p>
-                    </div>
+                        <p class="news-category">{{ event_top.start_date|date:"fA j N Y" }}</p>
+                        <h2 class="news-title">{{ event_top.title }}</h2>
+                        <p class="news-description"><span class="posted-by">posted by<br> <a href="{{ event_top.id }}">{{ request.user.username }}</a></span>
+                            <a href="{{ event_top.id }}" class="rsvp-btn">RSVP</a></p>
 
-                    <div class="col-sm-6">
-                        <p class="news-category">11am 8 Aug 2017</p>
-                        <h2 class="news-title">DisruptHealth: A Primer for Entrepenuers, Professionals and
-                            Patients.</h2>
-                        <p class="news-description"><span class="posted-by">posted by<br> <a href="#">BlockChain AU</a></span>
-                            <a href="#" class="rsvp-btn">RSVP</a></p>
                     </div>
+                    {% endfor %}
+
                 </div>
             </div><!-- /.container -->
         </section><!-- /.next-events -->

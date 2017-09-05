@@ -38,6 +38,8 @@ def index(request):
     event_list = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
         'start_date')
 
+    event_top_list = Event.objects.all().order_by('-start_date')[1:3]
+
     event_all = Event.objects.all()
     user_all = User.objects.all().count()
     event_featured = Event.objects.filter(featured=True)
@@ -47,6 +49,7 @@ def index(request):
     context = {
         'next_week': next_week,
         'previous_week': previous_week,
+        'event_top_list': event_top_list,
         'event_all': event_list,
         'event_featured': event_featured,
         'event_count': event_count,
@@ -85,9 +88,6 @@ def new(request):
 @login_required
 def feature(request):
     week = int(request.GET.get('week_num', 0))
-
-    base_date = datetime.now() + timedelta(week * 7)
-    limit_date = datetime.now() + timedelta(7 + week * 7)
 
     event_list = Event.objects.filter(featured=True).order_by('start_date')
 
