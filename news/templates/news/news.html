@@ -367,6 +367,8 @@
         var totalPage;
         var method;
         var value;
+        loading();
+        check_loading();
         $(document).ready(function () {
             pg_num = 1;
             totalPage = "{{ total_page }}";
@@ -388,7 +390,7 @@
                     $("#search-form").hide();
                 }
             });
-            check_loading();
+            ;
 
         });
 
