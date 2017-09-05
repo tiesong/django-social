@@ -88,7 +88,7 @@
         }
 
     </style>
-    <body onload="loaded()">
+    <body>
 
     {% if featured_image %}
         <header id="masthead" class="site-header" style="background:{{ featured_image.url }} no-repeat center / cover;">
@@ -242,7 +242,7 @@
                     </div>
                 </div>
 
-                <div id="article_list" class="news-page-list" style="display: none;">
+                <div id="article_list" class="news-page-list" style="display: none;" onload="loaded()">
 
                     {% include 'news/news-content.html' %}
 
@@ -388,29 +388,18 @@
                     $("#search-form").hide();
                 }
             });
+            check_loading();
 
         });
 
-        function check_indexloading(){
-            $( "#article_list" ).load( "{% url 'index' %}", function() {
-              loaded();
-            });
-        }
+        function check_loading() {
+            var everythingLoaded = setInterval(function () {
+                if (/loaded|complete/.test(document.readyState)) {
+                    clearInterval(everythingLoaded);
+                    loaded(); // this is the function that gets called when everything is loaded
+                }
+            }, 10);
 
-        function check_categoryloading() {
-            $( "#article_list" ).load( "{% url 'category' %}", function() {
-              loaded();
-            });
-        }
-        function check_searchloading() {
-            $( "#article_list" ).load( "{% url 'searchNews' %}", function() {
-              loaded();
-            });
-        }
-        function check_updateloading() {
-            $( "#article_list" ).load( "{% url 'updateNews' %}", function() {
-              loaded();
-            });
         }
 
         function loaded() {
@@ -427,24 +416,26 @@
 
         function update_item() {
             loading();
-
             if (method === 'category') {
                 console.log(value);
-                check_categoryloading();
                 $('#article_list').html('').load(
-                    "{% url 'category' %}?category=" + value + "&&pg_num=" + pg_num
+                    "{% url 'category' %}?category=" + value + "&&pg_num=" + pg_num, function () {
+                        loaded();
+                    }
                 );
             }
             else if (method === 'search') {
-                check_searchloading();
                 $('#article_list').html('').load(
-                    "{% url 'searchNews' %}?keyword=" + value + "&&pg_num=" + pg_num
+                    "{% url 'searchNews' %}?keyword=" + value + "&&pg_num=" + pg_num, function () {
+                        loaded();
+                    }
                 );
             }
             else {
-                check_updateloading();
                 $('#article_list').html('').load(
-                    "{% url 'updateNews' %}?pg_num=" + pg_num
+                    "{% url 'updateNews' %}?pg_num=" + pg_num, function () {
+                        loaded();
+                    }
                 );
             }
         }
