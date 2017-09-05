@@ -329,6 +329,9 @@
 }
 
 @media only screen and (max-width : 480px) {
+	.booking-title {
+		font-size: 25px;
+	}
 	.bookings-list .bookings .table-section #bookings_table_wrapper > div.row:first-child > div,
 	.booking-create .bookings .table-section #bookings_table_wrapper > div.row:first-child > div {
 		width: auto;
