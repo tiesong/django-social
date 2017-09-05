@@ -242,12 +242,13 @@
                     </div>
                 </div>
 
+                <div class="loader" style="display: block; margin-top: 10%"></div>
                 <div id="article_list" class="news-page-list" style="display: none;" onload="loaded()">
 
                     {% include 'news/news-content.html' %}
 
                 </div><!-- /.news-list -->
-                <div class="loader" style="display: block; margin-top: 10%"></div>
+
                 <nav aria-label="Events list navigation" style="display: block;">
                     <ul class="pagination">
                         <li class="text-pagination">
@@ -367,8 +368,11 @@
         var totalPage;
         var method;
         var value;
-        loading();
-        check_loading();
+        $(function () {
+            loading();
+            check_loading();
+        });
+
         $(document).ready(function () {
             pg_num = 1;
             totalPage = "{{ total_page }}";
@@ -422,9 +426,9 @@
                 console.log(value);
                 $('#article_list').html('').load(
                     "{% url 'category' %}?category=" + value + "&&pg_num=" + pg_num, function (response, status, xhr) {
-                       if (status === "success") {
-                           loaded();
-                       }
+                        if (status === "success") {
+                            loaded();
+                        }
                     }
                 );
             }
@@ -432,8 +436,8 @@
                 $('#article_list').html('').load(
                     "{% url 'searchNews' %}?keyword=" + value + "&&pg_num=" + pg_num, function (response, status, xhr) {
                         if (status === "success") {
-                           loaded();
-                       }
+                            loaded();
+                        }
                     }
                 );
             }
@@ -441,8 +445,8 @@
                 $('#article_list').html('').load(
                     "{% url 'updateNews' %}?pg_num=" + pg_num, function (response, status, xhr) {
                         if (status === "success") {
-                           loaded();
-                       }
+                            loaded();
+                        }
                     }
                 );
             }
