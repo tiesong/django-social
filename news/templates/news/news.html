@@ -389,9 +389,15 @@
                 }
             });
 
-            check_updateloading();
+            check_indexloading();
 
         });
+
+        function check_indexloading(){
+            $( "#article_list" ).load( "{% url 'index' %}", function() {
+              loaded();
+            });
+        }
 
         function check_categoryloading() {
             $( "#article_list" ).load( "{% url 'category' %}", function() {
