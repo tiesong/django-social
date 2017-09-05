@@ -389,7 +389,7 @@
                 }
             });
 
-            check_indexloading();
+            check_updateloading();
 
         });
 
@@ -417,14 +417,14 @@
 
         function loaded() {
             console.log('loaded');
-            $("#article_list").show();
             $('.loader').hide();
+            $("#article_list").show();
+
         }
 
         function loading() {
-            $("#article_list").hide();
             $('.loader').show();
-
+            $("#article_list").hide();
         }
 
         function update_item() {
