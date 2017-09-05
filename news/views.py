@@ -209,9 +209,6 @@ def create(request):
 
 @login_required
 def edit(request, news_article_id):
-    # return HttpResponse('Hello from Python!')
-    # return latest four articles to present as 'related news'.
-    # Change to be related to tags in future (so that it is genuinely related news)
 
     news_article = News.objects.get(id=news_article_id)
     related_news = News.objects.filter().order_by('-pub_date')[0:4]
@@ -232,37 +229,39 @@ def edit(request, news_article_id):
     }
 
     if request.POST:
-        body = request.POST['body']
-        title = request.POST['title']
+        try:
+            body = request.POST['body']
+            title = request.POST['title']
 
-        feature_rank = request.POST.get('feature_rank', None)
-        selected_tag = request.POST.get('category', None)
+            feature_rank = request.POST.get('feature_rank', None)
+            selected_tag = request.POST.get('category', None)
 
-        is_page = request.POST.get('is_page', None)
-        if is_page == 'OK':
-            is_page = True
-        else:
-            is_page = False
+            is_page = request.POST.get('is_page', None)
+            if is_page == 'OK':
+                is_page = True
+            else:
+                is_page = False
 
-        display_in_navbar = request.POST.get('display_in_navbar', None)
-        if display_in_navbar == 'OK':
-            display_in_navbar = True
-        else:
-            display_in_navbar = False
+            display_in_navbar = request.POST.get('display_in_navbar', None)
+            if display_in_navbar == 'OK':
+                display_in_navbar = True
+            else:
+                display_in_navbar = False
 
-        tag = Category.objects.filter(tag=selected_tag).first()
+            tag = Category.objects.filter(tag=selected_tag).first()
 
-        news_article.article = body
-        news_article.title = title
-        news_article.feature_rank = feature_rank
-        news_article.category.add(tag)
-        news_article.is_page = is_page
-        news_article.display_in_navbar = display_in_navbar
+            news_article.article = body
+            news_article.title = title
+            news_article.feature_rank = feature_rank
+            news_article.category.add(tag)
+            news_article.is_page = is_page
+            news_article.display_in_navbar = display_in_navbar
 
-        news_article.save()
+            news_article.save()
 
-        return redirect('detail', news_article_id=news_article.id)
-
+            return redirect('detail', news_article_id=news_article.id)
+        except Exception as e:
+            print ('Error: {}'.format(e))
     return render(request, 'news/news-edit.html', context)
 
 
@@ -276,36 +275,23 @@ def delete(request, news_article_id):
     return redirect('/dashboard')
 
 
-# @login_required
-# def category(request, keyword):
-#     """
-#     arrange the list by category
-#     :param request:
-#     :param keyword:
-#     :return:
-#     """
-#     news_json = []
-#     try:
-#         tag = Category.objects.filter(tag=keyword).first()
-#         news_list = News.objects.filter(category=tag)
-#
-#         for news_item in news_list:
-#             print(news_item.owner)
-#             news_json.append({
-#                 'category': category,
-#                 'img': previewImage(news_item.article),
-#                 'title': news_item.title,
-#                 'id': news_item.id,
-#                 'snippet': snippet(news_item.article),
-#                 'owner': news_item.owner
-#             })
-#
-#     except Exception as e:
-#         print('error: {}'.format(e))
-#         news_json = []
-#
-#     # print('news_json: {}'.format(news_json))
-#     response = HttpResponse()
-#     response['Content-Type'] = "text/javascript"
-#     response.write(news_json)
-#     return response
+def previewImage(news_articleid, html_body):
+    """
+    Preview image from article.
+    :param html_body: 
+    :return: 
+    """
+    img_list = []
+
+    soup = BeautifulSoup(html_body, "html.parser")
+
+    for image in soup.select("img"):
+        img_list.append(image)
+
+    # Return Sample Image
+    if len(img_list) == 0:
+        return 'https://teamedup-ybf.s3.amazonaws.com/static/news/img/news-tmp.png'
+
+    print('img: {}'.format(img_list[0]["src"]))
+    # Return base64 image.
+    return img_list[0]["src"]
