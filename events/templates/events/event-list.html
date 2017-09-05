@@ -106,9 +106,9 @@
                     {% for event_top in event_top_list %}
                     <div class="col-sm-6">
                         <p class="news-category">{{ event_top.start_date|date:"fA j N Y" }}</p>
-                        <h2 class="news-title">{{ event_top.title }}</h2>
+                        <h2 class="news-title">{{ event_top.title }}</a></h2>
                         <p class="news-description"><span class="posted-by">posted by<br> <a href="{{ event_top.id }}">{{ request.user.username }}</a></span>
-                            <a href="{{ event_top.id }}" class="rsvp-btn">RSVP</a></p>
+                            <a href="{{ event_top.id }}" class="rsvp-btn">View Details</a></p>
 
                     </div>
                     {% endfor %}

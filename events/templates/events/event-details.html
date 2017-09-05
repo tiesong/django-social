@@ -70,7 +70,7 @@
                     <p class="event-end-date">To: {{ event.pub_date }}</p>
                     <h1 class="event.title">{{ event.title }}</h1>
                     <p>posted by <a href="">MediHealth</a></p>
-                    <a class="btn btn-transparent-white" href="#">RSVP</a>
+                    <a class="btn btn-transparent-white" href="{{ event.event_url }}">RSVP</a>
                 </div>
             </div>
         </div>
@@ -86,8 +86,8 @@
 
                     <div class="col-sm-8">
                         <h3>Description | <a href="edit">Edit</a></h3>
-                        <div class="content-img"><img src="{{ event.description | safe | previewImage }}" alt="No Description Image"></div>
-                        <p>{{ event.description | safe | fulltext}}</p>
+                        
+                        <p>{{ event.description | safe }}</p>
 
                     </div>
 
@@ -101,12 +101,14 @@
                                 <strong>Cost</strong>: Free</p>
 
                             <div class="event-details-buttons">
-                                <a href="#" class="btn btn-transparent-dark">RSVP to this event</a>
-                                <a href="#" class="btn btn-transparent-dark">Add to calendar</a>
-                                <a href="#" class="btn btn-transparent-dark">Get directions</a>
+                                <a href="{{ event.event_url }}" class="btn btn-transparent-dark">RSVP to this event</a>
+                                <!--<a href="#" class="btn btn-transparent-dark">Add to calendar</a>
+                                <a href="#" class="btn btn-transparent-dark">Get directions</a>-->
                             </div>
 
-                            <p class="view-event-btn"><a href="#">View event on Meetup.com</a></p>
+                            <!--<p class="view-event-btn"><a href="#">View event on Meetup.com</a></p>-->
+
+                            <br>
 
                             <div class="social-share">
                                 <h3>Share Event</h3>
