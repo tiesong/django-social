@@ -134,8 +134,8 @@
                                 <a class="twitter" href="#">Twitter</a>
                                 <a class="facebook" href="#">Facebook</a>
                                 <a class="email" href="#">Email</a>
-                                <a class="reddit" href="#">Reddit</a>
-                                <a class="weibo" href="#">Weibo</a>
+{#                                <a class="reddit" href="#">Reddit</a>#}
+{#                                <a class="weibo" href="#">Weibo</a>#}
                                 <a class="linkedin" href="#">LinkedIn</a>
                             </div>
 
@@ -200,4 +200,17 @@
 
     </div><!-- /#main -->
 
+{% endblock %}
+
+{% block customscript %}
+    <script>
+    $(document).ready(function () {
+        var news_url = window.location.href;
+        $('.social-share .twitter').attr('href', 'https://twitter.com/home?status=' + news_url);
+        $('.social-share .facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + news_url);
+        $('.social-share .email').attr('href', 'mailto:?&body=' + news_url);
+        $('.social-share .linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + news_url);
+    })
+
+    </script>
 {% endblock %}
