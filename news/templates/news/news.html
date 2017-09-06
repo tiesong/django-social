@@ -367,12 +367,10 @@
         var totalPage;
         var method;
         var value;
-        $(function () {
-            loading();
-            check_loading();
-        });
+        window.onload = loading();
 
         $(document).ready(function () {
+            check_loading();
             pg_num = 1;
             totalPage = "{{ total_page }}";
             // visible or invisible search box.
@@ -393,7 +391,7 @@
                     $("#search-form").hide();
                 }
             });
-            ;
+
 
         });
 
