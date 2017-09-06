@@ -65,7 +65,7 @@
         <div class="hero">
 
             <div class="container container-960">
-            
+
                 <div class="hero-text">
                     {% if user.profile.image %}
                         <img src="{{ user.profile.image.url }}" alt="" class="company-page-thumb">
@@ -79,7 +79,7 @@
 
             </div>
 
-        </div><!-- /.event-details-hero -->        
+        </div><!-- /.event-details-hero -->
 
     </header><!-- /#header -->
 
@@ -102,7 +102,7 @@
                     <div class="col-sm-4">
 
                         <div class="event-details-sidebar">
- 
+
                             <h3>Details</h3>
                             <p class="mb-30">
                             {% if user.email %}
@@ -132,7 +132,13 @@
                             {% endif %}
 
                             <p class="mb-30"><strong>Company</strong>: {{ user.profile.companies.first }}<br></p>
-                            
+
+                            <h3>Categories</h3>
+                            <p class="mb-30">
+                                {% for cat in cats %}
+                                    <span>{{ cat }}</span><br>
+                                {% endfor %}
+                            </p>
                             <div class="event-details-buttons mb-30">
                                 <a href="#" class="btn btn-transparent-dark" data-toggle="modal" data-target="#edit-profile-modal">Edit Profile</a>
                                 <hr>
@@ -156,18 +162,18 @@
                 </div>
 
             </div><!-- /.container -->
-            
+
         </section><!-- /.event-details-content -->
 
     </div><!-- /#main -->
 
-    
+
     <footer id="colophon" class="site-footer pages-footer">
 
         <div class="container container-960">
-        
+
             <div class="row">
-        
+
                 <div class="footer-col">
                     <a href="#" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt=""></a>
                 </div><!-- /.footer-col -->
@@ -180,7 +186,7 @@
                         <li><a href="#">Submit a story</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Events</h4>
                     <ul>
@@ -189,7 +195,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Startups</h4>
                     <ul>
@@ -197,7 +203,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Companies</h4>
                     <ul>
@@ -205,7 +211,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Jobs</h4>
                     <ul>
@@ -213,7 +219,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Profile</h4>
                     <ul>
@@ -221,7 +227,7 @@
                         <li><a href="#">Edit Profile</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
@@ -231,7 +237,7 @@
                         <li><a href="#">Legal</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col pull-right text-right">
                     <ul>
                         <li><a href="#">Twitter</a></li>
@@ -241,8 +247,8 @@
                     </ul>
                 </div><!-- /.footer-col -->
 
-            </div>  
-                    
+            </div>
+
         </div><!-- /.container -->
 
     </footer><!-- /#footer -->
@@ -251,11 +257,11 @@
     <div id="edit-profile-modal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                
+
                 <div class="modal-body">
 
                     <div class="modal-body-left">
-                    
+
                         <h4 class="modal-title">Edit Profile</h4>
                         <form class="edit-profile-form">
                             <div class="form-group">
@@ -289,9 +295,9 @@
                     </div>
 
                     <div class="modal-body-right"></div>
-                    
+
                 </div>
-               
+
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /#edit-profile-modal -->
@@ -299,9 +305,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{% static 'community/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'community/js/script.js' %}"></script>
-  
+
 </body>
 {% endblock %}

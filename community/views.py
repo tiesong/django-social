@@ -27,9 +27,16 @@ def people_list(request):
 def profile(request, profile_id):
 	user = User.objects.get(pk=profile_id)
 	navbar_pages = News.objects.filter(display_in_navbar=True)
+	news = News.objects.filter(owner=user)
+	cats = []
+	for new in news:
+		for category in new.category.all():
+			if category not in cats:
+				cats.append(category)
 
 	context = {
 		'user': user,
+		'cats': cats,
 		'navbar_pages': navbar_pages,
 	}
 	return render(request, 'community/profile.html', context)
