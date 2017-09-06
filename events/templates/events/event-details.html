@@ -32,7 +32,7 @@
                         <!--<li><a href="/c/people">People</a></li>-->
                         {% for page in navbar_pages %}
                             <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                        {% endfor %}  
+                        {% endfor %}
                     </ul>
 
                 </nav><!-- /.site-navigation -->
@@ -76,6 +76,7 @@
         </div>
 
     </header><!-- /#header -->
+
     <div id="main" class="site-main">
 
         <section class="event-details-content">
@@ -86,7 +87,7 @@
 
                     <div class="col-sm-8">
                         <h3>Description | <a href="edit">Edit</a></h3>
-                        
+
                         <p>{{ event.description | safe }}</p>
 
                     </div>
@@ -96,10 +97,28 @@
                         <div class="event-details-sidebar">
 
                             <h3>Event Details</h3>
-                            <p>{{ event.start_date|date:"fA j N Y" }}<br>
-                                <strong>Venue</strong>: Your Butter Factory<br>
-                                <strong>Cost</strong>: Free</p>
+                            <div class="form-group">
+                                <label for="event-name">Title: </label>
+                                <span id="event-name">{{ event.title }}</span>
 
+                            </div>
+
+                            <div class="form-group">
+                                <label for="startdatetime">Start date & time: </label>
+                                <span id="startdatetime">{{ event.start_date}}</span>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="enddatetime">End date & time: </label>
+                                <span id="enddatetime">{{ event.pub_date }}</span>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="event-url">Event URL: </label>
+                                <span id="event-url">{{ event.event_url }}</span>
+                            </div>
+
+                            <br>
                             <div class="event-details-buttons">
                                 <a href="{{ event.event_url }}" class="btn btn-transparent-dark">RSVP to this event</a>
                                 <!--<a href="#" class="btn btn-transparent-dark">Add to calendar</a>
