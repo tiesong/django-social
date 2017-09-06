@@ -37,9 +37,14 @@ def fulltext(html_body):
 
     for p in soup.select("p"):
 
-        snippet_txt += p.text
+        snippet_txt += remove_img_tags(p.text)
 
     return snippet_txt
+
+
+def remove_img_tags(data):
+    p = re.compile(r'<img.*?/>')
+    return p.sub('', data)
 
 
 @register.filter(name="previewImage")
