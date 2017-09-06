@@ -25,6 +25,23 @@ def snippet(html_body):
     return snippet_txt[:150]
 
 
+@register.filter(name="shortsnippet")
+def shortsnippet(html_body):
+    """
+    Return snippet from html body
+    :param html_body: 
+    :return: 
+    """
+    snippet_txt = ""
+    soup = BeautifulSoup(html_body, "html.parser")
+
+    for p in soup.select("p"):
+
+        snippet_txt += p.text
+
+    return snippet_txt[:20]
+
+
 @register.filter(name="fulltext")
 def fulltext(html_body):
     """
@@ -40,6 +57,11 @@ def fulltext(html_body):
         snippet_txt += p.text
 
     return snippet_txt
+
+
+def remove_img_tags(data):
+    p = re.compile(r'<img.*?/>')
+    return p.sub('', data)
 
 
 @register.filter(name="previewImage")

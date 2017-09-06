@@ -3,6 +3,7 @@
 <head>
 
   {% load staticfiles %}
+    {% load app_filter %}
 
     <!-- Basic Page Needs
     ================================================== -->
@@ -91,7 +92,7 @@
                         <h2 class="news-title">{{feature_list.title}}</h2>
                         <p class="news-author">by <a href="/c/people/{{feature_list.owner.id}}">{{feature_list.owner}}</a></p>
 
-                        <p class="news-description">{{ feature_list.article|safe|slice:":40" }}</p>
+                        <p class="news-description">{{ feature_list.article|safe|shortsnippet }}</p>
 
                         <a href="/news/{{ feature_list.id }}" class="read-more">Keep reading &rarr;</a>
 

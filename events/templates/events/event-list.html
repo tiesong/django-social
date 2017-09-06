@@ -106,7 +106,7 @@
                     {% for event_top in event_top_list %}
                     <div class="col-sm-6">
                         <p class="news-category">{{ event_top.start_date|date:"fA j N Y" }}</p>
-                        <h2 class="news-title">{{ event_top.title }}</a></h2>
+                        <h2 class="news-title">{{ event_top.title }}</h2>
                         <p class="news-description"><span class="posted-by">posted by<br> <a href="{{ event_top.id }}">{{ request.user.username }}</a></span>
                             <a href="{{ event_top.id }}" class="rsvp-btn">View Details</a></p>
 
@@ -264,24 +264,24 @@
             if (method === 'new') {
                 console.log(value);
                 $('#event_items').html('').load(
-                    "{% url 'new' %}?week_num=" + week_num
+                    "{% url 'newEvents' %}?week_num=" + week_num
                 );
             }
 
             else if (method === 'feature') {
                 $('#event_items').html('').load(
-                    "{% url 'feature' %}?week_num=" + week_num
+                    "{% url 'featureEvents' %}?week_num=" + week_num
                 );
             }
 
             else if (method === 'search') {
                 $('#event_items').html('').load(
-                    "{% url 'search' %}?keyword=" + value + "&&week_num=" + week_num
+                    "{% url 'searchEvents' %}?keyword=" + value + "&&week_num=" + week_num
                 );
             }
             else {
                 $('#event_items').html('').load(
-                    "{% url 'update' %}?week_num=" + week_num
+                    "{% url 'updateEvents' %}?week_num=" + week_num
                 );
             }
         }
