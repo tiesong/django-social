@@ -106,29 +106,25 @@
                             <h3>Details</h3>
                             <p class="mb-30">
                             {% if user.email %}
-                            <strong>Email</strong>: <a href="mailto:{{user.email}}">{{user.email}}</a><br>
+                            <strong>Email</strong>: <span>{{user.email}}<span><br>
                             {% endif %}
                             {% if user.profile.phone_number %}
-                            <strong>Phone</strong>: <a href="tel:{{ user.profile.phone_number }}">{{ user.profile.phone_number }}</a><br>
+                            <strong>Phone</strong>: <span>{{ user.profile.phone_number }}<span><br>
                             {% endif %}
                             {% if user.profile.website %}
-                            <strong>Website</strong>: <a href="{{user.profile.website}}">{{user.profile.website}}</a></p>
+                            <strong>Website</strong>: <span>{{user.profile.website}}<span></p>
                             {% endif %}
 
                             {% if user.profile.twitter %}
-                            <p class="mb-30"><strong>Twitter</strong>: <a href="http://www.twitter.com/{{user.profile.twitter}}">{{user.profile.twitter}}</a><br>
+                            <p class="mb-30"><strong>Twitter</strong>: <span>{{user.profile.twitter}}<span><br>
                             {% endif %}
 
                             {% if user.profile.facebook %}
-                            <strong>Facebook</strong>: <a href="{{ user.profile.facebook }}">{{ user.profile.facebook }}</a><br>
+                            <strong>Facebook</strong>: <span>{{ user.profile.facebook }}</a><br>
                             {% endif %}
 
                             {% if user.profile.linkedin %}
-                            <strong>LinkedIn</strong>: <a href="{{ user.profile.linkedin }}">{{ user.profile.linkedin }}</a><br>
-                            {% endif %}
-
-                            {% if user.profile.weibo %}
-                            <strong>Weibo</strong>: <a href="{{.user.profile.weibo }}">{{ user.profile.weibo }}</a></p>
+                            <strong>LinkedIn</strong>: <span>{{ user.profile.linkedin }}</span><br>
                             {% endif %}
 
                             <p class="mb-30"><strong>Company</strong>: {{ user.profile.companies.first }}<br></p>
@@ -146,12 +142,10 @@
                             </div>
 
                             <div class="social-share">
-                                <h3>Share Company</h3>
+                                <h3>Share Profile</h3>
                                 <a class="twitter" href="#">Twitter</a>
                                 <a class="facebook" href="#">Facebook</a>
                                 <a class="email" href="#">Email</a>
-                                <a class="reddit" href="#">Reddit</a>
-                                <a class="weibo" href="#">Weibo</a>
                                 <a class="linkedin" href="#">LinkedIn</a>
                             </div>
 

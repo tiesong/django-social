@@ -33,7 +33,6 @@ class Profile(models.Model):
     twitter = models.CharField(max_length=155, blank=True, null=True)
     facebook = models.CharField(max_length=155, blank=True, null=True)
     linkedin = models.CharField(max_length=155, blank=True, null=True)
-    weibo = models.CharField(max_length=155, blank=True, null=True)
 
     bio = HTMLField(blank=True)
 
