@@ -7,6 +7,42 @@
 {% else %}
     <header id="masthead" class="site-header" style="background:{% static 'news/img/ybf-bg.jpg' %} no-repeat center / cover;">
 {% endif %}-->
+<style>
+    .loader {
+        position: relative;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
 <header id="masthead" class="site-header" style="background:{% static 'communnity/img/ybf-bg.jpg' %} no-repeat center / cover;">
     <div class="top-nav">
 
@@ -92,7 +128,7 @@
                                 <li><a id="search" href="javascript:void(0)">Search</a></li>
                                 {% for tag in tag_list %}
                                     {% if  tag != "" %}
-                                        <li><a href="javascript:void(0)"
+                                        <li class="user-tags"><a href="javascript:void(0)"
                                                onclick="clickTag('{{ tag }}');" style="text-transform: capitalize;">{{ tag }}</a></li>
                                     {% endif %}
                                 {% endfor %}
@@ -102,9 +138,9 @@
                             Users...</a>
                     </div>
 
-                    <div class="events-filter">
+                    <div id="search-form" class="events-filter" style="display: none; padding-top: 0;">
 
-                        <div id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
+                        <div class="container col-sm-12" style="padding-left: 7%">
                             <div class="row">
                                 <div class="controls">
                                     <input id="searchBar" class="form-control" type="text" placeholder="keyword..."

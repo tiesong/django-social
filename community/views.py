@@ -81,7 +81,7 @@ def search(request):
 	keyword = str(keyword).replace("-", " ")
 	user_list = User.objects.filter(Q(username__icontains=keyword) | Q(email__icontains=keyword) | Q(first_name__icontains=keyword) | Q(last_name__icontains=keyword))
 
-	user_ids = Profile.objects.filter(Q(phone_number__icontains=keyword) | Q(bio__icontains=keyword)).values_list('user', flat=True)
+	user_ids = Profile.objects.filter(Q(tags__tag__icontains=keyword) | Q(companies__name__icontains=keyword)).values_list('user', flat=True)
 	profile_list = User.objects.filter(id__in=set(user_ids))
 
 	user_list = user_list | profile_list
