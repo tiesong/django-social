@@ -132,9 +132,6 @@ def search(request):
 
 @login_required
 def detail(request, news_article_id):
-    # return HttpResponse('Hello from Python!')
-
-    # return latest four articles to present as 'related news'. Change to be related to tags in future (so that it is genuinely related news)
 
     news_article = News.objects.get(id=news_article_id)
     related_news = News.objects.filter().exclude(is_page=True).order_by('-pub_date')[0:4]
