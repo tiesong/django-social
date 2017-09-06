@@ -5,10 +5,10 @@ from events import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^create/$', views.create, name='create'),
-    url(r'^new/$', views.new, name='new'),
-    url(r'^feature/$', views.feature, name='feature'),
-    url(r'^search/$', views.search, name='search'),
-    url(r'^update/$', views.update, name='update'),
+    url(r'^new/$', views.new, name='newEvents'),
+    url(r'^feature/$', views.feature, name='featureEvents'),
+    url(r'^search/$', views.search, name='searchEvents'),
+    url(r'^update/$', views.update, name='updateEvents'),
 
     # ex: /polls/5/
     url(r'^(?P<event_id>[0-9]+)/$', views.detail, name='detail'),
