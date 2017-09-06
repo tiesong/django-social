@@ -13,11 +13,17 @@ class Company(models.Model):
     def __str__(self):
         return self.name
 
+class Tag(models.Model):
+    tag = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.tag
 
 # Need to update settings.py to manage media files
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     tagline = models.CharField(max_length=155, null=True, blank=True)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     image = models.ImageField(upload_to='profile_images/%Y/%m/%d/', null=True, blank=True)
 

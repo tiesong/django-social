@@ -134,9 +134,9 @@
                             <p class="mb-30"><strong>Company</strong>: {{ user.profile.companies.first }}<br></p>
 
                             <h3>Categories</h3>
-                            <p class="mb-30">
+                            <p class="mb-30" style="text-transform:capitalize;">
                                 {% for cat in cats %}
-                                    <span>{{ cat }}</span><br>
+                                    <strong>{{ cat }}</strong><br>
                                 {% endfor %}
                             </p>
                             <div class="event-details-buttons mb-30">

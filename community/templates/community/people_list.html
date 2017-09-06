@@ -1,7 +1,6 @@
 {% extends 'community/base.html' %}
 {% block content %}
 {% load staticfiles %}
-<body>
 
 <!--{% if featured_image %}
     <header id="masthead" class="site-header" style="background:{{ featured_image.url }} no-repeat center / cover;">
@@ -9,225 +8,373 @@
     <header id="masthead" class="site-header" style="background:{% static 'news/img/ybf-bg.jpg' %} no-repeat center / cover;">
 {% endif %}-->
 <header id="masthead" class="site-header" style="background:{% static 'communnity/img/ybf-bg.jpg' %} no-repeat center / cover;">
-        <div class="top-nav">
-
-            <div class="container container-960">
-
-                <a href="/news" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
-
-                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
-                    <span class="lines line-top"></span>
-                    <span class="lines line-middle"></span>
-                    <span class="lines line-bottom"></span>
-                </button><!-- /.lines-button -->
-
-                <nav id="primary-navigation" class="site-navigation">
-
-                    <a href="/" class="site-logo visible-xs" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
-
-                    <ul>
-                        <li><a href="/news">News</a></li>
-                        <li><a href="/events">Events</a></li>
-                        <li><a href="/c/companies">Companies</a></li>
-                        <li class="active"><a href="/c/people">People</a></li>
-                        {% for page in navbar_pages %}
-                            <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                        {% endfor %}         
-                    </ul>
-
-                </nav><!-- /.site-navigation -->
-
-                <div class="user-profile dropdown">
-
-                    <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'community/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
-                        <div class="user-profile-meta hidden-xs">
-                            <div class="user-profile-meta-inner">
-                                {{request.user.username}}
-                            </div>
-                        </div>
-                    </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
-                        <li><a href="/c/people/{{request.user.id}}">Profile</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li class="logout-btn"><a href="/logout">Logout</a></li>
-                    </ul>
-
-                </div><!-- /.user-profile -->
-
-            </div><!-- /.container -->
-
-        </div><!-- /.top-nav -->
-
-        <div class="hero event-details-hero">
-
-            <div class="container">
-            
-                <div class="hero-text">
-                    <p class="news-category">Your tribe</p>
-                    <h1 class="hero-title">PEOPLE OF YBF</h1>
-                </div>
-
-            </div>
-
-        </div>        
-
-    </header><!-- /#header -->
-
-
-    <div id="main" class="site-main">
-
-        <section class="news-page">
-
-            <div class="container container-960">
-
-                <div class="news-page-list">
-
-                {% for person in user_list %}
-                    <div class="news-single-item">
-                        <div class="news-single-thumb">
-                        
-                        <!-- update to test if user has profile image -->
-
-                        {% if person.profile.image %}
-                            <img src="{{ person.profile.image.url|safe }}" alt="">
-                        {% else %}
-                            <img src="{% static 'community/img/news-tmp.png' %}" alt="">
-                        {% endif %}
-
-                        
-                        </div>
-                        <div class="news-single-content">
-                            <p class="news-category">Works with: {{ person.profile.companies.first }}</p>
-                            <h3 class="news-title">{{ person.first_name }} {{ person.last_name }}</h3>
-                            
-                            <p class="news-author">
-
-                                <a href="#"> {{ person.email }} </a> {% if person.profile.phone_number %}| <a href="#"> {{ person.profile.phone_number }} </a>{% endif %}
-
-                            </p>
-                            <p class="news-description">{{ person.profile.bio|safe|slice:":150" }}</p>
-                            <a href="{{ person.id }}" class="read-more">View profile &rarr;</a>
-                        </div>
-                    </div><!-- /.news-single-item -->
-                {% endfor %}
-
-                </div><!-- /.news-list -->
-            
-                <nav aria-label="News list navigation">
-                    <ul class="pagination text-center">
-                        
-                        <li class="pull-left text-pagination">
-                            <a href="?page={{ latest_news_list.previous_page_number }}" aria-label="Previous">
-                                <span aria-hidden="true">&larr; Prev Page</span>
-                            </a>
-                        </li>
-                        
-
-                        
-                        <li class="pull-right text-pagination">
-                            <a href="?page={{ latest_news_list.next_page_number }}" aria-label="Next">
-                                <span aria-hidden="true">Next Page &rarr;</span>
-                            </a>
-                        </li>
-                        
-                    </ul>
-                    <p class="total-items">Page {{ latest_news_list.number }} of {{ latest_news_list.paginator.num_pages }}.</p>
-                    <p class="total-items">{{total_articles}} total items</p>
-                </nav>
-
-            </div><!-- /.container -->
-            
-        </section><!-- /.news-page -->
-
-    </div><!-- /#main -->
-
-    
-    <footer id="colophon" class="site-footer pages-footer">
+    <div class="top-nav">
 
         <div class="container container-960">
-        
-            <div class="row">
-        
-                <div class="footer-col">
-                    <a href="#" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""></a>
-                </div><!-- /.footer-col -->
 
-                <div class="footer-col">
-                    <h4>News</h4>
-                    <ul>
-                        <li><a href="#">Current</a></li>
-                        <li><a href="#">Archive</a></li>
-                        <li><a href="#">Submit a story</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col">
-                    <h4>Events</h4>
-                    <ul>
-                        <li><a href="#">Browse</a></li>
-                        <li><a href="#">Attending</a></li>
-                        <li><a href="#">Manage</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col">
-                    <h4>Startups</h4>
-                    <ul>
-                        <li><a href="#">Browse</a></li>
-                        <li><a href="#">Manage</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col">
-                    <h4>Companies</h4>
-                    <ul>
-                        <li><a href="#">Browse</a></li>
-                        <li><a href="#">Manage</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col">
-                    <h4>Jobs</h4>
-                    <ul>
-                        <li><a href="#">Browse</a></li>
-                        <li><a href="#">Manage</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col">
-                    <h4>Profile</h4>
-                    <ul>
-                        <li><a href="#">Your Activity</a></li>
-                        <li><a href="#">Edit Profile</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">About YBF</a></li>
-                        <li><a href="#">Terms of service</a></li>
-                        <li><a href="#">Legal</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col pull-right text-right">
-                    <ul>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">LinkedIn</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
+            <a href="/news" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
 
-            </div>  
-                    
+            <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+                <span class="lines line-top"></span>
+                <span class="lines line-middle"></span>
+                <span class="lines line-bottom"></span>
+            </button><!-- /.lines-button -->
+
+            <nav id="primary-navigation" class="site-navigation">
+
+                <a href="/" class="site-logo visible-xs" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
+
+                <ul>
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <!-- <li><a href="/c/companies">Companies</a></li>
+                    <li class="active"><a href="/c/people">People</a></li> -->
+                    <li><a href="/officespace">Officespace</a></li>
+                    {% for page in navbar_pages %}
+                        <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
+                    {% endfor %}
+                </ul>
+
+            </nav><!-- /.site-navigation -->
+
+            <div class="user-profile dropdown">
+
+                <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
+                    <div class="user-profile-thumb"><img src="{% static 'community/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
+                    <div class="user-profile-meta hidden-xs">
+                        <div class="user-profile-meta-inner">
+                            {{request.user.username}}
+                        </div>
+                    </div>
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
+                    <li><a href="/c/people/{{request.user.id}}">Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li class="logout-btn"><a href="/logout">Logout</a></li>
+                </ul>
+
+            </div><!-- /.user-profile -->
+
         </div><!-- /.container -->
 
-    </footer><!-- /#footer -->
+    </div><!-- /.top-nav -->
 
+    <div class="hero event-details-hero">
+
+        <div class="container">
+
+            <div class="hero-text">
+                <p class="news-category">Your tribe</p>
+                <h1 class="hero-title">PEOPLE OF YBF</h1>
+            </div>
+
+        </div>
+
+    </div>
+
+</header><!-- /#header -->
+
+
+<div id="main" class="site-main">
+
+    <section class="news-page">
+
+        <div class="container container-960">
+
+            <div class="filters-fix">
+
+                <div class="filters-wrapper">
+
+                    <div class="news-filter events-filter ">
+                        <span class="filter-label">
+                            <ul class="list-unstyled">
+                                <li><a id="search" href="javascript:void(0)">Search</a></li>
+                                {% for tag in tag_list %}
+                                    {% if  tag != "" %}
+                                        <li><a href="javascript:void(0)"
+                                               onclick="clickTag('{{ tag }}');" style="text-transform: capitalize;">{{ tag }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                            </span>
+                        <a href="javascript:void(0)" class="all-events pull-right" onclick="clickAllArticles();">All
+                            Users...</a>
+                    </div>
+
+                    <div class="events-filter">
+
+                        <div id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
+                            <div class="row">
+                                <div class="controls">
+                                    <input id="searchBar" class="form-control" type="text" placeholder="keyword..."
+                                           onkeyup="realFilter(event)"
+                                           style="width: 100%;"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loader" style="display: block; margin-top: 10%"></div>
+            <div id="user_list" class="news-page-list" style="display: none;">
+
+                {% include 'community/people_list_content.html' %}
+
+            </div><!-- /.news-list -->
+
+            <nav aria-label="Events list navigation" style="display: block;">
+                <ul class="pagination">
+                    <li class="text-pagination">
+                        <a href="javascript:previous_week();" aria-label="Previous">
+                            <span aria-hidden="true">&larr; Prev Page</span>
+                        </a>
+                    </li>
+                    <li class="text-pagination">
+                        <a href="javascript:next_week();" aria-label="Next">
+                            <span aria-hidden="true">Next Page &rarr;</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+
+        </div><!-- /.container -->
+
+    </section><!-- /.news-page -->
+
+</div><!-- /#main -->
+
+
+<footer id="colophon" class="site-footer pages-footer">
+
+    <div class="container container-960">
+
+        <div class="row">
+
+            <div class="footer-col">
+                <a href="#" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""></a>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>News</h4>
+                <ul>
+                    <li><a href="#">Current</a></li>
+                    <li><a href="#">Archive</a></li>
+                    <li><a href="#">Submit a story</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Events</h4>
+                <ul>
+                    <li><a href="#">Browse</a></li>
+                    <li><a href="#">Attending</a></li>
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Startups</h4>
+                <ul>
+                    <li><a href="#">Browse</a></li>
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Companies</h4>
+                <ul>
+                    <li><a href="#">Browse</a></li>
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Jobs</h4>
+                <ul>
+                    <li><a href="#">Browse</a></li>
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Officespace</h4>
+                <ul>
+                    <li><a href="/officespace">Browse</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Profile</h4>
+                <ul>
+                    <li><a href="#">Your Activity</a></li>
+                    <li><a href="#">Edit Profile</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">About YBF</a></li>
+                    <li><a href="#">Terms of service</a></li>
+                    <li><a href="#">Legal</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col pull-right text-right">
+                <ul>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+        </div>
+
+    </div><!-- /.container -->
+
+</footer><!-- /#footer -->
+
+{% endblock %}
+{% block customscript %}
+
+    <script>
+        var pg_num;
+        var totalPage;
+        var method;
+        var value;
+        $(function () {
+            loading();
+            check_loading();
+        });
+
+        $(document).ready(function () {
+            pg_num = 1;
+            totalPage = "{{ total_page }}";
+            // visible or invisible search box.
+            $('#search').click(function () {
+                console.log('search');
+
+                if ($("#search-form").is(':visible')) {
+                    $("#search-form").fadeOut();
+                } else {
+                    $("#search-form").fadeIn();
+                }
+            });
+
+            $(document.body).click(function (e) {
+                //Hide the search bar if visible
+                if (e.target.id !== "searchBar" && e.target.id !== "search" && e.target.id !== "contentCheck" && e.target.id !== "categoryCheck") {
+                    document.getElementById("searchBar").value = "";
+                    $("#search-form").hide();
+                }
+            });
+            ;
+
+        });
+
+        function check_loading() {
+            var everythingLoaded = setInterval(function () {
+                if (document.readyState === 'complete') {
+                    clearInterval(everythingLoaded);
+                    loaded(); // this is the function that gets called when everything is loaded
+                }
+            }, 10);
+
+        }
+
+        function loaded() {
+            console.log('loaded');
+            $('.loader').hide();
+            $("#user_list").show();
+
+        }
+
+        function loading() {
+            $('.loader').show();
+            $("#user_list").hide();
+        }
+
+        function update_item() {
+            loading();
+            if (method === 'category') {
+                console.log(value);
+                $('#user_list').html('').load(
+                    "{% url 'category' %}?category=" + value + "&&pg_num=" + pg_num, function (response, status, xhr) {
+                        if (status === "success") {
+                            loaded();
+                        }
+                    }
+                );
+            }
+            else if (method === 'search') {
+                $('#user_list').html('').load(
+                    "{% url 'searchUsers' %}?keyword=" + value + "&&pg_num=" + pg_num, function (response, status, xhr) {
+                        if (status === "success") {
+                            loaded();
+                        }
+                    }
+                );
+            }
+            else {
+                $('#user_list').html('').load(
+                    "{% url 'updateUsers' %}?pg_num=" + pg_num, function (response, status, xhr) {
+                        if (status === "success") {
+                            loaded();
+                        }
+                    }
+                );
+            }
+        }
+
+        function clickTag(category) {
+            method = "category";
+            value = category.replace(" ", "-");
+            pg_num = 1;
+            update_item(value);
+
+        }
+
+        function realFilter(e) {
+            if (e.keyCode === 13) {
+                console.log('enter');
+                searchInput = document.getElementById("searchBar");
+                value = searchInput.value.replace(" ", "-");
+                method = 'search';
+                pg_num = 1;
+                update_item(value);
+            }
+        }
+
+        function previous_week() {
+            console.log(pg_num);
+            if (pg_num < 0) {
+                console.log('no page');
+            }
+            else {
+                pg_num--;
+                update_item();
+            }
+        }
+
+        function next_week() {
+            console.log(pg_num);
+            pg_num++;
+            update_item();
+
+        }
+
+        function clickAllArticles() {
+            method = "index";
+            pg_num = 1;
+            update_item();
+
+        }
+    </script>
 
 {% endblock %}
