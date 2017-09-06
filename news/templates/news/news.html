@@ -424,7 +424,7 @@
             if (method === 'category') {
                 console.log(value);
                 $('#article_list').html('').load(
-                    "{% url 'category' %}?category=" + value + "&&pg_num=" + pg_num, function (response, status, xhr) {
+                    "{% url 'categoryNews' %}?category=" + value + "&&pg_num=" + pg_num, function (response, status, xhr) {
                         if (status === "success") {
                             loaded();
                         }

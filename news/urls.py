@@ -6,7 +6,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^create/$', views.create, name='create'),
     url(r'^update/$', views.update, name='updateNews'),
-    url(r'^category/$', views.category, name='category'),
+    url(r'^category/$', views.category, name='categoryNews'),
     url(r'^search/$', views.search, name='searchNews'),
     # url(r'^search/(?P<keyword>.+)/$', views.search, name='search'),
     # ex: /polls/5/
