@@ -179,7 +179,7 @@
                             <p class="news-category">News // {{ feature_list.1.category.all|first }}</p>
                             <h2 class="news-title">{{ feature_list.1.title }}</h2>
                             <p class="posted-by">by <a href="#">{{ feature_list.1.owner.username }}</a></p>
-                            <p class="news-description">{{ feature_list.1.article|safe|slice:":20" }}</p>
+                            <p class="news-description">{{ feature_list.1.article|safe|shortsnippet }}</p>
                             <a href="{{ feature_list.1.id }}" class="read-more">Keep reading &rarr;</a>
 
                         </div>
@@ -190,7 +190,7 @@
                             <p class="news-category">News // {{ feature_list.2.category.all|first }}</p>
                             <h2 class="news-title">{{ feature_list.2.title }}</h2>
                             <p class="posted-by">by <a href="#">{{ feature_list.2.owner.username }}</a></p>
-                            <p class="news-description">{{ feature_list.2.article|safe|slice:":20" }}</p>
+                            <p class="news-description">{{ feature_list.2.article|safe|shortsnippet }}</p>
                             <a href="{{ feature_list.2.id }}" class="read-more">Keep reading &rarr;</a>
 
                         </div>
