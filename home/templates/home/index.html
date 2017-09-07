@@ -3,7 +3,6 @@
 <head>
 
   {% load staticfiles %}
-    {% load app_filter %}
 
     <!-- Basic Page Needs
     ================================================== -->
@@ -62,10 +61,6 @@
                     <p>York Butter Factory brings companies, startups and people together. Book events, find work or network with a vibrant community in the famous Melbourne co-working space.</p>
                 </div>
                 <form class="hero-form">
-                    <div class="form-group mb-30">
-                        <label for="user-email">Email</label>
-                        <input type="email" id="user-email" class="form-control" placeholder="hello@teamedup.com.au">
-                    </div>
                     <div class="form-group">
                         <button class="btn btn-white" type="button" data-toggle="modal" data-target="#signup-modal">Sign up</button>
                         <button class="btn btn-transparent-white" type="button" data-toggle="modal" data-target="#login-modal">Log in to your account...</button>
@@ -90,9 +85,14 @@
                         <br>
 
                         <h2 class="news-title">{{feature_list.title}}</h2>
-                        <p class="news-author">by <a href="/c/people/{{feature_list.owner.id}}">{{feature_list.owner}}</a></p>
+                        <p class="news-author">by 
+                        <a href="/c/people/{{feature_list.owner.id}}">
+                        {{feature_list.owner}}
+                        </a></p>
 
-                        <p class="news-description">{{ feature_list.article|safe|shortsnippet }}</p>
+                        <p class="news-description">
+                        {{ feature_list.article|safe|slice:":40" }}
+                        </p>
 
                         <a href="/news/{{ feature_list.id }}" class="read-more">Keep reading &rarr;</a>
 

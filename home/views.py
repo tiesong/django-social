@@ -35,16 +35,15 @@ def index(request):
                         return HttpResponseRedirect('/news/')
                     else:
                         #user is not in the system
-                        message = "Sorry, but we could not find your username in our system. Please try again."
-                        request.session['error'] = message
-                        return HttpResponseRedirect('/error')
+                        request.session['error_message'] = "It looks like you're account has been deactivated. Please contact site admin for assistance."
+                        return HttpResponseRedirect('/error?login=fail')
                 else:
-                    request.session['error'] = "Sorry, the username / password combination could not be found. Please try again."
-                    return HttpResponseRedirect('/error')
+                    request.session['error_message'] = "Sorry, the username and/or password combination could not be found. Please try again."
+                    return HttpResponseRedirect('/error?login=fail')
             
             except: #if logging in fails, let's try signing them up
-                request.session['error'] = "Sorry, the username / password combination could not be found. Please try again."
-                return HttpResponseRedirect('/error')
+                request.session['error_message'] = "Sorry, the username and/or password combination could not be found. Please try again."
+                return HttpResponseRedirect('/error?login=fail')
       
         context = {
             'feature_list': feature_list,
@@ -60,24 +59,20 @@ def signup(request):
             signup_email = request.POST['signup-email']
             signup_password = request.POST['signup-password']
 
-            user = User.objects.create_user(username=signup_email, first_name=signup_firstname, last_name=signup_lastname)
-            login(request, user)
-            return HttpResponseRedirect('/news/')
+            if len(User.objects.filter(email=signup_email)) > 0:
+                request.session['error_message'] = "A user already exists on the site with that email. Perhaps try logging in?"
+                return HttpResponseRedirect('/error?signup=fail')
+            else:
+                user = User.objects.create_user(username=signup_email, email=signup_email, first_name=signup_firstname, last_name=signup_lastname)
+                login(request, user)
+                return HttpResponseRedirect('/news/')
+
         else:
-            return HttpResponseRedirect('/error')
+            request.session['error_message'] = "Sorry. Something unexpected happened, please try again. (request)"
+            return HttpResponseRedirect('/error?signup=fail')
     except: #if logging in fails, let's try signing them up
-        return HttpResponseRedirect('/error')
+        request.session['error_message'] = "Sorry. Something unexpected happened, please try again. (exception)"
+        return HttpResponseRedirect('/error?signup=fail')
 
 def error(request):
-
-    try:
-        message = request.session['error']
-        request.session['error'] = ''
-    except:
-        message = "Whoops. Something has gone wrong. Please try again or email nick@typehuman.com for help."
-        request.session['error'] = ''
-    
-    context = {
-        'message': message,
-    }
-    return render(request, 'home/error.html', context)
+    return render(request, 'home/error.html')
