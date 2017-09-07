@@ -198,6 +198,7 @@ $(document).ready(function () {
         editable: false,
         allDaySlot: false,
         eventOverlap: false,
+        selectOverlap: false,
         longPressDelay: 300,
         eventRender: function(event, element) {
             if (element.hasClass('new-booking')) {
@@ -358,6 +359,7 @@ $(document).ready(function () {
         editable: false,
         allDaySlot: false,
         eventOverlap: false,
+        selectOverlap: false,
         longPressDelay: 300,
         eventRender: function(event, element) {
             if (element.hasClass('edit-booking')) {
