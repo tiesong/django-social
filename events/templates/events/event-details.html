@@ -32,7 +32,7 @@
                         <!--<li><a href="/c/people">People</a></li>-->
                         {% for page in navbar_pages %}
                             <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                        {% endfor %}  
+                        {% endfor %}
                     </ul>
 
                 </nav><!-- /.site-navigation -->
@@ -76,6 +76,7 @@
         </div>
 
     </header><!-- /#header -->
+
     <div id="main" class="site-main">
 
         <section class="event-details-content">
@@ -86,7 +87,7 @@
 
                     <div class="col-sm-8">
                         <h3>Description | <a href="edit">Edit</a></h3>
-                        
+
                         <p>{{ event.description | safe }}</p>
 
                     </div>
@@ -96,10 +97,28 @@
                         <div class="event-details-sidebar">
 
                             <h3>Event Details</h3>
-                            <p>{{ event.start_date|date:"fA j N Y" }}<br>
-                                <strong>Venue</strong>: Your Butter Factory<br>
-                                <strong>Cost</strong>: Free</p>
+                            <div class="form-group">
+                                <label for="event-name">Title: </label>
+                                <p id="event-name">{{ event.title }}</p>
 
+                            </div>
+
+                            <div class="form-group">
+                                <label for="startdatetime">Start date & time: </label>
+                                <p id="startdatetime">{{ event.start_date}}</p>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="enddatetime">End date & time: </label>
+                                <p id="enddatetime">{{ event.pub_date }}</p>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="event-url">Event URL: </label>
+                                <p id="event-url">{{ event.event_url }}</p>
+                            </div>
+
+                            <br>
                             <div class="event-details-buttons">
                                 <a href="{{ event.event_url }}" class="btn btn-transparent-dark">RSVP to this event</a>
                                 <!--<a href="#" class="btn btn-transparent-dark">Add to calendar</a>
@@ -115,8 +134,8 @@
                                 <a class="twitter" href="#">Twitter</a>
                                 <a class="facebook" href="#">Facebook</a>
                                 <a class="email" href="#">Email</a>
-                                <a class="reddit" href="#">Reddit</a>
-                                <a class="weibo" href="#">Weibo</a>
+{#                                <a class="reddit" href="#">Reddit</a>#}
+{#                                <a class="weibo" href="#">Weibo</a>#}
                                 <a class="linkedin" href="#">LinkedIn</a>
                             </div>
 
@@ -181,4 +200,17 @@
 
     </div><!-- /#main -->
 
+{% endblock %}
+
+{% block customscript %}
+    <script>
+    $(document).ready(function () {
+        var news_url = window.location.href;
+        $('.social-share .twitter').attr('href', 'https://twitter.com/home?status=' + news_url);
+        $('.social-share .facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + news_url);
+        $('.social-share .email').attr('href', 'mailto:?&body=' + news_url);
+        $('.social-share .linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + news_url);
+    })
+
+    </script>
 {% endblock %}

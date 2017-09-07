@@ -1,9 +1,8 @@
 {% extends 'news/base.html' %}
 {% block content %}
-{% load staticfiles %}
-{% load social_share %}
+    {% load staticfiles %}
 
-<body>
+    <body>
 
     <header id="masthead" class="site-header">
 
@@ -11,7 +10,8 @@
 
             <div class="container container-960">
 
-                <a href="/" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt="" srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+                <a href="/" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""
+                                                              srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
                 <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
                     <span class="lines line-top"></span>
@@ -21,7 +21,9 @@
 
                 <nav id="primary-navigation" class="site-navigation">
 
-                    <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}" alt="" srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+                    <a href="index.html" class="site-logo visible-xs" rel="home"><img
+                            src="{% static 'news/img/logo.png' %}" alt=""
+                            srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
                     <ul>
                         <li class="active"><a href="/news">News</a></li>
@@ -31,7 +33,7 @@
                         <!--<li><a href="/c/people">People</a></li>-->
                         {% for page in navbar_pages %}
                             <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                        {% endfor %}                        
+                        {% endfor %}
                     </ul>
 
                 </nav><!-- /.site-navigation -->
@@ -39,10 +41,11 @@
                 <div class="user-profile dropdown">
 
                     <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.png' %}" alt=""> <span class="visible-xs caret"></span></div>
+                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.png' %}" alt=""> <span
+                                class="visible-xs caret"></span></div>
                         <div class="user-profile-meta hidden-xs">
                             <div class="user-profile-meta-inner">
-                                {{request.user.username}}
+                                {{ request.user.username }}
                             </div>
                         </div>
                     </a>
@@ -62,21 +65,21 @@
         <div class="hero event-details-hero">
 
             <div class="container">
-            
+
                 <div class="hero-text">
-                    <p class="news-category">News // {{news_article.category.first}}</p>
+                    <p class="news-category">News // {{ news_article.category.first }}</p>
                     <h1 class="hero-title">{{ news_article.title }}</h1>
                     <p>Posted by <a href="#">{{ news_article.owner.username }}</a></p>
                     {% if next %}
-                    <a class="btn btn-transparent-white"  href="{{ next }}"><< Back</a>
+                        <a class="btn btn-transparent-white" href="{{ next }}"><< Back</a>
                     {% else %}
-                    <a class="btn btn-transparent-white" href="/news"><< Back</a>
+                        <a class="btn btn-transparent-white" href="/news"><< Back</a>
                     {% endif %}
                 </div>
 
             </div>
 
-        </div>        
+        </div>
 
     </header><!-- /#header -->
 
@@ -92,7 +95,7 @@
                     <div class="col-sm-8">
                         <h3>Description | <a href="edit">Edit</a></h3>
                         <p>
-                        {{ news_article.article|safe }}
+                            {{ news_article.article|safe }}
                         </p>
                     </div>
 
@@ -103,13 +106,13 @@
                             <h3>Share</h3>
 
                             <div class="social-share" style="padding-top:10px">
-                                
-                                <a class="twitter" href="#">Twitter</a>
-                                <a class="facebook" href="">Facebook</a>
-                                <a class="email" href="">Email</a>
-                                <a class="reddit" href="#">Reddit</a>
-                                <a class="weibo" href="#">Weibo</a>
-                                <a class="linkedin" href="">LinkedIn</a>
+
+                                <a class="twitter" href="#" target="_blank">Twitter</a>
+                                <a class="facebook" href="#" target="_blank">Facebook</a>
+                                <a class="email" href="#" target="_blank">Email</a>
+{#                                <a class="reddit" href="#" target="_blank">Reddit</a>#}
+{#                                <a class="weibo" href="#" target="_blank">Weibo</a>#}
+                                <a class="linkedin" href="" target="_blank">LinkedIn</a>
                             </div>
 
                         </div>
@@ -119,43 +122,46 @@
                 </div>
 
             </div><!-- /.container -->
-            
+
         </section>
 
         {% if not news_article.is_page %}
-        <section class="events-list">
+            <section class="events-list">
 
-            <div class="container container-960">
-                
-                <p class="events-date">Related news</p>
-                  
-                <div class="row row-eq-height row-margin-1">
-                    {% for related_news in related_news %}
-                    <div class="col-md-3 col-xs-12">
-                        <div class="event-item">
-                            <p class="event-date">{{ related_news.pub_date|date:"M d, Y" }}</p>
-                            <h2 class="event-name"><a href="/news/{{ related_news.id }}">{{related_news.title|slice:":60"}}</a></h2>
-                            <a href="/c/people/{{ related_news.owner.id }}" class="event-attending">posted by {{ related_news.owner.first_name }}</a>
-                        </div><!-- /.event-item -->
-                    </div>  
-                    {% endfor %}
+                <div class="container container-960">
 
-                </div><!-- /.row -->
+                    <p class="events-date">Related news</p>
 
-            </div>
+                    <div class="row row-eq-height row-margin-1">
+                        {% for related_news in related_news %}
+                            <div class="col-md-3 col-xs-12">
+                                <div class="event-item">
+                                    <p class="event-date">{{ related_news.pub_date|date:"M d, Y" }}</p>
+                                    <h2 class="event-name"><a
+                                            href="/news/{{ related_news.id }}">{{ related_news.title|slice:":60" }}</a>
+                                    </h2>
+                                    <a href="/c/people/{{ related_news.owner.id }}" class="event-attending">posted
+                                        by {{ related_news.owner.first_name }}</a>
+                                </div><!-- /.event-item -->
+                            </div>
+                        {% endfor %}
 
-        </section>
+                    </div><!-- /.row -->
+
+                </div>
+
+            </section>
         {% endif %}
 
     </div><!-- /#main -->
 
-    
+
     <footer id="colophon" class="site-footer pages-footer">
 
         <div class="container container-960">
-        
+
             <div class="row">
-        
+
                 <div class="footer-col">
                     <a href="#" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""></a>
                 </div><!-- /.footer-col -->
@@ -168,7 +174,7 @@
                         <li><a href="#">Submit a story</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Events</h4>
                     <ul>
@@ -177,7 +183,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Startups</h4>
                     <ul>
@@ -185,7 +191,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Companies</h4>
                     <ul>
@@ -193,7 +199,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Jobs</h4>
                     <ul>
@@ -201,7 +207,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Profile</h4>
                     <ul>
@@ -209,7 +215,7 @@
                         <li><a href="#">Edit Profile</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
@@ -219,7 +225,7 @@
                         <li><a href="#">Legal</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col pull-right text-right">
                     <ul>
                         <li><a href="#">Twitter</a></li>
@@ -229,10 +235,23 @@
                     </ul>
                 </div><!-- /.footer-col -->
 
-            </div>  
-                    
+            </div>
+
         </div><!-- /.container -->
 
     </footer><!-- /#footer -->
 
+{% endblock %}
+
+{% block customscript %}
+    <script>
+    $(document).ready(function () {
+        var news_url = window.location.href;
+        $('.social-share .twitter').attr('href', 'https://twitter.com/home?status=' + news_url);
+        $('.social-share .facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + news_url);
+        $('.social-share .email').attr('href', 'mailto:?&body=' + news_url);
+        $('.social-share .linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + news_url);
+    })
+
+    </script>
 {% endblock %}

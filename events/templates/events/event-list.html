@@ -7,6 +7,72 @@
             max-width: 50%;
             max-height: 50%;
         }
+
+    .loader {
+            position: relative;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Add animation to "page content" */
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
     </style>
     <header id="masthead" class="site-header event-list-header">
 
@@ -140,6 +206,7 @@
                     </div>
                 </div>
 
+                <div class="loader" style="display: block; margin-top: 10%"></div>
                 <div id="event_items">
                     {% include 'events/event-content.html' %}
 
@@ -217,6 +284,7 @@
         var method;
         var value;
         $(document).ready(function () {
+            check_loading();
             week_num = 1;
             method = 'index';
 
@@ -259,29 +327,68 @@
             });
 
         });
+        function check_loading() {
+            var everythingLoaded = setInterval(function () {
+                if (document.readyState === 'complete') {
+                    clearInterval(everythingLoaded);
+                    loaded(); // this is the function that gets called when everything is loaded
+                }
+            }, 10);
+
+        }
+
+        function loaded() {
+            console.log('loaded');
+            $('.loader').hide();
+            $("#article_list").show();
+
+        }
+
+        function loading() {
+            $('.loader').show();
+            $("#article_list").hide();
+        }
+
 
         function update_item() {
+            loading();
             if (method === 'new') {
                 console.log(value);
                 $('#event_items').html('').load(
-                    "{% url 'newEvents' %}?week_num=" + week_num
+                    "{% url 'newEvents' %}?week_num=" + week_num, function (response, status, xhr) {
+                        if (status === "success") {
+                            loaded();
+                        }
+                    }
                 );
             }
 
             else if (method === 'feature') {
                 $('#event_items').html('').load(
-                    "{% url 'featureEvents' %}?week_num=" + week_num
+                    "{% url 'featureEvents' %}?week_num=" + week_num, function (response, status, xhr) {
+                        if (status === "success") {
+                            loaded();
+                        }
+                    }
                 );
             }
 
             else if (method === 'search') {
                 $('#event_items').html('').load(
-                    "{% url 'searchEvents' %}?keyword=" + value + "&&week_num=" + week_num
+                    "{% url 'searchEvents' %}?keyword=" + value + "&&week_num=" + week_num, function (response, status, xhr) {
+                        if (status === "success") {
+                            loaded();
+                        }
+                    }
                 );
             }
             else {
                 $('#event_items').html('').load(
-                    "{% url 'updateEvents' %}?week_num=" + week_num
+                    "{% url 'updateEvents' %}?week_num=" + week_num, function (response, status, xhr) {
+                        if (status === "success") {
+                            loaded();
+                        }
+                    }
                 );
             }
         }

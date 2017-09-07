@@ -94,7 +94,8 @@ def feature(request):
     if len(event_list):
         base_date = event_list[0].start_date + timedelta(week * 7)
         limit_date = event_list[0].start_date + timedelta(7 + week * 7)
-        event_list = Event.objects.filter(featured=True).filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by('start_date')
+        event_list = Event.objects.filter(featured=True).filter(start_date__gte=base_date).filter(
+            start_date__lte=limit_date).order_by('start_date')
         context = {
 
             'event_all': event_list
@@ -120,7 +121,7 @@ def search(request):
         base_date = event_list[0].start_date + timedelta(week * 7)
         limit_date = event_list[0].start_date + timedelta(7 + week * 7)
 
-        event_list = Event.objects.filter(title__icontains=keyword).filter(start_date__gte=base_date)\
+        event_list = Event.objects.filter(title__icontains=keyword).filter(start_date__gte=base_date) \
             .filter(start_date__lte=limit_date).order_by('start_date')
 
         context = {
@@ -179,10 +180,20 @@ def create(request):
     event_id = request.POST.get("event_id", None)
     navbar_pages = News.objects.filter(display_in_navbar=True)
 
+    title = request.POST.get("title", None)
+    start_time = request.POST.get("startdatetime", None)
+    start_date = dateutil.parser.parse(start_time)
+
+    pub_time = request.POST.get("enddatetime", None)
+    pub_date = dateutil.parser.parse(pub_time)
+
+    event_url = request.POST.get("event-url", None)
+
     if event_id:
         try:
             body = request.POST.get('body', "")
-            Event.objects.filter(id=event_id).update(description=body)
+            Event.objects.filter(id=event_id).update(title=title, start_date=start_date,
+                                                     pub_date=pub_date, event_url=event_url, description=body)
 
         except Exception as e:
             print('Error : {}'.format(e))
@@ -190,17 +201,9 @@ def create(request):
         return redirect('/events/' + event_id)
 
     else:
-        title = request.POST.get("title", None)
-        start_time = request.POST.get("startdatetime", None)
-        start_date = dateutil.parser.parse(start_time)
-
-        pub_time = request.POST.get("enddatetime", None)
-        pub_date = dateutil.parser.parse(pub_time)
-
-        event_url = request.POST.get("event-url", None)
 
         new_event = Event(title=title, start_date=start_date,
-                          pub_date=pub_date, event_url=event_url, description="")
+                          pub_date=pub_date, event_url=event_url)
         new_event.save()
 
         context = {
@@ -230,7 +233,18 @@ def edit(request, event_id):
     if request.POST:
         try:
             body = request.POST.get('body', "")
-            Event.objects.filter(id=event_id).update(description=body)
+            title = request.POST.get("title", None)
+            start_time = request.POST.get("startdatetime", None)
+            start_date = dateutil.parser.parse(start_time)
+
+            pub_time = request.POST.get("enddatetime", None)
+            pub_date = dateutil.parser.parse(pub_time)
+
+            event_url = request.POST.get("event-url", None)
+
+            Event.objects.filter(id=event_id).update(description=body, title=title, start_date=start_date,
+                                                     pub_date=pub_date,
+                                                     event_url=event_url)
 
         except Exception as e:
             print('Error : {}'.format(e))

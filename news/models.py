@@ -36,7 +36,7 @@ class News(models.Model):
     feature_rank = models.IntegerField(default=0)
 
     def __str__(self):
-    	return self.title
+        return self.title
 
     def _get_portal_image(self):
         "Returns the person's full name."
