@@ -50,9 +50,9 @@
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
-                        <li><a href="person-profile.html">Profile</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li class="logout-btn"><a href="/logout">Logout</a></li>
+                <li><a href="/c/people/{{ request.user.id }}">Profile</a></li>
+                <!--<li><a href="#">Settings</a></li>-->
+                <li class="logout-btn"><a href="/logout">Logout</a></li>
                     </ul>
 
                 </div><!-- /.user-profile -->
