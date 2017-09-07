@@ -190,19 +190,19 @@
                         <div class="events-filter  news-filter">
                             <ul class="list-unstyled">
                                 <li><a id="search" href="#filter_bar">Search events</a></li>
-                                <li><a href="javascript:newEvent();">New</a></li>
-                                <li><a href="javascript:featuredEvent();">Featured</a></li>
+                                <li class="user-tags"><a href="javascript:newEvent();">New</a></li>
+                                <li class="user-tags"><a href="javascript:featuredEvent();">Featured</a></li>
                             </ul>
                             <a href="javascript:allEvent();" class="all-events pull-right">All Events...</a>
                         </div><!-- /.events-filter -->
 
-                        <div class="events-filter">
-                            <div id="search-form" class="row" style="display: none; padding-left: 7%">
-                                <input id="searchBar" class="form-control" type="text"
-                                       placeholder="keyword..."
-                                       style="width: 100%;" onkeyup="realFilter(event)"/>
-                            </div>
+
+                        <div id="search-form" class="row" style="display: none; padding-left: 7%">
+                            <input id="searchBar" class="form-control" type="text"
+                                   placeholder="keyword..."
+                                   style="width: 100%;" onkeyup="realFilter(event)"/>
                         </div>
+
                     </div>
                 </div>
 

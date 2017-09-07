@@ -216,7 +216,7 @@
                                     <li><a id="search" href="javascript:void(0)">Search</a></li>
                                     {% for category in category_list %}
                                         {% if  category != "" %}
-                                            <li><a href="javascript:void(0)"
+                                            <li class="user-tags"><a href="javascript:void(0)"
                                                    onclick="clickTag('{{ category }}');">{{ category }}</a></li>
                                         {% endif %}
                                     {% endfor %}
@@ -226,19 +226,19 @@
                                 Articles...</a>
                         </div>
 
-                        <div class="events-filter">
+
 
                             <div id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
                                 <div class="row">
                                     <div class="controls">
                                         <input id="searchBar" class="form-control" type="text" placeholder="keyword..."
                                                onkeyup="realFilter(event)"
-                                               style="width: 100%;"/>
+                                               style="width: 100%; "/>
                                     </div>
                                 </div>
 
                             </div>
-                        </div>
+
                     </div>
                 </div>
 
