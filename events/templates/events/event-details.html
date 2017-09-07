@@ -105,7 +105,7 @@
 
                             <div class="form-group">
                                 <label for="startdatetime">Start date & time: </label>
-                                <p id="startdatetime">{{ event.start_date}}</p>
+                                <p id="startdatetime">{{ event.start_date }}</p>
 
                             </div>
                             <div class="form-group">
@@ -121,8 +121,9 @@
                             <br>
                             <div class="event-details-buttons">
                                 <a href="{{ event.event_url }}" class="btn btn-transparent-dark">RSVP to this event</a>
-                                <a href="#" class="btn btn-transparent-dark">Add to calendar</a>
-{#                                <a href="#" class="btn btn-transparent-dark">Get directions</a>#}
+                                <a href="#" class="btn btn-transparent-dark" type="button" data-toggle="modal"
+                                   data-target="#add-calendar-modal">Add to calendar</a>
+                                {#                                <a href="#" class="btn btn-transparent-dark">Get directions</a>#}
                             </div>
 
                             <!--<p class="view-event-btn"><a href="#">View event on Meetup.com</a></p>-->
@@ -134,8 +135,8 @@
                                 <a class="twitter" href="#">Twitter</a>
                                 <a class="facebook" href="#">Facebook</a>
                                 <a class="email" href="#">Email</a>
-{#                                <a class="reddit" href="#">Reddit</a>#}
-{#                                <a class="weibo" href="#">Weibo</a>#}
+                                {#                                <a class="reddit" href="#">Reddit</a>#}
+                                {#                                <a class="weibo" href="#">Weibo</a>#}
                                 <a class="linkedin" href="#">LinkedIn</a>
                             </div>
 
@@ -199,18 +200,62 @@
         </section>
 
     </div><!-- /#main -->
+    <div id="add-calendar-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document" style="width: 80%; padding-left: 20%">
+            <div class="modal-content" style="width: 60%;">
+
+                <div class="modal-body">
+
+                    <div class="modal-body-left" style="width: 100%">
+
+                        <h4 class="modal-title">Add to Calendar</h4>
+{#                        <form class="create-event-form" method="post" action="#"#}
+{#                              enctype="multipart/form-data">{% csrf_token %}#}
+                            <div class="form-group">
+                                <label for="event-name">* Title</label>
+                                <input type="text" id="event-name" name="title" class="form-control"
+                                       placeholder="Some event" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="remindertime">* Reminder Time</label>
+                                <input type="text" id="remindertime" class="form-control" name="remindertime"/>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="email-phone">Email/Phone Number</label>
+                                <input type="text" id="email-phone" class="form-control" name="email-phone"/>
+
+                            </div>
+
+                            <div class="modal-form-buttons">
+                                <a data-dismiss="modal" class="pull-left close-btn hidden-xs" href="#">Close</a>
+                                <button class="btn btn-dark pull-right" type="submit">Add Event</button>
+                            </div>
+{#                        </form>#}
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /#create-event-modal -->
+
 
 {% endblock %}
 
 {% block customscript %}
     <script>
-    $(document).ready(function () {
-        var news_url = window.location.href;
-        $('.social-share .twitter').attr('href', 'https://twitter.com/home?status=' + news_url);
-        $('.social-share .facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + news_url);
-        $('.social-share .email').attr('href', 'mailto:?&body=' + news_url);
-        $('.social-share .linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + news_url);
-    })
+           $("#remindertime").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',
+                autoclose: true,
+                todayBtn: true
+            });
+
+        $(document).ready(function () {
+            var news_url = window.location.href;
+            $('.social-share .twitter').attr('href', 'https://twitter.com/home?status=' + news_url);
+            $('.social-share .facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + news_url);
+            $('.social-share .email').attr('href', 'mailto:?&body=' + news_url);
+            $('.social-share .linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + news_url);
+        })
 
     </script>
 {% endblock %}
