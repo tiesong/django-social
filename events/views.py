@@ -114,6 +114,13 @@ def feature(request):
 def search(request):
     week = int(request.GET.get('week_num', 0))
     keyword = request.GET.get('keyword', "")
+    keyword = str(keyword).replace("-", " ")
+    if keyword == "":
+        context = {
+            'event_all': False
+        }
+
+        return render(request, 'events/event-content.html', context)
 
     event_list = Event.objects.filter(title__icontains=keyword).order_by('start_date')
 
