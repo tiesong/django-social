@@ -19,10 +19,24 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
+
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+
+
+#DEVELOPMENT EMAIL BACKEND
+if os.environ.get('DJANGO_DEVELOPMENT') is not None:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
+else:
+    ANYMAIL = {
+        "MAILGUN_API_KEY": os.environ["MAILGUN_API_KEY"],
+        "MAILGUN_SENDER_DOMAIN": "teamedup.com.au",
+    }
+    EMAIL_BACKEND = "anymail.backends.mailgun.MailgunBackend"
+    DEFAULT_FROM_EMAIL = "no_reply@teamedup.com.au"
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
@@ -33,7 +47,10 @@ ALLOWED_HOSTS = ['*']
 SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+if os.environ.get('DJANGO_DEVELOPMENT') is not None:
+    DEBUG = False
+else:
+    DEBUG = True
 
 
 # Application definition
@@ -46,6 +63,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_social_share',
+    'anymail',
     'storages',
     'tinymce',
     'home',
@@ -72,7 +90,7 @@ ROOT_URLCONF = 'ybf-teamedup.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [PROJECT_PATH + '/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'debug': True,

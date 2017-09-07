@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from news.models import News, Category
 
+
 # Create your views here.
 def index(request):
     
