@@ -80,7 +80,15 @@
                 <div class="user-profile dropdown">
 
                     <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'news/img/avatar.png' %}" alt=""> <span
+                        <div class="user-profile-thumb">
+
+                                                {% if request.user.profile.image %}
+                            <img src="{{ request.user.profile.image.url }}" alt="">
+                        {% else %}
+                            <img src="{% static 'community/img/avatar.jpg' %}" alt="">
+                        {% endif %}
+
+                        <span
                                 class="visible-xs caret"></span></div>
                         <div class="user-profile-meta hidden-xs">
                             <div class="user-profile-meta-inner">
