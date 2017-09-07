@@ -3,12 +3,45 @@
 
     {% load staticfiles %}
     <style>
+        /* Create the blue navigation bar */
+        .navbar {
+            background-color: #000000;
+
+        {#            padding: 5px 10px;#}
+        }
+
+        /* Define how each icon button should look like */
+        .button {
+            font-size: 25px;
+            color: white;
+
+            display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+            position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+            float: right;
+            margin-right: 14px;
+
+        }
+
+        /* Make the badge float in the top right corner of the button */
+        .button__badge {
+            background-color: #fa3e3e;
+            border-radius: 2px;
+            color: white;
+
+            padding: 1px 3px;
+            font-size: 10px;
+
+            position: absolute; /* Position the badge within the relatively positioned button */
+            top: 0;
+            right: 0;
+        }
+
         img.resize {
             max-width: 50%;
             max-height: 50%;
         }
 
-    .loader {
+        .loader {
             position: relative;
             left: 50%;
             top: 50%;
@@ -102,7 +135,7 @@
                         <!--<li><a href="/c/people">People</a></li>-->
                         {% for page in navbar_pages %}
                             <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                        {% endfor %}  
+                        {% endfor %}
                     </ul>
 
                 </nav><!-- /.site-navigation -->
@@ -124,6 +157,28 @@
                         <li class="logout-btn"><a href="/logout">Logout</a></li>
                     </ul>
                 </div><!-- /.user-profile -->
+                <div class="user-profile dropdown">
+                    <a class="dropdown-toggle" id="notification-dropdown-menu" data-toggle="dropdown"
+                       aria-expanded="true">
+                        <div class="button">
+                            <i class="fa fa-globe"></i>
+                            <span class="button__badge">6</span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="notification-dropdown-menu" style="padding: 10px">
+                        <li>
+                            <p style="color: #00A3FF; font-size: medium">6 new messages</p>
+                        </li>
+                        <li><a href="#">1 New Message</a></li>
+                        <li><a href="#">2 New Message</a></li>
+                        <li><a href="#">3 New Message</a></li>
+                        <li><a href="#">4 New Message</a></li>
+                        <li><a href="#">5 New Message</a></li>
+                        <li><a href="#">6 New Message</a></li>
+
+                    </ul>
+                </div>
+
 
             </div><!-- /.container -->
 
@@ -170,13 +225,14 @@
 
                 <div class="row">
                     {% for event_top in event_top_list %}
-                    <div class="col-sm-6">
-                        <p class="news-category">{{ event_top.start_date|date:"fA j N Y" }}</p>
-                        <h2 class="news-title">{{ event_top.title }}</h2>
-                        <p class="news-description"><span class="posted-by">posted by<br> <a href="{{ event_top.id }}">{{ request.user.username }}</a></span>
-                            <a href="{{ event_top.id }}" class="rsvp-btn">View Details</a></p>
+                        <div class="col-sm-6">
+                            <p class="news-category">{{ event_top.start_date|date:"fA j N Y" }}</p>
+                            <h2 class="news-title">{{ event_top.title }}</h2>
+                            <p class="news-description"><span class="posted-by">posted by<br> <a
+                                    href="{{ event_top.id }}">{{ request.user.username }}</a></span>
+                                <a href="{{ event_top.id }}" class="rsvp-btn">View Details</a></p>
 
-                    </div>
+                        </div>
                     {% endfor %}
 
                 </div>
@@ -199,8 +255,7 @@
 
                         <div id="search-form" class="row" style="display: none; padding-left: 7%">
                             <input id="searchBar" class="form-control" type="text"
-                                   placeholder="keyword..."
-                                   style="width: 100%;" onkeyup="realFilter(event)"/>
+                                   placeholder="keyword..." style="width: 100%;" onkeyup="realFilter(event)"/>
                         </div>
 
                     </div>
@@ -250,7 +305,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="startdatetime">Start date & time</label>
-                                <input type="text" id="startdatetime" class="form-control" name="startdatetime" />
+                                <input type="text" id="startdatetime" class="form-control" name="startdatetime"/>
 
                             </div>
                             <div class="form-group">
