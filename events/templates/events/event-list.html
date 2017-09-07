@@ -468,7 +468,7 @@
         function realFilter(e) {
             if (e.keyCode === 13) {
                 searchInput = document.getElementById("searchBar");
-                value = searchInput.value;
+                value = searchInput.value.replace(" ", "-");
                 method = 'search';
                 week_num = 0;
                 update_item();

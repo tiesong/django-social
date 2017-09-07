@@ -114,7 +114,7 @@ def feature(request):
 def search(request):
     week = int(request.GET.get('week_num', 0))
     keyword = request.GET.get('keyword', "")
-    
+    keyword = str(keyword).replace("-", " ")
     if keyword == "":
         context = {
             'event_all': False

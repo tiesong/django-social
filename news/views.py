@@ -108,6 +108,13 @@ def search(request):
     keyword = request.GET.get('keyword', "")
     page_number = request.GET.get('pg_num', 0)
     keyword = str(keyword).replace("-", " ")
+
+    if keyword == "":
+        context = {
+            'news_list': False,
+        }
+        return render(request, 'news/news-content.html', context)
+
     news_list = News.objects.filter(title__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
 
     if len(news_list) == 0:
