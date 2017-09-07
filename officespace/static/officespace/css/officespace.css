@@ -53,8 +53,12 @@
     color: #272534;
 }
 
-.bookings-action .start-over {
+.bookings-action .start-over,
+.bookings-action .book-room,
+.bookings-action .edit-room,
+.booking-edit .title-change {
     width: 100px;
+    margin-left: 10px;
 }
 
 .bookings .table-section {
@@ -154,8 +158,13 @@
 }
 
 .booking-edit .back-link {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     width: 80px;
+    display: inline-block;
+}
+.booking-edit .back-link:hover {
+    color: #fff;
+    text-decoration: none;
 }
 
 .bookings-option select {

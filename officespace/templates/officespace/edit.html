@@ -2,7 +2,11 @@
 {% block content %}
     <h2 class="text-center booking-title">Office Space @ YBF</h2>
     <div class="booking-edit">
-        <a href="{% url 'booking_list' %}" class="btn btn-transparent-dark back-link"><< Back</a>
+        <div class="bookings-action">
+            <a href="{% url 'booking_list' %}" class="btn btn-transparent-dark back-link"><< Back</a>
+            <div class="clearfix"></div>
+        </div>
+
         <input type="hidden" id="booking_id" value="{{ pk }}">
     	<div class="bookings-option">
     		<div class="choose-room pull-left col-xs-12 col-sm-5 col-md-5 well">
