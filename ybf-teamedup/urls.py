@@ -5,6 +5,7 @@ from django.views.generic import RedirectView
 from django.contrib.auth import views as auth_views
 
 from django.contrib import admin
+import notifications.urls
 admin.autodiscover()
 
 import home.views
@@ -33,4 +34,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^officespace/', include('officespace.urls')),
     url('^', include('django.contrib.auth.urls')),
+    url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
