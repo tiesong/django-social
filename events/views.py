@@ -10,6 +10,8 @@ from datetime import datetime, timedelta
 import dateutil.parser
 
 # from .models import Event
+from notifications.models import Notification
+
 from .models import Event
 from news.models import News
 from django.contrib.auth.models import User
@@ -26,6 +28,12 @@ def index(request):
     :param request: 
     :return: 
     """
+    user = User.objects.filter(username=request.user.username).get()
+    unread = user.notifications.unread()
+
+    unread_exist = False
+    if len(unread) != 0:
+        unread_exist = True
 
     week = int(request.GET.get('week_num', 0))
     next_week = week + 1
@@ -55,6 +63,8 @@ def index(request):
         'event_featured': event_featured,
         'event_count': event_count,
         'user_all': user_all,
+        'unread': unread,
+        'unread_exist': unread_exist,
         'navbar_pages': navbar_pages,
     }
 
@@ -169,6 +179,11 @@ def detail(request, event_id):
     :param event_id: 
     :return: 
     """
+    notify_id = request.GET.get('notify', None)
+    print(notify_id)
+    if notify_id:
+        Notification.objects.filter(id=notify_id).update(unread=0)
+
     navbar_pages = News.objects.filter(display_in_navbar=True)
     event = Event.objects.get(id=event_id)
     context = {
@@ -281,15 +296,20 @@ def notification(request):
     """
 
     if request.POST:
-
         user = User.objects.filter(username=request.user.username).get()
         title = request.POST.get("title", "")
         event_id = request.POST.get("event_id", "")
         email = request.POST.get("email", "")
         reminderTime = request.POST.get("reminderTime", "")
 
+        event = Event.objects.filter(id=event_id).get()
+
+        description = " Reminder at " + reminderTime
         navbar_pages = News.objects.filter(display_in_navbar=True)
-        event = Event.objects.get(id=event_id)
+
+        notify.send(user, recipient=user, verb="Successfully set Reminder for", email=email,
+                    target=event, description=description)
+
         context = {
             'event': event,
             'navbar_pages': navbar_pages,
