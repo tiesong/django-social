@@ -146,3 +146,4 @@ ENV/
 
 ybf-teamedup/media/profile_images/
 ybf-teamedup/settings.py
+events/static/events/img/bell.png
