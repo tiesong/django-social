@@ -217,15 +217,15 @@
                     <div class="modal-body-left" style="width: 100%">
 
                         <h4 class="modal-title">Add to Calendar</h4>
-                        <form class="create-event-form" method="post" action="/events/notification"
+                        <form class="create-event-form" method="post"
                               enctype="multipart/form-data">{% csrf_token %}
                             <input type="hidden" id="event-id" name="event_id" class="form-control"
-                                       value="{{ event.id }}" disabled>
+                                       value="{{ event.id }}" />
 
                             <div class="form-group">
                                 <label for="event-name">* Title</label>
                                 <input type="text" id="event-name" name="title" class="form-control"
-                                       value="{{ event.title }}" disabled>
+                                       value="{{ event.title }}" readonly/>
                             </div>
                             <div class="form-group">
                                 <label for="reminderTime">* Reminder Time</label>
@@ -253,7 +253,7 @@
 {% endblock %}
 {% block customscript %}
     <script>
-           $("#remindertime").datetimepicker({
+           $("#reminderTime").datetimepicker({
                 format: 'yyyy-mm-dd hh:ii',
                 autoclose: true,
                 todayBtn: true

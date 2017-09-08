@@ -14,7 +14,6 @@ import os
 import datetime
 import dj_database_url
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -25,9 +24,7 @@ LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-
-
-#DEVELOPMENT EMAIL BACKEND
+# DEVELOPMENT EMAIL BACKEND
 if os.environ.get('DJANGO_DEVELOPMENT') is not None:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
 else:
@@ -51,7 +48,6 @@ if os.environ.get('DJANGO_DEVELOPMENT') is not None:
     DEBUG = False
 else:
     DEBUG = True
-
 
 # Application definition
 
@@ -107,7 +103,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ybf-teamedup.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
@@ -153,7 +148,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
@@ -161,6 +155,8 @@ DATABASES['default'].update(db_from_env)
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+NOTIFICATIONS_SOFT_DELETE = True
+NOTIFICATIONS_USE_JSONFIELD=True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -175,6 +171,7 @@ APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
 AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+
 
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 

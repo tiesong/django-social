@@ -179,8 +179,31 @@ def detail(request, event_id):
     :param event_id: 
     :return: 
     """
+    if request.POST:
+        user = User.objects.filter(username=request.user.username).get()
+        title = request.POST.get("title", "")
+        event_id = request.POST.get("event_id", "")
+        email = request.POST.get("email", "")
+        reminderTime = request.POST.get("reminderTime", "")
+
+        event = Event.objects.filter(id=event_id).get()
+
+        description = " Reminder at " + reminderTime
+        navbar_pages = News.objects.filter(display_in_navbar=True)
+
+        notify.send(user, recipient=user, verb="Successfully set Reminder for", email=email,
+                    reminderTime=reminderTime,
+                    target=event, description=description)
+
+        context = {
+            'event': event,
+            'navbar_pages': navbar_pages,
+        }
+
+        return render(request, 'events/event-details.html', context)
+
     notify_id = request.GET.get('notify', None)
-    print(notify_id)
+
     if notify_id:
         Notification.objects.filter(id=notify_id).update(unread=0)
 
@@ -286,32 +309,3 @@ def delete(request):
     """
     pass
 
-
-@login_required
-def notification(request):
-    """
-    Notification
-    :param request: 
-    :return: 
-    """
-
-    if request.POST:
-        user = User.objects.filter(username=request.user.username).get()
-        title = request.POST.get("title", "")
-        event_id = request.POST.get("event_id", "")
-        email = request.POST.get("email", "")
-        reminderTime = request.POST.get("reminderTime", "")
-
-        event = Event.objects.filter(id=event_id).get()
-
-        description = " Reminder at " + reminderTime
-        navbar_pages = News.objects.filter(display_in_navbar=True)
-
-        notify.send(user, recipient=user, verb="Successfully set Reminder for", email=email,
-                    target=event, description=description)
-
-        context = {
-            'event': event,
-            'navbar_pages': navbar_pages,
-        }
-        return render(request, 'events/event-details.html', context)
