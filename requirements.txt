@@ -13,3 +13,9 @@ boto3==1.4.4
 django-storages==1.6.5
 django-social-share==1.1.2
 django-anymail[mailgun]
+jsonfield>=1.0.3
+django-model-utils>=2.0.3
+pytz
+django-notifications-hq==1.3
+
+
