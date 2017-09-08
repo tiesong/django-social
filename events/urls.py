@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^feature/$', views.feature, name='featureEvents'),
     url(r'^search/$', views.search, name='searchEvents'),
     url(r'^update/$', views.update, name='updateEvents'),
+    url(r'^notification/$', views.notification, name='notifyEvents'),
 
     # ex: /polls/5/
     url(r'^(?P<event_id>[0-9]+)/$', views.detail, name='detail'),

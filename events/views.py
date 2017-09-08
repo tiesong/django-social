@@ -13,6 +13,7 @@ import dateutil.parser
 from .models import Event
 from news.models import News
 from django.contrib.auth.models import User
+from notifications.signals import notify
 
 
 # Create your views here.
@@ -269,3 +270,28 @@ def delete(request):
     :return: 
     """
     pass
+
+
+@login_required
+def notification(request):
+    """
+    Notification
+    :param request: 
+    :return: 
+    """
+
+    if request.POST:
+
+        user = User.objects.filter(username=request.user.username).get()
+        title = request.POST.get("title", "")
+        event_id = request.POST.get("event_id", "")
+        email = request.POST.get("email", "")
+        reminderTime = request.POST.get("reminderTime", "")
+
+        navbar_pages = News.objects.filter(display_in_navbar=True)
+        event = Event.objects.get(id=event_id)
+        context = {
+            'event': event,
+            'navbar_pages': navbar_pages,
+        }
+        return render(request, 'events/event-details.html', context)

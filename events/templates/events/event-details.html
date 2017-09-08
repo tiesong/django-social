@@ -217,21 +217,24 @@
                     <div class="modal-body-left" style="width: 100%">
 
                         <h4 class="modal-title">Add to Calendar</h4>
-{#                        <form class="create-event-form" method="post" action="#"#}
-{#                              enctype="multipart/form-data">{% csrf_token %}#}
+                        <form class="create-event-form" method="post" action="/events/notification"
+                              enctype="multipart/form-data">{% csrf_token %}
+                            <input type="hidden" id="event-id" name="event_id" class="form-control"
+                                       value="{{ event.id }}" disabled>
+
                             <div class="form-group">
                                 <label for="event-name">* Title</label>
                                 <input type="text" id="event-name" name="title" class="form-control"
-                                       placeholder="Some event" disabled>
+                                       value="{{ event.title }}" disabled>
                             </div>
                             <div class="form-group">
-                                <label for="remindertime">* Reminder Time</label>
-                                <input type="text" id="remindertime" class="form-control" name="remindertime"/>
+                                <label for="reminderTime">* Reminder Time</label>
+                                <input type="text" id="reminderTime" class="form-control" name="reminderTime"/>
 
                             </div>
                             <div class="form-group">
-                                <label for="email-phone">Email/Phone Number</label>
-                                <input type="text" id="email-phone" class="form-control" name="email-phone"/>
+                                <label for="email-phone">Email</label>
+                                <input type="email" id="email" class="form-control" name="email"/>
 
                             </div>
 
@@ -239,7 +242,7 @@
                                 <a data-dismiss="modal" class="pull-left close-btn hidden-xs" href="#">Close</a>
                                 <button class="btn btn-dark pull-right" type="submit">Add Event</button>
                             </div>
-{#                        </form>#}
+                        </form>
                     </div>
                 </div>
             </div><!-- /.modal-content -->
@@ -248,7 +251,6 @@
 
 
 {% endblock %}
-
 {% block customscript %}
     <script>
            $("#remindertime").datetimepicker({
