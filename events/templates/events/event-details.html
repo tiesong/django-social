@@ -40,7 +40,15 @@
                 <div class="user-profile dropdown">
 
                     <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'events/img/avatar.jpg' %}" alt=""> <span
+                        <div class="user-profile-thumb">
+
+                        {% if request.user.profile.image %}
+                            <img src="{{ request.user.profile.image.url }}" alt="">
+                        {% else %}
+                            <img src="{% static 'community/img/avatar.jpg' %}" alt="">
+                        {% endif %} 
+
+                        <span
                                 class="visible-xs caret"></span></div>
                         <div class="user-profile-meta hidden-xs">
                             <div class="user-profile-meta-inner">
@@ -50,9 +58,9 @@
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
-                        <li><a href="person-profile.html">Profile</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li class="logout-btn"><a href="/logout">Logout</a></li>
+                <li><a href="/c/people/{{ request.user.id }}">Profile</a></li>
+                <!--<li><a href="#">Settings</a></li>-->
+                <li class="logout-btn"><a href="/logout">Logout</a></li>
                     </ul>
 
                 </div><!-- /.user-profile -->
@@ -105,7 +113,7 @@
 
                             <div class="form-group">
                                 <label for="startdatetime">Start date & time: </label>
-                                <p id="startdatetime">{{ event.start_date}}</p>
+                                <p id="startdatetime">{{ event.start_date }}</p>
 
                             </div>
                             <div class="form-group">
@@ -121,8 +129,9 @@
                             <br>
                             <div class="event-details-buttons">
                                 <a href="{{ event.event_url }}" class="btn btn-transparent-dark">RSVP to this event</a>
-                                <a href="#" class="btn btn-transparent-dark">Add to calendar</a>
-{#                                <a href="#" class="btn btn-transparent-dark">Get directions</a>#}
+                                <a href="#" class="btn btn-transparent-dark" type="button" data-toggle="modal"
+                                   data-target="#add-calendar-modal">Add to calendar</a>
+                                {#                                <a href="#" class="btn btn-transparent-dark">Get directions</a>#}
                             </div>
 
                             <!--<p class="view-event-btn"><a href="#">View event on Meetup.com</a></p>-->
@@ -134,8 +143,8 @@
                                 <a class="twitter" href="#">Twitter</a>
                                 <a class="facebook" href="#">Facebook</a>
                                 <a class="email" href="#">Email</a>
-{#                                <a class="reddit" href="#">Reddit</a>#}
-{#                                <a class="weibo" href="#">Weibo</a>#}
+                                {#                                <a class="reddit" href="#">Reddit</a>#}
+                                {#                                <a class="weibo" href="#">Weibo</a>#}
                                 <a class="linkedin" href="#">LinkedIn</a>
                             </div>
 
@@ -199,18 +208,64 @@
         </section>
 
     </div><!-- /#main -->
+    <div id="add-calendar-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document" style="width: 80%; padding-left: 20%">
+            <div class="modal-content" style="width: 60%;">
+
+                <div class="modal-body">
+
+                    <div class="modal-body-left" style="width: 100%">
+
+                        <h4 class="modal-title">Add to Calendar</h4>
+                        <form class="create-event-form" method="post"
+                              enctype="multipart/form-data">{% csrf_token %}
+                            <input type="hidden" id="event-id" name="event_id" class="form-control"
+                                       value="{{ event.id }}" />
+
+                            <div class="form-group">
+                                <label for="event-name">* Title</label>
+                                <input type="text" id="event-name" name="title" class="form-control"
+                                       value="{{ event.title }}" readonly/>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminderTime">* Reminder Time</label>
+                                <input type="text" id="reminderTime" class="form-control" name="reminderTime"/>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="email-phone">Email</label>
+                                <input type="email" id="email" class="form-control" name="email"/>
+
+                            </div>
+
+                            <div class="modal-form-buttons">
+                                <a data-dismiss="modal" class="pull-left close-btn hidden-xs" href="#">Close</a>
+                                <button class="btn btn-dark pull-right" type="submit">Add Event</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /#create-event-modal -->
+
 
 {% endblock %}
-
 {% block customscript %}
     <script>
-    $(document).ready(function () {
-        var news_url = window.location.href;
-        $('.social-share .twitter').attr('href', 'https://twitter.com/home?status=' + news_url);
-        $('.social-share .facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + news_url);
-        $('.social-share .email').attr('href', 'mailto:?&body=' + news_url);
-        $('.social-share .linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + news_url);
-    })
+           $("#reminderTime").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',
+                autoclose: true,
+                todayBtn: true
+            });
+
+        $(document).ready(function () {
+            var news_url = window.location.href;
+            $('.social-share .twitter').attr('href', 'https://twitter.com/home?status=' + news_url);
+            $('.social-share .facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + news_url);
+            $('.social-share .email').attr('href', 'mailto:?&body=' + news_url);
+            $('.social-share .linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + news_url);
+        })
 
     </script>
 {% endblock %}

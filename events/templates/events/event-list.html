@@ -2,13 +2,48 @@
 {% block content %}
 
     {% load staticfiles %}
+    {% load notifications_tags %}
+    {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %}
     <style>
+        /* Create the blue navigation bar */
+        .navbar {
+            background-color: #000000;
+
+        {#            padding: 5px 10px;#}
+        }
+
+        /* Define how each icon button should look like */
+        .button {
+            font-size: 25px;
+            color: white;
+
+            display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+            position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+            float: right;
+            margin-right: 14px;
+
+        }
+
+        /* Make the badge float in the top right corner of the button */
+        .button__badge {
+            background-color: #fa3e3e;
+            border-radius: 2px;
+            color: white;
+
+            padding: 1px 3px;
+            font-size: 10px;
+
+            position: absolute; /* Position the badge within the relatively positioned button */
+            top: 0;
+            right: 0;
+        }
+
         img.resize {
             max-width: 50%;
             max-height: 50%;
         }
 
-    .loader {
+        .loader {
             position: relative;
             left: 50%;
             top: 50%;
@@ -102,34 +137,62 @@
                         <!--<li><a href="/c/people">People</a></li>-->
                         {% for page in navbar_pages %}
                             <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                        {% endfor %}  
+                        {% endfor %}
                     </ul>
 
                 </nav><!-- /.site-navigation -->
 
                 <div class="user-profile dropdown">
+
                     <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'officespace/img/avatar.jpg' %}" alt="">
+                        <div class="user-profile-thumb">
+
+                            {% if request.user.profile.image %}
+                                <img src="{{ request.user.profile.image.url }}" alt="">
+                            {% else %}
+                                <img src="{% static 'community/img/avatar.jpg' %}" alt="">
+                            {% endif %}
+
                             <span
                                     class="visible-xs caret"></span></div>
                         <div class="user-profile-meta hidden-xs">
                             <div class="user-profile-meta-inner">
-                                {{ request.user.username }}
+                                Nick B.
                             </div>
                         </div>
                     </a>
+
                     <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
-                        <li><a href="person-profile.html">Profile</a></li>
-                        <li><a href="#">Settings</a></li>
+                        <li><a href="/c/people/{{ request.user.id }}">Profile</a></li>
+                        <!--<li><a href="#">Settings</a></li>-->
                         <li class="logout-btn"><a href="/logout">Logout</a></li>
                     </ul>
+
                 </div><!-- /.user-profile -->
-
+                <div class="user-profile dropdown">
+                    <a class="dropdown-toggle" id="notification-dropdown-menu" data-toggle="dropdown"
+                       aria-expanded="true">
+                        <div class="button">
+                            <i class="fa fa-globe"></i>
+                            {% if unread_exist %}
+                                <span class="button__badge">{% notifications_unread %}</span>
+                            {% endif %}
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="notification-dropdown-menu"
+                        style="padding: 10px;">
+                        <li>
+                            <p style="color: #00A3FF; font-size: medium; font-weight: 500">{% notifications_unread %} new messages</p>
+                        </li>
+                        {% for item in unread %}
+                            <li><a href="{{ item.target_object_id }}?notify={{ item.id }}"><p><strong style="color: #006dcc">{{ item.target}} Event</strong> {{ item.description }}</p></a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div><!-- /.container -->
-
         </div><!-- /.top-nav -->
-
     </header><!-- /#header -->
+
     <div id="main" class="site-main">
 
         <section class="events-info">
@@ -170,13 +233,14 @@
 
                 <div class="row">
                     {% for event_top in event_top_list %}
-                    <div class="col-sm-6">
-                        <p class="news-category">{{ event_top.start_date|date:"fA j N Y" }}</p>
-                        <h2 class="news-title">{{ event_top.title }}</h2>
-                        <p class="news-description"><span class="posted-by">posted by<br> <a href="{{ event_top.id }}">{{ request.user.username }}</a></span>
-                            <a href="{{ event_top.id }}" class="rsvp-btn">View Details</a></p>
+                        <div class="col-sm-6">
+                            <p class="news-category">{{ event_top.start_date|date:"fA j N Y" }}</p>
+                            <h2 class="news-title">{{ event_top.title }}</h2>
+                            <p class="news-description"><span class="posted-by">posted by<br> <a
+                                    href="{{ event_top.id }}">{{ request.user.username }}</a></span>
+                                <a href="{{ event_top.id }}" class="rsvp-btn">View Details</a></p>
 
-                    </div>
+                        </div>
                     {% endfor %}
 
                 </div>
@@ -196,17 +260,15 @@
                             <a href="javascript:allEvent();" class="all-events pull-right">All Events...</a>
                         </div><!-- /.events-filter -->
 
-
                         <div id="search-form" class="row" style="display: none; padding-left: 7%">
                             <input id="searchBar" class="form-control" type="text"
-                                   placeholder="keyword..."
-                                   style="width: 100%;" onkeyup="realFilter(event)"/>
+                                   placeholder="keyword..." style="width: 100%;" onkeyup="realFilter(event)"/>
                         </div>
-
                     </div>
                 </div>
 
                 <div class="loader" style="display: block; margin-top: 10%"></div>
+
                 <div id="event_items">
                     {% include 'events/event-content.html' %}
 
@@ -250,7 +312,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="startdatetime">Start date & time</label>
-                                <input type="text" id="startdatetime" class="form-control" name="startdatetime" />
+                                <input type="text" id="startdatetime" class="form-control" name="startdatetime"/>
 
                             </div>
                             <div class="form-group">
@@ -283,6 +345,7 @@
         var totalPage;
         var method;
         var value;
+        loading();
         $(document).ready(function () {
             check_loading();
             week_num = 1;
@@ -349,7 +412,6 @@
             $("#article_list").hide();
         }
 
-
         function update_item() {
             loading();
             if (method === 'new') {
@@ -413,7 +475,7 @@
         function realFilter(e) {
             if (e.keyCode === 13) {
                 searchInput = document.getElementById("searchBar");
-                value = searchInput.value;
+                value = searchInput.value.replace(" ", "-");
                 method = 'search';
                 week_num = 0;
                 update_item();

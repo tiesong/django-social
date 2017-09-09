@@ -40,29 +40,120 @@
 
 </head>
 <body>
+
+    <header id="masthead" class="site-header" style="height:100%">
+
+        <div class="top-nav">
+
+            <div class="container container-960">
+
+                <a href="/" class="site-logo" rel="home"><img src="{% static 'home/img/logo.png' %}" alt="" srcset="{% static 'home/img/logo.png' %} 1x, {% static 'home/img/logo@2x.png' %} 2x"></a>
+
+
+            </div><!-- /.container -->
+
+        </div><!-- /.top-nav -->
+
+        <div class="hero">
+            <div class="container">
+
+                {% if request.GET.login %}
+
+                <div class="hero-text">
+
+                    <h1 class="hero-title">Create communities and work together.</h1>
+                    <p>
+                        <div class="alert alert-danger alert-dismissable fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ request.session.error_message }}
+                        </div>
+
+                    </p>
+                </div>
+
+                <form class="hero-form" method="POST" action="/">
+                    
+                    {% csrf_token %}
+
+                    <div class="form-group mb-30">
+                        <label for="user-email">Email</label>
+                        <input type="email" name="login-email" id="login-email" class="form-control" placeholder="hello@teamedup.com.au">
+
+                        <label for="user-email">Password</label>
+                        <input type="password" name="login-password" id="login-password" class="form-control" placeholder="Enter your password">
+
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-transparent-white" type="submit" data-toggle="modal" data-target="#login-modal">Log in to your account...</button>
+                        <a class="forget-password" style="color:white" href="/password_reset">Forgot your password?</a>
+                    </div>
+
+                </form>
+
+                {% elif request.GET.signup %}
+
+                <div class="hero-text">
+
+                    <h1 class="hero-title">Please try and signup again.</h1>
+                    <p>
+                        <div class="alert alert-danger alert-dismissable fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ request.session.error_message }}
+                        </div>
+
+                    </p>
+                </div>                
+
+                <form class="signup-form hero-form" method="post" action='/signup/'>
+
+                    {% csrf_token %}
+                    <div class="form-group mb-30">
+                        <label for="signup-firstname">Firstname</label>
+                        <input type="text" id="signup-firstname" name="signup-firstname" class="form-control" placeholder="Sarah">
+                                
+                        <label for="signup-lastname">Lastname</label>
+                        <input type="text" id="signup-lastname" name="signup-lastname" class="form-control" placeholder="Smith">
+                                
+                        <label for="signup-">Email Address</label>
+                        <input type="email" id="signup-email" name="signup-email" class="form-control" placeholder="hello@teamedup.com.au">
+                                
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" name="signup-password" class="form-control" placeholder="Enter your password">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-transparent-white" type="submit">Sign up</button>
+                    </div>
+
+                </form>
+
+                {% else %}
+
+                <div class="hero-text">
+
+                    <h1 class="hero-title">Sorry, something appears to be off...</h1>
+                    <p>
+                    {{ request.session.error_message }}
+                    </p>
+                </div>
+
+                {% endif %}
+
+
+
+
+            </div>
+        </div><!-- /.hero -->
+
+    </header><!-- /#header -->
+
+
+    <div id="main" class="site-main">
+
+
         
 
     </div><!-- /#main -->
 
-    
-    <footer id="colophon" class="site-footer">
-
-        <div class="container" style="height:100vh">
-
-            <h3>{{message}}</h3>
-
-            <form class="hero-form">
-                <div class="form-group">
-                    <a href="/"><button href="/" class="btn btn-transparent-white" type="button"><< Back</button></a>
-                </div>
-            </form><!-- /.user-form -->
-
-        </div><!-- /.container -->
-
-    </footer><!-- /#footer -->
-
-
-   
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
