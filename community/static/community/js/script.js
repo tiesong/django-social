@@ -27,4 +27,16 @@ $(function () {
     $('.profile-social-share .email').attr('href', 'mailto:?&body='+profile_url);
     $('.profile-social-share .linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url='+profile_url);
 
+    $('#upload_avatar').on('change',function(){
+        $('.trans-back').hide();
+    });
+
+    $('#upload_avatar').on('mouseenter',function(){
+        $('.trans-back').show();
+    });
+
+    $('#upload_avatar').on('mouseleave',function(){
+        $('.trans-back').hide();
+    });
+
 });

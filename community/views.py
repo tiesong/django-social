@@ -1,11 +1,13 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.urls import reverse, reverse_lazy
 from django.template import loader
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 import datetime
-
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 from django.contrib.auth.models import User
 from news.models import News
 from .models import Profile, Tag
@@ -119,12 +121,54 @@ def profile(request, profile_id):
 	return render(request, 'community/profile.html', context)
 
 def edit_profile(request, profile_id):
+	if (request.user.id != int(profile_id)) and not request.user.is_superuser:
+		return redirect(reverse('people_list'))
+
 	user = User.objects.get(pk=profile_id)
 	navbar_pages = News.objects.filter(display_in_navbar=True)
+	tag_list = Tag.objects.all()
 
+	if request.POST:
+		try:
+			name = request.POST['name']
+			if name:
+				if len(name.split(' ')) > 1:
+					first_name = name.split(' ')[0]
+					last_name = name.split(' ')[1]
+				else:
+					first_name = name.split(' ')[0]
+					last_name = ''
+			else:
+				first_name = ''
+				last_name = ''
+			tagline = request.POST['tagline']
+			email = request.POST['email']
+			phone = request.POST['phone']
+			website = request.POST['website']
+			twitter = request.POST['twitter']
+			facebook = request.POST['facebook']
+			linkedin = request.POST['linkedin']
+			description = request.POST['description']
+			tags = request.POST.getlist('tags')
+			if request.FILES:
+				avatar = request.FILES['avatar']
+				upload_date = datetime.datetime.now().strftime('%Y/%m/%d/')
+				image_location = settings.MEDIA_ROOT + '/profile_images/' + upload_date
+				fs = FileSystemStorage(image_location)
+				filename = fs.save(avatar.name, avatar)
+				url = 'profile_images/' + upload_date + filename
+				User.objects.filter(pk=profile_id).update(first_name=first_name, last_name=last_name, email=email,)
+				Profile.objects.filter(pk=profile_id).update(tagline=tagline, image=url, phone_number=phone, website=website, twitter=twitter, facebook=facebook, linkedin=linkedin, bio=description,)
+			else:
+				User.objects.filter(pk=profile_id).update(first_name=first_name, last_name=last_name, email=email,)
+				Profile.objects.filter(pk=profile_id).update(tagline=tagline, phone_number=phone, website=website, twitter=twitter, facebook=facebook, linkedin=linkedin, bio=description,)
+			return redirect(reverse('profile', args=[profile_id]))
+		except Exception as e:
+			raise e
 	context = {
 		'user': user,
 		'navbar_pages': navbar_pages,
+		'tag_list': tag_list,
 	}
 	return render(request, 'community/profile-edit.html', context)
 

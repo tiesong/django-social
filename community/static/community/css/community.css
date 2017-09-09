@@ -1,0 +1,84 @@
+/* Profile Edit */
+.profile-content {
+    padding: 50px 0;
+}
+
+.profile-content h3 {
+    color: #6f6f6f;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 20px;
+}
+
+.community.site-main {
+    position: relative;
+}
+
+.header-section {
+    position: absolute;
+    top: -100px;
+}
+
+.header-section .profile-thumb {
+    border: 1px solid #fff;
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 100%;
+}
+
+#upload_avatar {
+    height: 130px;
+    width: 130px;
+    position: absolute;
+    z-index: 999;
+    opacity: 0 !important;
+    top: 0;
+    border-radius: 100%;
+}
+
+.trans-back {
+    width: 130px;
+    height: 130px;
+    background: rgba(255,255,255,0.4);
+    position: absolute;
+    border-radius: 50%;
+    display: none;
+    top: 0;
+}
+
+.trans-back .camera {
+    font-size: 50px;
+    color: #333;
+    left: 33%;
+    top: 33%;
+}
+
+.header-section .profile-title {
+    margin-left: 40px;
+    margin-top: 10px;
+}
+
+.header-section .profile-title input {
+    color: #fff;
+    border-color: #fff;
+}
+
+.user-details .control-label {
+    text-align: left !important;
+    cursor: default;
+}
+
+.user-details .tags {
+    border: 1px solid #272534;
+    padding: 6px 12px;
+}
+
+.edit-actions {
+    margin-top: 150px;
+}
+
+.edit-actions .edit-save {
+    margin-bottom: 15px;
+}
