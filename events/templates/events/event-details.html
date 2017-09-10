@@ -5,8 +5,8 @@
     {% load app_filter %}
     {% load notifications_tags %}
     <style>
-    /* Define how each icon button should look like */
-        .button {
+        /* Define how each icon button should look like */
+        .notify_button {
             font-size: 25px;
             color: white;
 
@@ -18,7 +18,7 @@
         }
 
         /* Make the badge float in the top right corner of the button */
-        .button__badge {
+        .notify_button__badge {
             background-color: #fa3e3e;
             border-radius: 2px;
             color: white;
@@ -97,10 +97,10 @@
                     {% notifyUnread request.user.username as unread %}
                     <a class="dropdown-toggle" id="notification-dropdown-menu" data-toggle="dropdown"
                        aria-expanded="true">
-                        <div class="button">
+                        <div class="notify_button">
                             <i class="fa fa-globe"></i>
                             {% if unread.unread_exist %}
-                                <span class="button__badge">{{ unread.count }} </span>
+                                <span class="notify_button__badge">{{ unread.count }} </span>
                             {% endif %}
                         </div>
                     </a>
@@ -261,32 +261,36 @@
         </section>
 
     </div><!-- /#main -->
+
     <div id="remind-me-modal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document" style="width: 80%; padding-left: 20%">
-        <div class="modal-content" style="width: 60%;">
+        <div class="modal-dialog" role="document" style="width: 80%; padding-left: 20%">
+            <div class="modal-content" style="width: 60%;">
 
-            <div class="modal-body">
+                <div class="modal-body">
 
-                <div class="modal-body-left" style="width: 100%">
+                    <div class="modal-body-left" style="width: 100%">
 
-                    <h4 class="modal-title" style="align-content: center">Remind me</h4>
-                    <form class="create-event-form" method="post"
-                          enctype="multipart/form-data">{% csrf_token %}
-                        <input type="hidden" id="event-id" name="event_id" class="form-control"
-                               value="{{ event.id }}"/>
-                        <div class="form-group">
-                            <p style="color: #000; font-weight: 700;font-size: large">You will be reminded of the event
-                                24 hours before it's due to start</p>
-                        </div>
-                        <div class="modal-form-buttons">
-                            <button data-dismiss="modal" class="pull-left close-btn hidden-xs" href="#">Cancel</button>
-                            <button class="btn btn-dark pull-right" type="submit">OK</button>
-                        </div>
-                    </form>
+                        <h4 class="modal-title" style="align-content: center">Remind me</h4>
+                        <form class="create-event-form" method="post"
+                              enctype="multipart/form-data">{% csrf_token %}
+                            <input type="hidden" id="event-id" name="event_id" class="form-control"
+                                   value="{{ event.id }}"/>
+                            <div class="form-group">
+                                <p style="color: #000; font-weight: 700;font-size: large">You will be reminded of the
+                                    event
+                                    24 hours before it's due to start</p>
+                            </div>
+                            <div class="modal-form-buttons">
+                                <a data-dismiss="modal" class="pull-left close-btn hidden-xs" href="#">Cancel
+                                </a>
+                                <button class="btn btn-dark pull-right" type="submit">OK</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 
 
 

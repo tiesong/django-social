@@ -13,8 +13,8 @@
         {#            padding: 5px 10px;#}
         }
 
-        /* Define how each icon button should look like */
-        .button {
+         /* Define how each icon button should look like */
+        .notify_button {
             font-size: 25px;
             color: white;
 
@@ -26,7 +26,7 @@
         }
 
         /* Make the badge float in the top right corner of the button */
-        .button__badge {
+        .notify_button__badge {
             background-color: #fa3e3e;
             border-radius: 2px;
             color: white;
@@ -174,10 +174,10 @@
                 {% notifyUnread request.user.username as unread %}
                     <a class="dropdown-toggle" id="notification-dropdown-menu" data-toggle="dropdown"
                        aria-expanded="true">
-                        <div class="button">
+                        <div class="notify_button">
                             <i class="fa fa-globe"></i>
                             {% if unread.unread_exist %}
-                                <span class="button__badge">{{ unread.count }} </span>
+                                <span class="notifybutton__badge">{{ unread.count }} </span>
                             {% endif %}
                         </div>
                     </a>
