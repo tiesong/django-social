@@ -478,4 +478,16 @@
 		margin: 10px 0;
 	}
 
+	.edit-actions {
+		margin: 0 !important;
+	}
+
+	.description-section {
+		margin-bottom: 30px;
+	}
+
+	.company-profile-header {
+		height: 210px;
+	}
+
 }

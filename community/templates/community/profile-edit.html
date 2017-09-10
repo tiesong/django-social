@@ -1,273 +1,289 @@
-{% extends 'news/base.html' %}
+{% extends 'community/base.html' %}
 {% block content %}
 {% load staticfiles %}
-<body>
+<script>
+    tinymce.init({
+        selector: '#description',
+        plugins: 'image',
+        extended_valid_elements : 'img[class|src|border=0|alt|title|width|height]',
+        image_description: false,
+        image_dimensions: false,
+        file_picker_types: 'image',
+        content_css: "{% static 'community/css/community.css' %}",
+        file_picker_callback: function (callback, value, meta) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
 
-    <header id="masthead" class="site-header company-profile-header">
+            input.onchange = function () {
+                var file = this.files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
 
-        <div class="top-nav">
+                reader.onload = function () {
+                    var id = 'blobid' + (new Date()).getTime();
+                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                    var base64 = reader.result.split(',')[1];
+                    var blobInfo = blobCache.create(id, file, base64);
+                    blobCache.add(blobInfo);
 
-            <div class="container container-960">
+                    callback(blobInfo.blobUri(), {title: file.name});
+                };
+            };
+            input.click();
+        },
+        height: 500
+    });
 
-                <a href="/" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.avatar')
+                        .attr('src', e.target.result)
+                        .width(130)
+                        .height(130);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 
-                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
-                    <span class="lines line-top"></span>
-                    <span class="lines line-middle"></span>
-                    <span class="lines line-bottom"></span>
-                </button><!-- /.lines-button -->
+</script>
+<header id="masthead" class="site-header company-profile-header">
 
-                <nav id="primary-navigation" class="site-navigation">
+    <div class="top-nav">
 
-                    <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
+        <div class="container container-960">
 
-                    <ul class="dropdown">
-                        <li><a href="/news">News</a></li>
-                        <li><a href="/events">Events</a></li>
-                        <li><a href="/c/companies">Companies</a></li>
-                        <li class="active"><a href="/c/people">People</a></li>
-                        {% for page in navbar_pages %}
-                            <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                        {% endfor %}                                 
-                    </ul>
+            <a href="/" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
 
-                </nav><!-- /.site-navigation -->
+            <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+                <span class="lines line-top"></span>
+                <span class="lines line-middle"></span>
+                <span class="lines line-bottom"></span>
+            </button><!-- /.lines-button -->
 
-                {% include 'community/profile-menu.html' %}
+            <nav id="primary-navigation" class="site-navigation">
 
-            </div><!-- /.container -->
+                <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
 
-        </div><!-- /.top-nav -->
+                <ul class="dropdown">
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <!-- <li><a href="/c/companies">Companies</a></li> -->
+                    <li class="active"><a href="/c/people">People</a></li>
+                    <li><a href="/officespace">Officespace</a></li>
+                    {% for page in navbar_pages %}
+                        <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
+                    {% endfor %}
+                </ul>
 
-        <div class="hero">
+            </nav><!-- /.site-navigation -->
 
-            <div class="container container-960">
-            
-                <div class="hero-text">
-                    {% if user.profile.image %}
-                        <img src="{{ user.profile.image.url }}" alt="" class="company-page-thumb">
-                    {% else %}
-                        <img src="{% static 'community/img/company-profile.jpg' %}" alt="" class="company-page-thumb">
-                    {% endif %}
+            {% include 'community/profile-menu.html' %}
 
-                    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-                    <p>{{ user.profile.tagline|slice:":25" }}</p>
-                </div>
+        </div><!-- /.container -->
+
+    </div><!-- /.top-nav -->
+
+</header><!-- /#header -->
+
+<div id="main" class="site-main community">
+
+    <section class="profile-content">
+
+        <div class="container container-960">
+
+            <div class="row">
+
+                <form method="post" id="profile_edit_form" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                    <div class="header-section">
+                        <div class="profile-thumb pull-left">
+                            {% if user.profile.image %}
+                                <img src="{{ user.profile.image.url }}" alt="" width="130" height="130" class="avatar">
+                            {% else %}
+                                <img src="{% static 'community/img/company-profile.jpg' %}" alt="" width="130" height="130" class="avatar">
+                            {% endif %}
+                            <input type="file" id="upload_avatar" name="avatar" onchange="readURL(this);" accept="image/*" class="form-control">
+                            <span class="trans-back"><span class="glyphicon glyphicon-camera camera"></span></span>
+                        </div>
+                        <div class="profile-title pull-left">
+                            <input type="text" name="name" class="form-control" value="{% if user.get_full_name %}{{ user.get_full_name }}{% endif %}">
+                            <input type="text" name="tagline" class="form-control" value="{% if user.profile.tagline %}{{ user.profile.tagline|slice:":25" }}{% endif %}">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="col-sm-8 description-section">
+                        <h3>Description</h3>
+                        <textarea id="description" name="description">{% if user.profile.bio %}{{ user.profile.bio|safe }}{% endif %}</textarea>
+                    </div>
+
+                    <div class="col-sm-4 details-section">
+                        <div class="user-details mb-30 form-horizontal">
+                            <h3>Details</h3>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Email:</label>
+                                <div class="col-sm-9">
+                                    <input type="email" name="email" class="form-control col-sm-10" value="{% if user.email %}{{ user.email }}{% endif %}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Phone:</label>
+                                <div class="col-sm-9">
+                                    <input type="tel" name="phone" class="form-control" value="{% if user.profile.phone_number %}{{ user.profile.phone_number }}{% endif %}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Website:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="website" class="form-control" value="{% if user.profile.website %}{{user.profile.website}}{% endif %}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Twitter:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="twitter" class="form-control" value="{% if user.profile.twitter %}{{user.profile.twitter}}{% endif %}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Facebook:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="facebook" class="form-control" value="{% if user.profile.facebook %}{{ user.profile.facebook }}{% endif %}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">LinkedIn:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="linkedin" class="form-control" value="{% if user.profile.linkedin %}{{ user.profile.linkedin }}{% endif %}">
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label class="col-sm-3 control-label">Tags:</label>
+                                <div class="col-sm-9">
+                                    <select multiple name="tags" class="form-control tags">
+                                        {% if tag_list %}
+                                            {% for tag in tag_list %}
+                                                {% if tag in user.profile.tags.all %}
+                                                    <option value="{{tag}}" selected="selected">{{tag}}</option>
+                                                {% else %}
+                                                    <option value="{{tag}}">{{tag}}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                </div>
+                            </div> -->
+                        </div>
+
+                        <div class="edit-actions">
+                            <input type="submit" class="btn btn-transparent-dark edit-save" value="Save">
+                            <a href="{% url 'profile' user.id %}" class="btn btn-transparent-dark">Cancel</a>
+                        </div>
+                    </div>
+
+                </form>
 
             </div>
 
-        </div><!-- /.event-details-hero -->        
-
-    </header><!-- /#header -->
-
-
-    <div id="main" class="site-main">
-
-        <section class="event-details-content">
-
-            <div class="container container-960">
-
-                <div class="row">
-
-                    <div class="col-sm-8">
-                        <h3>Description</h3>
-
-                        <p class="mb-20">{{ user.profile.bio|safe }}</p>
-
-                    </div>
-
-                    <div class="col-sm-4">
-
-                        <div class="event-details-sidebar">
- 
-                            <h3>Details</h3>
-                            <p class="mb-30">
-                            
-                            <strong>Email</strong>: <a href="mailto:{{user.email}}">{{user.email}}</a><br>
-                            
-                            <strong>Phone</strong>: <a href="tel:{{ user.profile.phone_number }}">{{ user.profile.phone_number }}</a><br>
-                            
-                            <strong>Website</strong>: <a href="{{user.profile.website}}">{{user.profile.website}}</a></p>
-                            
-                            <p class="mb-30"><strong>Twitter</strong>: <a href="http://www.twitter.com/{{user.profile.twitter}}">{{user.profile.twitter}}</a><br>
-                                                        
-                            <strong>Facebook</strong>: <a href="{{ user.profile.facebook }}">{{ user.profile.facebook }}</a><br>
-                            
-                            <strong>LinkedIn</strong>: <a href="{{ user.profile.linkedin }}">{{ user.profile.linkedin }}</a><br>
-                            
-                            <strong>Weibo</strong>: <a href="{{.user.profile.weibo }}">{{ user.profile.weibo }}</a></p>
-
-                            <p class="mb-30"><strong>Company</strong>: {{ user.profile.companies.first }}<br></p>
-                            
-                            <div class="event-details-buttons mb-30">
-                                <a href="#" class="btn btn-transparent-dark" data-toggle="modal" data-target="#edit-profile-modal">Edit Profile</a>
-                                <hr>
-                                <a href="#" class="btn btn-transparent-dark">Add to Contacts</a>
-                            </div>
-
-                            <div class="social-share">
-                                <h3>Share Company</h3>
-                                <a class="twitter" href="#">Twitter</a>
-                                <a class="facebook" href="#">Facebook</a>
-                                <a class="email" href="#">Email</a>
-                                <a class="reddit" href="#">Reddit</a>
-                                <a class="weibo" href="#">Weibo</a>
-                                <a class="linkedin" href="#">LinkedIn</a>
-                            </div>
-
-                        </div><!-- /.event-details-sidebar -->
-
-                    </div>
-
-                </div>
-
-            </div><!-- /.container -->
-            
-        </section><!-- /.event-details-content -->
-
-    </div><!-- /#main -->
-
-    
-    <footer id="colophon" class="site-footer pages-footer">
-
-        <div class="container container-960">
-        
-            <div class="row">
-        
-                <div class="footer-col">
-                    <a href="#" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt=""></a>
-                </div><!-- /.footer-col -->
-
-                <div class="footer-col">
-                    <h4>News</h4>
-                    <ul>
-                        <li><a href="#">Current</a></li>
-                        <li><a href="#">Archive</a></li>
-                        <li><a href="#">Submit a story</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col">
-                    <h4>Events</h4>
-                    <ul>
-                        <li><a href="#">Browse</a></li>
-                        <li><a href="#">Attending</a></li>
-                        <li><a href="#">Manage</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col">
-                    <h4>Startups</h4>
-                    <ul>
-                        <li><a href="#">Browse</a></li>
-                        <li><a href="#">Manage</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col">
-                    <h4>Companies</h4>
-                    <ul>
-                        <li><a href="#">Browse</a></li>
-                        <li><a href="#">Manage</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col">
-                    <h4>Jobs</h4>
-                    <ul>
-                        <li><a href="#">Browse</a></li>
-                        <li><a href="#">Manage</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col">
-                    <h4>Profile</h4>
-                    <ul>
-                        <li><a href="#">Your Activity</a></li>
-                        <li><a href="#">Edit Profile</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">About YBF</a></li>
-                        <li><a href="#">Terms of service</a></li>
-                        <li><a href="#">Legal</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-                
-                <div class="footer-col pull-right text-right">
-                    <ul>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">LinkedIn</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
-
-            </div>  
-                    
         </div><!-- /.container -->
 
-    </footer><!-- /#footer -->
+    </section><!-- /.event-details-content -->
 
+</div><!-- /#main -->
 
-    <div id="edit-profile-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                
-                <div class="modal-body">
+<footer id="colophon" class="site-footer pages-footer">
 
-                    <div class="modal-body-left">
-                    
-                        <h4 class="modal-title">Edit Profile</h4>
-                        <form class="edit-profile-form">
-                            <div class="form-group">
-                                <label for="edit-profile-name">Full Name</label>
-                                <input type="text" id="edit-profile-name" class="form-control" placeholder="Nick Byrne">
-                                <a href="#" class="change-btn">Change</a>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-profile-email">Email</label>
-                                <input type="email" id="edit-profile-email" class="form-control" placeholder="hello@teamedup.com.au">
-                                <a href="#" class="change-btn">Change</a>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-profile-password">Password</label>
-                                <input type="password" id="edit-profile-password" class="form-control" placeholder="Enter your password">
-                                <a href="#" class="change-btn">Change</a>
-                            </div>
-                            <div class="form-group avatar-wrapper">
-                                <label for="edit-profile-avatar">Avatar</label>
-                                <div class="avatar-img-wrapper">
-                                    <img src="assets/img/avatar.jpg" alt="Avatar">
-                                </div>
-                                <a href="#" class="change-btn">Change</a>
-                            </div>
-                            <div class="modal-form-buttons">
-                                <a href="#" class="close-btn pull-right hidden-xs" data-dismiss="modal">Close</a>
-                                <button class="btn btn-dark" type="button">Save Changes</button>
-                            </div>
-                        </form><!-- /.edit-profile-form -->
+    <div class="container container-960">
 
-                    </div>
+        <div class="row">
 
-                    <div class="modal-body-right"></div>
-                    
-                </div>
-               
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /#edit-profile-modal -->
+            <div class="footer-col">
+                <a href="#" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt=""></a>
+            </div><!-- /.footer-col -->
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
-    <script src="{% static 'community/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'community/js/script.js' %}"></script>
-  
-</body>
+            <div class="footer-col">
+                <h4>News</h4>
+                <ul>
+                    <li><a href="#">Current</a></li>
+                    <li><a href="#">Archive</a></li>
+                    <li><a href="#">Submit a story</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Events</h4>
+                <ul>
+                    <li><a href="#">Browse</a></li>
+                    <li><a href="#">Attending</a></li>
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Startups</h4>
+                <ul>
+                    <li><a href="#">Browse</a></li>
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Companies</h4>
+                <ul>
+                    <li><a href="#">Browse</a></li>
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Jobs</h4>
+                <ul>
+                    <li><a href="#">Browse</a></li>
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Officespace</h4>
+                <ul>
+                    <li><a href="/officespace">Browse</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Profile</h4>
+                <ul>
+                    <li><a href="#">Your Activity</a></li>
+                    <li><a href="#">Edit Profile</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">About YBF</a></li>
+                    <li><a href="#">Terms of service</a></li>
+                    <li><a href="#">Legal</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col pull-right text-right">
+                <ul>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+        </div>
+
+    </div><!-- /.container -->
+
+</footer><!-- /#footer -->
+
 {% endblock %}
