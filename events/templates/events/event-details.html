@@ -3,6 +3,34 @@
 
     {% load staticfiles %}
     {% load app_filter %}
+    {% load notifications_tags %}
+    <style>
+    /* Define how each icon button should look like */
+        .button {
+            font-size: 25px;
+            color: white;
+
+            display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+            position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+            float: right;
+            margin-right: 14px;
+
+        }
+
+        /* Make the badge float in the top right corner of the button */
+        .button__badge {
+            background-color: #fa3e3e;
+            border-radius: 2px;
+            color: white;
+
+            padding: 1px 3px;
+            font-size: 10px;
+
+            position: absolute; /* Position the badge within the relatively positioned button */
+            top: 0;
+            right: 0;
+        }
+    </style>
     <header id="masthead" class="site-header">
 
         <div class="top-nav">
@@ -42,14 +70,14 @@
                     <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
                         <div class="user-profile-thumb">
 
-                        {% if request.user.profile.image %}
-                            <img src="{{ request.user.profile.image.url }}" alt="">
-                        {% else %}
-                            <img src="{% static 'community/img/avatar.jpg' %}" alt="">
-                        {% endif %} 
+                            {% if request.user.profile.image %}
+                                <img src="{{ request.user.profile.image.url }}" alt="">
+                            {% else %}
+                                <img src="{% static 'community/img/avatar.jpg' %}" alt="">
+                            {% endif %}
 
-                        <span
-                                class="visible-xs caret"></span></div>
+                            <span
+                                    class="visible-xs caret"></span></div>
                         <div class="user-profile-meta hidden-xs">
                             <div class="user-profile-meta-inner">
                                 Nick B.
@@ -58,12 +86,38 @@
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
-                <li><a href="/c/people/{{ request.user.id }}">Profile</a></li>
-                <!--<li><a href="#">Settings</a></li>-->
-                <li class="logout-btn"><a href="/logout">Logout</a></li>
+                        <li><a href="/c/people/{{ request.user.id }}">Profile</a></li>
+                        <!--<li><a href="#">Settings</a></li>-->
+                        <li class="logout-btn"><a href="/logout">Logout</a></li>
                     </ul>
 
                 </div><!-- /.user-profile -->
+
+                <div class="user-profile dropdown">
+                    {% notifyUnread request.user.username as unread %}
+                    <a class="dropdown-toggle" id="notification-dropdown-menu" data-toggle="dropdown"
+                       aria-expanded="true">
+                        <div class="button">
+                            <i class="fa fa-globe"></i>
+                            {% if unread.unread_exist %}
+                                <span class="button__badge">{{ unread.count }} </span>
+                            {% endif %}
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="notification-dropdown-menu"
+                        style="padding: 10px;">
+                        <li>
+                            <p style="color: #00A3FF; font-size: medium; font-weight: 500">{% notifications_unread %}
+                                new messages</p>
+                        </li>
+
+                        {% for item in unread.content %}
+                            <li><a href="{{ item.target_object_id }}?notify={{ item.id }}"><p><strong
+                                    style="color: #006dcc">{{ item.target }} Event</strong> {{ item.description }}</p>
+                            </a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
 
             </div><!-- /.container -->
 
@@ -130,11 +184,10 @@
                             <div class="event-details-buttons">
                                 <a href="{{ event.event_url }}" class="btn btn-transparent-dark">RSVP to this event</a>
                                 <a href="#" class="btn btn-transparent-dark" type="button" data-toggle="modal"
-                                   data-target="#add-calendar-modal">Add to calendar</a>
-                                {#                                <a href="#" class="btn btn-transparent-dark">Get directions</a>#}
+                                   data-target="#remind-me-modal">Remind me</a>
+
                             </div>
 
-                            <!--<p class="view-event-btn"><a href="#">View event on Meetup.com</a></p>-->
 
                             <br>
 
@@ -208,56 +261,43 @@
         </section>
 
     </div><!-- /#main -->
-    <div id="add-calendar-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document" style="width: 80%; padding-left: 20%">
-            <div class="modal-content" style="width: 60%;">
+    <div id="remind-me-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="width: 80%; padding-left: 20%">
+        <div class="modal-content" style="width: 60%;">
 
-                <div class="modal-body">
+            <div class="modal-body">
 
-                    <div class="modal-body-left" style="width: 100%">
+                <div class="modal-body-left" style="width: 100%">
 
-                        <h4 class="modal-title">Add to Calendar</h4>
-                        <form class="create-event-form" method="post"
-                              enctype="multipart/form-data">{% csrf_token %}
-                            <input type="hidden" id="event-id" name="event_id" class="form-control"
-                                       value="{{ event.id }}" />
-
-                            <div class="form-group">
-                                <label for="event-name">* Title</label>
-                                <input type="text" id="event-name" name="title" class="form-control"
-                                       value="{{ event.title }}" readonly/>
-                            </div>
-                            <div class="form-group">
-                                <label for="reminderTime">* Reminder Time</label>
-                                <input type="text" id="reminderTime" class="form-control" name="reminderTime"/>
-
-                            </div>
-                            <div class="form-group">
-                                <label for="email-phone">Email</label>
-                                <input type="email" id="email" class="form-control" name="email"/>
-
-                            </div>
-
-                            <div class="modal-form-buttons">
-                                <a data-dismiss="modal" class="pull-left close-btn hidden-xs" href="#">Close</a>
-                                <button class="btn btn-dark pull-right" type="submit">Add Event</button>
-                            </div>
-                        </form>
-                    </div>
+                    <h4 class="modal-title" style="align-content: center">Remind me</h4>
+                    <form class="create-event-form" method="post"
+                          enctype="multipart/form-data">{% csrf_token %}
+                        <input type="hidden" id="event-id" name="event_id" class="form-control"
+                               value="{{ event.id }}"/>
+                        <div class="form-group">
+                            <p style="color: #000; font-weight: 700;font-size: large">You will be reminded of the event
+                                24 hours before it's due to start</p>
+                        </div>
+                        <div class="modal-form-buttons">
+                            <button data-dismiss="modal" class="pull-left close-btn hidden-xs" href="#">Cancel</button>
+                            <button class="btn btn-dark pull-right" type="submit">OK</button>
+                        </div>
+                    </form>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /#create-event-modal -->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
 
 
 {% endblock %}
 {% block customscript %}
     <script>
-           $("#reminderTime").datetimepicker({
-                format: 'yyyy-mm-dd hh:ii',
-                autoclose: true,
-                todayBtn: true
-            });
+        $("#reminderTime").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            autoclose: true,
+            todayBtn: true
+        });
 
         $(document).ready(function () {
             var news_url = window.location.href;

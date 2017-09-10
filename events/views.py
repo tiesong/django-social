@@ -28,12 +28,6 @@ def index(request):
     :param request: 
     :return: 
     """
-    user = User.objects.filter(username=request.user.username).get()
-    unread = user.notifications.unread()
-
-    unread_exist = False
-    if len(unread) != 0:
-        unread_exist = True
 
     week = int(request.GET.get('week_num', 0))
     next_week = week + 1
@@ -43,7 +37,6 @@ def index(request):
     base_date = datetime.now() + timedelta(week * 7)
     limit_date = datetime.now() + timedelta(7 + week * 7)
 
-    print(base_date, limit_date)
     event_list = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
         'start_date')
 
@@ -63,8 +56,6 @@ def index(request):
         'event_featured': event_featured,
         'event_count': event_count,
         'user_all': user_all,
-        'unread': unread,
-        'unread_exist': unread_exist,
         'navbar_pages': navbar_pages,
     }
 
@@ -181,18 +172,15 @@ def detail(request, event_id):
     """
     if request.POST:
         user = User.objects.filter(username=request.user.username).get()
-        title = request.POST.get("title", "")
+
         event_id = request.POST.get("event_id", "")
-        email = request.POST.get("email", "")
-        reminderTime = request.POST.get("reminderTime", "")
 
         event = Event.objects.filter(id=event_id).get()
 
-        description = " Reminder at " + reminderTime
+        description = event.title + " will happen at " + str(event.start_date)
         navbar_pages = News.objects.filter(display_in_navbar=True)
 
-        notify.send(user, recipient=user, verb="Successfully set Reminder for", email=email,
-                    reminderTime=reminderTime,
+        notify.send(user, recipient=user, verb="Successfully set Reminder for",
                     target=event, description=description)
 
         context = {

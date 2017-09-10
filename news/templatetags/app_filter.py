@@ -1,15 +1,51 @@
 """
 Implement custom Template tags
 """
+from datetime import datetime
 from django import template
+from django.contrib.auth.models import User
 from bs4 import BeautifulSoup
 import re
 
 register = template.Library()
 
+
+@register.assignment_tag
+def notifyUnread(username):
+    """
+    Return notification.
+    :param user: 
+    :return: 
+    """
+
+    def days_between(d1, d2):
+        return abs((d2 - d1).days)
+
+    print('username: {}'.format(username))
+    notification_unread = []
+    current_date = datetime.now()
+
+    # Get unread Notification
+    user = User.objects.filter(username=username).get()
+    unread = user.notifications.unread()
+
+    unread_exist = False
+
+    # check exists if there is any event to perform after 24 hours.
+    if len(unread) != 0:
+        for item in unread:
+            if days_between(item.target.start_date.replace(tzinfo=None), current_date.replace(tzinfo=None)) <= 1:
+                unread_exist = True
+                notification_unread.append(item)
+
+    return {"content": notification_unread,
+            "count": len(notification_unread),
+            "unread_exist": unread_exist}
+
+
 @register.filter(name='addcss')
 def addcss(field, css):
-    return field.as_widget(attrs={"class":css})
+    return field.as_widget(attrs={"class": css})
 
 
 @register.filter(name="snippet")
@@ -23,7 +59,6 @@ def snippet(html_body):
     soup = BeautifulSoup(html_body, "html.parser")
 
     for p in soup.select("p"):
-
         snippet_txt += p.text
 
     return snippet_txt[:150]
@@ -40,7 +75,6 @@ def shortsnippet(html_body):
     soup = BeautifulSoup(html_body, "html.parser")
 
     for p in soup.select("p"):
-
         snippet_txt += p.text
 
     return snippet_txt[:20]
@@ -57,7 +91,6 @@ def fulltext(html_body):
     soup = BeautifulSoup(html_body, "html.parser")
 
     for p in soup.select("p"):
-
         snippet_txt += p.text
 
     return snippet_txt

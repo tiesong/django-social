@@ -3,7 +3,8 @@
 
     {% load staticfiles %}
     {% load notifications_tags %}
-    {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %}
+    {% load app_filter %}
+
     <style>
         /* Create the blue navigation bar */
         .navbar {
@@ -170,12 +171,13 @@
 
                 </div><!-- /.user-profile -->
                 <div class="user-profile dropdown">
+                {% notifyUnread request.user.username as unread %}
                     <a class="dropdown-toggle" id="notification-dropdown-menu" data-toggle="dropdown"
                        aria-expanded="true">
                         <div class="button">
                             <i class="fa fa-globe"></i>
-                            {% if unread_exist %}
-                                <span class="button__badge">{% notifications_unread %}</span>
+                            {% if unread.unread_exist %}
+                                <span class="button__badge">{{ unread.count }} </span>
                             {% endif %}
                         </div>
                     </a>
@@ -184,7 +186,8 @@
                         <li>
                             <p style="color: #00A3FF; font-size: medium; font-weight: 500">{% notifications_unread %} new messages</p>
                         </li>
-                        {% for item in unread %}
+
+                        {% for item in unread.content %}
                             <li><a href="{{ item.target_object_id }}?notify={{ item.id }}"><p><strong style="color: #006dcc">{{ item.target}} Event</strong> {{ item.description }}</p></a></li>
                         {% endfor %}
                     </ul>
