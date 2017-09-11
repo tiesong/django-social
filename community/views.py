@@ -19,10 +19,12 @@ def index(request):
 
 def people_list(request):
 	navbar_pages = News.objects.filter(display_in_navbar=True)
-	user_list = User.objects.all()
+	user_list = User.objects.all().order_by('-profile__advisor')
+	# profile_list = Profile.objects.all().order_by('-advisor')
 	tag_list = Tag.objects.all()
 
 	context = {
+		# 'profile_list': profile_list,
 		'user_list': user_list,
 		'navbar_pages': navbar_pages,
 		'tag_list': tag_list,
@@ -33,7 +35,7 @@ def people_list(request):
 def update(request):
     page_number = request.GET.get('pg_num', 0)
 
-    user_list = User.objects.all()
+    user_list = User.objects.all().order_by('-profile__advisor')
     per = Paginator(user_list, 5)
     try:
         per_page = per.page(int(page_number))
@@ -57,7 +59,7 @@ def category(request):
     page_number = request.GET.get('pg_num', 0)
     tag_name = str(tag_name).replace("-", " ")
     profile_ids = Profile.objects.filter(tags__tag=tag_name).values_list('user', flat=True)
-    user_list = User.objects.filter(id__in=set(profile_ids))
+    user_list = User.objects.filter(id__in=set(profile_ids)).order_by('-profile__advisor')
 
     per = Paginator(user_list, 5)
 
@@ -81,10 +83,10 @@ def search(request):
 	keyword = request.GET.get('keyword', "")
 	page_number = request.GET.get('pg_num', 0)
 	keyword = str(keyword).replace("-", " ")
-	user_list = User.objects.filter(Q(username__icontains=keyword) | Q(email__icontains=keyword) | Q(first_name__icontains=keyword) | Q(last_name__icontains=keyword))
+	user_list = User.objects.filter(Q(username__icontains=keyword) | Q(email__icontains=keyword) | Q(first_name__icontains=keyword) | Q(last_name__icontains=keyword)).order_by('-profile__advisor')
 
 	user_ids = Profile.objects.filter(Q(tags__tag__icontains=keyword) | Q(companies__name__icontains=keyword)).values_list('user', flat=True)
-	profile_list = User.objects.filter(id__in=set(user_ids))
+	profile_list = User.objects.filter(id__in=set(user_ids)).order_by('-profile__advisor')
 
 	user_list = user_list | profile_list
 

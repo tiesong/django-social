@@ -49,6 +49,12 @@
                 {% else %}
                     <img src="{% static 'community/img/company-profile.jpg' %}" alt="" class="company-page-thumb">
                 {% endif %}
+                
+                {% if user.profile.advisor %}
+                    <div id="ribbon-container">
+                        <span id="ribbon">Advisor</span>
+                    </div>
+                {% endif %}
 
                 <h1>{{ user.get_full_name }}</h1>
                 <p>{{ user.profile.tagline|slice:":25" }}</p>

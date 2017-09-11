@@ -361,11 +361,9 @@
 	}
 
 	.news-page-list .news-single-item {
-	    clear: both;
 	    margin: auto;
 	    max-width: 100%;
 	    min-height: 0;
-	    overflow: hidden;
 	    width: 330px;
 	}
 
@@ -486,8 +484,12 @@
 		margin-bottom: 30px;
 	}
 
-	.company-profile-header {
+	.profile-edit.company-profile-header {
 		height: 210px;
+	}
+
+	.company-profile-header #ribbon-container {
+		top: 60px !important;
 	}
 
 }

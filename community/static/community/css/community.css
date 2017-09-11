@@ -28,6 +28,10 @@
     border-radius: 100%;
 }
 
+.community .news-page-list .news-single-thumb {
+    overflow: visible;
+}
+
 #upload_avatar {
     height: 130px;
     width: 130px;
@@ -82,4 +86,56 @@
 
 .edit-actions .edit-save {
     margin-bottom: 15px;
+}
+
+.company-profile-header #ribbon-container {
+    top: 30px;
+    left: auto;
+}
+
+.company-profile-header #ribbon-container span:after {
+    content: none;
+}
+
+#ribbon-container {
+    position: absolute;
+    overflow: visible;
+    font-size: 14px;
+    top: 0;
+    left: -7px;
+}
+
+#ribbon-container span {
+    display:block;
+    padding: 8px 25px;
+    position:relative;
+    background:#0089d0;
+    overflow:visible;
+    color:#fff;
+}
+
+#ribbon-container span:after {
+    content: "";
+    height: 0;
+    width: 0;
+    display: block;
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    border-top: 8px solid #004a70;
+    border-left: 8px solid transparent;
+}
+
+#ribbon-container span:before {
+    content: "";
+    height: 0;
+    width: 0;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -18px;
+    border-top: 18px solid #0089d0;
+    border-bottom: 18px solid #0089d0;
+    border-right: 18px solid transparent;
+    border-left: 18px solid transparent;
 }
