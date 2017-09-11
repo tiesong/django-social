@@ -21,8 +21,8 @@ def notifyUnread(username):
     def days_between(d1, d2):
         return abs((d2 - d1).days)
 
-    print('username: {}'.format(username))
     notification_unread = []
+    other_unread = []
     current_date = datetime.now()
 
     # Get unread Notification
@@ -30,17 +30,22 @@ def notifyUnread(username):
     unread = user.notifications.unread()
 
     unread_exist = False
-
+    other_exist = False
     # check exists if there is any event to perform after 24 hours.
     if len(unread) != 0:
         for item in unread:
             if days_between(item.target.start_date.replace(tzinfo=None), current_date.replace(tzinfo=None)) <= 1:
                 unread_exist = True
                 notification_unread.append(item)
+            else:
+                other_exist = True
+                other_unread.append(item)
 
     return {"content": notification_unread,
+            "other_content": other_unread,
             "count": len(notification_unread),
-            "unread_exist": unread_exist}
+            "unread_exist": unread_exist,
+            "other_exist": other_exist}
 
 
 @register.filter(name='addcss')

@@ -170,18 +170,14 @@ def detail(request, event_id):
     :param event_id: 
     :return: 
     """
+    notify_id = request.GET.get('notify', None)
+
     if request.POST:
-        user = User.objects.filter(username=request.user.username).get()
 
         event_id = request.POST.get("event_id", "")
-
         event = Event.objects.filter(id=event_id).get()
 
-        description = event.title + " will happen at " + str(event.start_date)
         navbar_pages = News.objects.filter(display_in_navbar=True)
-
-        notify.send(user, recipient=user, verb="Successfully set Reminder for",
-                    target=event, description=description)
 
         context = {
             'event': event,
@@ -189,8 +185,6 @@ def detail(request, event_id):
         }
 
         return render(request, 'events/event-details.html', context)
-
-    notify_id = request.GET.get('notify', None)
 
     if notify_id:
         Notification.objects.filter(id=notify_id).update(unread=0)
@@ -203,6 +197,24 @@ def detail(request, event_id):
         'navbar_pages': navbar_pages,
     }
     return render(request, 'events/event-details.html', context)
+
+
+@login_required
+def addNotify(request, event_id):
+
+    if request.POST:
+        user = User.objects.filter(username=request.user.username).get()
+
+        event_id = request.POST.get("event_id", "")
+
+        event = Event.objects.filter(id=event_id).get()
+
+        description = event.title + " will happen at " + str(event.start_date)
+
+        notify.send(user, recipient=user, verb="Successfully set Reminder for",
+                    target=event, description=description)
+
+        return redirect('/events/' + event_id)
 
 
 @login_required

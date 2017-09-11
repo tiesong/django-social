@@ -258,7 +258,7 @@
                     <div class="modal-body-left" style="width: 100%">
 
                         <h4 class="modal-title" style="align-content: center">Remind me</h4>
-                        <form class="create-event-form" method="post"
+                        <form class="create-event-form" method="post" action="addNotify/"
                               enctype="multipart/form-data">{% csrf_token %}
                             <input type="hidden" id="event-id" name="event_id" class="form-control"
                                    value="{{ event.id }}"/>
@@ -298,17 +298,37 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for item in unread.content %}
+                            {% if unread.unread_exist %}
+                                {% for item in unread.content %}
+                                    <tr>
+                                        <td><a href="?notify={{ item.id }}"><p><strong
+                                                style="color: #006dcc">{{ item.target }}</strong></p>
+                                        </a></td>
+                                        <td>
+                                            <p style="color: black">{{ item.description }}</p>
+                                        </td>
+                                        <td>Delete</td>
+                                    </tr>
+                                {% endfor %}
+                            {% elif unread.other_exist %}
+                                {% for item in unread.other_content %}
+                                    <tr>
+                                        <td><a href=""><p><strong
+                                                style="color: green">{{ item.target }}</strong></p>
+                                        </a></td>
+                                        <td>
+                                            <p style="color: black">{{ item.description }}</p>
+                                        </td>
+                                        <td>Delete</td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
                                 <tr>
-                                    <td><a href="?notify={{ item.id }}"><p><strong
-                                            style="color: #006dcc">{{ item.target }}</strong></p>
-                                    </a></td>
-                                    <td>
-                                        <p style="color: #006dcc">{{ item.description }}</p>
-                                    </td>
-                                    <td>Delete</td>
+                                    <td><p style="color: #006dcc">No contents</p></td>
+                                <td></td>
+                                <td></td>
                                 </tr>
-                            {% endfor %}
+                            {% endif %}
                             </tbody>
                         </table>
                         <div class="modal-form-buttons">

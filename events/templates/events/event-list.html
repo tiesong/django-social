@@ -357,7 +357,19 @@
                                                 style="color: #006dcc">{{ item.target }}</strong></p>
                                         </a></td>
                                         <td>
-                                            <p style="color: #006dcc">{{ item.description }}</p>
+                                            <p style="color: black">{{ item.description }}</p>
+                                        </td>
+                                        <td>Delete</td>
+                                    </tr>
+                                {% endfor %}
+                            {% elif unread.other_exist %}
+                                {% for item in unread.other_content %}
+                                    <tr>
+                                        <td><a href="{{ item.target_object_id }}"><p><strong
+                                                style="color: green">{{ item.target }}</strong></p>
+                                        </a></td>
+                                        <td>
+                                            <p style="color: black">{{ item.description }}</p>
                                         </td>
                                         <td>Delete</td>
                                     </tr>
