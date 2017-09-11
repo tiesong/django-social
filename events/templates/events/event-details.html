@@ -307,7 +307,7 @@
                                         <td>
                                             <p style="color: black">{{ item.description }}</p>
                                         </td>
-                                        <td>Delete</td>
+                                        <td><p style="color: #ba2121">Remind</p></td>
                                     </tr>
                                 {% endfor %}
                             {% elif unread.other_exist %}
@@ -319,7 +319,7 @@
                                         <td>
                                             <p style="color: black">{{ item.description }}</p>
                                         </td>
-                                        <td>Delete</td>
+                                        <td><p style="color: #006dcc">Pending</p></td>
                                     </tr>
                                 {% endfor %}
                             {% else %}

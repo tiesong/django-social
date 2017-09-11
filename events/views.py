@@ -209,7 +209,7 @@ def addNotify(request, event_id):
 
         event = Event.objects.filter(id=event_id).get()
 
-        description = event.title + " will happen at " + str(event.start_date)
+        description = "This Event will happen at " + str(event.start_date)
 
         notify.send(user, recipient=user, verb="Successfully set Reminder for",
                     target=event, description=description)
