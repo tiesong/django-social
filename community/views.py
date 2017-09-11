@@ -132,11 +132,10 @@ def edit_profile(request, profile_id):
 		try:
 			name = request.POST['name']
 			if name:
+				first_name = name.split(' ')[0]
 				if len(name.split(' ')) > 1:
-					first_name = name.split(' ')[0]
 					last_name = name.split(' ')[1]
 				else:
-					first_name = name.split(' ')[0]
 					last_name = ''
 			else:
 				first_name = ''

@@ -83,17 +83,17 @@
                         <h3>Details</h3>
                         <p class="mb-30">
 
-                            <strong>Email</strong>: {% if user.email %}<span>{{user.email}}<span>{% endif %}<br>
+                            {% if user.email %}<strong>Email</strong>: <span>{{user.email}}<span><br>{% endif %}
 
-                            <strong>Phone</strong>: {% if user.profile.phone_number %}<span>{{ user.profile.phone_number }}<span>{% endif %}<br>
+                            {% if user.profile.phone_number %}<strong>Phone</strong>: <span>{{ user.profile.phone_number }}<span><br>{% endif %}
 
-                            <strong>Website</strong>: {% if user.profile.website %}<span>{{user.profile.website}}<span>{% endif %}<br>
+                            {% if user.profile.website %}<strong>Website</strong>: <span>{{user.profile.website}}<span><br>{% endif %}
 
-                            <strong>Twitter</strong>: {% if user.profile.twitter %}<span>{{user.profile.twitter}}<span>{% endif %}<br>
+                            {% if user.profile.twitter %}<strong>Twitter</strong>: <span>{{user.profile.twitter}}<span><br>{% endif %}
 
-                            <strong>Facebook</strong>: {% if user.profile.facebook %}<span>{{ user.profile.facebook }}</a>{% endif %}<br>
+                            {% if user.profile.facebook %}<strong>Facebook</strong>: <span>{{ user.profile.facebook }}</a><br>{% endif %}
 
-                            <strong>LinkedIn</strong>: {% if user.profile.linkedin %}<span>{{ user.profile.linkedin }}</span>{% endif %}<br>
+                            {% if user.profile.linkedin %}<strong>LinkedIn</strong>: <span>{{ user.profile.linkedin }}</span><br>{% endif %}
 
                         </p>
 
@@ -132,15 +132,6 @@
     </section><!-- /.event-details-content -->
 
 </div><!-- /#main -->
-
-                <div class="footer-col">
-                    <h4>News</h4>
-                    <ul>
-                        <li><a href="#">Current</a></li>
-                        <li><a href="#">Archive</a></li>
-                        <li><a href="#">Submit a story</a></li>
-                    </ul>
-                </div><!-- /.footer-col -->
 
 <footer id="colophon" class="site-footer pages-footer">
 

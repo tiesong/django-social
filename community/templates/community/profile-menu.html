@@ -21,9 +21,9 @@
     </a>
 
     <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
-        <li><a href="person-profile.html">Profile</a></li>
+        <li><a href="{% url 'profile' request.user.id %}">Profile</a></li>
         <li><a href="#">Settings</a></li>
-        <li class="logout-btn"><a href="#">Logout</a></li>
+        <li class="logout-btn"><a href="{% url 'logout' %}">Logout</a></li>
     </ul>
 
 </div><!-- /.user-profile -->

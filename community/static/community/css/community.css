@@ -63,6 +63,7 @@
 .header-section .profile-title input {
     color: #fff;
     border-color: #fff;
+    width: 200px;
 }
 
 .user-details .control-label {
