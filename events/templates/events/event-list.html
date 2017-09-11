@@ -350,17 +350,21 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for item in unread.content %}
-                                <tr>
-                                    <td><a href="{{ item.target_object_id }}?notify={{ item.id }}"><p><strong
-                                            style="color: #006dcc">{{ item.target }}</strong></p>
-                                    </a></td>
-                                    <td>
-                                        <p style="color: #006dcc">{{ item.description }}</p>
-                                    </td>
-                                    <td>Delete</td>
-                                </tr>
-                            {% endfor %}
+                            {% if unread.unread_exist %}
+                                {% for item in unread.content %}
+                                    <tr>
+                                        <td><a href="{{ item.target_object_id }}?notify={{ item.id }}"><p><strong
+                                                style="color: #006dcc">{{ item.target }}</strong></p>
+                                        </a></td>
+                                        <td>
+                                            <p style="color: #006dcc">{{ item.description }}</p>
+                                        </td>
+                                        <td>Delete</td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>No contents</tr>
+                            {% endif %}
                             </tbody>
                         </table>
                         <div class="modal-form-buttons">
