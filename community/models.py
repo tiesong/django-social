@@ -24,6 +24,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     tagline = models.CharField(max_length=155, null=True, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
+    advisor = models.BooleanField(default=False)
 
     image = models.ImageField(upload_to='profile_images/%Y/%m/%d/', null=True, blank=True)
 
