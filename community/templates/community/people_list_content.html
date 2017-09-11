@@ -1,6 +1,7 @@
 {% load staticfiles %}
 
 {% if user_list %}
+    {{user_list}}
     {% for user in user_list %}
         <div id="user_{{ user.id }}" class="news-single-item">
             <div class="news-single-thumb">
