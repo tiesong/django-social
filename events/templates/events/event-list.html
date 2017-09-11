@@ -181,31 +181,7 @@
                     </ul>
 
                 </div><!-- /.user-profile -->
-                {#                <div class="user-profile dropdown">#}
-                {#                    {% notifyUnread request.user.username as unread %}#}
-                {#                    <a class="dropdown-toggle" id="notification-dropdown-menu" data-toggle="dropdown"#}
-                {#                       aria-expanded="true">#}
-                {#                        <div class="notify_button">#}
-                {#                            <i class="fa fa-globe"></i>#}
-                {#                            {% if unread.unread_exist %}#}
-                {#                                <span class="notify_button__badge">{{ unread.count }} </span>#}
-                {#                            {% endif %}#}
-                {#                        </div>#}
-                {#                    </a>#}
-                {#                    <ul class="dropdown-menu" aria-labelledby="notification-dropdown-menu"#}
-                {#                        style="padding: 10px;">#}
-                {#                        <li>#}
-                {#                            <p style="color: #00A3FF; font-size: medium; font-weight: 500">{% notifications_unread %}#}
-                {#                                new messages</p>#}
-                {#                        </li>#}
-                {##}
-                {#                        {% for item in unread.content %}#}
-                {#                            <li><a href="{{ item.target_object_id }}?notify={{ item.id }}"><p><strong#}
-                {#                                    style="color: #006dcc">{{ item.target }} Event</strong> {{ item.description }}</p>#}
-                {#                            </a></li>#}
-                {#                        {% endfor %}#}
-                {#                    </ul>#}
-                {#                </div>#}
+
             </div><!-- /.container -->
         </div><!-- /.top-nav -->
     </header><!-- /#header -->

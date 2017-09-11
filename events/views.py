@@ -194,6 +194,7 @@ def detail(request, event_id):
 
     if notify_id:
         Notification.objects.filter(id=notify_id).update(unread=0)
+        return redirect('/events/' + event_id)
 
     navbar_pages = News.objects.filter(display_in_navbar=True)
     event = Event.objects.get(id=event_id)
@@ -296,4 +297,3 @@ def delete(request):
     :return: 
     """
     pass
-
