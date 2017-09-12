@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-{% load staticfiles %}
+    {% load staticfiles %}
     <!-- Basic Page Needs
     ================================================== -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -9,7 +9,8 @@
 
     <title>Butter Factory - Event List</title>
 
-    <meta name="description" content="At YBF, we have one goal: To maximise the success of startups that call YBF ... we've designed and built an ecosystem to maximise your startups' success.">
+    <meta name="description"
+          content="At YBF, we have one goal: To maximise the success of startups that call YBF ... we've designed and built an ecosystem to maximise your startups' success.">
 
     <!-- Mobile Specific Metas
     ================================================== -->
@@ -31,121 +32,136 @@
     <link href="{% static 'events/css/responsive.css' %}" rel="stylesheet">
     <link href="{% static 'events/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
     <link href="{% static 'news/css/simplePagination.css' %}" rel="stylesheet">
+    <link href="https://addtocalendar.com/atc/1.5/atc-style-blue.css" rel="stylesheet" type="text/css">
+
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-     <script src="{% static 'news/js/tinymce/tinymce.min.js' %}"></script>
+    <script src="{% static 'news/js/tinymce/tinymce.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'news/js/tinymce/custom.js' %}"></script>
     <script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
 
 </head>
 <body>
 
-    {% block content %}
-    {% endblock %}
-
-    
-    <footer id="colophon" class="site-footer pages-footer">
-
-        <div class="container container-960">
-		
-			<div class="row">
-		
-				<div class="footer-col">
-					<a href="#" class="site-logo" rel="home"><img src="{% static 'events/img/logo.png' %}" alt=""></a>
-				</div><!-- /.footer-col -->
-
-				<div class="footer-col">
-					<h4>News</h4>
-					<ul>
-						<li><a href="#">Current</a></li>
-						<li><a href="#">Archive</a></li>
-						<li><a href="#">Submit a story</a></li>
-					</ul>
-				</div><!-- /.footer-col -->
-				
-				<div class="footer-col">
-					<h4>Events</h4>
-					<ul>
-						<li><a href="#">Browse</a></li>
-						<li><a href="#">Attending</a></li>
-						<li><a href="#">Manage</a></li>
-					</ul>
-				</div><!-- /.footer-col -->
-				
-				<div class="footer-col">
-					<h4>Startups</h4>
-					<ul>
-						<li><a href="#">Browse</a></li>
-						<li><a href="#">Manage</a></li>
-					</ul>
-				</div><!-- /.footer-col -->
-				
-				<div class="footer-col">
-					<h4>Companies</h4>
-					<ul>
-						<li><a href="#">Browse</a></li>
-						<li><a href="#">Manage</a></li>
-					</ul>
-				</div><!-- /.footer-col -->
-				
-				<div class="footer-col">
-					<h4>Jobs</h4>
-					<ul>
-						<li><a href="#">Browse</a></li>
-						<li><a href="#">Manage</a></li>
-					</ul>
-				</div><!-- /.footer-col -->
-				
-				<div class="footer-col">
-					<h4>Profile</h4>
-					<ul>
-						<li><a href="#">Your Activity</a></li>
-						<li><a href="#">Edit Profile</a></li>
-					</ul>
-				</div><!-- /.footer-col -->
-				
-				<div class="footer-col">
-					<h4>Company</h4>
-					<ul>
-						<li><a href="#">Support</a></li>
-						<li><a href="#">About YBF</a></li>
-						<li><a href="#">Terms of service</a></li>
-						<li><a href="#">Legal</a></li>
-					</ul>
-				</div><!-- /.footer-col -->
-				
-				<div class="footer-col pull-right text-right">
-					<ul>
-						<li><a href="#">Twitter</a></li>
-						<li><a href="#">Instagram</a></li>
-						<li><a href="#">Facebook</a></li>
-						<li><a href="#">LinkedIn</a></li>
-					</ul>
-				</div><!-- /.footer-col -->
-
-			</div>	
-					
-        </div><!-- /.container -->
-
-    </footer><!-- /#footer -->
+{% block content %}
+{% endblock %}
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
-    <script src="{% static 'events/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'events/js/script.js' %}"></script>
-    <script src="{% static 'events/js/moment.js' %}"></script>
-    <script src="{% static 'events/js/bootstrap-datetimepicker.min.js' %}"></script>
-    <script src="{% static 'news/js/pagenation/jquery.simplePagination.js' %}"></script>
+<footer id="colophon" class="site-footer pages-footer">
 
+    <div class="container container-960">
+
+        <div class="row">
+
+            <div class="footer-col">
+                <a href="#" class="site-logo" rel="home"><img src="{% static 'events/img/logo.png' %}" alt=""></a>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>News</h4>
+                <ul>
+                    <li><a href="#">Current</a></li>
+                    <li><a href="#">Archive</a></li>
+                    <li><a href="#">Submit a story</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Events</h4>
+                <ul>
+                    <li><a href="#">Browse</a></li>
+                    <li><a href="#">Attending</a></li>
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Startups</h4>
+                <ul>
+                    <li><a href="#">Browse</a></li>
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Companies</h4>
+                <ul>
+                    <li><a href="#">Browse</a></li>
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Jobs</h4>
+                <ul>
+                    <li><a href="#">Browse</a></li>
+                    <li><a href="#">Manage</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Profile</h4>
+                <ul>
+                    <li><a href="#">Your Activity</a></li>
+                    <li><a href="#">Edit Profile</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">About YBF</a></li>
+                    <li><a href="#">Terms of service</a></li>
+                    <li><a href="#">Legal</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+            <div class="footer-col pull-right text-right">
+                <ul>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div><!-- /.footer-col -->
+
+        </div>
+
+    </div><!-- /.container -->
+
+</footer><!-- /#footer -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="{% static 'events/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'events/js/script.js' %}"></script>
+<script src="{% static 'events/js/moment.js' %}"></script>
+<script src="{% static 'events/js/bootstrap-datetimepicker.min.js' %}"></script>
+<script src="{% static 'news/js/pagenation/jquery.simplePagination.js' %}"></script>
+<script type="text/javascript">(function () {
+    if (window.addtocalendar)if (typeof window.addtocalendar.start === "function")return;
+    if (window.ifaddtocalendar === undefined) {
+        window.ifaddtocalendar = 1;
+        var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+        s.type = 'text/javascript';
+        s.charset = 'UTF-8';
+        s.async = true;
+        s.src = ('https:' === window.location.protocol ? 'https' : 'http') + '://addtocalendar.com/atc/1.5/atc.min.js';
+        var h = d[g]('body')[0];
+        h.appendChild(s);
+    }
+})();
+</script>
 {% block customscript %}
 {% endblock %}
-  
+
 </body>
 </html>
