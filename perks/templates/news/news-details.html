@@ -1,0 +1,203 @@
+{% extends 'perks/base.html' %}
+{% block content %}
+    {% load staticfiles %}
+
+    <body>
+
+    <header id="masthead" class="site-header">
+
+    {% include 'perks/top-nav.html' %}
+
+        <div class="hero event-details-hero">
+
+            <div class="container">
+
+                <div class="hero-text">
+                    <p class="news-category">Perks // {{ news_article.category.first }}</p>
+                    <h1 class="hero-title">{{ news_article.title }}</h1>
+                    <p>Posted by <a href="#">{{ news_article.owner.username }}</a></p>
+                    {% if next %}
+                        <a class="btn btn-transparent-white" href="{{ next }}"><< Back</a>
+                    {% else %}
+                        <a class="btn btn-transparent-white" href="/news"><< Back</a>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+
+    </header><!-- /#header -->
+
+
+    <div id="main" class="site-main">
+
+        <section class="event-details-content">
+
+            <div class="container container-960">
+
+                <div class="row">
+
+                    <div class="col-sm-8">
+                        <h3>Description | <a href="edit">Edit</a></h3>
+                        <p>
+                            {{ news_article.article|safe }}
+                        </p>
+                    </div>
+
+                    <div class="col-sm-4">
+
+                        <div class="event-details-sidebar">
+
+                            <h3>Share</h3>
+
+                            <div class="social-share" style="padding-top:10px">
+
+                                <a class="twitter" href="#" target="_blank">Twitter</a>
+                                <a class="facebook" href="#" target="_blank">Facebook</a>
+                                <a class="email" href="#" target="_blank">Email</a>
+{#                                <a class="reddit" href="#" target="_blank">Reddit</a>#}
+{#                                <a class="weibo" href="#" target="_blank">Weibo</a>#}
+                                <a class="linkedin" href="" target="_blank">LinkedIn</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div><!-- /.container -->
+
+        </section>
+
+        {% if not news_article.is_page %}
+            <section class="events-list">
+
+                <div class="container container-960">
+
+                    <p class="events-date">Related news</p>
+
+                    <div class="row row-eq-height row-margin-1">
+                        {% for related_news in related_news %}
+                            <div class="col-md-3 col-xs-12">
+                                <div class="event-item">
+                                    <p class="event-date">{{ related_news.pub_date|date:"M d, Y" }}</p>
+                                    <h2 class="event-name"><a
+                                            href="/news/{{ related_news.id }}">{{ related_news.title|slice:":60" }}</a>
+                                    </h2>
+                                    <a href="/c/people/{{ related_news.owner.id }}" class="event-attending">posted
+                                        by {{ related_news.owner.first_name }}</a>
+                                </div><!-- /.event-item -->
+                            </div>
+                        {% endfor %}
+
+                    </div><!-- /.row -->
+
+                </div>
+
+            </section>
+        {% endif %}
+
+    </div><!-- /#main -->
+
+
+    <footer id="colophon" class="site-footer pages-footer">
+
+        <div class="container container-960">
+
+            <div class="row">
+
+                <div class="footer-col">
+                    <a href="#" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""></a>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>News</h4>
+                    <ul>
+                        <li><a href="#">Current</a></li>
+                        <li><a href="#">Archive</a></li>
+                        <li><a href="#">Submit a story</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Events</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Attending</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Startups</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Companies</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Jobs</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Profile</h4>
+                    <ul>
+                        <li><a href="#">Your Activity</a></li>
+                        <li><a href="#">Edit Profile</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">About YBF</a></li>
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">Legal</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col pull-right text-right">
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+            </div>
+
+        </div><!-- /.container -->
+
+    </footer><!-- /#footer -->
+
+{% endblock %}
+
+{% block customscript %}
+    <script>
+    $(document).ready(function () {
+        var news_url = window.location.href;
+        $('.social-share .twitter').attr('href', 'https://twitter.com/home?status=' + news_url);
+        $('.social-share .facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + news_url);
+        $('.social-share .email').attr('href', 'mailto:?&body=' + news_url);
+        $('.social-share .linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + news_url);
+    })
+
+    </script>
+{% endblock %}
