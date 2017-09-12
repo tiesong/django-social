@@ -160,22 +160,22 @@
                                     <input type="text" name="linkedin" class="form-control" value="{% if user.profile.linkedin %}{{ user.profile.linkedin }}{% endif %}">
                                 </div>
                             </div>
-                            <!-- <div class="form-group">
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label">Tags:</label>
                                 <div class="col-sm-9">
                                     <select multiple name="tags" class="form-control tags">
                                         {% if tag_list %}
                                             {% for tag in tag_list %}
                                                 {% if tag in user.profile.tags.all %}
-                                                    <option value="{{tag}}" selected="selected">{{tag}}</option>
+                                                    <option value="{{tag.id}}" selected="selected">{{tag}}</option>
                                                 {% else %}
-                                                    <option value="{{tag}}">{{tag}}</option>
+                                                    <option value="{{tag.id}}">{{tag}}</option>
                                                 {% endif %}
                                             {% endfor %}
                                         {% endif %}
                                     </select>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
 
                         <div class="edit-actions">
