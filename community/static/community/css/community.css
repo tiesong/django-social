@@ -101,7 +101,7 @@
     position: absolute;
     overflow: visible;
     font-size: 14px;
-    top: 0;
+    bottom: 8px;
     left: -7px;
 }
 
