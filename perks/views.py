@@ -206,13 +206,13 @@ def create(request):
         else:
             display_in_navbar = False
 
-        news_article = News(title=title, article=body, feature_rank=feature_rank, pub_date=pub_date, owner=owner,
+        news_article = Perks(title=title, article=body, feature_rank=feature_rank, pub_date=pub_date, owner=owner,
                             is_page=is_page, display_in_navbar=display_in_navbar)
         news_article.save()
 
         news_article.category.add(tag)
 
-        return redirect('/dashboard')
+        return redirect('/dashboard/perks')
 
     return render(request, 'news/news-edit.html', context)
 
