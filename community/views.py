@@ -19,13 +19,14 @@ def index(request):
 
 def people_list(request):
 	navbar_pages = News.objects.filter(display_in_navbar=True)
-	user_list = User.objects.all().order_by('-profile__advisor')
-	# profile_list = Profile.objects.all().order_by('-advisor')
+	profile_list = Profile.objects.all().order_by('-advisor')
 	tag_list = Tag.objects.all()
 
+	per = Paginator(profile_list, 5)
+	first_page = per.page(1)
+
 	context = {
-		# 'profile_list': profile_list,
-		'user_list': user_list,
+		'profile_list': first_page,
 		'navbar_pages': navbar_pages,
 		'tag_list': tag_list,
 	}
@@ -35,8 +36,8 @@ def people_list(request):
 def update(request):
     page_number = request.GET.get('pg_num', 0)
 
-    user_list = User.objects.all().order_by('-profile__advisor')
-    per = Paginator(user_list, 5)
+    profile_list = Profile.objects.all().order_by('-advisor')
+    per = Paginator(profile_list, 5)
     try:
         per_page = per.page(int(page_number))
         print('per page;{}'.format(per_page))
@@ -44,12 +45,12 @@ def update(request):
     except Exception as e:
         print('Error: {}'.format(e))
         context = {
-            'user_list': False,
+            'profile_list': False,
         }
         return render(request, 'community/people_list_content.html', context)
 
     context = {
-        'user_list': per_page,
+        'profile_list': per_page,
     }
     return render(request, 'community/people_list_content.html', context)
 
@@ -58,22 +59,21 @@ def category(request):
     tag_name = request.GET.get('category')
     page_number = request.GET.get('pg_num', 0)
     tag_name = str(tag_name).replace("-", " ")
-    profile_ids = Profile.objects.filter(tags__tag=tag_name).values_list('user', flat=True)
-    user_list = User.objects.filter(id__in=set(profile_ids)).order_by('-profile__advisor')
+    profile_list = Profile.objects.filter(tags__tag=tag_name).order_by('-advisor')
 
-    per = Paginator(user_list, 5)
+    per = Paginator(profile_list, 5)
 
     try:
         per_page = per.page(page_number)
     except Exception as e:
         print('Error: {}'.format(e))
         context = {
-            'user_list': False,
+            'useprofile_listr_list': False,
         }
         return render(request, 'community/people_list_content.html', context)
 
     context = {
-        'user_list': per_page,
+        'profile_list': per_page,
     }
     return render(request, 'community/people_list_content.html', context)
 
@@ -83,26 +83,21 @@ def search(request):
 	keyword = request.GET.get('keyword', "")
 	page_number = request.GET.get('pg_num', 0)
 	keyword = str(keyword).replace("-", " ")
-	user_list = User.objects.filter(Q(username__icontains=keyword) | Q(email__icontains=keyword) | Q(first_name__icontains=keyword) | Q(last_name__icontains=keyword)).order_by('-profile__advisor')
+	profile_list = Profile.objects.filter(Q(tags__tag__icontains=keyword) | Q(companies__name__icontains=keyword) | Q(user__username__icontains=keyword) | Q(user__email__icontains=keyword) | Q(user__first_name__icontains=keyword) | Q(user__last_name__icontains=keyword)).order_by('-advisor').distinct()
 
-	user_ids = Profile.objects.filter(Q(tags__tag__icontains=keyword) | Q(companies__name__icontains=keyword)).values_list('user', flat=True)
-	profile_list = User.objects.filter(id__in=set(user_ids)).order_by('-profile__advisor')
-
-	user_list = user_list | profile_list
-
-	per = Paginator(user_list, 5)
+	per = Paginator(profile_list, 5)
 
 	try:
 		per_page = per.page(int(page_number))
 	except Exception as e:
 		print('Error: {}'.format(e))
 		context = {
-			'user_list': False,
+			'profile_list': False,
 		}
 		return render(request, 'community/people_list_content.html', context)
 
 	context = {
-		'user_list': per_page,
+		'profile_list': per_page,
 	}
 	return render(request, 'community/people_list_content.html', context)
 
@@ -151,6 +146,13 @@ def edit_profile(request, profile_id):
 			linkedin = request.POST['linkedin']
 			description = request.POST['description']
 			tags = request.POST.getlist('tags')
+
+			User.objects.filter(pk=profile_id).update(first_name=first_name, last_name=last_name, email=email,)
+			profile = Profile.objects.get(pk=profile_id)
+			profile.tags.clear()
+			for tag in tags:
+				profile.tags.add(tag)
+				profile.save()
 			if request.FILES:
 				avatar = request.FILES['avatar']
 				upload_date = datetime.datetime.now().strftime('%Y/%m/%d/')
@@ -158,11 +160,10 @@ def edit_profile(request, profile_id):
 				fs = FileSystemStorage(image_location)
 				filename = fs.save(avatar.name, avatar)
 				url = 'profile_images/' + upload_date + filename
-				User.objects.filter(pk=profile_id).update(first_name=first_name, last_name=last_name, email=email,)
 				Profile.objects.filter(pk=profile_id).update(tagline=tagline, image=url, phone_number=phone, website=website, twitter=twitter, facebook=facebook, linkedin=linkedin, bio=description,)
 			else:
-				User.objects.filter(pk=profile_id).update(first_name=first_name, last_name=last_name, email=email,)
 				Profile.objects.filter(pk=profile_id).update(tagline=tagline, phone_number=phone, website=website, twitter=twitter, facebook=facebook, linkedin=linkedin, bio=description,)
+
 			return redirect(reverse('profile', args=[profile_id]))
 		except Exception as e:
 			raise e

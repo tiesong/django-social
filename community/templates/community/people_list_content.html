@@ -1,31 +1,31 @@
 {% load staticfiles %}
 
-{% if user_list %}
-    {% for user in user_list %}
-        <div id="user_{{ user.id }}" class="news-single-item">
+{% if profile_list %}
+    {% for profile in profile_list %}
+        <div id="user_{{ profile.id }}" class="news-single-item">
             <div class="news-single-thumb">
-                {% if user.profile.image %}
-                    <img src="{{ user.profile.image.url|safe }}" alt="">
+                {% if profile.image %}
+                    <img src="{{ profile.image.url|safe }}" alt="">
                 {% else %}
                     <img src="{% static 'community/img/news-tmp.png' %}" alt="">
                 {% endif %}
-                {% if user.profile.advisor %}
+                {% if profile.advisor %}
                     <div id="ribbon-container">
                         <span id="ribbon">Advisor</span>
                     </div>
                 {% endif %}
             </div>
             <div class="news-single-content">
-                <p class="news-category">Works with: {{ user.profile.companies.first }}</p>
-                <h3 class="news-title">{{ user.first_name }} {{ user.last_name }}</h3>
+                <p class="news-category">Works with: {{ profile.companies.first }}</p>
+                <h3 class="news-title">{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
 
                 <p class="news-author">
 
-                    <a href="#"> {{ user.email }} </a> {% if user.profile.phone_number %}| <a href="#"> {{ user.profile.phone_number }} </a>{% endif %}
+                    <a href="#"> {{ profile.user.email }} </a> {% if profile.phone_number %}| <a href="#"> {{ profile.phone_number }} </a>{% endif %}
 
                 </p>
-                <p class="news-description">{{ user.profile.bio|safe|slice:":150" }}</p>
-                <a href="{{ user.id }}" class="read-more">View profile &rarr;</a>
+                <p class="news-description">{{ profile.bio|safe|slice:":150" }}</p>
+                <a href="{{ profile.user.id }}" class="read-more">View profile &rarr;</a>
             </div>
             <div class="clearfix"></div>
         </div><!-- /.news-single-item -->
