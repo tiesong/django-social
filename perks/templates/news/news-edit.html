@@ -1,0 +1,267 @@
+{% extends 'perks/base.html' %}
+{% block content %}
+    {% load staticfiles %}
+    <style>
+    img {max-width: 100% !important;
+    display: block;}
+    </style>
+    <body>
+
+    <script>
+        tinymce.init({
+            selector: '#body',
+            plugins: 'image',
+            extended_valid_elements : 'img[class|src|border=0|alt|title|width|height]',
+            image_description: false,
+            image_dimensions: false,
+            file_picker_types: 'image',
+            content_css: "{% static 'news/css/popup.css' %}",
+            file_picker_callback: function (callback, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+
+                input.onchange = function () {
+                    var file = this.files[0];
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+
+                    reader.onload = function () {
+                        var id = 'blobid' + (new Date()).getTime();
+                        var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        var base64 = reader.result.split(',')[1];
+                        var blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+
+                        callback(blobInfo.blobUri(), {title: file.name});
+                    };
+                };
+                input.click();
+            },
+            height: 500
+        });
+
+    </script>
+
+    <header id="masthead" class="site-header">
+
+        {% include 'news/top-nav.html' %}
+
+        <div class="hero event-details-hero">
+
+            <div class="container">
+
+                <div class="hero-text">
+                    {% if create %}
+                    <h1 class="hero-title">Publish News Article</h1>
+                    {% else %}
+                    <p class="event-hero-date">{{ pub_date }}</p>
+                    <h1 class="hero-title">{{ news_article.title }}</h1>
+                    <p>Posted by <a href="">Nick Byrne</a></p>
+                    
+                    {% endif %}
+                        {% if next %}
+                        <a class="btn btn-transparent-white"  href="{{ next }}"><< Back</a>
+                        {% else %}
+                        <a class="btn btn-transparent-white" href="/news"><< Back</a>
+                        {% endif %}
+
+
+                    
+                </div>
+            </div>
+        </div>
+
+    </header><!-- /#header -->
+
+
+    <div id="main" class="site-main">
+
+        <section class="event-details-content">
+
+            <div class="container container-960">
+
+                <div class="row">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="col-sm-8">
+                            <h3>Title</h3>
+                            <p><input class="form-control" id="title" name="title" value="{{ news_article.title }}"></input></p>
+                            <br>
+                            
+                            <p>
+                            <div class="form-check form-check-inline">
+                              <label class="form-check-label">
+                                <input {% if news_article.is_page %} checked {% endif %}class="form-check-input" type="checkbox" name="is_page" id="is_page" value="OK"> Is page?
+                              </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <label class="form-check-label">
+                                <input {% if news_article.display_in_navbar %} checked {% endif %} class="form-check-input" type="checkbox" name="display_in_navbar" id="display_in_navbar" value='OK'> Display in navbar?
+                              </label>
+                            </div></p>
+                            <br>
+                            <h3>Feature priority</h3>
+                            <p>0 = not featured | 5 means feature priority</p>
+                            <select title="feature_rank" class="form-control" id="feature_rank" name="feature_rank">
+                                <option value="{{ news_article.feature_rank }}"
+                                        selected>{{ news_article.feature_rank }}</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+
+                            <br>
+
+                            <h3>Category </h3>
+                            <p>Please select a category for this article (current: {{news_article.category.first}})</p>
+                            <select title="category" class="form-control" id="category" name="category">
+                                
+                                {% for category in categories %}
+                                <option value="{{category}}">{{ category }}</option>
+                                {% endfor %}
+
+                            </select>
+
+                            <br>
+                            <h3>Description</h3>
+                            <p>
+                                <textarea id="body" name="body">{{ news_article.article }}</textarea>
+                                <br>
+                            </p>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <div class="event-details-sidebar">
+
+                                    <button class="btn btn-transparent-dark" type="submit">Save</button>
+                                    {% if next %}
+                                    <a class="btn btn-transparent-dark" type="button"
+                                       href="{{ next }}">Cancel</a>
+                                    {% else %}
+                                    <a class="btn btn-transparent-dark" type="button"
+                                       href="/news/{{news_article.id}}">Cancel</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div><!-- /.container -->
+
+        </section>
+
+        <section class="events-list">
+
+            <div class="container container-960">
+
+                <p class="events-date">Related news</p>
+
+                <div class="row row-eq-height row-margin-1">
+                    {% for related_news in related_news %}
+                        <div class="col-md-3 col-xs-12">
+                            <div class="event-item">
+                                <p class="event-date">11am 8 Aug 2017</p>
+                                <h2 class="event-name"><a
+                                        href="/news/{{ related_news.id }}">{{ related_news.title|slice:":60" }}</a></h2>
+                                <a href="#" class="event-attending">posted by</a>
+                            </div><!-- /.event-item -->
+                        </div>
+                    {% endfor %}
+
+                </div><!-- /.row -->
+            </div>
+        </section>
+
+    </div><!-- /#main -->
+
+
+    <footer id="colophon" class="site-footer pages-footer">
+
+        <div class="container container-960">
+
+            <div class="row">
+
+                <div class="footer-col">
+                    <a href="#" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""></a>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>News</h4>
+                    <ul>
+                        <li><a href="#">Current</a></li>
+                        <li><a href="#">Archive</a></li>
+                        <li><a href="#">Submit a story</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Events</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Attending</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Startups</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Companies</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Jobs</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Profile</h4>
+                    <ul>
+                        <li><a href="#">Your Activity</a></li>
+                        <li><a href="#">Edit Profile</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">About YBF</a></li>
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">Legal</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col pull-right text-right">
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+            </div>
+        </div><!-- /.container -->
+
+    </footer><!-- /#footer -->
+
+{% endblock %}

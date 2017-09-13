@@ -8,7 +8,7 @@ from django.contrib import admin
 import notifications.urls
 admin.autodiscover()
 
-import home.views
+import home.views, news.views
 
 # Examples:
 # url(r'^$', 'gettingstarted.views.home', name='home'),
@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^signup/', home.views.signup, name='signup'),
 	url(r'^tinymce/', include('tinymce.urls')),
     url(r'^news/', include('news.urls')),
+    url(r'^perks/', include('perks.urls')),
     url(r'^c/', include('community.urls')),
     url(r'^dashboard/', include('dashboard.urls')),
     url(r'^office/', include('officespace.urls')),

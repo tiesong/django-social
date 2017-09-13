@@ -69,6 +69,7 @@ INSTALLED_APPS = (
     'dashboard',
     'community',
     'officespace',
+    'perks',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -162,6 +163,7 @@ NOTIFICATIONS_USE_JSONFIELD=True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
 

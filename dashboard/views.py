@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
 from news.models import News
+from perks.models import Perks
 
 
 def index(request):
@@ -14,7 +15,15 @@ def index(request):
 	context = {
 		'news_list': news_list,
 	}
-	return render(request, 'dashboard/news_dashboard.html', context)
+	return render(request, 'dashboard/content_dashboard.html', context)
+
+def perks(request):
+	news_list = Perks.objects.all().order_by('-pub_date')
+	context = {
+		'news_list': news_list,
+	}
+	return render(request, 'dashboard/perks_dashboard.html', context)
+
 
 def users(request):
 	user_list = User.objects.all()

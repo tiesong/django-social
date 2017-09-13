@@ -17,8 +17,13 @@ from django.contrib.auth.models import User
 @login_required
 def index(request):
 
-    news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
-    total_articles = news_list.count()
+    if request.GET:
+        news_list = News.objects.filter(category__tag='perks').order_by('-pub_date').exclude(is_page=True)
+        total_articles = news_list.count()
+    else:
+        news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
+        total_articles = news_list.count()
+    
 
     per = Paginator(news_list, 5)
     # total_page = per.count()
