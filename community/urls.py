@@ -13,7 +13,11 @@ urlpatterns = [
     url(r'^tags/$', views.tags, name='tags'),
     url(r'^people/(?P<profile_id>[0-9]+)$', views.profile, name='profile'),
     url(r'^people/(?P<profile_id>[0-9]+)/edit$', views.edit_profile, name='edit_profile'),
-
-	url(r'^companies/$', views.companies, name='companies'),
+    
+    url(r'^update_company/$', views.update_company, name='update_company'),
+    url(r'^category_company/$', views.category_company, name='category_company'),
+    url(r'^search_company/$', views.search_company, name='searchCompany'),
+    url(r'^tags_company/$', views.tags_company, name='tags_company'),
+    url(r'^companies/$', views.companies, name='companies'),
     url(r'^companies/(?P<company_id>[0-9]+)$', views.company, name='company'),
 ]
