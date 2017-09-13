@@ -10,6 +10,8 @@ from .models import Perks, Category
 from bs4 import BeautifulSoup
 import datetime
 
+from news.models import News
+
 from django.contrib.auth.models import User
 
 
@@ -24,7 +26,7 @@ def index(request):
     per = Paginator(news_list, 5)
     # total_page = per.count()
     first_page = per.page(1)
-    navbar_pages = Perks.objects.filter(display_in_navbar=True)
+    navbar_pages = News.objects.filter(display_in_navbar=True)
 
     # Return three articles to render in the featured articles fields in template
     featured_news_list = Perks.objects.filter(featured=True).exclude(is_page=True).order_by('-pub_date')[1:3]
@@ -143,7 +145,7 @@ def detail(request, news_article_id):
 
     news_article = Perks.objects.get(id=news_article_id)
     related_news = Perks.objects.filter().exclude(is_page=True).order_by('-pub_date')[0:4]
-    navbar_pages = Perks.objects.filter(display_in_navbar=True)
+    navbar_pages = News.objects.filter(display_in_navbar=True)
 
     try:
         next_url = request.GET['next']
@@ -169,7 +171,7 @@ def create(request):
         next_url = False
 
     categories = Category.objects.all()
-    navbar_pages = Perks.objects.filter(display_in_navbar=True)
+    navbar_pages = News.objects.filter(display_in_navbar=True)
 
     context = {
         'categories': categories,
