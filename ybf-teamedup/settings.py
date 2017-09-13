@@ -44,10 +44,7 @@ ALLOWED_HOSTS = ['*']
 SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get('DJANGO_DEVELOPMENT') is not None:
-    DEBUG = False
-else:
-    DEBUG = True
+DEBUG = True
 
 # Application definition
 
