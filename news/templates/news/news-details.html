@@ -13,7 +13,7 @@
             <div class="container">
 
                 <div class="hero-text">
-                    <p class="news-category">{{request.path}}{{ news_article.category.first }}</p>
+                    <p class="news-category">NEWS // {{ news_article.category.first }}</p>
                     <h1 class="hero-title">{{ news_article.title }}</h1>
                     <p>Posted by <a href="#">{{ news_article.owner.username }}</a></p>
                     {% if next %}
