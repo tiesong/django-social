@@ -19,7 +19,7 @@ from django.contrib.auth.models import User
 @login_required
 def index(request):
 
-    news_list = Perks.objects.all().order_by('-pub_date').exclude(is_page=True)
+    news_list = Perks.objects.all().order_by('-pub_date')
     total_articles = news_list.count()
     
 
@@ -29,12 +29,12 @@ def index(request):
     navbar_pages = News.objects.filter(display_in_navbar=True)
 
     # Return three articles to render in the featured articles fields in template
-    featured_news_list = Perks.objects.filter(featured=True).exclude(is_page=True).order_by('-pub_date')[1:3]
-    primary_feature = Perks.objects.order_by('feature_rank').exclude(is_page=True).order_by('-pub_date')[0]
+    featured_news_list = Perks.objects.filter(featured=True).order_by('-pub_date')[1:3]
+    primary_feature = Perks.objects.order_by('feature_rank').order_by('-pub_date')[0]
     category_list = Category.objects.all()
 
     try:
-        feature_list = Perks.objects.order_by('-pub_date').exclude(is_page=True).order_by('-feature_rank')[0:3]
+        feature_list = Perks.objects.order_by('-pub_date').order_by('-feature_rank')[0:3]
 
     except:
         feature_list = False
@@ -55,7 +55,7 @@ def index(request):
 def update(request):
     page_number = request.GET.get('pg_num', 0)
 
-    news_list = Perks.objects.all().order_by('-pub_date').exclude(is_page=True)
+    news_list = Perks.objects.all().order_by('-pub_date')
     per = Paginator(news_list, 5)
 
     try:
@@ -82,7 +82,7 @@ def category(request):
     page_number = request.GET.get('pg_num', 0)
     category_name = str(category_name).replace("-", " ")
     tag = Category.objects.filter(tag=category_name).first()
-    news_list = Perks.objects.filter(category=tag).order_by('-pub_date').exclude(is_page=True)
+    news_list = Perks.objects.filter(category=tag).order_by('-pub_date')
     per = Paginator(news_list, 5)
 
     try:
@@ -118,10 +118,10 @@ def search(request):
         }
         return render(request, 'perks/news-content.html', context)
 
-    news_list = Perks.objects.filter(title__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
+    news_list = Perks.objects.filter(title__icontains=keyword).order_by('-pub_date')
 
     if len(news_list) == 0:
-        news_list = Perks.objects.filter(article__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
+        news_list = Perks.objects.filter(article__icontains=keyword).order_by('-pub_date')
 
     per = Paginator(news_list, 5)
 
@@ -144,7 +144,7 @@ def search(request):
 def detail(request, news_article_id):
 
     news_article = Perks.objects.get(id=news_article_id)
-    related_news = Perks.objects.filter().exclude(is_page=True).order_by('-pub_date')[0:4]
+    related_news = Perks.objects.filter().order_by('-pub_date')[0:4]
     navbar_pages = News.objects.filter(display_in_navbar=True)
 
     try:
@@ -204,8 +204,7 @@ def create(request):
         else:
             display_in_navbar = False
 
-        news_article = Perks(title=title, article=body, feature_rank=feature_rank, pub_date=pub_date, owner=owner,
-                            is_page=is_page, display_in_navbar=display_in_navbar)
+        news_article = Perks(title=title, article=body, feature_rank=feature_rank, pub_date=pub_date, owner=owner)
         news_article.save()
 
         news_article.category.add(tag)
@@ -226,7 +225,7 @@ def edit(request, news_article_id):
         next_url = False
 
     categories = Category.objects.all()
-    navbar_pages = Perks.objects.filter(display_in_navbar=True)
+    navbar_pages = News.objects.filter(display_in_navbar=True)
 
     context = {
         'categories': categories,
