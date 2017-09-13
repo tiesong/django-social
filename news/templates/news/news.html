@@ -104,7 +104,7 @@
     <div class="container">
 
         <div class="hero-text">
-            <p class="news-category">{{ request.path }}{{ feature_list.0.category.all|first }}</p>
+            <p class="news-category">NEWS // {{ feature_list.0.category.all|first }}</p>
             <h1 class="hero-title">{{ feature_list.0.title }}</h1>
             <p>by <a href="#" class="no-underline">{{ feature_list.0.owner.username }}</a></p>
             <a href="{{ feature_list.0.id }}" class="read-more">Keep reading &rarr;</a>
@@ -128,7 +128,7 @@
                     {% if feature_list.1 %}
                         <div class="col-sm-6">
 
-                            <p class="news-category">{{request.path}}{{ feature_list.1.category.all|first }}</p>
+                            <p class="news-category">NEWS // {{ feature_list.1.category.all|first }}</p>
                             <h2 class="news-title">{{ feature_list.1.title }}</h2>
                             <p class="posted-by">by <a href="#">{{ feature_list.1.owner.username }}</a></p>
                             <p class="news-description">{{ feature_list.1.article|safe|shortsnippet }}</p>
@@ -139,7 +139,7 @@
                     {% if feature_list.2 %}
                         <div class="col-sm-6">
 
-                            <p class="news-category">{{request.path}}{{ feature_list.2.category.all|first }}</p>
+                            <p class="news-category">NEWS // {{ feature_list.2.category.all|first }}</p>
                             <h2 class="news-title">{{ feature_list.2.title }}</h2>
                             <p class="posted-by">by <a href="#">{{ feature_list.2.owner.username }}</a></p>
                             <p class="news-description">{{ feature_list.2.article|safe|shortsnippet }}</p>

@@ -57,7 +57,7 @@
                     {% else %}
                     <p class="event-hero-date">{{ pub_date }}</p>
                     <h1 class="hero-title">{{ news_article.title }}</h1>
-                    <p>Posted by <a href="">Nick Byrne</a></p>
+                    <p>Posted by <a href="">{{ news_article.owner.username }}</a></p>
                     
                     {% endif %}
                         {% if next %}
