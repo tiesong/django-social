@@ -113,16 +113,19 @@ def previewImage(html_body):
     :param html_body: 
     :return: 
     """
-    img_list = []
+    try:
+        img_list = []
+        soup = BeautifulSoup(html_body, "html.parser")
 
-    soup = BeautifulSoup(html_body, "html.parser")
+        for image in soup.select("img"):
+            img_list.append(image)
 
-    for image in soup.select("img"):
-        img_list.append(image)
+        # Return Sample Image
+        if len(img_list) == 0:
+            return 'https://teamedup-ybf.s3.amazonaws.com/static/news/img/news-tmp.png'
 
-    # Return Sample Image
-    if len(img_list) == 0:
+        # Return base64 image.
+        return img_list[0]["src"]
+    except Exception as e:
+        print('Error: {}'.format(e))
         return 'https://teamedup-ybf.s3.amazonaws.com/static/news/img/news-tmp.png'
-
-    # Return base64 image.
-    return img_list[0]["src"]
