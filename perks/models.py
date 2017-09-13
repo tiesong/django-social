@@ -30,9 +30,6 @@ class Perks(models.Model):
     pub_date = models.DateTimeField('date published')
     featured = models.BooleanField(default=False)
 
-    is_page = models.BooleanField(default=False, blank=True)
-    display_in_navbar = models.BooleanField(default=False, blank=True)
-
     feature_rank = models.IntegerField(default=0)
 
     def __str__(self):
