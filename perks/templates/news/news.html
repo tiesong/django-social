@@ -373,7 +373,7 @@
             if (method === 'category') {
                 console.log(value);
                 $('#article_list').html('').load(
-                    "{% url 'categoryNews' %}?category=" + value + "&&pg_num=" + pg_num, function (response, status, xhr) {
+                    "{% url 'categoryPerks' %}?category=" + value + "&&pg_num=" + pg_num, function (response, status, xhr) {
                         if (status === "success") {
                             loaded();
                         }
@@ -382,7 +382,7 @@
             }
             else if (method === 'search') {
                 $('#article_list').html('').load(
-                    "{% url 'searchNews' %}?keyword=" + value + "&&pg_num=" + pg_num, function (response, status, xhr) {
+                    "{% url 'searchPerks' %}?keyword=" + value + "&&pg_num=" + pg_num, function (response, status, xhr) {
                         if (status === "success") {
                             loaded();
                         }
@@ -391,7 +391,7 @@
             }
             else {
                 $('#article_list').html('').load(
-                    "{% url 'updateNews' %}?pg_num=" + pg_num, function (response, status, xhr) {
+                    "{% url 'updatePerks' %}?pg_num=" + pg_num, function (response, status, xhr) {
                         if (status === "success") {
                             loaded();
                         }
