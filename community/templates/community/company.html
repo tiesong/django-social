@@ -91,7 +91,7 @@
                         <div class="event-details-sidebar">
 
                             <h3>Details</h3>
-                            <p class="mb-30"><strong>Industry</strong>: {{ company.categories }}<br>
+                            <p class="mb-30"><strong>Industry</strong>: {{ company.categories.all |first }}<br>
                                 <strong>Size</strong>: {{ company.size }} Employees<br>
                                 <strong>Website</strong>: <a href="#">{{ company.website }}</a></p>
 
