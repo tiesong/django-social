@@ -229,18 +229,21 @@ def create(request):
 
     title = request.POST.get("title", None)
     start_time = request.POST.get("startdatetime", None)
+
     start_date = dateutil.parser.parse(start_time)
+    # start_date = datetime.strptime(start_time, '%Y-%m-%d %H:%M (%Z)')
 
     pub_time = request.POST.get("enddatetime", None)
     pub_date = dateutil.parser.parse(pub_time)
+    # pub_date = datetime.strptime(pub_time, '%Y-%m-%d %H:%M (%Z)')
 
     event_url = request.POST.get("event-url", None)
 
     if event_id:
         try:
             body = request.POST.get('body', "")
-            Event.objects.filter(id=event_id).update(title=title, start_date=start_date,
-                                                     pub_date=pub_date, event_url=event_url, description=body)
+            Event.objects.filter(id=event_id).update(title=title, start_date=start_time,
+                                                     pub_date=pub_time, event_url=event_url, description=body)
 
         except Exception as e:
             print('Error : {}'.format(e))

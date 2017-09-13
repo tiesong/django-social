@@ -331,69 +331,69 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /#create-event-modal -->
 
-{#    <div id="list-notification-modal" class="modal fade" tabindex="-1" role="dialog">#}
-{#        <div class="modal-dialog" role="document">#}
-{#            <div class="modal-content">#}
-{##}
-{#                <div class="modal-body">#}
-{##}
-{#                    <div class="modal-body-left" style="width: 100%">#}
-{##}
-{#                        <h4 class="modal-title">Notifications List</h4>#}
-{##}
-{#                        <table class="admin-table table">#}
-{#                            <thead>#}
-{#                            <tr>#}
-{#                                <th>Event Title</th>#}
-{#                                <th>Event Content</th>#}
-{#                                <th class="text-right">Actions</th>#}
-{#                            </tr>#}
-{#                            </thead>#}
-{#                            <tbody>#}
-{#                            {% if unread.unread_exist %}#}
-{#                                {% for item in unread.content %}#}
-{#                                    <tr>#}
-{#                                        <td><a href="{{ item.target_object_id }}?notify={{ item.id }}"><p><strong#}
-{#                                                style="color: #006dcc">{{ item.target }}</strong></p>#}
-{#                                        </a></td>#}
-{#                                        <td>#}
-{#                                            <p style="color: black">{{ item.description }}</p>#}
-{#                                        </td>#}
-{#                                        <td><p style="color: #ba2121">Remind</p></td>#}
-{#                                    </tr>#}
-{#                                {% endfor %}#}
-{#                            {% elif unread.other_exist %}#}
-{#                                {% for item in unread.other_content %}#}
-{#                                    <tr>#}
-{#                                        <td><a href="{{ item.target_object_id }}"><p><strong#}
-{#                                                style="color: green">{{ item.target }}</strong></p>#}
-{#                                        </a></td>#}
-{#                                        <td>#}
-{#                                            <p style="color: black">{{ item.description }}</p>#}
-{#                                        </td>#}
-{#                                        <td><p style="color: #006dcc">Pending</p></td>#}
-{#                                    </tr>#}
-{#                                {% endfor %}#}
-{#                            {% else %}#}
-{#                                <tr>#}
-{#                                    <td><p style="color: #006dcc">No contents</p></td>#}
-{#                                <td></td>#}
-{#                                <td></td>#}
-{#                                </tr>#}
-{#                            {% endif %}#}
-{#                            </tbody>#}
-{#                        </table>#}
-{#                        <div class="modal-form-buttons">#}
-{#                            <a data-dismiss="modal" class="pull-left close-btn" href="#">Close</a>#}
-{#                            <button data-dismiss="modal" class="btn btn-dark pull-right" style="width: 30%">OK#}
-{#                            </button>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                </div>#}
-{#            </div><!-- /.modal-content -->#}
-{#        </div><!-- /.modal-dialog -->#}
-{#    </div><!-- /#create-event-modal -->#}
+    {#    <div id="list-notification-modal" class="modal fade" tabindex="-1" role="dialog">#}
+    {#        <div class="modal-dialog" role="document">#}
+    {#            <div class="modal-content">#}
+    {##}
+    {#                <div class="modal-body">#}
+    {##}
+    {#                    <div class="modal-body-left" style="width: 100%">#}
+    {##}
+    {#                        <h4 class="modal-title">Notifications List</h4>#}
+    {##}
+    {#                        <table class="admin-table table">#}
+    {#                            <thead>#}
+    {#                            <tr>#}
+    {#                                <th>Event Title</th>#}
+    {#                                <th>Event Content</th>#}
+    {#                                <th class="text-right">Actions</th>#}
+    {#                            </tr>#}
+    {#                            </thead>#}
+    {#                            <tbody>#}
+    {#                            {% if unread.unread_exist %}#}
+    {#                                {% for item in unread.content %}#}
+    {#                                    <tr>#}
+    {#                                        <td><a href="{{ item.target_object_id }}?notify={{ item.id }}"><p><strong#}
+    {#                                                style="color: #006dcc">{{ item.target }}</strong></p>#}
+    {#                                        </a></td>#}
+    {#                                        <td>#}
+    {#                                            <p style="color: black">{{ item.description }}</p>#}
+    {#                                        </td>#}
+    {#                                        <td><p style="color: #ba2121">Remind</p></td>#}
+    {#                                    </tr>#}
+    {#                                {% endfor %}#}
+    {#                            {% elif unread.other_exist %}#}
+    {#                                {% for item in unread.other_content %}#}
+    {#                                    <tr>#}
+    {#                                        <td><a href="{{ item.target_object_id }}"><p><strong#}
+    {#                                                style="color: green">{{ item.target }}</strong></p>#}
+    {#                                        </a></td>#}
+    {#                                        <td>#}
+    {#                                            <p style="color: black">{{ item.description }}</p>#}
+    {#                                        </td>#}
+    {#                                        <td><p style="color: #006dcc">Pending</p></td>#}
+    {#                                    </tr>#}
+    {#                                {% endfor %}#}
+    {#                            {% else %}#}
+    {#                                <tr>#}
+    {#                                    <td><p style="color: #006dcc">No contents</p></td>#}
+    {#                                <td></td>#}
+    {#                                <td></td>#}
+    {#                                </tr>#}
+    {#                            {% endif %}#}
+    {#                            </tbody>#}
+    {#                        </table>#}
+    {#                        <div class="modal-form-buttons">#}
+    {#                            <a data-dismiss="modal" class="pull-left close-btn" href="#">Close</a>#}
+    {#                            <button data-dismiss="modal" class="btn btn-dark pull-right" style="width: 30%">OK#}
+    {#                            </button>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {##}
+    {#                </div>#}
+    {#            </div><!-- /.modal-content -->#}
+    {#        </div><!-- /.modal-dialog -->#}
+    {#    </div><!-- /#create-event-modal -->#}
 
 {% endblock %}
 
@@ -446,6 +446,7 @@
                 autoclose: true,
                 todayBtn: true
             });
+
 
         });
         function check_loading() {
