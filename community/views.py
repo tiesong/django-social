@@ -5,7 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.template import loader
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
-import datetime
+import datetime, json
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -14,9 +14,11 @@ from .models import Profile, Tag
 from django.db.models import Q
 
 # Create your views here.
+@login_required
 def index(request):
 	return HttpResponse("Hello world")
 
+@login_required
 def people_list(request):
 	navbar_pages = News.objects.filter(display_in_navbar=True)
 	profile_list = Profile.objects.all().order_by('-advisor')
@@ -101,6 +103,20 @@ def search(request):
 	}
 	return render(request, 'community/people_list_content.html', context)
 
+@login_required
+def tags(request):
+	if request.GET.get('profile_id'):
+		profile = Profile.objects.get(pk=request.GET['profile_id'])
+		tag_list = profile.tags.all()
+	else:
+		tag_list = Tag.objects.all()
+	response = []
+	for tag in tag_list:
+		response.append({'tag_id': tag.id, 'tag_name': tag.tag})
+
+	return HttpResponse(json.dumps(response))
+
+@login_required
 def profile(request, profile_id):
 	user = User.objects.get(pk=profile_id)
 	navbar_pages = News.objects.filter(display_in_navbar=True)
@@ -117,6 +133,7 @@ def profile(request, profile_id):
 	}
 	return render(request, 'community/profile.html', context)
 
+@login_required
 def edit_profile(request, profile_id):
 	if (request.user.id != int(profile_id)) and not request.user.is_superuser:
 		return redirect(reverse('people_list'))
@@ -124,6 +141,7 @@ def edit_profile(request, profile_id):
 	user = User.objects.get(pk=profile_id)
 	navbar_pages = News.objects.filter(display_in_navbar=True)
 	tag_list = Tag.objects.all()
+	tags = ', '.join(map(lambda x: x.tag, tag_list))
 
 	if request.POST:
 		try:
@@ -145,15 +163,15 @@ def edit_profile(request, profile_id):
 			facebook = request.POST['facebook']
 			linkedin = request.POST['linkedin']
 			description = request.POST['description']
-			tags = request.POST.getlist('tags')
-
+			tags = request.POST['tags'].split(',')
 			User.objects.filter(pk=profile_id).update(first_name=first_name, last_name=last_name, email=email,)
-			
+
 			profile = Profile.objects.get(pk=profile_id)
 			profile.tags.clear()
-			for tag in tags:
-				profile.tags.add(tag)
-				profile.save()
+			if tags[0] != '':
+				for tag in tags:
+					profile.tags.add(tag)
+					profile.save()
 
 			Profile.objects.filter(pk=profile_id).update(tagline=tagline, phone_number=phone, website=website, twitter=twitter, facebook=facebook, linkedin=linkedin, bio=description,)
 
@@ -166,10 +184,11 @@ def edit_profile(request, profile_id):
 			return redirect(reverse('profile', args=[profile_id]))
 		except Exception as e:
 			raise e
+
 	context = {
 		'user': user,
 		'navbar_pages': navbar_pages,
-		'tag_list': tag_list,
+		'tags': tags,
 	}
 	return render(request, 'community/profile-edit.html', context)
 

@@ -117,6 +117,10 @@
                     </div>
 
                     <div class="col-sm-8 description-section">
+                        <h3>Tags</h3>
+                        <input type="hidden" value="{{ user.id }}" id="profile_id">
+                        <input type="text" class="tags form-control" name="tags" value="">
+                        <h4 class="mb-30"><small>Available tags: {{ tags }}</small></h4>
                         <h3>Description</h3>
                         <textarea id="description" name="description">{% if user.profile.bio %}{{ user.profile.bio|safe }}{% endif %}</textarea>
                     </div>
@@ -158,22 +162,6 @@
                                 <label class="col-sm-3 control-label">LinkedIn:</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="linkedin" class="form-control" value="{% if user.profile.linkedin %}{{ user.profile.linkedin }}{% endif %}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Tags:</label>
-                                <div class="col-sm-9">
-                                    <select multiple name="tags" class="form-control tags">
-                                        {% if tag_list %}
-                                            {% for tag in tag_list %}
-                                                {% if tag in user.profile.tags.all %}
-                                                    <option value="{{tag.id}}" selected="selected">{{tag}}</option>
-                                                {% else %}
-                                                    <option value="{{tag.id}}">{{tag}}</option>
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% endif %}
-                                    </select>
                                 </div>
                             </div>
                         </div>
