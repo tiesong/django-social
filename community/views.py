@@ -148,21 +148,20 @@ def edit_profile(request, profile_id):
 			tags = request.POST.getlist('tags')
 
 			User.objects.filter(pk=profile_id).update(first_name=first_name, last_name=last_name, email=email,)
+			
 			profile = Profile.objects.get(pk=profile_id)
 			profile.tags.clear()
 			for tag in tags:
 				profile.tags.add(tag)
 				profile.save()
+
+			Profile.objects.filter(pk=profile_id).update(tagline=tagline, phone_number=phone, website=website, twitter=twitter, facebook=facebook, linkedin=linkedin, bio=description,)
+
 			if request.FILES:
 				avatar = request.FILES['avatar']
-				upload_date = datetime.datetime.now().strftime('%Y/%m/%d/')
-				image_location = settings.MEDIA_ROOT + '/profile_images/' + upload_date
-				fs = FileSystemStorage(image_location)
-				filename = fs.save(avatar.name, avatar)
-				url = 'profile_images/' + upload_date + filename
-				Profile.objects.filter(pk=profile_id).update(tagline=tagline, image=url, phone_number=phone, website=website, twitter=twitter, facebook=facebook, linkedin=linkedin, bio=description,)
-			else:
-				Profile.objects.filter(pk=profile_id).update(tagline=tagline, phone_number=phone, website=website, twitter=twitter, facebook=facebook, linkedin=linkedin, bio=description,)
+				profile = Profile.objects.get(pk=profile_id)
+				profile.image = avatar
+				profile.save()
 
 			return redirect(reverse('profile', args=[profile_id]))
 		except Exception as e:
