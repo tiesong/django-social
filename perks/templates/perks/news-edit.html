@@ -45,7 +45,7 @@
 
     <header id="masthead" class="site-header">
 
-        {% include 'news/top-nav.html' %}
+        {% include 'perks/top-nav.html' %}
 
         <div class="hero event-details-hero">
 
@@ -53,7 +53,7 @@
 
                 <div class="hero-text">
                     {% if create %}
-                    <h1 class="hero-title">Publish News Article</h1>
+                    <h1 class="hero-title">Publish Perks Article</h1>
                     {% else %}
                     <p class="event-hero-date">{{ pub_date }}</p>
                     <h1 class="hero-title">{{ news_article.title }}</h1>
@@ -63,7 +63,7 @@
                         {% if next %}
                         <a class="btn btn-transparent-white"  href="{{ next }}"><< Back</a>
                         {% else %}
-                        <a class="btn btn-transparent-white" href="/news"><< Back</a>
+                        <a class="btn btn-transparent-white" href="/perks"><< Back</a>
                         {% endif %}
 
 
@@ -144,7 +144,7 @@
                                        href="{{ next }}">Cancel</a>
                                     {% else %}
                                     <a class="btn btn-transparent-dark" type="button"
-                                       href="/news/{{news_article.id}}">Cancel</a>
+                                       href="/perks/{{news_article.id}}">Cancel</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -160,7 +160,7 @@
 
             <div class="container container-960">
 
-                <p class="events-date">Related news</p>
+                <p class="events-date">Related perks</p>
 
                 <div class="row row-eq-height row-margin-1">
                     {% for related_news in related_news %}
@@ -168,7 +168,7 @@
                             <div class="event-item">
                                 <p class="event-date">11am 8 Aug 2017</p>
                                 <h2 class="event-name"><a
-                                        href="/news/{{ related_news.id }}">{{ related_news.title|slice:":60" }}</a></h2>
+                                        href="/perks/{{ related_news.id }}">{{ related_news.title|slice:":60" }}</a></h2>
                                 <a href="#" class="event-attending">posted by</a>
                             </div><!-- /.event-item -->
                         </div>
@@ -188,7 +188,7 @@
             <div class="row">
 
                 <div class="footer-col">
-                    <a href="#" class="site-logo" rel="home"><img src="{% static 'news/img/logo.png' %}" alt=""></a>
+                    <a href="#" class="site-logo" rel="home"><img src="{% static 'perks/img/logo.png' %}" alt=""></a>
                 </div><!-- /.footer-col -->
 
                 <div class="footer-col">

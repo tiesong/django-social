@@ -46,7 +46,7 @@ def index(request):
         'category_list': category_list,
         'navbar_pages': navbar_pages,
     }
-    return render(request, 'news/news.html', context)
+    return render(request, 'perks/news.html', context)
 
 
 @login_required
@@ -65,12 +65,12 @@ def update(request):
         context = {
             'news_list': False,
         }
-        return render(request, 'news/news-content.html', context)
+        return render(request, 'perks/news-content.html', context)
 
     context = {
         'news_list': per_page,
     }
-    return render(request, 'news/news-content.html', context)
+    return render(request, 'perks/news-content.html', context)
 
 
 @login_required
@@ -90,12 +90,12 @@ def category(request):
         context = {
             'news_list': False,
         }
-        return render(request, 'news/news-content.html', context)
+        return render(request, 'perks/news-content.html', context)
 
     context = {
         'news_list': per_page,
     }
-    return render(request, 'news/news-content.html', context)
+    return render(request, 'perks/news-content.html', context)
 
 
 @login_required
@@ -114,7 +114,7 @@ def search(request):
         context = {
             'news_list': False,
         }
-        return render(request, 'news/news-content.html', context)
+        return render(request, 'perks/news-content.html', context)
 
     news_list = Perks.objects.filter(title__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
 
@@ -130,12 +130,12 @@ def search(request):
         context = {
             'news_list': False,
         }
-        return render(request, 'news/news-content.html', context)
+        return render(request, 'perks/news-content.html', context)
 
     context = {
         'news_list': per_page,
     }
-    return render(request, 'news/news-content.html', context)
+    return render(request, 'perks/news-content.html', context)
 
 
 @login_required
@@ -157,7 +157,7 @@ def detail(request, news_article_id):
         'next': next_url,
     }
 
-    return render(request, 'news/news-details.html', context)
+    return render(request, 'perks/news-details.html', context)
 
 
 @login_required
@@ -210,7 +210,7 @@ def create(request):
 
         return redirect('/dashboard/perks')
 
-    return render(request, 'news/news-edit.html', context)
+    return render(request, 'perks/news-edit.html', context)
 
 
 @login_required
@@ -268,7 +268,7 @@ def edit(request, news_article_id):
             return redirect('detail', news_article_id=news_article.id)
         except Exception as e:
             print ('Error: {}'.format(e))
-    return render(request, 'news/news-edit.html', context)
+    return render(request, 'perks/news-edit.html', context)
 
 
 @login_required
