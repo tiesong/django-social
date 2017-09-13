@@ -39,6 +39,7 @@ class Migration(migrations.Migration):
                 ('categories', models.ManyToManyField(to='community.Category')),
             ],
         ),
+        
         migrations.CreateModel(
             name='Profile',
             fields=[
