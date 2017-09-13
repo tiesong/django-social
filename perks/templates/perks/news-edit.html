@@ -89,18 +89,7 @@
                             <p><input class="form-control" id="title" name="title" value="{{ news_article.title }}"></input></p>
                             <br>
                             
-                            <p>
-                            <div class="form-check form-check-inline">
-                              <label class="form-check-label">
-                                <input {% if news_article.is_page %} checked {% endif %}class="form-check-input" type="checkbox" name="is_page" id="is_page" value="OK"> Is page?
-                              </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                              <label class="form-check-label">
-                                <input {% if news_article.display_in_navbar %} checked {% endif %} class="form-check-input" type="checkbox" name="display_in_navbar" id="display_in_navbar" value='OK'> Display in navbar?
-                              </label>
-                            </div></p>
-                            <br>
+                            
                             <h3>Feature priority</h3>
                             <p>0 = not featured | 5 means feature priority</p>
                             <select title="feature_rank" class="form-control" id="feature_rank" name="feature_rank">
