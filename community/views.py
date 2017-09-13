@@ -10,7 +10,7 @@ from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from django.contrib.auth.models import User
 from news.models import News
-from .models import Profile, Tag, Company
+from .models import Profile, Tag, Company, Category
 from django.db.models import Q
 
 
@@ -207,7 +207,7 @@ def edit_profile(request, profile_id):
 def companies(request):
     navbar_pages = News.objects.filter(display_in_navbar=True)
     company_list = Company.objects.all().order_by('-partner')
-    # industry_list = Category.objects.all()
+    industry_list = Category.objects.all()
     
     per = Paginator(company_list, 5)
     first_page = per.page(1)
@@ -215,7 +215,7 @@ def companies(request):
     context = {
         'company_list': first_page,
         'navbar_pages': navbar_pages,
-        # 'industry_list': industry_list,
+        'industry_list': industry_list,
     }
     return render(request, 'community/company_list.html', context)
 
