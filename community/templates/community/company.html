@@ -1,7 +1,7 @@
 {% extends 'community/base.html' %}
 {% block content %}
-{% load staticfiles %}
-<body>
+    {% load staticfiles %}
+    <body>
 
     <header id="masthead" class="site-header company-profile-header">
 
@@ -9,7 +9,8 @@
 
             <div class="container container-960">
 
-                <a href="/" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
+                <a href="/" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt=""
+                                                              srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
 
                 <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
                     <span class="lines line-top"></span>
@@ -21,18 +22,19 @@
 
                     <a href="/news" class="site-logo visible-xs" rel="home">
 
-                    <img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x">
+                        <img src="{% static 'community/img/logo.png' %}" alt=""
+                             srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x">
 
                     </a>
 
                     <ul>
                         <li><a href="/news">News</a></li>
                         <li><a href="/events">Events</a></li>
-                        <!--<li class="active"><a href="#">Companies</a></li>-->
+                        <li class="active"><a href="#">Companies</a></li>
                         <li><a href="/c/people">People</a></li>
                         {% for page in navbar_pages %}
                             <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                        {% endfor %}         
+                        {% endfor %}
                     </ul>
 
                 </nav><!-- /.site-navigation -->
@@ -47,16 +49,21 @@
         <div class="hero">
 
             <div class="container container-960">
-            
+
                 <div class="hero-text">
                     <img src="{% static 'community/img/company-profile.jpg' %}" alt="" class="company-page-thumb">
-                    <h1>TeamedUp</h1>
-                    <p>12 Employees <a href="#">View</a></p>
+                    {% if company.partner %}
+                        <div id="ribbon-container">
+                            <span id="ribbon">Partner</span>
+                        </div>
+                    {% endif %}
+                    <h1 style="width: inherit">{{ company.title }}</h1>
+                    <p>{{ company.size }} Employees <a href="#">View</a></p>
                 </div>
 
             </div>
 
-        </div><!-- /.event-details-hero -->        
+        </div><!-- /.event-details-hero -->
 
     </header><!-- /#header -->
 
@@ -71,12 +78,12 @@
 
                     <div class="col-sm-8">
                         <h3>Description</h3>
-                
-                        <div class="content-img mb-20"><img src="{% static 'community/img/phones.jpg' %}" alt=""></div>
-       
-                        <p class="mb-20">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo congue pharetra. Curabitur sollicitudin bibendum vehicula. Maecenas rutrum volutpat ligula sed porta. Donec viverra ultrices augue, egestas accumsan velit elementum nec. Curabitur vitae lacus vitae leo bibendum sodales. Aenean semper nunc nec purus feugiat, id vestibulum risus lacinia. Cras mollis mauris quam. In hac habitasse platea dictumst. Nunc dui leo, euismod sed dui non, ullamcorper laoreet dui. Pellentesque imperdiet, mi nec ultricies tristique, lorem arcu vestibulum leo, id egestas metus erat vitae magna.</p>
 
-                        <p>Phasellus lacinia maximus aliquet. Nulla vitae consequat risus, ac varius ligula. In varius eu sem quis egestas. Nullam at magna vitae leo eleifend volutpat id in lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque id orci aliquet, congue mauris quis, commodo odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam dignissim diam non lectus consequat feugiat. Sed eget commodo odio. Nunc ut semper elit. In imperdiet varius elit eget consectetur. Nullam eros tortor, blandit ut interdum vel, posuere in enim. </p>
+                        <div class="content-img mb-20">
+                            <p>
+                                {{ company.description|safe }}
+                            </p>
+                        </div>
                     </div>
 
                     <div class="col-sm-4">
@@ -84,15 +91,15 @@
                         <div class="event-details-sidebar">
 
                             <h3>Details</h3>
-                            <p class="mb-30"><strong>Industry</strong>: B2B Services<br>
-                            <strong>Size</strong>: 12 Employees<br>
-                            <strong>Website</strong>: <a href="#">www.teamedup.com</a></p>
+                            <p class="mb-30"><strong>Industry</strong>: {{ company.categories.all |first }}<br>
+                                <strong>Size</strong>: {{ company.size }} Employees<br>
+                                <strong>Website</strong>: <a href="#">{{ company.website }}</a></p>
 
-                            <p class="mb-30"><strong>Twitter</strong>: <a href="#">@teamedup</a><br>
-                            <strong>Facebook</strong>: <a href="#">fb.me/teamedup</a><br>
-                            <strong>LinkedIn</strong>: <a href="#">linkedin.com/teamedup</a><br>
-                            <strong>Weibo</strong>: <a href="#">teamedup</a></p>
-                            
+                            <p class="mb-30"><strong>Twitter</strong>: <a href="#">{{ company.twitter }}</a><br>
+                                <strong>Facebook</strong>: <a href="#">{{ company.facebook }}</a><br>
+                                <strong>LinkedIn</strong>: <a href="#">{{ company.linkedin }}</a><br>
+                            </p>
+
                             <div class="event-details-buttons">
                                 <a href="#" class="btn btn-transparent-dark">Edit Profile</a>
                                 <a href="#" class="btn btn-transparent-dark">Visit Website</a>
@@ -120,20 +127,21 @@
                 </div>
 
             </div><!-- /.container -->
-            
+
         </section><!-- /.event-details-content -->
 
     </div><!-- /#main -->
 
-    
+
     <footer id="colophon" class="site-footer pages-footer">
 
         <div class="container container-960">
-        
+
             <div class="row">
-        
+
                 <div class="footer-col">
-                    <a href="#" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt=""></a>
+                    <a href="#" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}"
+                                                                  alt=""></a>
                 </div><!-- /.footer-col -->
 
                 <div class="footer-col">
@@ -144,7 +152,7 @@
                         <li><a href="#">Submit a story</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Events</h4>
                     <ul>
@@ -153,7 +161,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Startups</h4>
                     <ul>
@@ -161,7 +169,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Companies</h4>
                     <ul>
@@ -169,7 +177,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Jobs</h4>
                     <ul>
@@ -177,7 +185,7 @@
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Profile</h4>
                     <ul>
@@ -185,7 +193,7 @@
                         <li><a href="#">Edit Profile</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
@@ -195,7 +203,7 @@
                         <li><a href="#">Legal</a></li>
                     </ul>
                 </div><!-- /.footer-col -->
-                
+
                 <div class="footer-col pull-right text-right">
                     <ul>
                         <li><a href="#">Twitter</a></li>
@@ -205,8 +213,8 @@
                     </ul>
                 </div><!-- /.footer-col -->
 
-            </div>  
-                    
+            </div>
+
         </div><!-- /.container -->
 
     </footer><!-- /#footer -->
@@ -215,9 +223,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{% static 'community/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'community/js/script.js' %}"></script>
-  
-</body>
+
+    </body>
 {% endblock %}
