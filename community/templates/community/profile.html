@@ -49,7 +49,7 @@
                 {% else %}
                     <img src="{% static 'community/img/company-profile.jpg' %}" alt="" class="company-page-thumb">
                 {% endif %}
-                
+
                 {% if user.profile.advisor %}
                     <div id="ribbon-container">
                         <span id="ribbon">Advisor</span>
@@ -104,13 +104,15 @@
                         </p>
 
                         <p class="mb-30"><strong>Company</strong>: {{ user.profile.companies.first }}<br></p>
-
-                        <h3>Tags</h3>
-                        <p class="mb-30" style="text-transform:capitalize;">
-                            {% for cat in cats %}
-                                <strong>{{ cat }}</strong><br>
-                            {% endfor %}
-                        </p>
+                        
+                        {% if cats %}
+                            <h3>Speak to me about:</h3>
+                            <p class="mb-30" style="text-transform:capitalize;">
+                                {% for cat in cats %}
+                                    <strong>{{ cat }}</strong><br>
+                                {% endfor %}
+                            </p>
+                        {% endif %}
                         <div class="event-details-buttons mb-30">
                             {% if request.user.id == user.id or request.user.is_superuser%}
                                 <a href="{% url 'edit_profile' user.id %}" class="btn btn-transparent-dark">Edit Profile</a>

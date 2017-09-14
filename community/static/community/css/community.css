@@ -143,6 +143,10 @@
     border-color: #272534 !important;
 }
 
+.bootstrap-tagsinput .tag {
+    font-size: 14px;
+}
+
 .twitter-typeahead .tt-query,
 .twitter-typeahead .tt-hint {
     margin-bottom: 0;
