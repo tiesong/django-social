@@ -16,11 +16,12 @@ class Category(models.Model):
 
 class Company(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
-    # admin = models.ManyToManyField(User, blank=True)
+    admin = models.ManyToManyField(User, blank=True)
     description = HTMLField(blank=True)
     partner = models.BooleanField(default=False)
     size = models.IntegerField(null=True)
-    
+
+    image = models.ImageField(upload_to='company_images/%Y/%m/%d/', null=True, blank=True)
     categories = models.ManyToManyField(Category)
     
     website = models.CharField(max_length=155, blank=True, null=True)
@@ -60,7 +61,7 @@ class Tag(models.Model):
         return self.tag
 
 
-# Need to update settings.py to manage media files
+# Need to update settings.py to manage media file s
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     tagline = models.CharField(max_length=155, null=True, blank=True)
