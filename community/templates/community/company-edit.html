@@ -125,7 +125,7 @@
                         <div class="col-sm-8 description-section">
                             <h3>Industry</h3>
                             <input type="hidden" value="{{ company.id }}" id="company_id">
-                            <input type="text" class="tags form-control" name="tags"
+                            <input type="text" class="companytags form-control" name="tags"
                                    value="{{ company.categories.all | first }}">
                             <h4 class="mb-30">
                                 <small>Available tags: {{ tags }}</small>
@@ -302,7 +302,7 @@
                 // prefetch: '/c/tags',
             });
 
-            $('.tags').tagsinput({
+            $('.companytags').tagsinput({
                 itemValue: 'tag_id',
                 itemText: 'tag_name',
                 typeaheadjs: {
@@ -322,7 +322,7 @@
         dataType: 'json',
         success: function(result) {
             $.each(result, function(key, value) {
-                $('.tags').tagsinput('add', { "tag_id": value.tag_id, "tag_name": value.tag_name});
+                $('.companytags').tagsinput('add', { "tag_id": value.tag_id, "tag_name": value.tag_name});
             });
         },
     });
