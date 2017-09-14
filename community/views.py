@@ -340,7 +340,7 @@ def edit_company(request, company_id):
         tags = str(request.POST.get('tags', "")).split(',')
         print(tags)
         size = request.POST.get('size', 0)
-        title = request.POST.get('title', "")
+        title = request.POST.get('name', "")
         website = request.POST.get('website', "")
         twitter = request.POST.get('twitter', "")
         facebook = request.POST.get('facebook', "")
