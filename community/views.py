@@ -350,7 +350,7 @@ def edit_company(request, company_id):
         if tags[0] != '':
             for tag in tags:
                 company_detail.categories.add(tag)
-                company_detail.save()
+        
         
         company_detail.size = size
         company_detail.website = website
@@ -358,6 +358,8 @@ def edit_company(request, company_id):
         company_detail.facebook = facebook
         company_detail.linkedin = linkedin
         company_detail.description = description
+        
+        company_detail.save()
         
         if request.FILES:
             avatar = request.FILES['avatar']
