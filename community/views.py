@@ -115,6 +115,7 @@ def tags(request):
     if request.GET.get('profile_id'):
         profile = Profile.objects.get(pk=request.GET['profile_id'])
         tag_list = profile.tags.all()
+    
     else:
         tag_list = Tag.objects.all()
     response = []
@@ -282,7 +283,8 @@ def search_company(request):
     keyword = request.GET.get('keyword', "")
     page_number = request.GET.get('pg_num', 0)
     keyword = str(keyword).replace("-", " ")
-    company_list = Company.objects.filter(Q(categories__tag__icontains=keyword) | Q(title__icontains=keyword)).order_by('-partner').distinct()
+    company_list = Company.objects.filter(Q(categories__tag__icontains=keyword) | Q(title__icontains=keyword)).order_by(
+        '-partner').distinct()
     
     per = Paginator(company_list, 5)
     
@@ -303,13 +305,70 @@ def search_company(request):
 
 @login_required
 def tags_company(request):
-    if request.GET.get('profile_id'):
-        profile = Profile.objects.get(pk=request.GET['profile_id'])
-        tag_list = profile.tags.all()
+    if request.GET.get('company_id'):
+        company = Company.objects.get(pk=request.GET['company_id'])
+        tag_list = company.categories.all()
     else:
-        tag_list = Tag.objects.all()
+        tag_list = Category.objects.all()
     response = []
     for tag in tag_list:
         response.append({'tag_id': tag.id, 'tag_name': tag.tag})
     
     return HttpResponse(json.dumps(response))
+
+
+@login_required
+def edit_company(request, company_id):
+    company_detail = Company.objects.get(pk=company_id)
+    
+    admins = company_detail.admin.first()
+    
+    if not request.user.is_superuser:
+        if admins:
+            if request.user.id != int(admins.id):
+                return redirect(reverse('companies'))
+        else:
+            return redirect(reverse('companies'))
+
+    navbar_pages = News.objects.filter(display_in_navbar=True)
+    
+    categories_list = Category.objects.all()
+    categories = ', '.join(map(lambda x: x.tag, categories_list))
+    
+    if request.POST:
+        
+        tags = request.POST.get('tags', "").split(',')
+        print(tags)
+        size = request.POST.get('size', 0)
+        website = request.POST.get('website', "")
+        twitter = request.POST.get('twitter', "")
+        facebook = request.POST.get('facebook', "")
+        linkedin = request.POST.get('linkedin', "")
+        description = request.POST.get('description', "")
+
+        company_detail.categories.clear()
+        if tags[0] != '':
+            for tag in tags:
+                company_detail.categories.add(tag)
+                company_detail.save()
+        
+        company_detail.size = size
+        company_detail.website = website
+        company_detail.twitter = twitter
+        company_detail.facebook = facebook
+        company_detail.linkedin = linkedin
+        company_detail.description = description
+        
+        if request.FILES:
+            avatar = request.FILES['avatar']
+            company_detail.image = avatar
+            
+            company_detail.save()
+        return redirect(reverse('company', args=[int(company_id)]))
+    
+    context = {
+        'navbar_pages': navbar_pages,
+        'company': company_detail,
+        'tags': categories
+    }
+    return render(request, 'community/company-edit.html', context)

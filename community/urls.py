@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^tags_company/$', views.tags_company, name='tags_company'),
     url(r'^companies/$', views.companies, name='companies'),
     url(r'^companies/(?P<company_id>[0-9]+)$', views.company, name='company'),
+    url(r'^companies/(?P<company_id>[0-9]+)/edit$', views.edit_company, name='edit_company'),
 ]

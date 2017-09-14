@@ -5,7 +5,11 @@
     {% for company in company_list %}
         <div id="company_{{ company.id }}" class="news-single-item">
             <div class="news-single-thumb">
-                <img src="{{ company.portal_image }}" alt="">
+                {% if company.image %}
+                    <img src="{{ company.image.url }}" alt="">
+                {% else %}
+                    <img src="https://teamedup-ybf.s3.amazonaws.com/static/news/img/news-tmp.png" alt="">
+            {% endif %}
                 {% if company.partner %}
                     <div id="ribbon-container">
                         <span id="ribbon">Partner</span>

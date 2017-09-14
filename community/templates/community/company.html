@@ -51,14 +51,20 @@
             <div class="container container-960">
 
                 <div class="hero-text">
-                    <img src="{% static 'community/img/company-profile.jpg' %}" alt="" class="company-page-thumb">
+                    {% if company.image %}
+                        <img src="{{ company.image.url }}" alt="" class="company-page-thumb">
+                    {% else %}
+                        <img src="{% static 'community/img/company-profile.jpg' %}" alt="" class="company-page-thumb">
+                    {% endif %}
+
                     {% if company.partner %}
                         <div id="ribbon-container">
                             <span id="ribbon">Partner</span>
                         </div>
                     {% endif %}
                     <h1 style="width: inherit">{{ company.title }}</h1>
-                    <p>{{ company.size }} Employees <a href="#">View</a></p>
+                    <p>{% if company.size %}{{ company.size }} {% else %} 0 {% endif %} Employees <a href="#">View</a>
+                    </p>
                 </div>
 
             </div>
@@ -92,17 +98,22 @@
 
                             <h3>Details</h3>
                             <p class="mb-30"><strong>Industry</strong>: {{ company.categories.all |first }}<br>
-                                <strong>Size</strong>: {{ company.size }} Employees<br>
-                                <strong>Website</strong>: <a href="#">{{ company.website }}</a></p>
+                                <strong>Size</strong>:
+                                {% if company.size %}{{ company.size }} {% else %} 0 {% endif %} Employees<br>
+                                <strong>Website</strong>: <a href="#">
+                                    {% if company.website %}{{ company.website }}{% endif %}</a></p>
 
-                            <p class="mb-30"><strong>Twitter</strong>: <a href="#">{{ company.twitter }}</a><br>
-                                <strong>Facebook</strong>: <a href="#">{{ company.facebook }}</a><br>
-                                <strong>LinkedIn</strong>: <a href="#">{{ company.linkedin }}</a><br>
+                            <p class="mb-30"><strong>Twitter</strong>: <a href="#">
+                                {% if company.twitter %}{{ company.twitter }} {% endif %}</a><br>
+                                <strong>Facebook</strong>: <a href="#">
+                                    {% if company.facebook %}{{ company.facebook }} {% endif %}</a><br>
+                                <strong>LinkedIn</strong>: <a href="#">
+                                    {% if company.linkedin %}{{ company.linkedin }}{% endif %}</a><br>
                             </p>
 
                             <div class="event-details-buttons">
-                                <a href="#" class="btn btn-transparent-dark">Edit Profile</a>
-                                <a href="#" class="btn btn-transparent-dark">Visit Website</a>
+                                <a href="{{ company.id }}/edit" class="btn btn-transparent-dark">Edit Company</a>
+                                <a href="{{ company.website }}" class="btn btn-transparent-dark">Visit Website</a>
                                 <a href="#" class="btn btn-transparent-dark">Employee Lists</a>
                                 <a href="#" class="btn btn-transparent-dark btn-half">Hosted Events</a>
                                 <a href="#" class="btn btn-transparent-dark btn-half">Job Posts</a>
