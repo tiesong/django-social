@@ -24,8 +24,6 @@ LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-os.environ['DJANGO_DEVELOPMENT'] = 'LOCAL'
-
 # DEVELOPMENT EMAIL BACKEND
 if os.environ['DJANGO_DEVELOPMENT'] != 'PRODUCTION':
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
@@ -169,7 +167,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
 
 # S3 bucket serving media files.
-if os.environ['DJANGO_DEVELOPMENT'] != 'LOCAL':
+if os.environ['DJANGO_DEVELOPMENT'] == 'PRODUCTION':
     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
