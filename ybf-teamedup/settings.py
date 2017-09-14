@@ -24,8 +24,10 @@ LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+os.environ['DJANGO_DEVELOPMENT'] = 'LOCAL'
+
 # DEVELOPMENT EMAIL BACKEND
-if os.environ.get('DJANGO_DEVELOPMENT') is not None:
+if os.environ['DJANGO_DEVELOPMENT'] != 'PRODUCTION':
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
 else:
     ANYMAIL = {
@@ -44,7 +46,7 @@ ALLOWED_HOSTS = ['*']
 SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get('DJANGO_DEVELOPMENT') is not None:
+if os.environ['DJANGO_DEVELOPMENT'] != 'PRODUCTION':
     DEBUG = True
 else:
     DEBUG = False
@@ -167,25 +169,26 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
 
 # S3 bucket serving media files.
+if os.environ['DJANGO_DEVELOPMENT'] == 'PRODUCTION':
+    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    # Static files
+    STATICFILES_LOCATION = 'static'
+    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
-
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-
-# Static files
-STATICFILES_LOCATION = 'static'
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
-STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-
-# Setting Media files
-MEDIAFILES_LOCATION = 'media'
-MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
-DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-
+    # Setting Media files
+    MEDIAFILES_LOCATION = 'media'
+    MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+else:
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 two_months = datetime.timedelta(days=61)
 date_two_months_later = datetime.date.today() + two_months
 expires = date_two_months_later.strftime("%A, %d %B %Y 20:00:00 GMT")
