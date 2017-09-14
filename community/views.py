@@ -337,7 +337,7 @@ def edit_company(request, company_id):
     
     if request.POST:
         
-        tags = request.POST.get('tags', "").split(',')
+        tags = str(request.POST.get('tags', "")).split(',')
         print(tags)
         size = request.POST.get('size', 0)
         website = request.POST.get('website', "")
