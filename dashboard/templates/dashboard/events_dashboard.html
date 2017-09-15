@@ -29,7 +29,7 @@
 			</div><!-- /.events-filter -->
 			<div class="events-filter mb-20">
 				<ul class="list-unstyled">
-					<li class="ml-0"><a href="/news/create?next=/dashboard">+ Create new news article</a></li>
+					<li class="ml-0"><a href="/perks/create?next=/dashboard">+ Create new event</a></li>
 				</ul>
 			</div>
 
@@ -41,7 +41,7 @@
 					<thead> 
 						<tr> 
 							<th>Title <span class="caret"></span></th> 
-							<th>Author</th> 
+							<!-- <th>Author</th>  -->
 							<th class="text-right">Date published</th> 
 							<th class="text-right">Published</th> 
 							<th class="text-right">Actions</th> 
@@ -49,25 +49,25 @@
 					</thead> 
 					<tbody> 
 
-					{% for news in news_list %}
+					{% for event in event_list %}
 
 						<tr> 
-							<td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img"> {{news.title|truncatechars:30}}</td> 
-							<td>{{news.owner.username}}</td> 
-							<td class="text-right">{{ news.pub_date }}</td> 
+							<td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img"> {{event.title|truncatechars:30}}</td> 
+							<!-- <td>{{news.owner.username}}</td>  -->
+							<td class="text-right">{{ event.pub_date }}</td> 
 							<td class="text-right">
 								<a href="#" class="opt-published">&#10003;</a>
 							</td>
 							<td class="text-right">
 								<div class="table-actions">
 									<!-- View -->
-									<a href="/news/{{news.id}}?next=/dashboard"><img src="{% static 'dashboard/img/view.png' %}" alt="" srcset="{% static 'dashboard/img/view.png' %} 1x, {% static 'dashboard/img/view@2x.png' %} 2x"></a>
+									<a href="/events/{{event.id}}?next=/dashboard"><img src="{% static 'dashboard/img/view.png' %}" alt="" srcset="{% static 'dashboard/img/view.png' %} 1x, {% static 'dashboard/img/view@2x.png' %} 2x"></a>
 									
 									<!-- Edit -->
-									<a href="/news/{{news.id}}/edit?next=/dashboard"><img src="{% static 'dashboard/img/edit.png' %}" alt="" srcset="{% static 'dashboard/img/edit.png' %}" 1x, "{% static 'dashboard/assets/img/edit@2x.png' %}" 2x></a>
+									<a href="/events/{{event.id}}/edit?next=/dashboard"><img src="{% static 'dashboard/img/edit.png' %}" alt="" srcset="{% static 'dashboard/img/edit.png' %}" 1x, "{% static 'dashboard/assets/img/edit@2x.png' %}" 2x></a>
 									
 									<!-- Delete -->
-									<a href="/news/{{news.id}}/delete"><img src="{% static 'dashboard/img/trash.png' %}" alt="" srcset="{% static 'dashboard/img/trash.png' %} 1x, {% static 'dashboard/img/trash@2x.png' %} 2x"></a>
+									<a href="/events/{{event.id}}/delete"><img src="{% static 'dashboard/img/trash.png' %}" alt="" srcset="{% static 'dashboard/img/trash.png' %} 1x, {% static 'dashboard/img/trash@2x.png' %} 2x"></a>
 								</div>
 							</td>
 						</tr> 
