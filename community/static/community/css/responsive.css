@@ -484,12 +484,35 @@
 		margin-bottom: 30px;
 	}
 
-	.profile-edit.company-profile-header {
+	.profile-edit.company-profile-header,
+	.profile.company-profile-header {
 		height: 210px;
 	}
 
 	.company-profile-header #ribbon-container {
 		top: 60px !important;
+	}
+
+	.hero .header-section #ribbon-container {
+		top: -40px !important;
+	}
+
+	.hero .header-section {
+		bottom: -90px !important;
+	}
+
+	.hero .header-section .profile-title {
+		margin-top: 20px;
+	}
+
+	.hero .profile-title h1 {
+		font-size: 24px !important;
+		line-height: 32px !important;
+	}
+
+	.hero .profile-title p {
+		font-size: 14px !important;
+		line-height: 20px !important;
 	}
 
 }

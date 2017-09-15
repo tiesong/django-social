@@ -14,6 +14,11 @@
     position: relative;
 }
 
+.hero .header-section {
+    bottom: -30px;
+    top: auto;
+}
+
 .header-section {
     position: absolute;
     top: -100px;
@@ -64,6 +69,23 @@
     margin-top: 10px;
 }
 
+.hero .header-section .profile-title {
+    color: #fff;
+}
+
+.hero .profile-title h1 {
+    margin: 0;
+    line-height: 50px;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.hero .profile-title p {
+    line-height: 22px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
 .header-section .profile-title input {
     color: #fff;
     border-color: #fff;
@@ -81,6 +103,10 @@
 
 .edit-actions .edit-save {
     margin-bottom: 15px;
+}
+
+.hero .header-section #ribbon-container {
+    top: -40px;
 }
 
 .company-profile-header #ribbon-container {
