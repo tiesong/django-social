@@ -44,10 +44,7 @@ ALLOWED_HOSTS = ['*']
 SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if not os.environ.get('DJANGO_DEVELOPMENT'):
-    DEBUG = True
-else:
-    DEBUG = False
+DEBUG = True
 
 # Application definition
 
@@ -187,6 +184,7 @@ else:
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+
 two_months = datetime.timedelta(days=61)
 date_two_months_later = datetime.date.today() + two_months
 expires = date_two_months_later.strftime("%A, %d %B %Y 20:00:00 GMT")
