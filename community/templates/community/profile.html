@@ -57,7 +57,9 @@
                 {% endif %}
 
                 <h1>{{ user.get_full_name }}</h1>
-                <p>{{ user.profile.tagline|slice:":25" }}</p>
+                {% if user.profile.tagline %}
+                    <p>{{ user.profile.tagline|slice:":25" }}</p>
+                {% endif %}
             </div>
 
         </div>
@@ -78,7 +80,9 @@
                 <div class="col-sm-8">
                     <h3>Description</h3>
 
-                    <p class="mb-20">{{ user.profile.bio|safe }}</p>
+                    {% if user.profile.bio %}
+                        <p class="mb-20">{{ user.profile.bio|safe }}</p>
+                    {% endif %}
 
                 </div>
 
@@ -104,7 +108,7 @@
                         </p>
 
                         <p class="mb-30"><strong>Company</strong>: {{ user.profile.companies.first }}<br></p>
-                        
+
                         {% if cats %}
                             <h3>Speak to me about:</h3>
                             <p class="mb-30" style="text-transform:capitalize;">
