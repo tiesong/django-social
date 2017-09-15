@@ -95,21 +95,21 @@
                         <h3>Details</h3>
                         <p class="mb-30">
 
-                            {% if user.email %}<strong>Email</strong>: <span>{{user.email}}<span><br>{% endif %}
+                            {% if user.email %}<strong>Email</strong>: <span>{{user.email}}</span><br>{% endif %}
 
-                            {% if user.profile.phone_number %}<strong>Phone</strong>: <span>{{ user.profile.phone_number }}<span><br>{% endif %}
+                            {% if user.profile.phone_number %}<strong>Phone</strong>: <span>{{ user.profile.phone_number }}</span><br>{% endif %}
 
-                            {% if user.profile.website %}<strong>Website</strong>: <span>{{user.profile.website}}<span><br>{% endif %}
+                            {% if user.profile.website %}<strong>Website</strong>: <span>{{user.profile.website}}</span><br>{% endif %}
 
-                            {% if user.profile.twitter %}<strong>Twitter</strong>: <span>{{user.profile.twitter}}<span><br>{% endif %}
+                            {% if user.profile.twitter %}<strong>Twitter</strong>: <span>{{user.profile.twitter}}</span><br>{% endif %}
 
-                            {% if user.profile.facebook %}<strong>Facebook</strong>: <span>{{ user.profile.facebook }}</a><br>{% endif %}
+                            {% if user.profile.facebook %}<strong>Facebook</strong>: <span>{{ user.profile.facebook }}</span><br>{% endif %}
 
                             {% if user.profile.linkedin %}<strong>LinkedIn</strong>: <span>{{ user.profile.linkedin }}</span><br>{% endif %}
 
                         </p>
 
-                        <!-- <p class="mb-30"><strong>Company</strong>: {{ user.profile.companies.first }}<br></p> -->
+{#                        <!-- <p class="mb-30"><strong>Company</strong>: {{ user.profile.companies.first }}<br></p> -->#}
 
                         {% if cats %}
                             <h3>Speak to me about:</h3>
