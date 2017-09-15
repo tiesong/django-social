@@ -5,6 +5,8 @@ from tinymce.models import HTMLField
 from django.db import models
 from django.contrib.auth.models import User
 from bs4 import BeautifulSoup
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Category(models.Model):
@@ -61,7 +63,7 @@ class Tag(models.Model):
         return self.tag
 
 
-# Need to update settings.py to manage media file s
+# Need to update settings.py to manage media files
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     tagline = models.CharField(max_length=155, null=True, blank=True)
@@ -83,3 +85,12 @@ class Profile(models.Model):
     
     def __str__(self):
         return self.user.username
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()

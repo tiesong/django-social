@@ -44,11 +44,13 @@
         <div class="container container-960">
 
             <div class="hero-text">
-                {% if user.profile.image %}
-                    <img src="{{ user.profile.image.url }}" alt="" class="company-page-thumb">
-                {% else %}
-                    <img src="{% static 'community/img/company-profile.jpg' %}" alt="" class="company-page-thumb">
-                {% endif %}
+                <div class="profile-thumb">
+                    {% if user.profile.image %}
+                        <img src="{{ user.profile.image.url }}" alt="" width="130">
+                    {% else %}
+                        <img src="{% static 'community/img/company-profile.jpg' %}" alt="" width="130" height="130">
+                    {% endif %}
+                </div>
 
                 {% if user.profile.advisor %}
                     <div id="ribbon-container">
@@ -57,7 +59,9 @@
                 {% endif %}
 
                 <h1>{{ user.get_full_name }}</h1>
-                <p>{{ user.profile.tagline|slice:":25" }}</p>
+                {% if user.profile.tagline %}
+                    <p>{{ user.profile.tagline|slice:":25" }}</p>
+                {% endif %}
             </div>
 
         </div>
@@ -78,7 +82,9 @@
                 <div class="col-sm-8">
                     <h3>Description</h3>
 
-                    <p class="mb-20">{{ user.profile.bio|safe }}</p>
+                    {% if user.profile.bio %}
+                        <p class="mb-20">{{ user.profile.bio|safe }}</p>
+                    {% endif %}
 
                 </div>
 
@@ -103,8 +109,8 @@
 
                         </p>
 
-                        <p class="mb-30"><strong>Company</strong>: {{ user.profile.companies.first }}<br></p>
-                        
+                        <!-- <p class="mb-30"><strong>Company</strong>: {{ user.profile.companies.first }}<br></p> -->
+
                         {% if cats %}
                             <h3>Speak to me about:</h3>
                             <p class="mb-30" style="text-transform:capitalize;">
