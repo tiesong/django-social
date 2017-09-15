@@ -76,7 +76,7 @@ $(document).ready(function () {
             $.each(result, function(key, value) {
                 $('.tags').tagsinput('add', { "tag_id": value.tag_id, "tag_name": value.tag_name});
             });
-        },
+        }
     });
 
     /* Form Submission Prevent for Enterkey */
