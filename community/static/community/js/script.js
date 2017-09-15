@@ -79,18 +79,6 @@ $(document).ready(function () {
         },
     });
 
-    var company_id = $('#company_id').val();
-    $.ajax({
-        url: '/c/tags_company/',
-        data: {company_id: company_id},
-        dataType: 'json',
-        success: function(result) {
-            $.each(result, function(key, value) {
-                $('.tags').tagsinput('add', { "tag_id": value.tag_id, "tag_name": value.tag_name});
-            });
-        },
-    });
-
     /* Form Submission Prevent for Enterkey */
     $('#profile_edit_form').on('keyup keypress', function(e) {
         var keyCode = e.keyCode || e.which;
