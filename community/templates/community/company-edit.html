@@ -1,6 +1,8 @@
 {% extends 'community/base.html' %}
+{% load staticfiles %}
 {% block content %}
-    {% load staticfiles %}
+
+    <body>
     <script>
         tinymce.init({
             selector: '#description',
@@ -131,7 +133,9 @@
                                 <small>Available tags: {{ tags }}</small>
                             </h4>
                             <h3>Description</h3>
+                            <p>
                             <textarea id="description" name="description">{{ company.description | safe }}</textarea>
+                            </p>
                         </div>
 
                         <div class="col-sm-4 details-section">
@@ -288,53 +292,53 @@
 
 {% endblock %}
 
-{% block customscript%}
+{% block customscript %}
     <script>
-    /* Select Tags for Company*/
-    $.ajax({
-        url: '/c/tags_company/',
-        dataType: 'json',
-        success: function(result) {
-            var tags = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('tag_name'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                local: result
-                // prefetch: '/c/tags',
-            });
+        /* Select Tags for Company*/
+        $.ajax({
+            url: '/c/tags_company/',
+            dataType: 'json',
+            success: function (result) {
+                var tags = new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('tag_name'),
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    local: result
+                    // prefetch: '/c/tags',
+                });
 
-            $('.companytags').tagsinput({
-                itemValue: 'tag_id',
-                itemText: 'tag_name',
-                typeaheadjs: {
-                    name: 'tags',
-                    displayKey: 'tag_name',
-                    source: tags
-                }
-            });
-        },
-    });
+                $('.companytags').tagsinput({
+                    itemValue: 'tag_id',
+                    itemText: 'tag_name',
+                    typeaheadjs: {
+                        name: 'tags',
+                        displayKey: 'tag_name',
+                        source: tags
+                    }
+                });
+            },
+        });
 
 
-    var company_id = $('#company_id').val();
-    $.ajax({
-        url: '/c/tags_company/',
-        data: {company_id: company_id},
-        dataType: 'json',
-        success: function(result) {
-            $.each(result, function(key, value) {
-                $('.companytags').tagsinput('add', { "tag_id": value.tag_id, "tag_name": value.tag_name});
-            });
-        },
-    });
+        var company_id = $('#company_id').val();
+        $.ajax({
+            url: '/c/tags_company/',
+            data: {company_id: company_id},
+            dataType: 'json',
+            success: function (result) {
+                $.each(result, function (key, value) {
+                    $('.companytags').tagsinput('add', {"tag_id": value.tag_id, "tag_name": value.tag_name});
+                });
+            },
+        });
 
-    /* Form Submission Prevent for Enterkey */
-    $('#company_edit_form').on('keyup keypress', function(e) {
-        var keyCode = e.keyCode || e.which;
-        if (keyCode === 13) {
-            e.preventDefault();
-            return false;
-        }
-    });
+        /* Form Submission Prevent for Enterkey */
+        $('#company_edit_form').on('keyup keypress', function (e) {
+            var keyCode = e.keyCode || e.which;
+            if (keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
 
 
     </script>
