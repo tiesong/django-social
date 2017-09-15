@@ -14,14 +14,20 @@
     position: relative;
 }
 
-.hero .header-section {
-    bottom: -30px;
-    top: auto;
-}
-
 .header-section {
     position: absolute;
     top: -100px;
+}
+
+.hero .profile-thumb {
+    position: absolute;
+    left: 0;
+    bottom: -45px;
+    border: 1px solid #fff;
+    border-radius: 100px;
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
 }
 
 .header-section .profile-thumb {
@@ -69,23 +75,6 @@
     margin-top: 10px;
 }
 
-.hero .header-section .profile-title {
-    color: #fff;
-}
-
-.hero .profile-title h1 {
-    margin: 0;
-    line-height: 50px;
-    font-size: 42px;
-    font-weight: 700;
-}
-
-.hero .profile-title p {
-    line-height: 22px;
-    font-size: 16px;
-    font-weight: 500;
-}
-
 .header-section .profile-title input {
     color: #fff;
     border-color: #fff;
@@ -103,10 +92,6 @@
 
 .edit-actions .edit-save {
     margin-bottom: 15px;
-}
-
-.hero .header-section #ribbon-container {
-    top: -40px;
 }
 
 .company-profile-header #ribbon-container {
