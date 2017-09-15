@@ -1,0 +1,343 @@
+{% extends 'community/base.html' %}
+{% block content %}
+    {% load staticfiles %}
+    <script>
+        tinymce.init({
+            selector: '#description',
+            plugins: 'image',
+            extended_valid_elements: 'img[class|src|border=0|alt|title|width|height]',
+            image_description: false,
+            image_dimensions: false,
+            file_picker_types: 'image',
+            content_css: "{% static 'community/css/community.css' %}",
+            file_picker_callback: function (callback, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+
+                input.onchange = function () {
+                    var file = this.files[0];
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+
+                    reader.onload = function () {
+                        var id = 'blobid' + (new Date()).getTime();
+                        var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        var base64 = reader.result.split(',')[1];
+                        var blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+
+                        callback(blobInfo.blobUri(), {title: file.name});
+                    };
+                };
+                input.click();
+            },
+            height: 500
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.avatar')
+                        .attr('src', e.target.result)
+                        .width(130)
+                        .height(130);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
+    <header id="masthead" class="site-header profile-edit company-profile-header">
+
+        <div class="top-nav">
+
+            <div class="container container-960">
+
+                <a href="/" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt=""
+                                                              srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
+
+                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+                    <span class="lines line-top"></span>
+                    <span class="lines line-middle"></span>
+                    <span class="lines line-bottom"></span>
+                </button><!-- /.lines-button -->
+
+                <nav id="primary-navigation" class="site-navigation">
+
+                    <a href="index.html" class="site-logo visible-xs" rel="home"><img
+                            src="{% static 'community/img/logo.png' %}" alt=""
+                            srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
+
+                    <ul class="dropdown">
+                        <li><a href="/news">News</a></li>
+                        <li><a href="/events">Events</a></li>
+                        <li><a href="/c/companies">Companies</a></li>
+                        <li class="active"><a href="/c/people">People</a></li>
+                        <li><a href="/officespace">Officespace</a></li>
+                        {% for page in navbar_pages %}
+                            <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                </nav><!-- /.site-navigation -->
+
+                {% include 'community/profile-menu.html' %}
+
+            </div><!-- /.container -->
+
+        </div><!-- /.top-nav -->
+
+    </header><!-- /#header -->
+
+    <div id="main" class="site-main community">
+
+        <section class="profile-content">
+
+            <div class="container container-960">
+
+                <div class="row">
+
+                    <form method="post" id="company_edit_form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="header-section">
+                            <div class="profile-thumb pull-left">
+                                {% if company.image %}
+                                    <img src="{{ company.image.url }}" alt="" width="130" height="130"
+                                         class="avatar">
+                                {% else %}
+                                    <img src="{% static 'community/img/company-profile.jpg' %}" alt="" width="130"
+                                         height="130" class="avatar">
+                                {% endif %}
+
+                                <input type="file" id="upload_avatar" name="avatar" onchange="readURL(this);"
+                                       accept="image/*" class="form-control">
+                                <span class="trans-back"><span class="glyphicon glyphicon-camera camera"></span></span>
+                            </div>
+                            <div class="profile-title pull-left">
+                                <input type="text" name="name" class="form-control" value="{{ company.title }}"/>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="col-sm-8 description-section">
+                            <h3>Industry</h3>
+                            <input type="hidden" value="{{ company.id }}" id="company_id">
+                            <input type="text" class="companytags form-control" name="tags"
+                                   value="{{ company.categories.all | first }}">
+                            <h4 class="mb-30">
+                                <small>Available tags: {{ tags }}</small>
+                            </h4>
+                            <h3>Description</h3>
+                            <textarea id="description" name="description">{{ company.description | safe }}</textarea>
+                        </div>
+
+                        <div class="col-sm-4 details-section">
+                            <div class="user-details mb-30 form-horizontal">
+                                <h3>Details</h3>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Size:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="size"
+                                               onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                               class="form-control"
+                                               value="{% if company.size %}{{ company.size }}{% endif %}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Website:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="website" class="form-control"
+                                               value="{% if company.website %}{{ company.website }}{% endif %}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Twitter:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="twitter" class="form-control"
+                                               value="{% if company.twitter %}{{ company.twitter }}{% endif %}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Facebook:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="facebook" class="form-control"
+                                               value="{% if company.facebook %}{{ company.facebook }}{% endif %}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">LinkedIn:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="linkedin" class="form-control"
+                                               value="{% if company.linkedin %}{{ company.linkedin }}{% endif %}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="edit-actions">
+                                <input type="submit" class="btn btn-transparent-dark edit-save" value="Save">
+                                <a href="{% url 'company' company.id %}" class="btn btn-transparent-dark">Cancel</a>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div><!-- /.container -->
+
+        </section><!-- /.event-details-content -->
+
+    </div><!-- /#main -->
+
+    <footer id="colophon" class="site-footer pages-footer">
+
+        <div class="container container-960">
+
+            <div class="row">
+
+                <div class="footer-col">
+                    <a href="#" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}"
+                                                                  alt=""></a>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>News</h4>
+                    <ul>
+                        <li><a href="#">Current</a></li>
+                        <li><a href="#">Archive</a></li>
+                        <li><a href="#">Submit a story</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Events</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Attending</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Startups</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Companies</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Jobs</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Officespace</h4>
+                    <ul>
+                        <li><a href="/officespace">Browse</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Profile</h4>
+                    <ul>
+                        <li><a href="#">Your Activity</a></li>
+                        <li><a href="#">Edit Profile</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">About YBF</a></li>
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">Legal</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col pull-right text-right">
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+            </div>
+
+        </div><!-- /.container -->
+
+    </footer><!-- /#footer -->
+
+{% endblock %}
+
+{% block customscript%}
+    <script>
+    /* Select Tags for Company*/
+    $.ajax({
+        url: '/c/tags_company/',
+        dataType: 'json',
+        success: function(result) {
+            var tags = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('tag_name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                local: result
+                // prefetch: '/c/tags',
+            });
+
+            $('.companytags').tagsinput({
+                itemValue: 'tag_id',
+                itemText: 'tag_name',
+                typeaheadjs: {
+                    name: 'tags',
+                    displayKey: 'tag_name',
+                    source: tags
+                }
+            });
+        },
+    });
+
+
+    var company_id = $('#company_id').val();
+    $.ajax({
+        url: '/c/tags_company/',
+        data: {company_id: company_id},
+        dataType: 'json',
+        success: function(result) {
+            $.each(result, function(key, value) {
+                $('.companytags').tagsinput('add', { "tag_id": value.tag_id, "tag_name": value.tag_name});
+            });
+        },
+    });
+
+    /* Form Submission Prevent for Enterkey */
+    $('#company_edit_form').on('keyup keypress', function(e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+
+    </script>
+
+{% endblock %}
+

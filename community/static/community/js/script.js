@@ -43,7 +43,7 @@ $(document).ready(function () {
         $('#upload_avatar').css('cursor', 'default');
     });
 
-    /* Select Tags */
+    /* Select Tags for Profile*/
     $.ajax({
         url: '/c/tags/',
         dataType: 'json',
@@ -71,6 +71,18 @@ $(document).ready(function () {
     $.ajax({
         url: '/c/tags/',
         data: {profile_id: profile_id},
+        dataType: 'json',
+        success: function(result) {
+            $.each(result, function(key, value) {
+                $('.tags').tagsinput('add', { "tag_id": value.tag_id, "tag_name": value.tag_name});
+            });
+        },
+    });
+
+    var company_id = $('#company_id').val();
+    $.ajax({
+        url: '/c/tags_company/',
+        data: {company_id: company_id},
         dataType: 'json',
         success: function(result) {
             $.each(result, function(key, value) {
