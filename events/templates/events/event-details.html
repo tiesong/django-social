@@ -175,6 +175,11 @@
                     <h1 class="event.title">{{ event.title }}</h1>
                     <p>posted by <a href="">MediHealth</a></p>
                     <a class="btn btn-transparent-white" href="{{ event.event_url }}">RSVP</a>
+                    {% if next %}
+                        <a class="btn btn-transparent-white" href="{{ next }}/events"><< Back</a>
+                    {% else %}
+                        <a class="btn btn-transparent-white" href="/events"><< Back</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

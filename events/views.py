@@ -24,9 +24,9 @@ from notifications.signals import notify
 @login_required
 def index(request):
     """
-    Index 
-    :param request: 
-    :return: 
+    Index
+    :param request:
+    :return:
     """
 
     week = int(request.GET.get('week_num', 0))
@@ -166,11 +166,16 @@ def update(request):
 def detail(request, event_id):
     """
     Event Detail.
-    :param request: 
-    :param event_id: 
-    :return: 
+    :param request:
+    :param event_id:
+    :return:
     """
     notify_id = request.GET.get('notify', None)
+
+    try:
+        next_url = request.GET['next']
+    except:
+        next_url = False
 
     if request.POST:
 
@@ -182,6 +187,7 @@ def detail(request, event_id):
         context = {
             'event': event,
             'navbar_pages': navbar_pages,
+            'next': next_url,
         }
 
         return render(request, 'events/event-details.html', context)
@@ -195,6 +201,7 @@ def detail(request, event_id):
     context = {
         'event': event,
         'navbar_pages': navbar_pages,
+        'next': next_url,
     }
     return render(request, 'events/event-details.html', context)
 
@@ -221,8 +228,8 @@ def addNotify(request, event_id):
 def create(request):
     """
     Create new event.
-    :param request: 
-    :return: 
+    :param request:
+    :return:
     """
     event_id = request.POST.get("event_id", None)
     navbar_pages = News.objects.filter(display_in_navbar=True)
@@ -268,9 +275,9 @@ def create(request):
 def edit(request, event_id):
     """
     Edit Event
-    :param request: 
-    :param event_id: 
-    :return: 
+    :param request:
+    :param event_id:
+    :return:
     """
     event_detail = Event.objects.get(id=event_id)
     navbar_pages = News.objects.filter(display_in_navbar=True)
@@ -305,10 +312,10 @@ def edit(request, event_id):
 
 
 @login_required
-def delete(request):
-    """
-    Delete Event.
-    :param request: 
-    :return: 
-    """
-    pass
+def delete(request, event_id):
+    event = Event.objects.get(id=event_id)
+    event.delete()
+
+    context = {}
+
+    return redirect('/dashboard/events')
