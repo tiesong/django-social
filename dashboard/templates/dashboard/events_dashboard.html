@@ -42,7 +42,7 @@
 						<tr>
 							<th>Title <span class="caret"></span></th>
 							<th>Author</th>
-							<th class="text-right">Date published</th>
+							<th class="text-right">Date Started</th>
 							<th class="text-right">Published</th>
 							<th class="text-right">Actions</th>
 						</tr>
@@ -54,7 +54,7 @@
 						<tr>
 							<td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img"> {{event.title|truncatechars:30}}</td>
 							<td>{{ event.author }}</td>
-							<td class="text-right">{{ event.pub_date }}</td>
+							<td class="text-right">{{ event.start_date }}</td>
 							<td class="text-right">
 								<a href="#" class="opt-published">&#10003;</a>
 							</td>

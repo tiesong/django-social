@@ -36,7 +36,7 @@ def users(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def events(request):
-	event_list = Event.objects.all()
+	event_list = Event.objects.all().order_by('-start_date')
 	context = {
 		'event_list': event_list,
 	}
