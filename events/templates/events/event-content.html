@@ -15,7 +15,7 @@
                         <p class="event-date">{{ event.start_date|date:"fA j N Y" }}</p>
                         <h2 class="event-name"><a href="{{ event.id }}">{{ event.title }}</a></h2>
                         <a href="{{ event.id }}" class="event-attending">posted
-                            by {{ request.user.username }}</a>
+                            by {{ event.author }}</a>
                     </div><!-- /.event-item -->
                 </div>
             {% endfor %}

@@ -17,13 +17,8 @@ from django.contrib.auth.models import User
 @login_required
 def index(request):
 
-    if request.GET:
-        news_list = News.objects.filter(category__tag='perks').order_by('-pub_date').exclude(is_page=True)
-        total_articles = news_list.count()
-    else:
-        news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
-        total_articles = news_list.count()
-    
+    news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
+    total_articles = news_list.count()
 
     per = Paginator(news_list, 5)
     # total_page = per.count()
@@ -270,6 +265,7 @@ def edit(request, news_article_id):
             news_article.save()
 
             return redirect('detail', news_article_id=news_article.id)
+
         except Exception as e:
             print ('Error: {}'.format(e))
     return render(request, 'news/news-edit.html', context)

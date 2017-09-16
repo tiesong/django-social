@@ -24,9 +24,9 @@ from notifications.signals import notify
 @login_required
 def index(request):
     """
-    Index 
-    :param request: 
-    :return: 
+    Index
+    :param request:
+    :return:
     """
 
     week = int(request.GET.get('week_num', 0))
@@ -166,11 +166,16 @@ def update(request):
 def detail(request, event_id):
     """
     Event Detail.
-    :param request: 
-    :param event_id: 
-    :return: 
+    :param request:
+    :param event_id:
+    :return:
     """
     notify_id = request.GET.get('notify', None)
+
+    try:
+        next_url = request.GET['next']
+    except:
+        next_url = False
 
     if request.POST:
 
@@ -182,6 +187,7 @@ def detail(request, event_id):
         context = {
             'event': event,
             'navbar_pages': navbar_pages,
+            'next': next_url,
         }
 
         return render(request, 'events/event-details.html', context)
@@ -195,6 +201,7 @@ def detail(request, event_id):
     context = {
         'event': event,
         'navbar_pages': navbar_pages,
+        'next': next_url,
     }
     return render(request, 'events/event-details.html', context)
 
@@ -221,63 +228,86 @@ def addNotify(request, event_id):
 def create(request):
     """
     Create new event.
-    :param request: 
-    :return: 
+    :param request:
+    :return:
     """
-    event_id = request.POST.get("event_id", None)
+    try:
+        next_url = request.GET['next']
+        dashboard = True
+    except:
+        next_url = False
+        dashboard = False
+
     navbar_pages = News.objects.filter(display_in_navbar=True)
 
-    title = request.POST.get("title", None)
-    start_time = request.POST.get("startdatetime", None)
+    context = {
+        'navbar_pages': navbar_pages,
+        'next': next_url,
+        'dashboard': dashboard,
+    }
 
-    start_date = dateutil.parser.parse(start_time)
-    # start_date = datetime.strptime(start_time, '%Y-%m-%d %H:%M (%Z)')
+    if request.POST:
+        event_id = request.POST.get("event_id", None)
 
-    pub_time = request.POST.get("enddatetime", None)
-    pub_date = dateutil.parser.parse(pub_time)
-    # pub_date = datetime.strptime(pub_time, '%Y-%m-%d %H:%M (%Z)')
+        title = request.POST.get("title", None)
+        start_time = request.POST.get("startdatetime", None)
+        start_date = dateutil.parser.parse(start_time)
+        # start_date = datetime.strptime(start_time, '%Y-%m-%d %H:%M (%Z)')
 
-    event_url = request.POST.get("event-url", None)
+        pub_time = request.POST.get("enddatetime", None)
+        pub_date = dateutil.parser.parse(pub_time)
+        # pub_date = datetime.strptime(pub_time, '%Y-%m-%d %H:%M (%Z)')
 
-    if event_id:
-        try:
-            body = request.POST.get('body', "")
-            Event.objects.filter(id=event_id).update(title=title, start_date=start_time,
-                                                     pub_date=pub_time, event_url=event_url, description=body)
+        event_url = request.POST.get("event-url", None)
+        body = request.POST.get('body', '')
 
-        except Exception as e:
-            print('Error : {}'.format(e))
+        if event_id:
+            try:
+                Event.objects.filter(id=event_id).update(author=request.user, title=title, start_date=start_time,
+                                                         pub_date=pub_time, event_url=event_url, description=body)
 
-        return redirect('/events/' + event_id)
+            except Exception as e:
+                print('Error : {}'.format(e))
 
-    else:
+            return redirect('/events/' + event_id)
 
-        new_event = Event(title=title, start_date=start_date,
-                          pub_date=pub_date, event_url=event_url)
-        new_event.save()
+        else:
+            new_event = Event(author=request.user, title=title, start_date=start_date,
+                              pub_date=pub_date, event_url=event_url, description=body)
+            new_event.save()
 
-        context = {
-            'event': new_event,
-            'navbar_pages': navbar_pages,
-        }
-
-        return render(request, 'events/event-edit.html', context=context)
+            context = {
+                'event': new_event,
+                'navbar_pages': navbar_pages,
+                'next': next_url,
+                'dashboard': dashboard,
+            }
+            if next_url:
+                return redirect(next_url+'/events')
+    return render(request, 'events/event-edit.html', context=context)
 
 
 @login_required
 def edit(request, event_id):
     """
     Edit Event
-    :param request: 
-    :param event_id: 
-    :return: 
+    :param request:
+    :param event_id:
+    :return:
     """
+
+    try:
+        next_url = request.GET['next']
+    except:
+        next_url = False
+
     event_detail = Event.objects.get(id=event_id)
     navbar_pages = News.objects.filter(display_in_navbar=True)
 
     context = {
         'event': event_detail,
         'navbar_pages': navbar_pages,
+        'next': next_url,
     }
 
     if request.POST:
@@ -292,23 +322,26 @@ def edit(request, event_id):
 
             event_url = request.POST.get("event-url", None)
 
-            Event.objects.filter(id=event_id).update(description=body, title=title, start_date=start_date,
+            Event.objects.filter(id=event_id).update(description=body, author=request.user, title=title, start_date=start_date,
                                                      pub_date=pub_date,
                                                      event_url=event_url)
 
         except Exception as e:
             print('Error : {}'.format(e))
 
-        return redirect('/events/' + event_id)
+        if next_url:
+            return redirect(next_url+'/events')
+        else:
+            return redirect('/events/' + event_id)
 
     return render(request, 'events/event-edit.html', context=context)
 
 
 @login_required
-def delete(request):
-    """
-    Delete Event.
-    :param request: 
-    :return: 
-    """
-    pass
+def delete(request, event_id):
+    event = Event.objects.get(id=event_id)
+    event.delete()
+
+    context = {}
+
+    return redirect('/dashboard/events')

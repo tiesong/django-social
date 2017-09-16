@@ -219,6 +219,7 @@ def edit(request, news_article_id):
 
     news_article = Perks.objects.get(id=news_article_id)
     related_news = Perks.objects.filter().order_by('-pub_date')[0:4]
+    
     try:
         next_url = request.GET['next']
     except:
@@ -266,7 +267,7 @@ def edit(request, news_article_id):
 
             news_article.save()
 
-            return redirect('detail', news_article_id=news_article.id)
+            return redirect('perks_detail', news_article_id=news_article.id)
         except Exception as e:
             print ('Error: {}'.format(e))
     return render(request, 'perks/news-edit.html', context)
