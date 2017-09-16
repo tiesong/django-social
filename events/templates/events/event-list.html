@@ -231,7 +231,7 @@
                             <p class="news-category">{{ event_top.start_date|date:"fA j N Y" }}</p>
                             <h2 class="news-title">{{ event_top.title }}</h2>
                             <p class="news-description"><span class="posted-by">posted by<br> <a
-                                    href="{{ event_top.id }}">{{ request.user.username }}</a></span>
+                                    href="{{ event_top.id }}">{{ event_top.author }}</a></span>
                                 <a href="{{ event_top.id }}" class="rsvp-btn">View Details</a></p>
 
                         </div>

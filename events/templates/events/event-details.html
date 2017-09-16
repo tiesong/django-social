@@ -173,7 +173,7 @@
                     <p class="event-start-date">From: {{ event.start_date }}</p>
                     <p class="event-end-date">To: {{ event.pub_date }}</p>
                     <h1 class="event.title">{{ event.title }}</h1>
-                    <p>posted by <a href="">MediHealth</a></p>
+                    <p>posted by <a href="">{{ event.author }}</a></p>
                     <a class="btn btn-transparent-white" href="{{ event.event_url }}">RSVP</a>
                     {% if next %}
                         <a class="btn btn-transparent-white" href="{{ next }}/events"><< Back</a>

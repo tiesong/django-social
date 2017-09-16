@@ -4,12 +4,13 @@ from __future__ import unicode_literals
 from tinymce.models import HTMLField
 import datetime
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Need to update settings.py to manage media files
 
 class Event(models.Model):
-    # need to add author relationship
+    author = models.ForeignKey(User)
     # need to add tags
     title = models.CharField(max_length=150)
     # image = models.ImageField(upload_to='event_images/%Y/%m/%d/', null=True, blank=True)
