@@ -1,277 +1,348 @@
 {% extends 'community/base.html' %}
 {% block content %}
-{% load staticfiles %}
-<script>
-    tinymce.init({
-        selector: '#description',
-        plugins: 'image',
-        extended_valid_elements : 'img[class|src|border=0|alt|title|width|height]',
-        image_description: false,
-        image_dimensions: false,
-        file_picker_types: 'image',
-        content_css: "{% static 'community/css/community.css' %}",
-        file_picker_callback: function (callback, value, meta) {
-            var input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
+    {% load staticfiles %}
+    <script>
+        tinymce.init({
+            selector: '#description',
+            plugins: 'image',
+            extended_valid_elements: 'img[class|src|border=0|alt|title|width|height]',
+            image_description: false,
+            image_dimensions: false,
+            file_picker_types: 'image',
+            content_css: "{% static 'community/css/community.css' %}",
+            file_picker_callback: function (callback, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
 
-            input.onchange = function () {
-                var file = this.files[0];
-                var reader = new FileReader();
-                reader.readAsDataURL(file);
+                input.onchange = function () {
+                    var file = this.files[0];
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
 
-                reader.onload = function () {
-                    var id = 'blobid' + (new Date()).getTime();
-                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                    var base64 = reader.result.split(',')[1];
-                    var blobInfo = blobCache.create(id, file, base64);
-                    blobCache.add(blobInfo);
+                    reader.onload = function () {
+                        var id = 'blobid' + (new Date()).getTime();
+                        var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        var base64 = reader.result.split(',')[1];
+                        var blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
 
-                    callback(blobInfo.blobUri(), {title: file.name});
+                        callback(blobInfo.blobUri(), {title: file.name});
+                    };
                 };
-            };
-            input.click();
-        },
-        height: 500
-    });
+                input.click();
+            },
+            height: 500
+        });
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('.avatar')
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.avatar')
                         .attr('src', e.target.result)
                         .width(130)
                         .height(130);
-            };
-            reader.readAsDataURL(input.files[0]);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
         }
-    }
 
-</script>
-<header id="masthead" class="site-header profile-edit company-profile-header">
+    </script>
+    <header id="masthead" class="site-header profile-edit company-profile-header">
 
-    <div class="top-nav">
+        <div class="top-nav">
 
-        <div class="container container-960">
+            <div class="container container-960">
 
-            <a href="/" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
+                <a href="/" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt=""
+                                                              srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
 
-            <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
-                <span class="lines line-top"></span>
-                <span class="lines line-middle"></span>
-                <span class="lines line-bottom"></span>
-            </button><!-- /.lines-button -->
+                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+                    <span class="lines line-top"></span>
+                    <span class="lines line-middle"></span>
+                    <span class="lines line-bottom"></span>
+                </button><!-- /.lines-button -->
 
-            <nav id="primary-navigation" class="site-navigation">
+                <nav id="primary-navigation" class="site-navigation">
 
-                <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
+                    <a href="index.html" class="site-logo visible-xs" rel="home"><img
+                            src="{% static 'community/img/logo.png' %}" alt=""
+                            srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
 
-                <ul class="dropdown">
-                    <li><a href="/news">News</a></li>
-                    <li><a href="/events">Events</a></li>
-                    <!-- <li><a href="/c/companies">Companies</a></li> -->
-                    <li class="active"><a href="/c/people">People</a></li>
-                    <li><a href="/officespace">Officespace</a></li>
-                    {% for page in navbar_pages %}
-                        <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                    {% endfor %}
-                </ul>
+                    <ul class="dropdown">
+                        <li><a href="/news">News</a></li>
+                        <li><a href="/events">Events</a></li>
+                        <!-- <li><a href="/c/companies">Companies</a></li> -->
+                        <li class="active"><a href="/c/people">People</a></li>
+                        <li><a href="/officespace">Officespace</a></li>
+                        {% for page in navbar_pages %}
+                            <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
+                        {% endfor %}
+                    </ul>
 
-            </nav><!-- /.site-navigation -->
+                </nav><!-- /.site-navigation -->
 
-            {% include 'community/profile-menu.html' %}
+                {% include 'community/profile-menu.html' %}
 
-        </div><!-- /.container -->
+            </div><!-- /.container -->
 
-    </div><!-- /.top-nav -->
+        </div><!-- /.top-nav -->
 
-</header><!-- /#header -->
+    </header><!-- /#header -->
 
-<div id="main" class="site-main community">
+    <div id="main" class="site-main community">
 
-    <section class="profile-content">
+        <section class="profile-content">
+
+            <div class="container container-960">
+
+                <div class="row">
+
+                    <form method="post" id="profile_edit_form" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="header-section">
+                            <div class="profile-thumb pull-left">
+                                {% if user.profile.image %}
+                                    <img src="{{ user.profile.image.url }}" alt="" width="130" class="avatar">
+                                {% else %}
+                                    <img src="{% static 'community/img/company-profile.jpg' %}" alt="" width="130"
+                                         height="130" class="avatar">
+                                {% endif %}
+                                <input type="file" id="upload_avatar" name="avatar" onchange="readURL(this);"
+                                       accept="image/*" class="form-control">
+                                <span class="trans-back"><span class="glyphicon glyphicon-camera camera"></span></span>
+                            </div>
+                            <div class="profile-title pull-left">
+                                <input type="text" name="name" class="form-control"
+                                       value="{% if user.get_full_name %}{{ user.get_full_name }}{% endif %}">
+                                <input type="text" name="tagline" class="form-control" value="
+                                        {% if user.profile.tagline %}{{ user.profile.tagline|slice:":25" }}{% endif %}">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="col-sm-8 description-section">
+                            <h3>Tags</h3>
+                            <input type="hidden" value="{{ user.id }}" id="profile_id">
+                            <input type="text" class="tags form-control" name="tags" value="">
+                            <h4 class="mb-30">
+                                <small>Available tags: {{ tags }}</small>
+                            </h4>
+                            <h3>Description</h3>
+                            <textarea id="description" name="description">{% if user.profile.bio %}
+                                {{ user.profile.bio|safe }}{% endif %}</textarea>
+                        </div>
+
+                        <div class="col-sm-4 details-section">
+                            <div class="user-details mb-30 form-horizontal">
+                                <h3>Details</h3>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Email:</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" name="email" class="form-control col-sm-10"
+                                               value="{% if user.email %}{{ user.email }}{% endif %}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Phone:</label>
+                                    <div class="col-sm-9">
+                                        <input type="tel" name="phone" class="form-control" value="
+
+                                                {% if user.profile.phone_number %}{{ user.profile.phone_number }}{% endif %}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Website:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="website" class="form-control" value="
+                                                {% if user.profile.website %}{{ user.profile.website }}{% endif %}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Twitter:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="twitter" class="form-control" value="
+                                                {% if user.profile.twitter %}{{ user.profile.twitter }}{% endif %}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Facebook:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="facebook" class="form-control" value="
+                                                {% if user.profile.facebook %}{{ user.profile.facebook }}{% endif %}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">LinkedIn:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="linkedin" class="form-control" value="
+                                                {% if user.profile.linkedin %}{{ user.profile.linkedin }}{% endif %}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Company:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="company" id="company_input" class="form-control"
+                                               onkeyup="HintFilter(event)" value="
+
+                                                {% if user.profile.companies.first %}{{ user.profile.companies.first }}{% endif %}">
+                                        <p id="check_available" style="color: #006dcc;display: none;">
+                                            <span>Available</span></p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="edit-actions">
+                                <input type="submit" class="btn btn-transparent-dark edit-save" value="Save">
+                                <a href="{% url 'profile' user.id %}" class="btn btn-transparent-dark">Cancel</a>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div><!-- /.container -->
+
+        </section><!-- /.event-details-content -->
+
+    </div><!-- /#main -->
+
+    <footer id="colophon" class="site-footer pages-footer">
 
         <div class="container container-960">
 
             <div class="row">
 
-                <form method="post" id="profile_edit_form" enctype="multipart/form-data">
-                {% csrf_token %}
+                <div class="footer-col">
+                    <a href="#" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}"
+                                                                  alt=""></a>
+                </div><!-- /.footer-col -->
 
-                    <div class="header-section">
-                        <div class="profile-thumb pull-left">
-                            {% if user.profile.image %}
-                                <img src="{{ user.profile.image.url }}" alt="" width="130" class="avatar">
-                            {% else %}
-                                <img src="{% static 'community/img/company-profile.jpg' %}" alt="" width="130" height="130" class="avatar">
-                            {% endif %}
-                            <input type="file" id="upload_avatar" name="avatar" onchange="readURL(this);" accept="image/*" class="form-control">
-                            <span class="trans-back"><span class="glyphicon glyphicon-camera camera"></span></span>
-                        </div>
-                        <div class="profile-title pull-left">
-                            <input type="text" name="name" class="form-control" value="{% if user.get_full_name %}{{ user.get_full_name }}{% endif %}">
-                            <input type="text" name="tagline" class="form-control" value="{% if user.profile.tagline %}{{ user.profile.tagline|slice:":25" }}{% endif %}">
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
+                <div class="footer-col">
+                    <h4>News</h4>
+                    <ul>
+                        <li><a href="#">Current</a></li>
+                        <li><a href="#">Archive</a></li>
+                        <li><a href="#">Submit a story</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
-                    <div class="col-sm-8 description-section">
-                        <h3>Tags</h3>
-                        <input type="hidden" value="{{ user.id }}" id="profile_id">
-                        <input type="text" class="tags form-control" name="tags" value="">
-                        <h4 class="mb-30"><small>Available tags: {{ tags }}</small></h4>
-                        <h3>Description</h3>
-                        <textarea id="description" name="description">{% if user.profile.bio %}{{ user.profile.bio|safe }}{% endif %}</textarea>
-                    </div>
+                <div class="footer-col">
+                    <h4>Events</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Attending</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
-                    <div class="col-sm-4 details-section">
-                        <div class="user-details mb-30 form-horizontal">
-                            <h3>Details</h3>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Email:</label>
-                                <div class="col-sm-9">
-                                    <input type="email" name="email" class="form-control col-sm-10" value="{% if user.email %}{{ user.email }}{% endif %}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Phone:</label>
-                                <div class="col-sm-9">
-                                    <input type="tel" name="phone" class="form-control" value="{% if user.profile.phone_number %}{{ user.profile.phone_number }}{% endif %}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Website:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="website" class="form-control" value="{% if user.profile.website %}{{user.profile.website}}{% endif %}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Twitter:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="twitter" class="form-control" value="{% if user.profile.twitter %}{{user.profile.twitter}}{% endif %}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Facebook:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="facebook" class="form-control" value="{% if user.profile.facebook %}{{ user.profile.facebook }}{% endif %}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">LinkedIn:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="linkedin" class="form-control" value="{% if user.profile.linkedin %}{{ user.profile.linkedin }}{% endif %}">
-                                </div>
-                            </div>
-                        </div>
+                <div class="footer-col">
+                    <h4>Startups</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
-                        <div class="edit-actions">
-                            <input type="submit" class="btn btn-transparent-dark edit-save" value="Save">
-                            <a href="{% url 'profile' user.id %}" class="btn btn-transparent-dark">Cancel</a>
-                        </div>
-                    </div>
+                <div class="footer-col">
+                    <h4>Companies</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
-                </form>
+                <div class="footer-col">
+                    <h4>Jobs</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Officespace</h4>
+                    <ul>
+                        <li><a href="/officespace">Browse</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Profile</h4>
+                    <ul>
+                        <li><a href="#">Your Activity</a></li>
+                        <li><a href="#">Edit Profile</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">About YBF</a></li>
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">Legal</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
+
+                <div class="footer-col pull-right text-right">
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
             </div>
 
         </div><!-- /.container -->
 
-    </section><!-- /.event-details-content -->
+    </footer><!-- /#footer -->
 
-</div><!-- /#main -->
+{% endblock %}
+{% block customscript %}
+    <script>
 
-<footer id="colophon" class="site-footer pages-footer">
+        var company_list = [];
+        var filterInput;
+        function list_company() {
+            $.ajax({
+                url: '/c/list_company/',
+                dataType: 'json',
+                success: function (result) {
+                    company_list = result;
+                    {#                   $.each(result, function (key, value) {#}
+                    {#                       $('.tags').tagsinput('add', {"tag_id": value.tag_id, "tag_name": value.tag_name});#}
+                    {#                   });#}
+                }
+            });
+        }
 
-    <div class="container container-960">
+        function HintFilter(e) {
 
-        <div class="row">
+            filterInput = document.getElementById("company_input");
+            var value = filterInput.value;
+            console.log(value);
+            if (e.keyCode === 13) {
+                console.log('check validation');
+                for (var i = 0; i < company_list.length; i++) {
 
-            <div class="footer-col">
-                <a href="#" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt=""></a>
-            </div><!-- /.footer-col -->
+                    if (company_list[i].company_name === value) {
+                        $("#check_available").show();
+                        break;
+                    }
+                }
+            }
+            if (value.indexOf(company_list) > -1) {
 
-            <div class="footer-col">
-                <h4>News</h4>
-                <ul>
-                    <li><a href="#">Current</a></li>
-                    <li><a href="#">Archive</a></li>
-                    <li><a href="#">Submit a story</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Events</h4>
-                <ul>
-                    <li><a href="#">Browse</a></li>
-                    <li><a href="#">Attending</a></li>
-                    <li><a href="#">Manage</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Startups</h4>
-                <ul>
-                    <li><a href="#">Browse</a></li>
-                    <li><a href="#">Manage</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Companies</h4>
-                <ul>
-                    <li><a href="#">Browse</a></li>
-                    <li><a href="#">Manage</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Jobs</h4>
-                <ul>
-                    <li><a href="#">Browse</a></li>
-                    <li><a href="#">Manage</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Officespace</h4>
-                <ul>
-                    <li><a href="/officespace">Browse</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Profile</h4>
-                <ul>
-                    <li><a href="#">Your Activity</a></li>
-                    <li><a href="#">Edit Profile</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">About YBF</a></li>
-                    <li><a href="#">Terms of service</a></li>
-                    <li><a href="#">Legal</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col pull-right text-right">
-                <ul>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-        </div>
-
-    </div><!-- /.container -->
-
-</footer><!-- /#footer -->
-
+            }
+        }
+    </script>
 {% endblock %}

@@ -144,11 +144,22 @@ def profile(request, profile_id):
 
 
 @login_required
+def list_company(request):
+    company_list = Company.objects.all()
+    response = []
+    for item in company_list:
+        response.append({'company_id': item.id, 'company_name': item.title})
+
+    return HttpResponse(json.dumps(response))
+
+
+@login_required
 def edit_profile(request, profile_id):
     if (request.user.id != int(profile_id)) and not request.user.is_superuser:
         return redirect(reverse('people_list'))
     
     user = User.objects.get(pk=profile_id)
+    companies = Company.objects.all()
     navbar_pages = News.objects.filter(display_in_navbar=True)
     tag_list = Tag.objects.all()
     tags = ', '.join(map(lambda x: x.tag, tag_list))
