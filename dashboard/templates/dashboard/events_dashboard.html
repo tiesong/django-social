@@ -29,7 +29,7 @@
 			</div><!-- /.events-filter -->
 			<div class="events-filter mb-20">
 				<ul class="list-unstyled">
-					<li class="ml-0"><a href="/perks/create?next=/dashboard">+ Create new event</a></li>
+					<li class="ml-0"><a href="/events/create?next=/dashboard">+ Create new event</a></li>
 				</ul>
 			</div>
 
@@ -53,7 +53,7 @@
 
 						<tr>
 							<td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img"> {{event.title|truncatechars:30}}</td>
-							<td>{{ event.author }}</td> 
+							<td>{{ event.author }}</td>
 							<td class="text-right">{{ event.pub_date }}</td>
 							<td class="text-right">
 								<a href="#" class="opt-published">&#10003;</a>

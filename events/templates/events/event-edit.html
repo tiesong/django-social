@@ -117,11 +117,15 @@
             <div class="container">
 
                 <div class="hero-text">
-                    <p class="event-start-date">From: {{ event.start_date }}</p>
-                    <p class="event-end-date">To: {{ event.pub_date }}</p>
-                    <h1 class="event.title">{{ event.title }}</h1>
-                    <p>posted by <a href="">{{ event.author }}</a></p>
-                    <a class="btn btn-transparent-white" href="{{ event.event_url }}">RSVP</a>
+                    {% if dashboard %}
+                        <h1 class="hero-title">Publish New Event</h1>
+                    {% else %}
+                        <p class="event-start-date">From: {{ event.start_date }}</p>
+                        <p class="event-end-date">To: {{ event.pub_date }}</p>
+                        <h1 class="event.title">{{ event.title }}</h1>
+                        <p>posted by <a href="">{{ event.author }}</a></p>
+                        <a class="btn btn-transparent-white" href="{{ event.event_url }}">RSVP</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -180,8 +184,11 @@
                                     <br>
                                     <br>
                                     <button class="btn btn-transparent-dark" type="submit">Save</button>
-                                    <a class="btn btn-transparent-dark" type="button"
-                                       href="/events/">Cancel</a>
+                                    {% if next %}
+                                        <a class="btn btn-transparent-dark" type="button" href="{{ next }}/events">Cancel</a>
+                                    {% else %}
+                                        <a class="btn btn-transparent-dark" type="button" href="/events/">Cancel</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
