@@ -1,0 +1,83 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<div id="main" class="site-main admin-page">
+
+    <section class="events-list">
+
+        <div class="container container-960">
+
+        	<h1 class="admin-page-title">Officespace</h1>
+
+            <div class="events-filter mb-20">
+				<ul class="list-unstyled">
+					<li class="ml-0"><a href="{% url 'room_create' %}">+ Create new room</a></li>
+				</ul>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<div class="table-responsive">
+
+				<table class="admin-table table">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Category</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					{% for room in room_list %}
+
+						<tr>
+							<td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img">{{ room.name }}</td>
+							<td>{{ room.category }}</td>
+                            <td>
+								<div class="table-actions">
+									<!-- Edit -->
+									<a href="{% url 'room_edit' room.id  %}"><img src="{% static 'dashboard/img/edit.png' %}" alt="" srcset="{% static 'dashboard/img/edit.png' %}" 1x, "{% static 'dashboard/assets/img/edit@2x.png' %}" 2x></a>
+
+									<!-- Delete -->
+									<a href="{% url 'room_del' room.id %}"><img src="{% static 'dashboard/img/trash.png' %}" alt="" srcset="{% static 'dashboard/img/trash.png' %} 1x, {% static 'dashboard/img/trash@2x.png' %} 2x"></a>
+								</div>
+							</td>
+						</tr>
+
+					{% endfor %}
+
+					</tbody>
+				</table>
+
+			</div><!-- /.table-responsive -->
+
+			<nav aria-label="News list navigation">
+                <ul class="pagination text-center">
+                    <li class="pull-left text-pagination">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&larr; Prev Page</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">6</a></li>
+                    <li class="pull-right text-pagination">
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">Next Page &rarr;</span>
+                        </a>
+                    </li>
+                </ul>
+                <p class="total-items">201 total items</p>
+            </nav>
+
+
+        </div><!-- /.container-fluid -->
+
+    </section><!-- /.events-list -->
+
+</div><!-- /#main -->
+{% endblock %}

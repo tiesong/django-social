@@ -1,0 +1,45 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<div id="main" class="site-main admin-page">
+
+    <section class="events-list">
+
+        <div class="container container-960">
+
+            <div class="col-xs-12 col-sm-9 col-md-9" style="float: none; margin: 0 auto;">
+
+            	<h2 class="admin-page-title ">Create New Room</h2>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name" required value="{{ room.name }}">
+                    </div>
+                    <div class="form-group mb-30">
+                        <label>Category</label>
+                        <select class="form-control" name="category">
+                            {% for cat in categories %}
+                                {% if room and room.category == cat %}
+                                    <option value="{{ cat }}" selected>{{ cat }}</option>
+                                {% else %}
+                                    <option value="{{ cat }}">{{ cat }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-xs-12 text-center room-actions">
+                        <button type="submit" class="btn btn-dark" style="display: inline; margin-right: 10px; width: auto;">Save</button>
+                        <a href="{% url 'rooms' %}" class="btn btn-transparent-dark" style="display: inline;">Cancel</a>
+                    </div>
+                </form>
+
+            </div>
+
+        </div><!-- /.container-fluid -->
+
+    </section><!-- /.events-list -->
+
+</div><!-- /#main -->
+{% endblock %}

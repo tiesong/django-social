@@ -7,4 +7,8 @@ urlpatterns = [
    	url(r'^users$', views.users, name='users'),
    	url(r'^perks$', views.perks, name='perks'),
    	url(r'^events$', views.events, name='events'),
+    url(r'^rooms$', views.rooms, name='rooms'),
+    url(r'^rooms/(?P<pk>[0-9]+)/delete/$', views.room_delete, name='room_del'),
+    url(r'^rooms/(?P<pk>[0-9]+)/edit/$', views.room_edit, name='room_edit'),
+    url(r'^rooms/create/$', views.room_create, name='room_create'),
 ]
