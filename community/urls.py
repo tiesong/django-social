@@ -11,11 +11,12 @@ urlpatterns = [
     url(r'^category/$', views.category, name='category'),
     url(r'^search/$', views.search, name='searchUsers'),
     url(r'^tags/$', views.tags, name='tags'),
-    url(r'^list_company/$', views.list_company, name='list_company'),
+    url(r'^list_company/(?P<company_name>.+)$', views.list_company, name='list_company'),
     url(r'^people/(?P<profile_id>[0-9]+)$', views.profile, name='profile'),
     url(r'^people/(?P<profile_id>[0-9]+)/edit$', views.edit_profile, name='edit_profile'),
     
     url(r'^update_company/$', views.update_company, name='update_company'),
+    url(r'^create_company/$', views.create_company, name='create_company'),
     url(r'^category_company/$', views.category_company, name='category_company'),
     url(r'^search_company/$', views.search_company, name='searchCompany'),
     url(r'^tags_company/$', views.tags_company, name='tags_company'),

@@ -144,12 +144,17 @@ def profile(request, profile_id):
 
 
 @login_required
-def list_company(request):
-    company_list = Company.objects.all()
-    response = []
-    for item in company_list:
-        response.append({'company_id': item.id, 'company_name': item.title})
-
+def list_company(request, company_name):
+    print('company name: {}'.format(company_name))
+    response = {}
+    try:
+        company_item = Company.objects.filter(title=company_name).get()
+        print(company_item)
+        response["exists"] = True
+    except Exception as e:
+        print('Exception: {}'.format(e))
+        response['exists'] = False
+    
     return HttpResponse(json.dumps(response))
 
 
@@ -158,8 +163,9 @@ def edit_profile(request, profile_id):
     if (request.user.id != int(profile_id)) and not request.user.is_superuser:
         return redirect(reverse('people_list'))
     
+    company_name = request.GET.get('company_name', None)
+    
     user = User.objects.get(pk=profile_id)
-    companies = Company.objects.all()
     navbar_pages = News.objects.filter(display_in_navbar=True)
     tag_list = Tag.objects.all()
     tags = ', '.join(map(lambda x: x.tag, tag_list))
@@ -176,9 +182,13 @@ def edit_profile(request, profile_id):
             else:
                 first_name = ''
                 last_name = ''
+            
+            company_name = request.POST['company']
+            
             tagline = request.POST['tagline']
             email = request.POST['email']
             phone = request.POST['phone']
+            
             website = request.POST['website']
             twitter = request.POST['twitter']
             facebook = request.POST['facebook']
@@ -194,9 +204,15 @@ def edit_profile(request, profile_id):
                     profile.tags.add(tag)
                     profile.save()
             
+            profile.companies.clear()
+            if company_name:
+                company_object = Company.objects.get(title=company_name)
+                profile.companies.add(company_object)
+                profile.save()
+            
             Profile.objects.filter(pk=profile_id).update(tagline=tagline, phone_number=phone, website=website,
                                                          twitter=twitter, facebook=facebook, linkedin=linkedin,
-                                                         bio=description, )
+                                                         bio=description)
             
             if request.FILES:
                 avatar = request.FILES['avatar']
@@ -212,6 +228,7 @@ def edit_profile(request, profile_id):
         'user': user,
         'navbar_pages': navbar_pages,
         'tags': tags,
+        'company_name': company_name
     }
     return render(request, 'community/profile-edit.html', context)
 
@@ -243,6 +260,17 @@ def company(request, company_id):
 
 
 @login_required
+def create_company(request):
+    company_name = request.GET.get('company_name')
+    profile_id = request.GET.get('profile_id')
+    
+    new_company = Company(title=company_name)
+    new_company.save()
+    
+    return redirect('/c/companies/' + str(new_company.id) + '/edit' + '?profile_id=' + str(profile_id))
+
+
+@login_required
 def update_company(request):
     page_number = request.GET.get('pg_num', 0)
     
@@ -250,7 +278,7 @@ def update_company(request):
     per = Paginator(company_list, 5)
     try:
         per_page = per.page(int(page_number))
-        print('per page;{}'.format(per_page))
+        print('per page: {}'.format(per_page))
     
     except Exception as e:
         print('Error: {}'.format(e))
@@ -330,6 +358,7 @@ def tags_company(request):
 
 @login_required
 def edit_company(request, company_id):
+    profile_id = request.GET.get('profile_id', None)
     company_detail = Company.objects.get(pk=company_id)
     
     admins = company_detail.admin.first()
@@ -340,7 +369,7 @@ def edit_company(request, company_id):
                 return redirect(reverse('companies'))
         else:
             return redirect(reverse('companies'))
-
+    
     navbar_pages = News.objects.filter(display_in_navbar=True)
     
     categories_list = Category.objects.all()
@@ -350,35 +379,38 @@ def edit_company(request, company_id):
         
         tags = str(request.POST.get('tags', "")).split(',')
         print(tags)
-        size = request.POST.get('size', 0)
+        
         title = request.POST.get('name', "")
         website = request.POST.get('website', "")
         twitter = request.POST.get('twitter', "")
         facebook = request.POST.get('facebook', "")
         linkedin = request.POST.get('linkedin', "")
         description = request.POST.get('description', "")
-
+        
         company_detail.categories.clear()
         if tags[0] != '':
             for tag in tags:
                 company_detail.categories.add(tag)
         
         company_detail.title = title
-        company_detail.size = size
         company_detail.website = website
         company_detail.twitter = twitter
         company_detail.facebook = facebook
         company_detail.linkedin = linkedin
         company_detail.description = description
         
-        company_detail.save()
-        
         if request.FILES:
             avatar = request.FILES['avatar']
             company_detail.image = avatar
-            
-            company_detail.save()
-        return redirect(reverse('company', args=[int(company_id)]))
+        
+        company_detail.save()
+        
+        # If next url exists.
+        if profile_id:
+            return redirect('/c/people/' + str(profile_id) + '/edit?company_name=' + title)
+        
+        else:
+            return redirect(reverse('company', args=[int(company_id)]))
     
     context = {
         'navbar_pages': navbar_pages,

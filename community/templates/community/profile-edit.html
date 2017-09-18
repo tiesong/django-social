@@ -1,6 +1,15 @@
 {% extends 'community/base.html' %}
 {% block content %}
     {% load staticfiles %}
+    <style>
+        #check_available p{
+            color: #ba2121;
+        }
+
+        input:focus + .hint {
+            display: inline;
+        }
+    </style>
     <script>
         tinymce.init({
             selector: '#description',
@@ -148,37 +157,36 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Phone:</label>
                                     <div class="col-sm-9">
-                                        <input type="tel" name="phone" class="form-control" value="
-
-                                                {% if user.profile.phone_number %}{{ user.profile.phone_number }}{% endif %}">
+                                        <input type="tel" name="phone" class="form-control"
+                                               value="{% if user.profile.phone_number %}{{ user.profile.phone_number }}{% endif %}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Website:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="website" class="form-control" value="
-                                                {% if user.profile.website %}{{ user.profile.website }}{% endif %}">
+                                        <input type="text" name="website" class="form-control"
+                                               value="{% if user.profile.website %}{{ user.profile.website }}{% endif %}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Twitter:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="twitter" class="form-control" value="
-                                                {% if user.profile.twitter %}{{ user.profile.twitter }}{% endif %}">
+                                        <input type="text" name="twitter" class="form-control"
+                                               value="{% if user.profile.twitter %}{{ user.profile.twitter }}{% endif %}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Facebook:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="facebook" class="form-control" value="
-                                                {% if user.profile.facebook %}{{ user.profile.facebook }}{% endif %}">
+                                        <input type="text" name="facebook" class="form-control"
+                                               value="{% if user.profile.facebook %}{{ user.profile.facebook }}{% endif %}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">LinkedIn:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="linkedin" class="form-control" value="
-                                                {% if user.profile.linkedin %}{{ user.profile.linkedin }}{% endif %}">
+                                        <input type="text" name="linkedin" class="form-control"
+                                               value="{% if user.profile.linkedin %}{{ user.profile.linkedin }}{% endif %}">
                                     </div>
                                 </div>
 
@@ -186,11 +194,10 @@
                                     <label class="col-sm-3 control-label">Company:</label>
                                     <div class="col-sm-9">
                                         <input type="text" name="company" id="company_input" class="form-control"
-                                               onkeyup="HintFilter(event)" value="
-
-                                                {% if user.profile.companies.first %}{{ user.profile.companies.first }}{% endif %}">
-                                        <p id="check_available" style="color: #006dcc;display: none;">
-                                            <span>Available</span></p>
+                                               onkeyup="HintFilter(event)"
+                                               value="{% if company_name %}{{ company_name }}{% elif user.profile.companies.first %}{{ user.profile.companies.first }}{% endif %}">
+                                        <p class="hint" style="color: #006dcc">
+                                            <span id="check_available"></span></p>
                                     </div>
                                 </div>
 
@@ -202,9 +209,7 @@
                                 <a href="{% url 'profile' user.id %}" class="btn btn-transparent-dark">Cancel</a>
                             </div>
                         </div>
-
                     </form>
-
                 </div>
 
             </div><!-- /.container -->
@@ -310,39 +315,31 @@
 {% block customscript %}
     <script>
 
-        var company_list = [];
         var filterInput;
-        function list_company() {
-            $.ajax({
-                url: '/c/list_company/',
-                dataType: 'json',
-                success: function (result) {
-                    company_list = result;
-                    {#                   $.each(result, function (key, value) {#}
-                    {#                       $('.tags').tagsinput('add', {"tag_id": value.tag_id, "tag_name": value.tag_name});#}
-                    {#                   });#}
-                }
-            });
-        }
+        var profile_id = "{{ user.id }}";
 
+        console.log(profile_id);
         function HintFilter(e) {
-
             filterInput = document.getElementById("company_input");
             var value = filterInput.value;
-            console.log(value);
+
             if (e.keyCode === 13) {
-                console.log('check validation');
-                for (var i = 0; i < company_list.length; i++) {
+                $.ajax({
+                    url: '/c/list_company/' + value,
+                    dataType: 'json',
+                    success: function (result) {
+                        console.log(result);
+                        if (result.exists) {
 
-                    if (company_list[i].company_name === value) {
-                        $("#check_available").show();
-                        break;
+                            document.getElementById("check_available").innerHTML = "Available";
+                        }
+                        else{
+                            document.getElementById("check_available").innerHTML = "<p>No Exists. <a href='/c/create_company/?company_name=" + value +"&profile_id="+ profile_id +"'><u>Create New Company</u></a></p>";
+                        }
                     }
-                }
+                });
             }
-            if (value.indexOf(company_list) > -1) {
 
-            }
         }
     </script>
 {% endblock %}
