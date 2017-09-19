@@ -63,7 +63,7 @@ def user_create(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def user_invitation(request):
-	print 'Hello'
+	print ('Hello')
 
 @user_passes_test(lambda u: u.is_superuser)
 def events(request):
