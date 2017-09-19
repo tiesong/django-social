@@ -9,39 +9,49 @@
 
         	<h1 class="admin-page-title">Users</h1>
 
+            <div class="events-filter mb-20">
+				<ul class="list-unstyled">
+					<li class="ml-0"><a href="{% url 'user_create' %}">+ Add new user</a></li>
+				</ul>
+			</div>
+
 			<div class="clearfix"></div>
 
 			<div class="table-responsive">
-			
+
 				<table class="admin-table table">
-					<thead> 
-						<tr> 
-							<th>Username</th> 
-							<th>Email</th> 
-							<th class="text-left">Firstname</th> 
+					<thead>
+						<tr>
+							<th>Username</th>
+							<th>Email</th>
+							<th class="text-left">Firstname</th>
 							<th class="text-left">Lastname</th>
-							<th class="text-left">Last active</th> 
-						</tr> 
-					</thead> 
-					<tbody> 
+							<th class="text-left">Last active</th>
+						</tr>
+					</thead>
+					<tbody>
 
 					{% for user in user_list %}
 
-						<tr> 
-							<td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img"><a href="/c/people/{{user.id}}">{{user.username}}</a></td> 
-							<td>{{user.email}}</td> 
-							<td class="text-left">{{ user.first_name }}</td> 
-							<td class="text-left">{{ user.last_name }}</td> 							
-							<td class="text-left">{{ user.last_login }}</td>
-						</tr> 
+						<tr>
+							<td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img"><a href="/c/people/{{user.id}}">{{user.username}}</a></td>
+							<td>{{user.email}}</td>
+							<td class="text-left">{{ user.first_name }}</td>
+							<td class="text-left">{{ user.last_name }}</td>
+                            {% if created_user and created_user.username == user.username %}
+                                <td class="text-left"><a href="javascript:void(0)" id="invitationEmail">Invite to join</a></td>
+                            {% else %}
+							    <td class="text-left">{{ user.last_login }}</td>
+                            {% endif %}
+						</tr>
 
 					{% endfor %}
 
-					</tbody> 
+					</tbody>
 				</table>
 
 			</div><!-- /.table-responsive -->
-			
+
 			<nav aria-label="News list navigation">
                 <ul class="pagination text-center">
                     <li class="pull-left text-pagination">
@@ -66,7 +76,7 @@
 
 
         </div><!-- /.container-fluid -->
-        
+
     </section><!-- /.events-list -->
 
 </div><!-- /#main -->

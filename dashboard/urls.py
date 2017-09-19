@@ -4,7 +4,9 @@ from dashboard import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^users/create/$', views.user_create, name='user_create'),
    	url(r'^users$', views.users, name='users'),
+    url(r'^users/invitation$', views.user_invitation, name='user_invitation'),
    	url(r'^perks$', views.perks, name='perks'),
    	url(r'^events$', views.events, name='events'),
     url(r'^rooms$', views.rooms, name='rooms'),

@@ -1,0 +1,53 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<div id="main" class="site-main admin-page">
+
+    <section class="events-list">
+
+        <div class="container container-960">
+
+            <div class="col-xs-12 col-sm-9 col-md-9" style="float: none; margin: 0 auto;">
+
+            	<h2 class="admin-page-title ">Add New User</h2>
+                {% if exist_status %}
+                    <div class="alert alert-success alert-dismissable fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        A user with that username already exists.
+                    </div>
+                {% endif %}
+                <form method="post" id="user_create_form" role="form" data-toggle="validator">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" name="username" required>
+                        <div class="help-block"> 150 characters or fewer. Letters, digits and @/./+/-/_ only.</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" required data-minlength="8" id="password">
+                        <div class="help-block"> Password must contain at least 8 characters.</div>
+                    </div>
+                    <div class="form-group mb-30">
+                        <label>Password confirmation</label>
+                        <input type="password" class="form-control" name="confirmPassword" required id="confirmPassword" data-match="#password" data-match-error="Enter the same password as before, for verification.">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="col-xs-12 text-center room-actions">
+                        <button type="submit" class="btn btn-dark" style="display: inline; margin-right: 10px; width: auto;">Save</button>
+                        <a href="{% url 'users' %}" class="btn btn-transparent-dark" style="display: inline; padding: 8px 12px;">Cancel</a>
+                    </div>
+                </form>
+
+            </div>
+
+        </div><!-- /.container-fluid -->
+
+    </section><!-- /.events-list -->
+
+</div><!-- /#main -->
+{% endblock %}

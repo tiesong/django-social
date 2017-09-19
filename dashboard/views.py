@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required, user_passes_test
-
+from django.urls import reverse
 from django.contrib.auth.models import User
 from news.models import News
 from perks.models import Perks
@@ -34,6 +34,36 @@ def users(request):
 		'user_list': user_list,
 	}
 	return render(request, 'dashboard/users_dashboard.html', context)
+
+@user_passes_test(lambda u: u.is_superuser)
+def user_create(request):
+	if request.POST:
+		username = request.POST['username']
+		email = request.POST['email']
+		password = request.POST['password']
+
+		try:
+			exist_status = User.objects.filter(username=username).exists()
+			if exist_status:
+				context = { 'exist_status': exist_status, }
+				return render(request, 'dashboard/users_create_dashboard.html', context)
+
+			created_user = User.objects.create(username=username, email=email, password=password)
+			user_list = User.objects.all()
+			context = {
+				'user_list': user_list,
+				'created_user': created_user,
+			}
+
+			return render(request, 'dashboard/users_dashboard.html', context)
+		except Exception as e:
+			raise e
+
+	return render(request, 'dashboard/users_create_dashboard.html')
+
+@user_passes_test(lambda u: u.is_superuser)
+def user_invitation(request):
+	print 'Hello'
 
 @user_passes_test(lambda u: u.is_superuser)
 def events(request):
