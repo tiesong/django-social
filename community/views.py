@@ -112,13 +112,23 @@ def search(request):
 
 @login_required
 def tags(request):
+    response = []
     if request.GET.get('profile_id'):
         profile = Profile.objects.get(pk=request.GET['profile_id'])
         tag_list = profile.tags.all()
-    
+
+    elif request.GET.get('profile_company'):
+        profile = Profile.objects.get(pk=request.GET['profile_company'])
+        company_list = profile.companies.all()
+        
+        for company in company_list:
+            response.append({'tag_name': company.title})
+            
+        return HttpResponse(json.dumps(response))
+
     else:
         tag_list = Tag.objects.all()
-    response = []
+    
     for tag in tag_list:
         response.append({'tag_id': tag.id, 'tag_name': tag.tag})
     
@@ -135,26 +145,29 @@ def profile(request, profile_id):
     except:
         cats = []
     
+    try:
+        company_list = profile.companies.all()
+    
+    except:
+        company_list = []
     context = {
         'user': user,
         'cats': cats,
+        'companies': company_list,
         'navbar_pages': navbar_pages,
     }
     return render(request, 'community/profile.html', context)
 
 
 @login_required
-def list_company(request, company_name):
-    print('company name: {}'.format(company_name))
-    response = {}
-    try:
-        company_item = Company.objects.filter(title=company_name).get()
-        print(company_item)
-        response["exists"] = True
-    except Exception as e:
-        print('Exception: {}'.format(e))
-        response['exists'] = False
+def list_companies(request):
+    response = []
+    company_list = Company.objects.all()
     
+    for company in company_list:
+        
+        response.append({'tag_name': company.title})
+        
     return HttpResponse(json.dumps(response))
 
 
@@ -183,7 +196,7 @@ def edit_profile(request, profile_id):
                 first_name = ''
                 last_name = ''
             
-            company_name = request.POST['company']
+            company_tags = request.POST['companies'].split(',')
             
             tagline = request.POST['tagline']
             email = request.POST['email']
@@ -205,11 +218,19 @@ def edit_profile(request, profile_id):
                     profile.save()
             
             profile.companies.clear()
-            if company_name:
-                company_object = Company.objects.get(title=company_name)
-                profile.companies.add(company_object)
-                profile.save()
-            
+            print(company_tags)
+            if len(company_tags) != 0:
+                for tag in company_tags:
+                    
+                    if Company.objects.filter(title=tag).exists():
+                        profile.companies.add(Company.objects.filter(title=tag).values_list('id', flat=True)[0])
+                    else:
+                        new_company = Company(title=tag)
+                        new_company.save()
+                        profile.companies.add(new_company.id)
+                        
+                    profile.save()
+        
             Profile.objects.filter(pk=profile_id).update(tagline=tagline, phone_number=phone, website=website,
                                                          twitter=twitter, facebook=facebook, linkedin=linkedin,
                                                          bio=description)
@@ -252,22 +273,13 @@ def companies(request):
 def company(request, company_id):
     navbar_pages = News.objects.filter(display_in_navbar=True)
     company_detail = Company.objects.get(pk=company_id)
+    categories = company_detail.categories.all()
     context = {
         'navbar_pages': navbar_pages,
-        'company': company_detail
+        'company': company_detail,
+        'categories': categories
     }
     return render(request, 'community/company.html', context)
-
-
-@login_required
-def create_company(request):
-    company_name = request.GET.get('company_name')
-    profile_id = request.GET.get('profile_id')
-    
-    new_company = Company(title=company_name)
-    new_company.save()
-    
-    return redirect('/c/companies/' + str(new_company.id) + '/edit' + '?profile_id=' + str(profile_id))
 
 
 @login_required
@@ -358,7 +370,7 @@ def tags_company(request):
 
 @login_required
 def edit_company(request, company_id):
-    profile_id = request.GET.get('profile_id', None)
+    
     company_detail = Company.objects.get(pk=company_id)
     
     admins = company_detail.admin.first()
@@ -405,16 +417,12 @@ def edit_company(request, company_id):
         
         company_detail.save()
         
-        # If next url exists.
-        if profile_id:
-            return redirect('/c/people/' + str(profile_id) + '/edit?company_name=' + title)
-        
-        else:
-            return redirect(reverse('company', args=[int(company_id)]))
+        return redirect(reverse('company', args=[int(company_id)]))
     
     context = {
         'navbar_pages': navbar_pages,
         'company': company_detail,
         'tags': categories
     }
+    
     return render(request, 'community/company-edit.html', context)
