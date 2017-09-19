@@ -63,8 +63,13 @@
                     <a href="index.html" class="site-logo visible-xs" rel="home"><img src="assets/img/logo.png" alt="" srcset="assets/img/logo.png 1x, assets/img/logo@2x.png 2x"></a>
 
                     <ul>
-                        <li class="active"><a href="/dashboard">Content</a></li>
-                        <li><a href="/dashboard/rooms">Officespace</a></li>
+                        {% if 'rooms' in request.path %}
+                            <li><a href="/dashboard">Content</a></li>
+                            <li class="active"><a href="/dashboard/rooms">Officespace</a></li>
+                        {% else %}
+                            <li class="active"><a href="/dashboard">Content</a></li>
+                            <li><a href="/dashboard/rooms">Officespace</a></li>
+                        {% endif %}
                         <li><a href="/dashboard/users">Users</a></li>
                         <!--<li><a href="#">Settings</a></li>
                         <li><a href="#">Announcements</a></li>-->
