@@ -307,19 +307,18 @@
             dataType: 'json',
             success: function (result) {
                 var tags = new Bloodhound({
-                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('tag_name'),
+                    datumTokenizer: Bloodhound.tokenizers.whitespace,
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
-                    local: result,
+                    local: result
                 });
 
+                console.log(result);
                 $('.companytags').tagsinput({
                     typeaheadjs: {
                         name: 'tags',
-                        displayKey: 'tag_name',
                         source: tags
                     },
                     freeInput: true
-
                 });
             },
         });
@@ -331,7 +330,7 @@
             success: function (result) {
                 $.each(result, function (key, value) {
 
-                    $('.companytags').tagsinput('add', value.tag_name);
+                    $('.companytags').tagsinput('add',  value.tag_name);
                 });
             }
         });

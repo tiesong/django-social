@@ -122,7 +122,7 @@ def tags(request):
         company_list = profile.companies.all()
         
         for company in company_list:
-            response.append({'tag_name': company.title})
+            response.append({'tag_id': company.id,'tag_name': company.title})
             
         return HttpResponse(json.dumps(response))
 
@@ -166,7 +166,7 @@ def list_companies(request):
     
     for company in company_list:
         
-        response.append({'tag_name': company.title})
+        response.append(company.title)
         
     return HttpResponse(json.dumps(response))
 
