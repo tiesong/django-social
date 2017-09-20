@@ -41,7 +41,7 @@
                             {% if invitation_status and profile.user.id == invited_user %}
                                 <td class="text-left">Sent invitation email</td>
                             {% elif not profile.invitation_status %}
-                                <td class="text-left"><a href="{% url 'user_invitation' %}?email={{profile.user.email}}&user_id={{profile.user.id}}" class="invitationEmail">Invite to join</a></td>
+                                <td class="text-left"><a href="{% url 'user_invitation' %}?username={{profile.user.username}}&email={{profile.user.email}}&user_id={{profile.user.id}}" class="invitationEmail">Invite to join</a></td>
                             {% else %}
 							    <td class="text-left">{{ profile.user.last_login }}</td>
                             {% endif %}

@@ -13,6 +13,7 @@ from officespace.models import Room
 from community.models import Profile
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.hashers import make_password
 
 @user_passes_test(lambda u: u.is_superuser)
 def index(request):
@@ -51,7 +52,7 @@ def user_create(request):
 				context = { 'exist_status': exist_status, }
 				return render(request, 'dashboard/users_create_dashboard.html', context)
 
-			User.objects.create(username=username, email=email, password=password)
+			User.objects.create_user(username=username, email=email, password=make_password(password))
 			user_list = Profile.objects.all()
 			context = {
 				'user_list': user_list,
@@ -67,9 +68,10 @@ def user_create(request):
 def user_invitation(request):
 	to_email = request.GET['email']
 	user_id = request.GET['user_id']
-	from_email = 'salientcool@gmail.com'
-	subject = 'Invitation to join into our website'
-	message = 'This is the test message'
+	username = request.GET['username']
+	from_email = settings.DEFAULT_FROM_EMAIL
+	subject = 'Invitation to join into York Butter Factory'
+	message = 'Hi, <br><br>This email is to help you join to York Butter Factory. <br>Username: '+ username +'<br>Passpord: password123 <br>Please click the ' + settings.SITE_URL + ' with the temporary infomation to continue to join us.<br>To change the passowrd, please go to '+ settings.SITE_URL +'/password_reset.<br>If clicking the links above does not work, please copy and paste the URL in a new browser window instead.<br><br>Sincerely,<br>The team at YBF'
 
 	try:
 		status = send_mail(subject, message, from_email, [to_email],)
