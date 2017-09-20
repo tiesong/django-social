@@ -12,6 +12,7 @@ from events.models import Event
 from officespace.models import Room
 from community.models import Profile
 from django.core.mail import send_mail
+from django.conf import settings
 
 @user_passes_test(lambda u: u.is_superuser)
 def index(request):
@@ -31,7 +32,7 @@ def perks(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def users(request):
-	user_list = User.objects.all()
+	user_list = Profile.objects.all()
 	context = {
 		'user_list': user_list,
 	}
@@ -51,10 +52,9 @@ def user_create(request):
 				return render(request, 'dashboard/users_create_dashboard.html', context)
 
 			User.objects.create(username=username, email=email, password=password)
-			user_list = User.objects.all()
+			user_list = Profile.objects.all()
 			context = {
 				'user_list': user_list,
-				'created_user': created_user,
 			}
 
 			return render(request, 'dashboard/users_dashboard.html', context)
@@ -75,7 +75,7 @@ def user_invitation(request):
 		status = send_mail(subject, message, from_email, [to_email],)
 		if status:
 			Profile.objects.filter(pk=user_id).update(invitation_status=True)
-			user_list = User.objects.all()
+			user_list = Profile.objects.all()
 			context = {
 				'user_list': user_list,
 				'invitation_status': True,
