@@ -71,7 +71,16 @@ def user_invitation(request):
 	username = request.GET['username']
 	from_email = settings.DEFAULT_FROM_EMAIL
 	subject = 'Invitation to join into York Butter Factory'
-	message = 'Hi, <br><br>This email is to help you join to York Butter Factory. <br>Username: '+ username +'<br>Passpord: password123 <br>Please click the ' + settings.SITE_URL + ' with the temporary infomation to continue to join us.<br>To change the passowrd, please go to '+ settings.SITE_URL +'/password_reset.<br>If clicking the links above does not work, please copy and paste the URL in a new browser window instead.<br><br>Sincerely,<br>The team at YBF'
+	message = 'Hi, \n\n\n' +\
+	'This email is to help you join to York Butter Factory.\n\n'+\
+	'Temporary account\n'+\
+	'Username: '+ username +\
+	'\nPasspord: password123\n\n'+\
+	'Please click the ' + settings.SITE_URL + ' with the temporary infomation to continue to join us.\n'+\
+	'To change the passowrd, please go to '+ settings.SITE_URL +'/password_reset.\n'+\
+	'If clicking the links above does not work, please copy and paste the URL in a new browser window instead.\n\n\n'+\
+	'Sincerely,\n'+\
+	'The team at YBF'
 
 	try:
 		status = send_mail(subject, message, from_email, [to_email],)
