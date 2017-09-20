@@ -1,241 +1,258 @@
 {% extends 'community/base.html' %}
 {% block content %}
-{% load staticfiles %}
+    {% load staticfiles %}
 
-<header id="masthead" class="site-header company-profile-header">
+    <header id="masthead" class="site-header company-profile-header">
 
-    <div class="top-nav">
+        <div class="top-nav">
 
-        <div class="container container-960">
+            <div class="container container-960">
 
-            <a href="/" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
+                <a href="/" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt=""
+                                                              srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
 
-            <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
-                <span class="lines line-top"></span>
-                <span class="lines line-middle"></span>
-                <span class="lines line-bottom"></span>
-            </button><!-- /.lines-button -->
+                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+                    <span class="lines line-top"></span>
+                    <span class="lines line-middle"></span>
+                    <span class="lines line-bottom"></span>
+                </button><!-- /.lines-button -->
 
-            <nav id="primary-navigation" class="site-navigation">
+                <nav id="primary-navigation" class="site-navigation">
 
-                <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'community/img/logo.png' %}" alt="" srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
+                    <a href="index.html" class="site-logo visible-xs" rel="home"><img
+                            src="{% static 'community/img/logo.png' %}" alt=""
+                            srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
 
-                <ul class="dropdown">
-                    <li><a href="/news">News</a></li>
-                    <li><a href="/events">Events</a></li>
-                    <!-- <li><a href="/c/companies">Companies</a></li> -->
-                    <li class="active"><a href="/c/people">People</a></li>
-                    <li><a href="/officespace">Officespace</a></li>
-                    {% for page in navbar_pages %}
-                        <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                    {% endfor %}
-                </ul>
+                    <ul class="dropdown">
+                        <li><a href="/news">News</a></li>
+                        <li><a href="/events">Events</a></li>
+                        <!-- <li><a href="/c/companies">Companies</a></li> -->
+                        <li class="active"><a href="/c/people">People</a></li>
+                        <li><a href="/officespace">Officespace</a></li>
+                        {% for page in navbar_pages %}
+                            <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
+                        {% endfor %}
+                    </ul>
 
-            </nav><!-- /.site-navigation -->
+                </nav><!-- /.site-navigation -->
 
-            {% include 'community/profile-menu.html' %}
+                {% include 'community/profile-menu.html' %}
 
-        </div><!-- /.container -->
+            </div><!-- /.container -->
 
-    </div><!-- /.top-nav -->
+        </div><!-- /.top-nav -->
 
-    <div class="hero">
+        <div class="hero">
 
-        <div class="container container-960">
+            <div class="container container-960">
 
-            <div class="hero-text">
-                <div class="profile-thumb">
-                    {% if user.profile.image %}
-                        <img src="{{ user.profile.image.url }}" alt="" width="130">
-                    {% else %}
-                        <img src="{% static 'community/img/company-profile.jpg' %}" alt="" width="130" height="130">
+                <div class="hero-text">
+                    <div class="profile-thumb">
+                        {% if user.profile.image %}
+                            <img src="{{ user.profile.image.url }}" alt="" width="130">
+                        {% else %}
+                            <img src="{% static 'community/img/company-profile.jpg' %}" alt="" width="130" height="130">
+                        {% endif %}
+                    </div>
+
+                    {% if user.profile.advisor %}
+                        <div id="ribbon-container">
+                            <span id="ribbon">Advisor</span>
+                        </div>
+                    {% endif %}
+
+                    <h1>{{ user.get_full_name }}</h1>
+                    {% if user.profile.tagline %}
+                        <p>{{ user.profile.tagline|slice:":25" }}</p>
                     {% endif %}
                 </div>
 
-                {% if user.profile.advisor %}
-                    <div id="ribbon-container">
-                        <span id="ribbon">Advisor</span>
-                    </div>
-                {% endif %}
-
-                <h1>{{ user.get_full_name }}</h1>
-                {% if user.profile.tagline %}
-                    <p>{{ user.profile.tagline|slice:":25" }}</p>
-                {% endif %}
             </div>
 
-        </div>
+        </div><!-- /.event-details-hero -->
 
-    </div><!-- /.event-details-hero -->
-
-</header><!-- /#header -->
+    </header><!-- /#header -->
 
 
-<div id="main" class="site-main">
+    <div id="main" class="site-main">
 
-    <section class="event-details-content">
+        <section class="event-details-content">
+
+            <div class="container container-960">
+
+                <div class="row">
+
+                    <div class="col-sm-8">
+                        <h3>Description</h3>
+
+                        {% if user.profile.bio %}
+                            <p class="mb-20">{{ user.profile.bio|safe }}</p>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="col-sm-4">
+
+                        <div class="event-details-sidebar">
+
+                            <h3>Details</h3>
+                            <p class="mb-30">
+
+                                {% if user.email %}<strong>Email</strong>: <span>{{ user.email }}</span><br>{% endif %}
+
+                                {% if user.profile.phone_number %}<strong>Phone</strong>:
+                                    <span>{{ user.profile.phone_number }}</span><br>{% endif %}
+
+                                {% if user.profile.website %}<strong>Website</strong>:
+                                    <span>{{ user.profile.website }}</span><br>{% endif %}
+
+                                {% if user.profile.twitter %}<strong>Twitter</strong>:
+                                    <span>{{ user.profile.twitter }}</span><br>{% endif %}
+
+                                {% if user.profile.facebook %}<strong>Facebook</strong>:
+                                    <span>{{ user.profile.facebook }}</span><br>{% endif %}
+
+                                {% if user.profile.linkedin %}<strong>LinkedIn</strong>:
+                                    <span>{{ user.profile.linkedin }}</span><br>{% endif %}
+
+                            </p>
+                            {% if companies %}
+                                <h3>Company:</h3>
+                                <p class="mb-30" style="text-transform:capitalize;">
+                                    {% for company in companies %}
+                                        {% if not forloop.first %}, {% endif %}<a href="/c/companies/{{ company.id }}"><strong>{{ company }}</strong></a>
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+
+                            {% if cats %}
+                                <h3>Speak to me about:</h3>
+                                <p class="mb-30" style="text-transform:capitalize; font-style: italic">
+                                    {% for cat in cats %}
+                                        {% if not forloop.first %}, {% endif %}
+                                        {{ cat }}
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+                            <div class="event-details-buttons mb-30">
+                                {% if request.user.id == user.id or request.user.is_superuser %}
+                                    <a href="{% url 'edit_profile' user.id %}" class="btn btn-transparent-dark">Edit
+                                        Profile</a>
+                                    <hr>
+                                {% endif %}
+                                <a href="#" class="btn btn-transparent-dark">Add to Contacts</a>
+                            </div>
+
+                            <div class="social-share profile-social-share">
+                                <h3>Share Profile</h3>
+                                <a class="twitter" href="#" target="_blank">Twitter</a>
+                                <a class="facebook" href="#" target="_blank">Facebook</a>
+                                <a class="email" href="#" target="_blank">Email</a>
+                                <a class="linkedin" href="#" target="_blank">LinkedIn</a>
+                            </div>
+
+                        </div><!-- /.event-details-sidebar -->
+
+                    </div>
+
+                </div>
+
+            </div><!-- /.container -->
+
+        </section><!-- /.event-details-content -->
+
+    </div><!-- /#main -->
+
+    <footer id="colophon" class="site-footer pages-footer">
 
         <div class="container container-960">
 
             <div class="row">
 
-                <div class="col-sm-8">
-                    <h3>Description</h3>
+                <div class="footer-col">
+                    <a href="#" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}"
+                                                                  alt=""></a>
+                </div><!-- /.footer-col -->
 
-                    {% if user.profile.bio %}
-                        <p class="mb-20">{{ user.profile.bio|safe }}</p>
-                    {% endif %}
+                <div class="footer-col">
+                    <h4>News</h4>
+                    <ul>
+                        <li><a href="#">Current</a></li>
+                        <li><a href="#">Archive</a></li>
+                        <li><a href="#">Submit a story</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
-                </div>
+                <div class="footer-col">
+                    <h4>Events</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Attending</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
-                <div class="col-sm-4">
+                <div class="footer-col">
+                    <h4>Startups</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
-                    <div class="event-details-sidebar">
+                <div class="footer-col">
+                    <h4>Companies</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
-                        <h3>Details</h3>
-                        <p class="mb-30">
+                <div class="footer-col">
+                    <h4>Jobs</h4>
+                    <ul>
+                        <li><a href="#">Browse</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
-                            {% if user.email %}<strong>Email</strong>: <span>{{user.email}}</span><br>{% endif %}
+                <div class="footer-col">
+                    <h4>Officespace</h4>
+                    <ul>
+                        <li><a href="/officespace">Browse</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
-                            {% if user.profile.phone_number %}<strong>Phone</strong>: <span>{{ user.profile.phone_number }}</span><br>{% endif %}
+                <div class="footer-col">
+                    <h4>Profile</h4>
+                    <ul>
+                        <li><a href="#">Your Activity</a></li>
+                        <li><a href="#">Edit Profile</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
-                            {% if user.profile.website %}<strong>Website</strong>: <span>{{user.profile.website}}</span><br>{% endif %}
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">About YBF</a></li>
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">Legal</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
-                            {% if user.profile.twitter %}<strong>Twitter</strong>: <span>{{user.profile.twitter}}</span><br>{% endif %}
-
-                            {% if user.profile.facebook %}<strong>Facebook</strong>: <span>{{ user.profile.facebook }}</span><br>{% endif %}
-
-                            {% if user.profile.linkedin %}<strong>LinkedIn</strong>: <span>{{ user.profile.linkedin }}</span><br>{% endif %}
-
-                        </p>
-
-                         <p class="mb-30"><strong>Company</strong>: {{ user.profile.companies.first }}<br></p>
-
-                        {% if cats %}
-                            <h3>Speak to me about:</h3>
-                            <p class="mb-30" style="text-transform:capitalize;">
-                                {% for cat in cats %}
-                                    <strong>{{ cat }}</strong><br>
-                                {% endfor %}
-                            </p>
-                        {% endif %}
-                        <div class="event-details-buttons mb-30">
-                            {% if request.user.id == user.id or request.user.is_superuser%}
-                                <a href="{% url 'edit_profile' user.id %}" class="btn btn-transparent-dark">Edit Profile</a>
-                                <hr>
-                            {% endif %}
-                            <a href="#" class="btn btn-transparent-dark">Add to Contacts</a>
-                        </div>
-
-                        <div class="social-share profile-social-share">
-                            <h3>Share Profile</h3>
-                            <a class="twitter" href="#" target="_blank">Twitter</a>
-                            <a class="facebook" href="#" target="_blank">Facebook</a>
-                            <a class="email" href="#" target="_blank">Email</a>
-                            <a class="linkedin" href="#" target="_blank">LinkedIn</a>
-                        </div>
-
-                    </div><!-- /.event-details-sidebar -->
-
-                </div>
+                <div class="footer-col pull-right text-right">
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div><!-- /.footer-col -->
 
             </div>
 
         </div><!-- /.container -->
-
-    </section><!-- /.event-details-content -->
-
-</div><!-- /#main -->
-
-<footer id="colophon" class="site-footer pages-footer">
-
-    <div class="container container-960">
-
-        <div class="row">
-
-            <div class="footer-col">
-                <a href="#" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt=""></a>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>News</h4>
-                <ul>
-                    <li><a href="#">Current</a></li>
-                    <li><a href="#">Archive</a></li>
-                    <li><a href="#">Submit a story</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Events</h4>
-                <ul>
-                    <li><a href="#">Browse</a></li>
-                    <li><a href="#">Attending</a></li>
-                    <li><a href="#">Manage</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Startups</h4>
-                <ul>
-                    <li><a href="#">Browse</a></li>
-                    <li><a href="#">Manage</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Companies</h4>
-                <ul>
-                    <li><a href="#">Browse</a></li>
-                    <li><a href="#">Manage</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Jobs</h4>
-                <ul>
-                    <li><a href="#">Browse</a></li>
-                    <li><a href="#">Manage</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Officespace</h4>
-                <ul>
-                    <li><a href="/officespace">Browse</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Profile</h4>
-                <ul>
-                    <li><a href="#">Your Activity</a></li>
-                    <li><a href="#">Edit Profile</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">About YBF</a></li>
-                    <li><a href="#">Terms of service</a></li>
-                    <li><a href="#">Legal</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-            <div class="footer-col pull-right text-right">
-                <ul>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                </ul>
-            </div><!-- /.footer-col -->
-
-        </div>
-
-    </div><!-- /.container -->
-</footer><!-- /#footer -->
+    </footer><!-- /#footer -->
 
 {% endblock %}

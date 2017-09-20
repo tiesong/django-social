@@ -54,6 +54,7 @@ def user_create(request):
 			user_list = User.objects.all()
 			context = {
 				'user_list': user_list,
+				'created_user': created_user,
 			}
 
 			return render(request, 'dashboard/users_dashboard.html', context)

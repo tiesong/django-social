@@ -1,15 +1,7 @@
 {% extends 'community/base.html' %}
 {% block content %}
     {% load staticfiles %}
-    <style>
-        #check_available p{
-            color: #ba2121;
-        }
 
-        input:focus + .hint {
-            display: inline;
-        }
-    </style>
     <script>
         tinymce.init({
             selector: '#description',
@@ -126,8 +118,8 @@
                             <div class="profile-title pull-left">
                                 <input type="text" name="name" class="form-control"
                                        value="{% if user.get_full_name %}{{ user.get_full_name }}{% endif %}">
-                                <input type="text" name="tagline" class="form-control" value="
-                                        {% if user.profile.tagline %}{{ user.profile.tagline|slice:":25" }}{% endif %}">
+                                <input type="text" name="tagline" class="form-control"
+                                       value="{% if user.profile.tagline %}{{ user.profile.tagline|slice:":25" }}{% endif %}">
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -193,14 +185,10 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Company:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="company" id="company_input" class="form-control"
-                                               onkeyup="HintFilter(event)"
-                                               value="{% if company_name %}{{ company_name }}{% elif user.profile.companies.first %}{{ user.profile.companies.first }}{% endif %}">
-                                        <p class="hint" style="color: #006dcc">
-                                            <span id="check_available"></span></p>
+                                        <input type="text" class="companytags form-control" name="companies"
+                                               value="" >
                                     </div>
                                 </div>
-
 
                             </div>
 
@@ -314,32 +302,59 @@
 {% endblock %}
 {% block customscript %}
     <script>
+        $.ajax({
+            url: '/c/list_companies/',
+            dataType: 'json',
+            success: function (result) {
+                var tags = new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.whitespace,
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    local: result
+                });
 
-        var filterInput;
+                console.log(result);
+                $('.companytags').tagsinput({
+                    typeaheadjs: {
+                        name: 'tags',
+                        source: tags
+                    },
+                    freeInput: true
+                });
+            },
+        });
         var profile_id = "{{ user.id }}";
+        $.ajax({
+            url: '/c/tags/',
+            data: {profile_company: profile_id},
+            dataType: 'json',
+            success: function (result) {
+                $.each(result, function (key, value) {
 
-        console.log(profile_id);
-        function HintFilter(e) {
-            filterInput = document.getElementById("company_input");
-            var value = filterInput.value;
-
-            if (e.keyCode === 13) {
-                $.ajax({
-                    url: '/c/list_company/' + value,
-                    dataType: 'json',
-                    success: function (result) {
-                        console.log(result);
-                        if (result.exists) {
-
-                            document.getElementById("check_available").innerHTML = "Available";
-                        }
-                        else{
-                            document.getElementById("check_available").innerHTML = "<p>No Exists. <a href='/c/create_company/?company_name=" + value +"&profile_id="+ profile_id +"'><u>Create New Company</u></a></p>";
-                        }
-                    }
+                    $('.companytags').tagsinput('add',  value.tag_name);
                 });
             }
+        });
 
+        /* Form Submission Prevent for Enterkey */
+        $('#profile_edit_form').on('keyup keypress', function (e) {
+            var keyCode = e.keyCode || e.which;
+            if (keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        var everythingLoaded = setInterval(function () {
+            if (/loaded|complete/.test(document.readyState)) {
+                clearInterval(everythingLoaded);
+                init(); // this is the function that gets called when everything is loaded
+            }
+        }, 10);
+
+        function init() {
+
+            $('.bootstrap-tagsinput')[1].style.height = '116px';
         }
+
+
     </script>
 {% endblock %}

@@ -85,9 +85,9 @@
                     <div class="col-sm-8">
                         <h3>Description</h3>
 
-                            <p>
-                                {{ company.description|safe }}
-                            </p>
+                        <p>
+                            {{ company.description|safe }}
+                        </p>
 
                     </div>
 
@@ -96,11 +96,20 @@
                         <div class="event-details-sidebar">
 
                             <h3>Details</h3>
-                            <p class="mb-30"><strong>Industry</strong>: {{ company.categories.all |first }}<br>
-                                <strong>Size</strong>:
-                                {% if company.size %}{{ company.size }} {% else %} 0 {% endif %} Employees<br>
-                                <strong>Website</strong>: <a href="#">
-                                    {% if company.website %}{{ company.website }}{% endif %}</a></p>
+
+                            <p class="mb-30"><strong>Industry</strong>:
+                                {% if categories %}
+                                    <p class="mb-30" style="text-transform:capitalize;">
+                                        {% for category in categories %}
+                                            <strong>{{ category }}</strong><br>
+                                        {% endfor %}
+                                    </p>
+                                {% endif %}
+                            <br>
+                            <strong>Size</strong>:
+                            {% if company.size %}{{ company.size }} {% else %} 0 {% endif %} Employees<br>
+                            <strong>Website</strong>: <a href="#">
+                            {% if company.website %}{{ company.website }}{% endif %}</a></p>
 
                             <p class="mb-30"><strong>Twitter</strong>: <a href="#">
                                 {% if company.twitter %}{{ company.twitter }} {% endif %}</a><br>
@@ -113,9 +122,9 @@
                             <div class="event-details-buttons">
                                 <a href="{{ company.id }}/edit" class="btn btn-transparent-dark">Edit Company</a>
                                 <a href="{{ company.website }}" class="btn btn-transparent-dark">Visit Website</a>
-{#                                <a href="#" class="btn btn-transparent-dark">Employee Lists</a>#}
-{#                                <a href="#" class="btn btn-transparent-dark btn-half">Hosted Events</a>#}
-{#                                <a href="#" class="btn btn-transparent-dark btn-half">Job Posts</a>#}
+                                {#                                <a href="#" class="btn btn-transparent-dark">Employee Lists</a>#}
+                                {#                                <a href="#" class="btn btn-transparent-dark btn-half">Hosted Events</a>#}
+                                {#                                <a href="#" class="btn btn-transparent-dark btn-half">Job Posts</a>#}
                             </div>
 
                             <hr>

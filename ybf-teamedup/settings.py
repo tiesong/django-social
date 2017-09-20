@@ -25,15 +25,16 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # DEVELOPMENT EMAIL BACKEND
-if not os.environ.get('DJANGO_DEVELOPMENT'):
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
-else:
+if os.environ.get('DJANGO_PRODUCTION'):
     ANYMAIL = {
         "MAILGUN_API_KEY": os.environ["MAILGUN_API_KEY"],
         "MAILGUN_SENDER_DOMAIN": "teamedup.com.au",
     }
     EMAIL_BACKEND = "anymail.backends.mailgun.MailgunBackend"
     DEFAULT_FROM_EMAIL = "no_reply@teamedup.com.au"
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
+    
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
@@ -164,7 +165,9 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
 
 # S3 bucket serving media files.
-if os.environ.get('DJANGO_DEVELOPMENT'):
+
+if os.environ.get('DJANGO_PRODUCTION'):
+
     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
@@ -180,11 +183,11 @@ if os.environ.get('DJANGO_DEVELOPMENT'):
     MEDIAFILES_LOCATION = 'media'
     MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+
 else:
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-
 two_months = datetime.timedelta(days=61)
 date_two_months_later = datetime.date.today() + two_months
 expires = date_two_months_later.strftime("%A, %d %B %Y 20:00:00 GMT")
