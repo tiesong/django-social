@@ -33,7 +33,7 @@ def perks(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def users(request):
-	user_list = Profile.objects.all()
+	user_list = Profile.objects.all().order_by('user__username')
 	context = {
 		'user_list': user_list,
 	}
@@ -53,7 +53,7 @@ def user_create(request):
 				return render(request, 'dashboard/users_create_dashboard.html', context)
 
 			User.objects.create_user(username=username, email=email, password=make_password(password))
-			user_list = Profile.objects.all()
+			user_list = Profile.objects.all().order_by('user__username')
 			context = {
 				'user_list': user_list,
 			}
@@ -86,7 +86,7 @@ def user_invitation(request):
 		status = send_mail(subject, message, from_email, [to_email],)
 		if status:
 			Profile.objects.filter(pk=user_id).update(invitation_status=True)
-			user_list = Profile.objects.all()
+			user_list = Profile.objects.all().order_by('user__username')
 			context = {
 				'user_list': user_list,
 				'invitation_status': True,
