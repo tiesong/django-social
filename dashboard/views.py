@@ -10,6 +10,10 @@ from news.models import News
 from perks.models import Perks
 from events.models import Event
 from officespace.models import Room
+from community.models import Profile
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth.hashers import make_password
 
 @user_passes_test(lambda u: u.is_superuser)
 def index(request):
@@ -29,7 +33,7 @@ def perks(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def users(request):
-	user_list = User.objects.all()
+	user_list = Profile.objects.all().order_by('user__username')
 	context = {
 		'user_list': user_list,
 	}
@@ -48,11 +52,10 @@ def user_create(request):
 				context = { 'exist_status': exist_status, }
 				return render(request, 'dashboard/users_create_dashboard.html', context)
 
-			created_user = User.objects.create(username=username, email=email, password=password)
-			user_list = User.objects.all()
+			User.objects.create_user(username=username, email=email, password=make_password(password))
+			user_list = Profile.objects.all().order_by('user__username')
 			context = {
 				'user_list': user_list,
-				'created_user': created_user,
 			}
 
 			return render(request, 'dashboard/users_dashboard.html', context)
@@ -63,7 +66,35 @@ def user_create(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def user_invitation(request):
-	print ('Hello')
+	to_email = request.GET['email']
+	user_id = request.GET['user_id']
+	username = request.GET['username']
+	from_email = settings.DEFAULT_FROM_EMAIL
+	subject = 'Invitation to join into York Butter Factory'
+	message = 'Hi, \n\n\n' +\
+	'This email is to help you join to York Butter Factory.\n\n'+\
+	'Temporary account\n'+\
+	'Username: '+ username +\
+	'\nPasspord: password123\n\n'+\
+	'Please click the ' + settings.SITE_URL + ' with the temporary infomation to continue to join us.\n'+\
+	'To change the passowrd, please go to '+ settings.SITE_URL +'/password_reset.\n'+\
+	'If clicking the links above does not work, please copy and paste the URL in a new browser window instead.\n\n\n'+\
+	'Sincerely,\n'+\
+	'The team at YBF'
+
+	try:
+		status = send_mail(subject, message, from_email, [to_email],)
+		if status:
+			Profile.objects.filter(pk=user_id).update(invitation_status=True)
+			user_list = Profile.objects.all().order_by('user__username')
+			context = {
+				'user_list': user_list,
+				'invitation_status': True,
+				'invited_user': int(user_id),
+			}
+			return render(request, 'dashboard/users_dashboard.html', context)
+	except Exception as e:
+		raise e
 
 @user_passes_test(lambda u: u.is_superuser)
 def events(request):

@@ -65,12 +65,18 @@
                     <ul>
                         {% if 'rooms' in request.path %}
                             <li><a href="/dashboard">Content</a></li>
-                            <li class="active"><a href="/dashboard/rooms">Officespace</a></li>
+                            <li class="active"><a href="{% url 'rooms' %}">Officespace</a></li>
+                            <li><a href="{% url 'users' %}">Users</a></li>
+                        {% elif 'users' in request.path %}
+                            <li><a href="/dashboard">Content</a></li>
+                            <li><a href="{% url 'rooms' %}">Officespace</a></li>
+                            <li class="active"><a href="{% url 'users' %}">Users</a></li>
                         {% else %}
                             <li class="active"><a href="/dashboard">Content</a></li>
-                            <li><a href="/dashboard/rooms">Officespace</a></li>
+                            <li><a href="{% url 'rooms' %}">Officespace</a></li>
+                            <li><a href="{% url 'users' %}">Users</a></li>
                         {% endif %}
-                        <li><a href="/dashboard/users">Users</a></li>
+
                         <!--<li><a href="#">Settings</a></li>
                         <li><a href="#">Announcements</a></li>-->
                     </ul>

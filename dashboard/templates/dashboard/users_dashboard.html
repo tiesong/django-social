@@ -31,17 +31,19 @@
 					</thead>
 					<tbody>
 
-					{% for user in user_list %}
+					{% for profile in user_list %}
 
-						<tr>
-							<td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img"><a href="/c/people/{{user.id}}">{{user.username}}</a></td>
-							<td>{{user.email}}</td>
-							<td class="text-left">{{ user.first_name }}</td>
-							<td class="text-left">{{ user.last_name }}</td>
-                            {% if created_user and created_user.username == user.username %}
-                                <td class="text-left"><a href="javascript:void(0)" id="invitationEmail">Invite to join</a></td>
+						<tr data-value="{{ profile.user.id }}">
+							<td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img"><a href="/c/people/{{profile.user.id}}">{{profile.user.username}}</a></td>
+							<td class="user-email">{{ profile.user.email }}</td>
+							<td class="text-left">{{ profile.user.first_name }}</td>
+							<td class="text-left">{{ profile.user.last_name }}</td>
+                            {% if invitation_status and profile.user.id == invited_user %}
+                                <td class="text-left">Sent invitation email</td>
+                            {% elif not profile.invitation_status %}
+                                <td class="text-left"><a href="{% url 'user_invitation' %}?username={{profile.user.username}}&email={{profile.user.email}}&user_id={{profile.user.id}}" class="invitationEmail">Invite to join</a></td>
                             {% else %}
-							    <td class="text-left">{{ user.last_login }}</td>
+							    <td class="text-left">{{ profile.user.last_login }}</td>
                             {% endif %}
 						</tr>
 

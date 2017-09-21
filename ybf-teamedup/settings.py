@@ -20,6 +20,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
+SITE_URL = 'https://york-butter-factory.herokuapp.com'
+
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -34,7 +36,7 @@ if os.environ.get('DJANGO_PRODUCTION'):
     DEFAULT_FROM_EMAIL = "no_reply@teamedup.com.au"
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
-    
+
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
