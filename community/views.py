@@ -167,7 +167,7 @@ def list_companies(request):
     for company in company_list:
         
         response.append(company.title)
-        
+    
     return HttpResponse(json.dumps(response))
 
 
