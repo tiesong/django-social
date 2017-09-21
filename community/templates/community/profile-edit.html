@@ -302,17 +302,25 @@
 {% endblock %}
 {% block customscript %}
     <script>
+    var DataSet;
+    var Result;
+    var prevSpanNum = 0;
         $.ajax({
             url: '/c/list_companies/',
             dataType: 'json',
             success: function (result) {
+                Result = DataSet = result;
 
-                var tags = new Bloodhound({
+                ResetTagsInput(result);
+        }});
+
+        function ResetTagsInput(result){
+               var tags = new Bloodhound({
                     datumTokenizer: Bloodhound.tokenizers.whitespace,
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
                     local: result
                     });
-
+                tags.initialize();
                 $('.companytags').tagsinput({
                     typeaheadjs: {
                         name: 'tags',
@@ -321,7 +329,7 @@
                     freeInput: true
                 });
             }
-        });
+
 
         var profile_id = "{{ user.id }}";
         $.ajax({
@@ -344,6 +352,10 @@
                 return false;
             }
         });
+
+
+
+
         var everythingLoaded = setInterval(function () {
             if (/loaded|complete/.test(document.readyState)) {
                 clearInterval(everythingLoaded);
@@ -355,19 +367,41 @@
 
             $('.bootstrap-tagsinput')[1].style.height = '116px';
 
-            $('.user-details .tt-input').on('input', function() {
+            $('.user-details .tt-input').on('input', function () {
 
-                if (($('.user-details .tt-menu .tt-dataset').children()).length === 0){
-                    $('.user-details .tt-menu .tt-dataset').prepend('<div class="tt-suggestion tt-selectable">' + 'Add New Company' + '</div>');
-                    $('.user-details .tt-suggestion.tt-selectable').on('click', function () {
+                console.log('changed');
+                if ($('.user-details .tt-input').val() !== "") {
+                    $('.user-details .tt-menu').css('display', "block" );
+                    if (($('.user-details .tt-menu .tt-dataset').children()).length === 0) {
+                        $('.user-details .tt-menu .tt-dataset').append('<div class="tt-suggestion tt-selectable">' + 'Add New Company' + '</div>');
 
-                        var freeinput = $('.user-details .tt-input').val();
-                        $('.companytags').tagsinput('add', freeinput);
-                    })
 
+                        $('.user-details .tt-suggestion.tt-selectable').on('click', function () {
+
+                            var freeinput = $('.user-details .tt-input').val();
+                            $('.companytags').tagsinput('add', freeinput);
+                        })
+
+                    }
                 }
             });
 
+{#            $('.user-details .bootstrap-tagsinput').bind('DOMNodeInserted DOMNodeRemoved', function () {#}
+{#                var span_list = $('.user-details .bootstrap-tagsinput').children("span");#}
+{#                var span_len = span_list.length;#}
+{#                if (span_len !== prevSpanNum) {#}
+{#                    for (var i = 0; i < span_list.length - 1; i++) {#}
+{#                        console.log(span_list[i].textContent);#}
+{#                        if (DataSet.indexOf(span_list[i].textContent) !== -1) {#}
+{#                            DataSet.splice(DataSet.indexOf(span_list[i].textContent), 1);#}
+{#                        }#}
+{#                    }#}
+{#                    ResetTagsInput(DataSet);#}
+{#                    DataSet = Result;#}
+{#                    prevSpanNum = span_len;#}
+{##}
+{#                }#}
+{#            });#}
         }
 
     </script>
