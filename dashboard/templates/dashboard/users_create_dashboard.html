@@ -87,8 +87,8 @@
                             <span class="trans-back"><span class="glyphicon glyphicon-camera camera"></span></span>
                         </div>
                         <div class="profile-title pull-left">
-                            <input type="text" name="name" class="form-control">
-                            <input type="text" name="tagline" class="form-control">
+                            <input type="text" name="name" class="form-control" placeholder="Full Name" value="{{first_name}}{% if last_name %} {{last_name}}{% endif %}">
+                            <input type="text" name="tagline" class="form-control" placeholder="Tagline" value="{{tagline}}">
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -97,10 +97,10 @@
                         <h3>Tags</h3>
                         <input type="text" class="tags form-control" name="tags" value="">
                         <h4 class="mb-30">
-                            <small>Available tags: {{ tags }}</small>
+                            <small>Available tags: {{ all_tags }}</small>
                         </h4>
                         <h3>Description</h3>
-                        <textarea id="description" name="description"></textarea>
+                        <textarea id="description" name="description">{{description}}</textarea>
                     </div>
 
                     <div class="col-sm-4 details-section">
@@ -109,37 +109,37 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Email:</label>
                                 <div class="col-sm-9">
-                                    <input type="email" name="email" class="form-control col-sm-10">
+                                    <input type="email" name="email" class="form-control col-sm-10" value="{{email}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Phone:</label>
                                 <div class="col-sm-9">
-                                    <input type="tel" name="phone" class="form-control">
+                                    <input type="tel" name="phone" class="form-control" value="{{phone}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Website:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="website" class="form-control">
+                                    <input type="text" name="website" class="form-control" value="{{website}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Twitter:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="twitter" class="form-control">
+                                    <input type="text" name="twitter" class="form-control" value="{{twitter}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Facebook:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="facebook" class="form-control">
+                                    <input type="text" name="facebook" class="form-control" value="{{facebook}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">LinkedIn:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="linkedin" class="form-control">
+                                    <input type="text" name="linkedin" class="form-control" value="{{linkedin}}">
                                 </div>
                             </div>
 

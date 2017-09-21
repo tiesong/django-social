@@ -42,8 +42,8 @@ def users(request):
 @user_passes_test(lambda u: u.is_superuser)
 def user_create(request):
 	tag_list = Tag.objects.all()
-	tags = ', '.join(map(lambda x: x.tag, tag_list))
-	context = { 'tags': tags, }
+	all_tags = ', '.join(map(lambda x: x.tag, tag_list))
+	context = { 'all_tags': all_tags, }
 
 	if request.POST:
 		name = request.POST['name']
@@ -74,7 +74,21 @@ def user_create(request):
 			exist_status = User.objects.filter(email=email).exists()
 
 			if exist_status:
-				context = { 'exist_status': exist_status, }
+				context = {
+					'all_tags': all_tags,
+					'exist_status': exist_status,
+					'first_name': first_name,
+					'last_name': last_name,
+					'tagline': tagline,
+					'email': email,
+					'phone': phone,
+					'website': website,
+					'twitter': twitter,
+					'facebook': facebook,
+					'linkedin': linkedin,
+					'description': description,
+				}
+
 				return render(request, 'dashboard/users_create_dashboard.html', context)
 
 			user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
