@@ -59,7 +59,6 @@ def user_create(request):
 
 		tagline = request.POST['tagline']
 		email = request.POST['email']
-		password = make_password(settings.TEMP_PASSWORD)
 		phone = request.POST['phone']
 
 		website = request.POST['website']
@@ -91,6 +90,7 @@ def user_create(request):
 
 				return render(request, 'dashboard/users_create_dashboard.html', context)
 
+			password = User.objects.make_random_password(length=8)
 			user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
 
 			profile = Profile.objects.get(pk=user.id)
@@ -139,14 +139,15 @@ def user_invitation(request):
 	user_id = request.GET['user_id']
 	username = request.GET['username']
 	from_email = settings.DEFAULT_FROM_EMAIL
+	password = User.objects.filter(pk=user_id).values_list('password', flat=True).first()
 	subject = 'Invitation to join into York Butter Factory'
 	message = 'Hi, \n\n\n' +\
 	'This email is to help you join to York Butter Factory.\n\n'+\
 	'Temporary account\n'+\
 	'Username: '+ username +\
-	'\nPasspord: password123\n\n'+\
-	'Please click the ' + settings.SITE_URL + ' with the temporary infomation to continue to join us.\n'+\
-	'To change the passowrd, please go to '+ settings.SITE_URL +'/password_reset.\n'+\
+	'\nPasspord: '+ password +\
+	'\n\nPlease click the ' + settings.SITE_URL + ' with the temporary infomation to continue to join us.\n'+\
+	'To change the password, please go to '+ settings.SITE_URL +'/password_reset.\n'+\
 	'If clicking the links above does not work, please copy and paste the URL in a new browser window instead.\n\n\n'+\
 	'Sincerely,\n'+\
 	'The team at YBF'
@@ -155,13 +156,7 @@ def user_invitation(request):
 		status = send_mail(subject, message, from_email, [to_email],)
 		if status:
 			Profile.objects.filter(pk=user_id).update(invitation_status=True)
-			user_list = Profile.objects.all().order_by('user__username')
-			context = {
-				'user_list': user_list,
-				'invitation_status': True,
-				'invited_user': int(user_id),
-			}
-			return render(request, 'dashboard/users_dashboard.html', context)
+			return redirect(reverse('users'))
 	except Exception as e:
 		raise e
 
