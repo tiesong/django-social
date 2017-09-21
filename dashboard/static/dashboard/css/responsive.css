@@ -33,7 +33,7 @@
 	.featured-news .col-sm-6 {
 		padding: 0 50px;
 	}
-	
+
 	.news-page-list .news-single-item {
 		min-height: 215px;
 	}
@@ -96,7 +96,7 @@
 	.user-profile {
 		margin: 3px 16px 0 0;
 	}
-	
+
 	.user-profile-thumb span {
 		color: #fff;
   	  	font-size: 18px;
@@ -185,7 +185,7 @@
 	.site-header {
 		height: auto;
 		padding-bottom: 50px;
-	}	
+	}
 
 	.hero-text {
 	    left: 0;
@@ -197,7 +197,7 @@
 		width: auto;
 	}
 
-	.hero-text, 
+	.hero-text,
 	.hero .hero-form {
 		position: relative;
 	    top: auto;
@@ -228,7 +228,7 @@
 	.event-form {
 		padding-top: 40px;
 	}
-	
+
 	/* Home news */
 	.home-news {
 		padding: 70px 0;
@@ -272,7 +272,7 @@
 	.events-info-inner p {
 	    font-size: 16px;
 	}
-	
+
 	.next-events::before {
 		display: none;
 	}
@@ -290,7 +290,7 @@
 	.next-events .col-sm-6:first-child {
 		margin-bottom: 50px;
 	}
-	
+
 	.events-list {
 		padding-bottom: 50px;
 	}
@@ -312,17 +312,21 @@
 	}
 
 	.events-filter {
-		margin-bottom: 40px;
+		/*margin-bottom: 40px;*/
 	}
 
 	.events-filter ul li {
 		margin-left: 20px;
 	}
 
+	.events-filter ul li.user-tags {
+		display: none;
+	}
+
 	.all-events.pull-right {
-		float: left !important;
+		/*float: left !important;
 		clear: both;
-		margin-top: 20px;
+		margin-top: 20px;*/
 	}
 
 	.job-filters.event-details-buttons {
@@ -333,8 +337,8 @@
 	.company-profile-header .hero-text {
 		bottom: -35px;
 	}
-	
-	/* News */	
+
+	/* News */
 	.featured-news {
 		padding: 0;
 	}
@@ -347,7 +351,7 @@
 
 	.featured-news::before,
 	.featured-news::after {
-		width: 100%; 
+		width: 100%;
 		height: 50%;
 	}
 
@@ -357,11 +361,9 @@
 	}
 
 	.news-page-list .news-single-item {
-	    clear: both;
 	    margin: auto;
 	    max-width: 100%;
 	    min-height: 0;
-	    overflow: hidden;
 	    width: 330px;
 	}
 
@@ -440,7 +442,7 @@
 		float: none;
 		width: 100%;
 	}
-	
+
 	.modal .btn {
 		max-width: 310px;
 		margin-left: auto;
@@ -474,4 +476,34 @@
 		margin: 10px 0;
 	}
 
+	.edit-actions {
+		margin: 0 !important;
+	}
+
+	.description-section {
+		margin-bottom: 30px;
+	}
+
+	.profile-edit.company-profile-header {
+		height: 210px;
+	}
+
+	.company-profile-header #ribbon-container {
+		top: 60px !important;
+	}
+
+}
+
+@media only screen and (max-width : 480px) {
+	.header-section .profile-title input {
+		width: auto !important;
+	}
+}
+
+@media only screen and (max-width : 380px) {
+	.profile-social-share a {
+		float: none;
+		margin: 0 auto !important;
+		margin-top: 15px !important;
+	}
 }

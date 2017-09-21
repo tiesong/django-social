@@ -21,6 +21,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 SITE_URL = 'https://york-butter-factory.herokuapp.com'
+TEMP_PASSWORD = 'password123'
 
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'

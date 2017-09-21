@@ -10,7 +10,7 @@ from news.models import News
 from perks.models import Perks
 from events.models import Event
 from officespace.models import Room
-from community.models import Profile
+from community.models import Profile, Tag, Company
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
@@ -41,18 +41,73 @@ def users(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def user_create(request):
+	tag_list = Tag.objects.all()
+	tags = ', '.join(map(lambda x: x.tag, tag_list))
+	context = { 'tags': tags, }
+
 	if request.POST:
-		username = request.POST['username']
+		name = request.POST['name']
+		if name:
+			first_name = name.split(' ')[0]
+			if len(name.split(' ')) > 1:
+				last_name = name.split(' ')[1]
+			else:
+				last_name = ''
+		else:
+			first_name = ''
+			last_name = ''
+
+		tagline = request.POST['tagline']
 		email = request.POST['email']
-		password = request.POST['password']
+		password = make_password(settings.TEMP_PASSWORD)
+		phone = request.POST['phone']
+
+		website = request.POST['website']
+		twitter = request.POST['twitter']
+		facebook = request.POST['facebook']
+		linkedin = request.POST['linkedin']
+		description = request.POST['description']
+		tags = request.POST['tags'].split(',')
+		company_tags = request.POST['companies'].split(',')
 
 		try:
-			exist_status = User.objects.filter(username=username).exists()
+			exist_status = User.objects.filter(email=email).exists()
+
 			if exist_status:
 				context = { 'exist_status': exist_status, }
 				return render(request, 'dashboard/users_create_dashboard.html', context)
 
-			User.objects.create_user(username=username, email=email, password=make_password(password))
+			user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
+
+			profile = Profile.objects.get(pk=user.id)
+			profile.tags.clear()
+			if tags[0] != '':
+				for tag in tags:
+					profile.tags.add(tag)
+					profile.save()
+
+			profile.companies.clear()
+			print(company_tags)
+			if len(company_tags) != 0:
+				for tag in company_tags:
+
+					if Company.objects.filter(title=tag).exists():
+						profile.companies.add(Company.objects.filter(title=tag).values_list('id', flat=True)[0])
+					else:
+						new_company = Company(title=tag)
+						new_company.save()
+						profile.companies.add(new_company.id)
+
+					profile.save()
+
+			Profile.objects.filter(pk=user.id).update(tagline=tagline, phone_number=phone, website=website, twitter=twitter, facebook=facebook, linkedin=linkedin, bio=description)
+
+			if request.FILES:
+				avatar = request.FILES['avatar']
+				profile = Profile.objects.get(pk=user.id)
+				profile.image = avatar
+				profile.save()
+
 			user_list = Profile.objects.all().order_by('user__username')
 			context = {
 				'user_list': user_list,
@@ -62,7 +117,7 @@ def user_create(request):
 		except Exception as e:
 			raise e
 
-	return render(request, 'dashboard/users_create_dashboard.html')
+	return render(request, 'dashboard/users_create_dashboard.html', context)
 
 @user_passes_test(lambda u: u.is_superuser)
 def user_invitation(request):
