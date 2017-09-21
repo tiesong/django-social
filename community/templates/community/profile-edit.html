@@ -306,13 +306,13 @@
             url: '/c/list_companies/',
             dataType: 'json',
             success: function (result) {
+
                 var tags = new Bloodhound({
                     datumTokenizer: Bloodhound.tokenizers.whitespace,
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
                     local: result
-                });
+                    });
 
-                console.log(result);
                 $('.companytags').tagsinput({
                     typeaheadjs: {
                         name: 'tags',
@@ -320,8 +320,9 @@
                     },
                     freeInput: true
                 });
-            },
+            }
         });
+
         var profile_id = "{{ user.id }}";
         $.ajax({
             url: '/c/tags/',
@@ -353,8 +354,21 @@
         function init() {
 
             $('.bootstrap-tagsinput')[1].style.height = '116px';
-        }
 
+            $('.user-details .tt-input').on('input', function() {
+
+                if (($('.user-details .tt-menu .tt-dataset').children()).length === 0){
+                    $('.user-details .tt-menu .tt-dataset').prepend('<div class="tt-suggestion tt-selectable">' + 'Add New Company' + '</div>');
+                    $('.user-details .tt-suggestion.tt-selectable').on('click', function () {
+
+                        var freeinput = $('.user-details .tt-input').val();
+                        $('.companytags').tagsinput('add', freeinput);
+                    })
+
+                }
+            });
+
+        }
 
     </script>
 {% endblock %}
