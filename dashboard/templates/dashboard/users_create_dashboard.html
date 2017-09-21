@@ -1,53 +1,168 @@
 {% extends 'dashboard/base.html' %}
 {% block content %}
 {% load staticfiles %}
+
+<script>
+    tinymce.init({
+        selector: '#description',
+        plugins: 'image',
+        extended_valid_elements: 'img[class|src|border=0|alt|title|width|height]',
+        image_description: false,
+        image_dimensions: false,
+        file_picker_types: 'image',
+        content_css: "{% static 'community/css/community.css' %}",
+        file_picker_callback: function (callback, value, meta) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+
+            input.onchange = function () {
+                var file = this.files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+
+                reader.onload = function () {
+                    var id = 'blobid' + (new Date()).getTime();
+                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                    var base64 = reader.result.split(',')[1];
+                    var blobInfo = blobCache.create(id, file, base64);
+                    blobCache.add(blobInfo);
+
+                    callback(blobInfo.blobUri(), {title: file.name});
+                };
+            };
+            input.click();
+        },
+        height: 500
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.avatar')
+                    .attr('src', e.target.result)
+                    .width(130)
+                    .height(130);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    var everythingLoaded = setInterval(function () {
+        if (/loaded|complete/.test(document.readyState)) {
+            clearInterval(everythingLoaded);
+            init(); // this is the function that gets called when everything is loaded
+        }
+    }, 10);
+
+    function init() {
+
+        $('.bootstrap-tagsinput')[1].style.height = '116px';
+    }
+
+</script>
 <div id="main" class="site-main admin-page">
 
-    <section class="events-list">
+    <section class="profile-content">
 
         <div class="container container-960">
 
-            <div class="col-xs-12 col-sm-9 col-md-9" style="float: none; margin: 0 auto;">
+            <div class="row">
 
-            	<h2 class="admin-page-title ">Add New User</h2>
-                {% if exist_status %}
-                    <div class="alert alert-danger alert-dismissable fade in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        A user with that username already exists.
-                    </div>
-                {% endif %}
-                <form method="post" id="user_create_form" role="form" data-toggle="validator">
+                <form method="post" id="profile_edit_form" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" name="username" required>
-                        <div class="help-block"> 150 characters or fewer. Letters, digits and @/./+/-/_ only.</div>
+
+                    <h2 class="admin-page-title ">Add New User</h2>
+                    {% if exist_status %}
+                        <div class="alert alert-danger alert-dismissable fade in">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            A user already exists on the site with that email.
+                        </div>
+                    {% endif %}
+                    <div class="header-section">
+                        <div class="profile-thumb pull-left">
+                            <img src="{% static 'community/img/company-profile.jpg' %}" alt="" width="130" height="130" class="avatar">
+                            <input type="file" id="upload_avatar" name="avatar" onchange="readURL(this);" accept="image/*" class="form-control">
+                            <span class="trans-back"><span class="glyphicon glyphicon-camera camera"></span></span>
+                        </div>
+                        <div class="profile-title pull-left">
+                            <input type="text" name="name" class="form-control">
+                            <input type="text" name="tagline" class="form-control">
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" name="email" required>
+
+                    <div class="col-sm-8 description-section">
+                        <h3>Tags</h3>
+                        <input type="text" class="tags form-control" name="tags" value="">
+                        <h4 class="mb-30">
+                            <small>Available tags: {{ tags }}</small>
+                        </h4>
+                        <h3>Description</h3>
+                        <textarea id="description" name="description"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" name="password" required data-minlength="8" id="password">
-                        <div class="help-block"> Password must contain at least 8 characters.</div>
-                    </div>
-                    <div class="form-group mb-30">
-                        <label>Password confirmation</label>
-                        <input type="password" class="form-control" name="confirmPassword" required id="confirmPassword" data-match="#password" data-match-error="Enter the same password as before, for verification.">
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="col-xs-12 text-center room-actions">
-                        <button type="submit" class="btn btn-dark" style="display: inline; margin-right: 10px; width: auto;">Save</button>
-                        <a href="{% url 'users' %}" class="btn btn-transparent-dark" style="display: inline; padding: 8px 12px;">Cancel</a>
+
+                    <div class="col-sm-4 details-section">
+                        <div class="user-details mb-30 form-horizontal">
+                            <h3>Details</h3>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Email:</label>
+                                <div class="col-sm-9">
+                                    <input type="email" name="email" class="form-control col-sm-10">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Phone:</label>
+                                <div class="col-sm-9">
+                                    <input type="tel" name="phone" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Website:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="website" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Twitter:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="twitter" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Facebook:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="facebook" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">LinkedIn:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="linkedin" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Company:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="companytags form-control" name="companies" value="" >
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="edit-actions">
+                            <input type="submit" class="btn btn-transparent-dark edit-save" value="Save">
+                            <a href="{% url 'users' %}" class="btn btn-transparent-dark">Cancel</a>
+                        </div>
                     </div>
                 </form>
-
             </div>
 
-        </div><!-- /.container-fluid -->
+        </div><!-- /.container -->
 
-    </section><!-- /.events-list -->
+    </section><!-- /.event-details-content -->
 
 </div><!-- /#main -->
 {% endblock %}
