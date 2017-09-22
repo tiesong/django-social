@@ -143,10 +143,10 @@ def user_invitation(request):
 	subject = 'Invitation to join into York Butter Factory'
 	message = 'Hi, \n\n\n' +\
 	'This email is to help you join to York Butter Factory.\n\n'+\
-	'Temporary account\n'+\
+	'Temporary account information\n'+\
 	'Username: '+ username +\
-	'\nPasspord: '+ password +\
-	'\n\nPlease click the ' + settings.SITE_URL + ' with the temporary infomation to continue to join us.\n'+\
+	'\nPassword: '+ password +\
+	'\n\nPlease click the ' + settings.SITE_URL + ' with the temporary information to continue to join us.\n'+\
 	'To change the password, please go to '+ settings.SITE_URL +'/password_reset.\n'+\
 	'If clicking the links above does not work, please copy and paste the URL in a new browser window instead.\n\n\n'+\
 	'Sincerely,\n'+\
