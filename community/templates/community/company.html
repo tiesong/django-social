@@ -20,7 +20,7 @@
 
                 <nav id="primary-navigation" class="site-navigation">
 
-                    <a href="/news" class="site-logo visible-xs" rel="home">
+                    <a href="/news/" class="site-logo visible-xs" rel="home">
 
                         <img src="{% static 'community/img/logo.png' %}" alt=""
                              srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x">
@@ -122,9 +122,6 @@
                             <div class="event-details-buttons">
                                 <a href="{{ company.id }}/edit" class="btn btn-transparent-dark">Edit Company</a>
                                 <a href="{{ company.website }}" class="btn btn-transparent-dark">Visit Website</a>
-                                {#                                <a href="#" class="btn btn-transparent-dark">Employee Lists</a>#}
-                                {#                                <a href="#" class="btn btn-transparent-dark btn-half">Hosted Events</a>#}
-                                {#                                <a href="#" class="btn btn-transparent-dark btn-half">Job Posts</a>#}
                             </div>
 
                             <hr>
@@ -159,7 +156,7 @@
             <div class="row">
 
                 <div class="footer-col">
-                    <a href="#" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}"
+                    <a href="/news/" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}"
                                                                   alt=""></a>
                 </div><!-- /.footer-col -->
 

@@ -386,22 +386,6 @@
                 }
             });
 
-{#            $('.user-details .bootstrap-tagsinput').bind('DOMNodeInserted DOMNodeRemoved', function () {#}
-{#                var span_list = $('.user-details .bootstrap-tagsinput').children("span");#}
-{#                var span_len = span_list.length;#}
-{#                if (span_len !== prevSpanNum) {#}
-{#                    for (var i = 0; i < span_list.length - 1; i++) {#}
-{#                        console.log(span_list[i].textContent);#}
-{#                        if (DataSet.indexOf(span_list[i].textContent) !== -1) {#}
-{#                            DataSet.splice(DataSet.indexOf(span_list[i].textContent), 1);#}
-{#                        }#}
-{#                    }#}
-{#                    ResetTagsInput(DataSet);#}
-{#                    DataSet = Result;#}
-{#                    prevSpanNum = span_len;#}
-{##}
-{#                }#}
-{#            });#}
         }
 
     </script>

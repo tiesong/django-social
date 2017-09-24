@@ -14,8 +14,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.tag
-
-
+    
+    
 class Company(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
     admin = models.ManyToManyField(User, blank=True)
