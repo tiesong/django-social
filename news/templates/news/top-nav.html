@@ -14,7 +14,7 @@
 
         <nav id="primary-navigation" class="site-navigation">
 
-            <a href="index.html" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}"
+            <a href="/" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}"
                                                                               alt=""
                                                                               srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
@@ -23,7 +23,7 @@
                 <li><a href="/events">Events</a></li>
                 <!--<li><a href="#">Startups</a></li>-->
                 <!--<li><a href="jobs.html">Jobs</a></li>-->
-                <!--<li><a href="company-profile.html">Companies</a></li>-->
+                <li><a href="/c/companies">Companies</a></li>
                 <li><a href="/officespace">Officespace</a></li>
                 <li><a href="/perks">Perks</a></li>
                 {% for page in navbar_pages %}
