@@ -49,7 +49,6 @@
 
 .bookings-action a.list-link,
 .bookings-action a.create-link {
-    text-decoration: underline;
     color: #272534;
 }
 
