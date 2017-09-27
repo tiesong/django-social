@@ -33,7 +33,7 @@
                         var id = 'blobid' + (new Date()).getTime();
                         var blobCache = tinymce.activeEditor.editorUpload.blobCache;
                         var base64 = reader.result.split(',')[1];
-                        var blobInfo = blobCache.create(id, file, base64);
+                        var blobIno = blobCache.create(id, file, base64);
                         blobCache.add(blobInfo);
 
                         callback(blobInfo.blobUri(), {title: file.name});
