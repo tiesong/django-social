@@ -22,7 +22,6 @@ def index(request):
     news_list = Perks.objects.all().order_by('-pub_date')
     total_articles = news_list.count()
 
-
     per = Paginator(news_list, 5)
     # total_page = per.count()
     first_page = per.page(1)
@@ -218,6 +217,9 @@ def create(request):
 def edit(request, news_article_id):
 
     news_article = Perks.objects.get(id=news_article_id)
+    
+    if (request.user.id != news_article.owner.id) and not request.user.is_superuser:
+        return redirect('detail', news_article_id=news_article.id)
     related_news = Perks.objects.filter().order_by('-pub_date')[0:4]
 
     try:

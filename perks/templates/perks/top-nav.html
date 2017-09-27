@@ -19,11 +19,9 @@
                                                                               srcset="{% static 'perks/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
             <ul>
-                <li><a href="/news">News</a></li>
+                <li class="active"><a href="/news">News</a></li>
                 <li><a href="/events">Events</a></li>
-                <!--<li><a href="#">Startups</a></li>-->
-                <!--<li><a href="jobs.html">Jobs</a></li>-->
-                <!--<li><a href="company-profile.html">Companies</a></li>-->
+                <li><a href="/c/companies">Companies</a></li>
                 <li><a href="/officespace">Officespace</a></li>
                 <li class="active"><a href="/perks">Perks</a></li>
                 {% for page in navbar_pages %}
