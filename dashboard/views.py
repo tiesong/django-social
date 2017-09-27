@@ -114,7 +114,7 @@ def user_create(request):
 
 					profile.save()
 
-			Profile.objects.filter(pk=user.id).update(tagline=tagline, phone_number=phone, website=website, twitter=twitter, facebook=facebook, linkedin=linkedin, bio=description)
+			Profile.objects.filter(pk=user.id).update(temp_password=password, tagline=tagline, phone_number=phone, website=website, twitter=twitter, facebook=facebook, linkedin=linkedin, bio=description)
 
 			if request.FILES:
 				avatar = request.FILES['avatar']
@@ -136,10 +136,12 @@ def user_create(request):
 @user_passes_test(lambda u: u.is_superuser)
 def user_invitation(request):
 	to_email = request.GET['email']
+	to_email = str(to_email).replace(" ", "+")
 	user_id = request.GET['user_id']
 	username = request.GET['username']
+	username = str(username).replace(" ", "+")
 	from_email = settings.DEFAULT_FROM_EMAIL
-	password = User.objects.filter(pk=user_id).values_list('password', flat=True).first()
+	password = Profile.objects.filter(pk=user_id).values_list('temp_password', flat=True).first()
 	subject = 'Invitation to join into York Butter Factory'
 	message = 'Hi, \n\n\n' +\
 	'This email is to help you join to York Butter Factory.\n\n'+\

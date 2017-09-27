@@ -21,7 +21,7 @@ def index(request):
 
     news_list = Perks.objects.all().order_by('-pub_date')
     total_articles = news_list.count()
-    
+
 
     per = Paginator(news_list, 5)
     # total_page = per.count()
@@ -103,9 +103,9 @@ def category(request):
 @login_required
 def search(request):
     """
-    
-    :param request: 
-    :return: 
+
+    :param request:
+    :return:
     """
 
     keyword = request.GET.get('keyword', "")
@@ -219,7 +219,7 @@ def edit(request, news_article_id):
 
     news_article = Perks.objects.get(id=news_article_id)
     related_news = Perks.objects.filter().order_by('-pub_date')[0:4]
-    
+
     try:
         next_url = request.GET['next']
     except:
@@ -240,6 +240,8 @@ def edit(request, news_article_id):
         try:
             body = request.POST['body']
             title = request.POST['title']
+            if next_url:
+                pub_date = request.POST['pub_date']
 
             feature_rank = request.POST.get('feature_rank', None)
             selected_tag = request.POST.get('category', None)
@@ -264,10 +266,16 @@ def edit(request, news_article_id):
             news_article.category.add(tag)
             news_article.is_page = is_page
             news_article.display_in_navbar = display_in_navbar
+            if next_url:
+                news_article.pub_date = pub_date
 
             news_article.save()
 
-            return redirect('perks_detail', news_article_id=news_article.id)
+            if next_url:
+                return redirect('/dashboard/perks')
+            else:
+                return redirect('perks_detail', news_article_id=news_article.id)
+
         except Exception as e:
             print ('Error: {}'.format(e))
     return render(request, 'perks/news-edit.html', context)

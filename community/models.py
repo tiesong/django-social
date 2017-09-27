@@ -14,8 +14,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.tag
-    
-    
+
+
 class Company(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
     admin = models.ManyToManyField(User, blank=True)
@@ -70,6 +70,7 @@ class Profile(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
     advisor = models.BooleanField(default=False)
     invitation_status = models.BooleanField(default=False)
+    temp_password = models.CharField(max_length=8, blank=True, null=True)
     image = models.ImageField(upload_to='profile_images/%Y/%m/%d/', null=True, blank=True)
 
     phone_number = models.CharField(max_length=30, blank=True, null=True, default=None)

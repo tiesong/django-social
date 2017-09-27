@@ -12,7 +12,7 @@
         	<div class="bookings-option">
         		<div class="choose-room pull-left col-xs-12 col-sm-5 col-md-5 well">
         			<span>Choose by Room</span>
-        			<select class="form-control" id="search_room">
+        			<select class="form-control" id="search_room" disabled>
         				<option value=""></option>
                         {% for room in rooms %}
         				<option value="{{ room.id }}">{{ room.name }}</option>
@@ -26,7 +26,7 @@
                             <input type="hidden" value="search" name="type" />
         					<input type=text class="form-control" name="date_start" id="time_start" required placeholder="Start time" {% if start_date != '' and end_date != '' %}value="{{ start_date_value }}"{% endif %}>&nbsp&nbsp&nbspto&nbsp&nbsp
         					<input type="text" class="form-control" name="date_end" id="time_end" required placeholder="End time" {% if start_date != '' and end_date != '' %}value="{{ end_date_value }}"{% endif %}>
-                            <input type="submit" class="btn btn-transparent-dark" id="search_time" disabled value="Search">
+                            <input type="submit" class="btn btn-transparent-dark" id="search_time" value="Search">
             			</div>
                     </form>
         		</div>
@@ -39,10 +39,10 @@
             </div>
             {% endif %}
             <div class="booking">
-                <div class="choose-room">
+                <div class="choose-room" style="display: none;">
                     <div id='calendar'></div>
                 </div>
-                <div class="choose-time" style="display: none;">
+                <div class="choose-time">
                 	<div class="pull-left table-section">
             			<table id="bookings_table" class="table" cellspacing="0" width="100%">
             				<thead style="display: none;">
