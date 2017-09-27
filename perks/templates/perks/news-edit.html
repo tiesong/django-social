@@ -121,7 +121,7 @@
                                 <textarea id="body" name="body">{{ news_article.article }}</textarea>
                                 <br>
                             </p>
-                            {% if next %}
+                            {% if next and not create %}
                                 <h3>Date Published</h3>
                                 <p>
                                     <input type="text" id="pub_date" class="form-control" name="pub_date" required value="{{ news_article.pub_date|date:"Y-m-d H:i" }}">
