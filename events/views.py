@@ -295,13 +295,14 @@ def edit(request, event_id):
     :param event_id:
     :return:
     """
-
+    event_detail = Event.objects.get(id=event_id)
+    if (request.user.id != event_detail.author.id) and not request.user.is_superuser:
+        return redirect('detail', event_id=event_id)
     try:
         next_url = request.GET['next']
     except:
         next_url = False
 
-    event_detail = Event.objects.get(id=event_id)
     navbar_pages = News.objects.filter(display_in_navbar=True)
 
     context = {
