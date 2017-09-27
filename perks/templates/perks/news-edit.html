@@ -58,7 +58,7 @@
                     <p class="event-hero-date">{{ pub_date }}</p>
                     <h1 class="hero-title">{{ news_article.title }}</h1>
                     <p>Posted by <a href="">Nick Byrne</a></p>
-                    
+
                     {% endif %}
                         {% if next %}
                         <a class="btn btn-transparent-white"  href="{{ next }}"><< Back</a>
@@ -67,7 +67,7 @@
                         {% endif %}
 
 
-                    
+
                 </div>
             </div>
         </div>
@@ -88,8 +88,8 @@
                             <h3>Title</h3>
                             <p><input class="form-control" id="title" name="title" value="{{ news_article.title }}"></input></p>
                             <br>
-                            
-                            
+
+
                             <h3>Feature priority</h3>
                             <p>0 = not featured | 5 means feature priority</p>
                             <select title="feature_rank" class="form-control" id="feature_rank" name="feature_rank">
@@ -108,7 +108,7 @@
                             <h3>Category </h3>
                             <p>Please select a category for this article (current: {{news_article.category.first}})</p>
                             <select title="category" class="form-control" id="category" name="category">
-                                
+
                                 {% for category in categories %}
                                 <option value="{{category}}">{{ category }}</option>
                                 {% endfor %}
@@ -121,6 +121,13 @@
                                 <textarea id="body" name="body">{{ news_article.article }}</textarea>
                                 <br>
                             </p>
+                            {% if next %}
+                                <h3>Date Published</h3>
+                                <p>
+                                    <input type="text" id="pub_date" class="form-control" name="pub_date" required value="{{ news_article.pub_date|date:"Y-m-d H:i" }}">
+                                    <br>
+                                </p>
+                            {% endif %}
                         </div>
 
                         <div class="col-sm-4">

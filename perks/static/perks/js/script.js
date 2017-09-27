@@ -1,8 +1,8 @@
 $(function () {
 
-    /* Toggle responsive menu */ 
+    /* Toggle responsive menu */
     $('#toggle-menu').click(function() {
-        if(!$(this).hasClass('close')) {   
+        if(!$(this).hasClass('close')) {
             $('#toggle-menu').addClass('close');
             $('.site-navigation').addClass('show');
             $('body').css('overflow', 'hidden');
@@ -20,5 +20,12 @@ $(function () {
             }
         });
     }
+
+    $(document).ready(function () {
+        $("#pub_date").datetimepicker({
+            autoclose: true,
+            todayBtn: true,
+        });
+    })
 
 });
