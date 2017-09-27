@@ -40,7 +40,7 @@
 
                     <div class="col-sm-8">
                         <h3>Description
-                            {% if request.user.is_superuser or request.user.username == news_article.owner.username %}|
+                            {% if request.user.is_superuser or request.user.id == news_article.owner.id %}|
                                 <a href="edit">Edit</a>{% endif %}</h3>
                         <p>
                             {{ news_article.article|safe }}
@@ -58,8 +58,6 @@
                                 <a class="twitter" href="#" target="_blank">Twitter</a>
                                 <a class="facebook" href="#" target="_blank">Facebook</a>
                                 <a class="email" href="#" target="_blank">Email</a>
-                                {#                                <a class="reddit" href="#" target="_blank">Reddit</a>#}
-                                {#                                <a class="weibo" href="#" target="_blank">Weibo</a>#}
                                 <a class="linkedin" href="" target="_blank">LinkedIn</a>
                             </div>
 
@@ -127,6 +125,7 @@
                     <h4>Events</h4>
                     <ul>
                         <li><a href="#">Browse</a></li>
+                        000
                         <li><a href="#">Attending</a></li>
                         <li><a href="#">Manage</a></li>
                     </ul>
