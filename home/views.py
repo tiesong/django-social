@@ -9,9 +9,9 @@ from news.models import News, Category
 
 # Create your views here.
 def index(request):
-    
+
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/news')
+        return HttpResponseRedirect('/officespace')
     else:
         try:
             feature_list = News.objects.order_by('-pub_date').order_by('-feature_rank')[0]
@@ -33,7 +33,7 @@ def index(request):
                 if user is not None:
                     if user.is_active:
                         login(request, user)
-                        return HttpResponseRedirect('/news/')
+                        return HttpResponseRedirect('/officespace/')
                     else:
                         #user is not in the system
                         request.session['error_message'] = "It looks like you're account has been deactivated. Please contact site admin for assistance."
@@ -41,11 +41,11 @@ def index(request):
                 else:
                     request.session['error_message'] = "Sorry, the username and/or password combination could not be found. Please try again."
                     return HttpResponseRedirect('/error?login=fail')
-            
+
             except: #if logging in fails, let's try signing them up
                 request.session['error_message'] = "Sorry, the username and/or password combination could not be found. Please try again."
                 return HttpResponseRedirect('/error?login=fail')
-      
+
         context = {
             'feature_list': feature_list,
         }
@@ -66,7 +66,7 @@ def signup(request):
             else:
                 user = User.objects.create_user(username=signup_email, email=signup_email, first_name=signup_firstname, last_name=signup_lastname)
                 login(request, user)
-                return HttpResponseRedirect('/news/')
+                return HttpResponseRedirect('/officespace/')
 
         else:
             request.session['error_message'] = "Sorry. Something unexpected happened, please try again. (request)"
