@@ -125,7 +125,6 @@ def search(request):
 
         return render(request, 'events/event-content.html', context)
 
-    # event_list = Event.objects.filter(title__icontains=keyword).order_by('start_date')
     event_list = Event.objects.filter(Q(title__icontains=keyword) | Q(description__icontains=keyword))\
         .order_by('start_date').distinct()
 
