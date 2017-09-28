@@ -134,7 +134,7 @@ class BookingList(ListView):
             else:
                 queryset = Booking.objects.filter(owner=self.request.user, room__category=cat)
         else:
-            queryset = Booking.objects.filter(owner=self.request.user)
+            queryset = Booking.objects.filter(owner=self.request.user, start_book__gte=datetime.datetime.now()-datetime.timedelta(days=7))
         return queryset
 
     def get_context_data(self, **kwargs):
