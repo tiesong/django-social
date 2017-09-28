@@ -4,166 +4,10 @@
     {% load staticfiles %}
     {% load app_filter %}
     {% load notifications_tags %}
-    <style>
-        /* Define how each icon button should look like */
-        .notify_button {
-            font-size: 25px;
-            color: white;
-
-            display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
-            position: relative; /* All 'absolute'ly positioned elements are relative to this one */
-            float: right;
-            margin-right: 14px;
-
-        }
-
-        /* Make the badge float in the top right corner of the button */
-        .notify_button__badge {
-            background-color: #fa3e3e;
-            border-radius: 2px;
-            color: white;
-
-            padding: 1px 3px;
-            font-size: 10px;
-
-            position: absolute; /* Position the badge within the relatively positioned button */
-            top: 0;
-            right: 0;
-        }
-
-        /**
-     * AddToCalendar Blue Style
-     * http://addtocalendar.com
-     */
-
-        .atcb-link,
-        .atcb-link:hover,
-        .atcb-link:active,
-        .atcb-link:focus {
-            color: #272534;
-
-        }
-
-        .atcb-list {
-            width: 170px;
-            border: 1px solid rgb(186, 186, 186);
-            border-radius: 2px;
-            box-shadow: 0 0 5px #AAA;
-        }
-
-        .atcb-list,
-        .atcb-item {
-            background: #fff;
-            color: #000;
-        }
-
-        .atcb-item, .atcb-item-link {
-            line-height: 1.3em;
-            vertical-align: middle;
-            zoom: 1;
-        }
-
-        .atcb-item-link,
-        .atcb-item-link:hover,
-        .atcb-item-link:active,
-        .atcb-item-link:focus {
-            color: #000;
-            font-size: 14px;
-            text-decoration: none;
-            outline: none;
-            padding: 5px 15px;
-        }
-
-        .atcb-item-link:hover,
-        .atcb-item-link:active,
-        .atcb-item-link:focus {
-            color: #fff;
-        }
-
-        .atcb-item.hover,
-        .atcb-item:hover {
-            background: rgb(66, 129, 244);
-        }
-    </style>
+    <link href="{% static 'events/css/event-custom.css' %}" rel="stylesheet">
     <header id="masthead" class="site-header">
 
-        <div class="top-nav">
-
-            <div class="container container-960">
-
-                <a href="index.html" class="site-logo" rel="home"><img src="{% static 'events/img/logo.png' %}" alt=""
-                                                                       srcset="{% static 'events/img/logo.png' %} 1x, {% static 'events/img/logo@2x.png' %} 2x"></a>
-
-                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
-                    <span class="lines line-top"></span>
-                    <span class="lines line-middle"></span>
-                    <span class="lines line-bottom"></span>
-                </button><!-- /.lines-button -->
-
-                <nav id="primary-navigation" class="site-navigation">
-
-                    <a href="index.html" class="site-logo visible-xs" rel="home"><img
-                            src="{% static 'events/img/logo.png' %}" alt=""
-                            srcset="{% static 'events/img/logo.png' %} 1x, {% static 'events/img/logo@2x.png' %} 2x"></a>
-
-                    <ul>
-                        <li><a href="/news">News</a></li>
-                        <li><a href="/events" class="active">Events</a></li>
-                        <li><a href="/officespace">Officespace</a></li>
-                        <li><a href="/perks">Perks</a></li>
-                        <!--<li><a href="/c/companies">Companies</a></li>-->
-                        <!--<li><a href="/c/people">People</a></li>-->
-                        {% for page in navbar_pages %}
-                            <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-
-                </nav><!-- /.site-navigation -->
-
-                <div class="user-profile dropdown">
-
-                    <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        {% notifyUnread request.user.username as unread %}
-                        <div class="user-profile-thumb">
-
-                            {% if request.user.profile.image %}
-                                <img src="{{ request.user.profile.image.url }}" alt="">
-                            {% else %}
-                                <img src="{% static 'community/img/avatar.jpg' %}" alt="">
-                            {% endif %}
-
-                            {% if unread.unread_exist %}
-                                <span class="notify_button__badge"
-                                      style="right: 0px; top: 0px; font-size: 10px">{{ unread.count }} </span>
-                            {% endif %}
-
-                            <span
-                                    class="visible-xs caret"></span></div>
-                        <div class="user-profile-meta hidden-xs">
-                            <div class="user-profile-meta-inner">
-                                {{ request.user.username }}
-                            </div>
-                        </div>
-                    </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
-                        <li><a data-target="#list-notification-modal" type="button" data-toggle="modal">Notifications
-                            {% if unread.unread_exist %}
-                                <strong style="color: red;">
-                                    [ {{ unread.count }} ]
-                                </strong>
-                            {% endif %}
-                        </a></li>
-                        <li><a href="/c/people/{{ request.user.id }}">Profile</a></li>
-                        <!--<li><a href="#">Settings</a></li>-->
-                        <li class="logout-btn"><a href="/logout">Logout</a></li>
-                    </ul>
-
-                </div><!-- /.user-profile -->
-
-            </div><!-- /.container -->
-
-        </div><!-- /.top-nav -->
+        <{% include 'events/top-nav.html' %}
 
         <div class="hero event-details-hero">
 
@@ -195,7 +39,8 @@
                 <div class="row">
 
                     <div class="col-sm-8">
-                        <h3>Description | <a href="edit">Edit</a></h3>
+                        <h3>Description {% if request.user.is_superuser or request.user.id == event.author.id %}|
+                                <a href="edit">Edit</a>{% endif %}</h3>
 
                         <p>{{ event.description | safe }}</p>
 
@@ -413,21 +258,5 @@
 
 {% endblock %}
 {% block customscript %}
-    <script>
-
-        $("#reminderTime").datetimepicker({
-            format: 'yyyy-mm-dd hh:ii',
-            autoclose: true,
-            todayBtn: true
-        });
-
-        $(document).ready(function () {
-            var news_url = window.location.href;
-            $('.social-share .twitter').attr('href', 'https://twitter.com/home?status=' + news_url);
-            $('.social-share .facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + news_url);
-            $('.social-share .email').attr('href', 'mailto:?&body=' + news_url);
-            $('.social-share .linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + news_url);
-        })
-
-    </script>
+    <script src="{% static 'events/js/event-details..js' %}"></script>
 {% endblock %}

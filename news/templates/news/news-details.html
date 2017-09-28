@@ -6,7 +6,7 @@
 
     <header id="masthead" class="site-header">
 
-    {% include 'news/top-nav.html' %}
+        {% include 'news/top-nav.html' %}
 
         <div class="hero event-details-hero">
 
@@ -39,7 +39,9 @@
                 <div class="row">
 
                     <div class="col-sm-8">
-                        <h3>Description | <a href="edit">Edit</a></h3>
+                        <h3>Description
+                            {% if request.user.is_superuser or request.user.id == news_article.owner.id %}|
+                                <a href="edit">Edit</a>{% endif %}</h3>
                         <p>
                             {{ news_article.article|safe }}
                         </p>
@@ -56,8 +58,6 @@
                                 <a class="twitter" href="#" target="_blank">Twitter</a>
                                 <a class="facebook" href="#" target="_blank">Facebook</a>
                                 <a class="email" href="#" target="_blank">Email</a>
-{#                                <a class="reddit" href="#" target="_blank">Reddit</a>#}
-{#                                <a class="weibo" href="#" target="_blank">Weibo</a>#}
                                 <a class="linkedin" href="" target="_blank">LinkedIn</a>
                             </div>
 
@@ -125,6 +125,7 @@
                     <h4>Events</h4>
                     <ul>
                         <li><a href="#">Browse</a></li>
+                        000
                         <li><a href="#">Attending</a></li>
                         <li><a href="#">Manage</a></li>
                     </ul>
@@ -191,13 +192,13 @@
 
 {% block customscript %}
     <script>
-    $(document).ready(function () {
-        var news_url = window.location.href;
-        $('.social-share .twitter').attr('href', 'https://twitter.com/home?status=' + news_url);
-        $('.social-share .facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + news_url);
-        $('.social-share .email').attr('href', 'mailto:?&body=' + news_url);
-        $('.social-share .linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + news_url);
-    })
+        $(document).ready(function () {
+            var news_url = window.location.href;
+            $('.social-share .twitter').attr('href', 'https://twitter.com/home?status=' + news_url);
+            $('.social-share .facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + news_url);
+            $('.social-share .email').attr('href', 'mailto:?&body=' + news_url);
+            $('.social-share .linkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + news_url);
+        })
 
     </script>
 {% endblock %}

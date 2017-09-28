@@ -320,16 +320,15 @@
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
                     local: result
                     });
-                tags.initialize();
-                $('.companytags').tagsinput({
+               tags.initialize();
+               $('.companytags').tagsinput({
                     typeaheadjs: {
                         name: 'tags',
                         source: tags
                     },
                     freeInput: true
-                });
+               });
             }
-
 
         var profile_id = "{{ user.id }}";
         $.ajax({
@@ -352,9 +351,6 @@
                 return false;
             }
         });
-
-
-
 
         var everythingLoaded = setInterval(function () {
             if (/loaded|complete/.test(document.readyState)) {
