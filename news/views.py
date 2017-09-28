@@ -216,9 +216,10 @@ def edit(request, news_article_id):
     
     news_article = News.objects.get(id=news_article_id)
     if not request.user.is_superuser:
-        if news_article.owner:
-            if (request.user.id != news_article.owner.id):
-                return redirect('detail', news_article_id=news_article.id)
+        if not news_article.owner:
+            return redirect('detail', news_article_id=news_article.id)
+        elif (request.user.id != news_article.owner.id):
+            return redirect('detail', news_article_id=news_article.id)
     
     related_news = News.objects.filter().order_by('-pub_date')[0:4]
     try:

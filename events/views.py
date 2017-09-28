@@ -297,9 +297,10 @@ def edit(request, event_id):
     """
     event_detail = Event.objects.get(id=event_id)
     if not request.user.is_superuser:
-        if event_detail.author:
-            if (request.user.id != event_detail.author.id):
-                return redirect('detail', event_id=event_id)
+        if not event_detail.author:
+            return redirect('detail', event_id=event_id)
+        elif (request.user.id != event_detail.author.id):
+            return redirect('detail', event_id=event_id)
     try:
         next_url = request.GET['next']
     except:
