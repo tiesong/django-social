@@ -116,9 +116,9 @@ def search(request):
         }
         return render(request, 'news/news-content.html', context)
 
-    # news_list_title = News.objects.filter(title__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
-    # news_list_content = News.objects.filter(article__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
-    news_list = News.objects.filter(Q(title__icontains=keyword) | Q(article__icontains=keyword)).order_by('-pub_date').distinct()
+    news_list = News.objects.filter(Q(title__icontains=keyword) | Q(article__icontains=keyword)).order_by('-pub_date')\
+        .exclude(is_page=True).distinct()
+    print('news_list: {}'.format(news_list))
     per = Paginator(news_list, 5)
 
     try:
