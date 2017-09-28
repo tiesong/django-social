@@ -4,6 +4,7 @@ import json
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
+from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from .models import News, Category
@@ -115,11 +116,9 @@ def search(request):
         }
         return render(request, 'news/news-content.html', context)
 
-    news_list = News.objects.filter(title__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
-
-    if len(news_list) == 0:
-        news_list = News.objects.filter(article__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
-
+    # news_list_title = News.objects.filter(title__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
+    # news_list_content = News.objects.filter(article__icontains=keyword).order_by('-pub_date').exclude(is_page=True)
+    news_list = News.objects.filter(Q(title__icontains=keyword) | Q(article__icontains=keyword)).order_by('-pub_date').distinct()
     per = Paginator(news_list, 5)
 
     try:
@@ -216,8 +215,10 @@ def create(request):
 def edit(request, news_article_id):
     
     news_article = News.objects.get(id=news_article_id)
-    if (request.user.id != news_article.owner.id) and not request.user.is_superuser:
-        return redirect('detail', news_article_id=news_article.id)
+    if not request.user.is_superuser:
+        if news_article.owner:
+            if (request.user.id != news_article.owner.id):
+                return redirect('detail', news_article_id=news_article.id)
     
     related_news = News.objects.filter().order_by('-pub_date')[0:4]
     try:
