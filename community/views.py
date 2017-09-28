@@ -33,6 +33,7 @@ def people_list(request):
         'profile_list': first_page,
         'navbar_pages': navbar_pages,
         'tag_list': tag_list,
+        'company_page': False
     }
     return render(request, 'community/people_list.html', context)
 
@@ -155,6 +156,7 @@ def profile(request, profile_id):
         'cats': cats,
         'companies': company_list,
         'navbar_pages': navbar_pages,
+        'company_page': False
     }
     return render(request, 'community/profile.html', context)
 
@@ -249,11 +251,13 @@ def edit_profile(request, profile_id):
         'user': user,
         'navbar_pages': navbar_pages,
         'tags': tags,
-        'company_name': company_name
+        'company_name': company_name,
+        'company_page': False
     }
     return render(request, 'community/profile-edit.html', context)
 
 
+@login_required
 def companies(request):
     navbar_pages = News.objects.filter(display_in_navbar=True)
     company_list = Company.objects.all().order_by('-partner')
@@ -266,18 +270,29 @@ def companies(request):
         'company_list': first_page,
         'navbar_pages': navbar_pages,
         'industry_list': industry_list,
+        'company_page': True
     }
     return render(request, 'community/company_list.html', context)
 
 
+@login_required
 def company(request, company_id):
+    owner = False
     navbar_pages = News.objects.filter(display_in_navbar=True)
     company_detail = Company.objects.get(pk=company_id)
     categories = company_detail.categories.all()
+    
+    if request.user.is_superuser:
+        owner = True
+    elif request.user.id in list(map(lambda list: list.id, company_detail.admin.all())):
+        owner = True
+        
     context = {
         'navbar_pages': navbar_pages,
         'company': company_detail,
-        'categories': categories
+        'categories': categories,
+        'owner': owner,
+        'company_page': True
     }
     return render(request, 'community/company.html', context)
 
@@ -373,11 +388,11 @@ def edit_company(request, company_id):
     
     company_detail = Company.objects.get(pk=company_id)
     
-    admins = company_detail.admin.first()
+    admins = company_detail.admin.all()
     
     if not request.user.is_superuser:
         if admins:
-            if request.user.id != int(admins.id):
+            if request.user.id not in list(map(lambda list: list.id, company_detail.admin.all())):
                 return redirect(reverse('companies'))
         else:
             return redirect(reverse('companies'))
@@ -422,7 +437,8 @@ def edit_company(request, company_id):
     context = {
         'navbar_pages': navbar_pages,
         'company': company_detail,
-        'tags': categories
+        'tags': categories,
+        'company_page': True
     }
     
     return render(request, 'community/company-edit.html', context)
