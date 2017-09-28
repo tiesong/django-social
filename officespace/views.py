@@ -130,9 +130,9 @@ class BookingList(ListView):
                 cat = 'all'
 
             if cat == 'all':
-                queryset = Booking.objects.filter(owner=self.request.user)
+                queryset = Booking.objects.filter(owner=self.request.user, start_book__gte=datetime.datetime.now()-datetime.timedelta(days=7))
             else:
-                queryset = Booking.objects.filter(owner=self.request.user, room__category=cat)
+                queryset = Booking.objects.filter(owner=self.request.user, room__category=cat, start_book__gte=datetime.datetime.now()-datetime.timedelta(days=7))
         else:
             queryset = Booking.objects.filter(owner=self.request.user, start_book__gte=datetime.datetime.now()-datetime.timedelta(days=7))
         return queryset
