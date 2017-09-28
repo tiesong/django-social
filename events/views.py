@@ -1,6 +1,7 @@
 # Create your views here.
 import json
 
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
@@ -124,7 +125,9 @@ def search(request):
 
         return render(request, 'events/event-content.html', context)
 
-    event_list = Event.objects.filter(title__icontains=keyword).order_by('start_date')
+    # event_list = Event.objects.filter(title__icontains=keyword).order_by('start_date')
+    event_list = Event.objects.filter(Q(title__icontains=keyword) | Q(description__icontains=keyword)).order_by(
+        'start_date').distinct()
 
     if len(event_list):
         base_date = event_list[0].start_date + timedelta(week * 7)
