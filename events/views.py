@@ -1,6 +1,7 @@
 # Create your views here.
 import json
 
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
@@ -124,7 +125,8 @@ def search(request):
 
         return render(request, 'events/event-content.html', context)
 
-    event_list = Event.objects.filter(title__icontains=keyword).order_by('start_date')
+    event_list = Event.objects.filter(Q(title__icontains=keyword) | Q(description__icontains=keyword))\
+        .order_by('start_date').distinct()
 
     if len(event_list):
         base_date = event_list[0].start_date + timedelta(week * 7)
@@ -296,8 +298,11 @@ def edit(request, event_id):
     :return:
     """
     event_detail = Event.objects.get(id=event_id)
-    if (request.user.id != event_detail.author.id) and not request.user.is_superuser:
-        return redirect('detail', event_id=event_id)
+    if not request.user.is_superuser:
+        if not event_detail.author:
+            return redirect('detail', event_id=event_id)
+        elif (request.user.id != event_detail.author.id):
+            return redirect('detail', event_id=event_id)
     try:
         next_url = request.GET['next']
     except:

@@ -4,43 +4,7 @@
 
     <header id="masthead" class="site-header company-profile-header">
 
-        <div class="top-nav">
-
-            <div class="container container-960">
-
-                <a href="/" class="site-logo" rel="home"><img src="{% static 'community/img/logo.png' %}" alt=""
-                                                              srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
-
-                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
-                    <span class="lines line-top"></span>
-                    <span class="lines line-middle"></span>
-                    <span class="lines line-bottom"></span>
-                </button><!-- /.lines-button -->
-
-                <nav id="primary-navigation" class="site-navigation">
-
-                    <a href="index.html" class="site-logo visible-xs" rel="home"><img
-                            src="{% static 'community/img/logo.png' %}" alt=""
-                            srcset="{% static 'community/img/logo.png' %} 1x, {% static 'community/img/logo@2x.png' %} 2x"></a>
-
-                    <ul class="dropdown">
-                        <li><a href="/news">News</a></li>
-                        <li><a href="/events">Events</a></li>
-                        <!-- <li><a href="/c/companies">Companies</a></li> -->
-                        <li class="active"><a href="/c/people">People</a></li>
-                        <li><a href="/officespace">Officespace</a></li>
-                        {% for page in navbar_pages %}
-                            <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-
-                </nav><!-- /.site-navigation -->
-
-                {% include 'community/profile-menu.html' %}
-
-            </div><!-- /.container -->
-
-        </div><!-- /.top-nav -->
+        {% include 'community/top-nav.html' %}
 
         <div class="hero">
 

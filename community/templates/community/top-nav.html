@@ -3,8 +3,8 @@
 
     <div class="container container-960">
 
-        <a href="/" class="site-logo" rel="home"><img src="{% static 'perks/assets/img/logo.png' %}" alt=""
-                                                               srcset="{% static 'perks/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+        <a href="/" class="site-logo" rel="home"><img src="{% static 'news/assets/img/logo.png' %}" alt=""
+                                                               srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
         <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
             <span class="lines line-top"></span>
@@ -14,17 +14,16 @@
 
         <nav id="primary-navigation" class="site-navigation">
 
-            <a href="/" class="site-logo visible-xs" rel="home"><img src="{% static 'perks/img/logo.png' %}"
+            <a href="/" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}"
                                                                               alt=""
-                                                                              srcset="{% static 'perks/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+                                                                              srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
             <ul>
                 <li><a href="/news">News</a></li>
                 <li><a href="/events">Events</a></li>
-                <li><a href="/c/companies">Companies</a></li>
-                <li><a href="/c/people">People</a></li>
+                <li {% if company_page %}class="active"{% endif %}><a href="/c/companies">Companies</a></li>
+                <li {% if not company_page %}class="active"{% endif %}><a href="/c/people">People</a></li>
                 <li><a href="/officespace">Officespace</a></li>
-                <li class="active"><a href="/perks">Perks</a></li>
                 {% for page in navbar_pages %}
                     <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
                 {% endfor %}
@@ -51,7 +50,6 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
                 <li><a href="/c/people/{{ request.user.id }}">Profile</a></li>
-                <!--<li><a href="#">Settings</a></li>-->
                 <li class="logout-btn"><a href="/logout">Logout</a></li>
             </ul>
         </div><!-- /.user-profile -->
