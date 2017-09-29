@@ -363,8 +363,8 @@ $(document).ready(function () {
 
     // Booking Option Change
     $('.bookings-option .choose-time').click(function() {
-        $('.bookings-option .choose-room').css({'opacity': '0.3', 'cursor': 'pointer'});
-        $('.bookings-option .choose-time').css({'opacity': '1', 'cursor': 'default'});
+        $('.bookings-option .choose-room').css({'opacity': '0.3'});
+        $('.bookings-option .choose-time').css({'opacity': '1'});
         $('.bookings-option .choose-time .form-group input#search_time').attr('disabled', false);
         $('.bookings-option .choose-room select').attr('disabled', true);
         $('.bookings-option .choose-room select').val('');
@@ -375,8 +375,8 @@ $(document).ready(function () {
 
     var calendar = {};
     $('.bookings-option .choose-room').click(function() {
-        $('.bookings-option .choose-time').css({'opacity': '0.3', 'cursor': 'pointer'});
-        $('.bookings-option .choose-room').css({'opacity': '1', 'cursor': 'default'});
+        $('.bookings-option .choose-time').css({'opacity': '0.3'});
+        $('.bookings-option .choose-room').css({'opacity': '1'});
         $('.bookings-option .choose-time .form-group input#search_time').attr('disabled', true);
         $('.bookings-option .choose-room select').attr('disabled', false);
         $('.bookings-option .choose-time .form-group input#time_start').val('');

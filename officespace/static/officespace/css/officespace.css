@@ -178,6 +178,13 @@
 
 .bookings-option .choose-room {
     opacity: 0.3;
+}
+.bookings-option .choose-room:hover {
+    opacity: 1 !important;
+    cursor:pointer;
+}
+.bookings-option .choose-time:hover {
+    opacity: 1 !important;
     cursor:pointer;
 }
 
