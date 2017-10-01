@@ -266,6 +266,13 @@
             }
         }
 
+        $("#startdatetime").on('change', function (e) {
+            $('#enddatetime').data("datetimepicker").startDate = new Date(e.target.value);
+
+        });
+        $("#enddatetime").on('change', function (e) {
+            $('#startdatetime').data("datetimepicker").endDate = new Date(e.target.value);
+        });
 
     </script>
 {% endblock %}
