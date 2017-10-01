@@ -39,18 +39,25 @@ $(document).ready(function () {
 
     $("#startdatetime").datetimepicker({
         format: 'yyyy-mm-dd hh:ii',
-        autoclose: true,
-        todayBtn: true
+        todayBtn: true,
+        autoclose: true
     });
 
     $("#enddatetime").datetimepicker({
         format: 'yyyy-mm-dd hh:ii',
-        autoclose: true,
-        todayBtn: true
+        todayBtn: true,
+        autoclose: true
     });
 
+    $("#startdatetime").on('change', function (e) {
+        $('#enddatetime').data("datetimepicker").startDate = new Date(e.target.value);
 
+    });
+    $("#enddatetime").on('change', function (e) {
+        $('#startdatetime').data("datetimepicker").endDate = new Date(e.target.value);
+    });
 });
+
 function check_loading() {
     var everythingLoaded = setInterval(function () {
         if (document.readyState === 'complete') {
@@ -72,7 +79,6 @@ function loading() {
     $('.loader').show();
     $("#article_list").hide();
 }
-
 
 
 function newEvent() {
