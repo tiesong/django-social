@@ -173,7 +173,7 @@ def detail(request, event_id):
     :return:
     """
     notify_id = request.GET.get('notify', None)
-
+    days = False
     try:
         next_url = request.GET['next']
     except:
@@ -183,13 +183,14 @@ def detail(request, event_id):
 
         event_id = request.POST.get("event_id", "")
         event = Event.objects.filter(id=event_id).get()
-
+        days = get_timedelta(event.pub_date, event.start_date)
         navbar_pages = News.objects.filter(display_in_navbar=True)
 
         context = {
             'event': event,
             'navbar_pages': navbar_pages,
             'next': next_url,
+            'days': days
         }
 
         return render(request, 'events/event-details.html', context)
@@ -200,14 +201,24 @@ def detail(request, event_id):
 
     navbar_pages = News.objects.filter(display_in_navbar=True)
     event = Event.objects.get(id=event_id)
+    days = get_timedelta(event.pub_date, event.start_date)
+    
     context = {
         'event': event,
         'navbar_pages': navbar_pages,
         'next': next_url,
+        'days': days
     }
     return render(request, 'events/event-details.html', context)
 
 
+def get_timedelta(pub_date, start_date):
+    if pub_date - start_date < timedelta(days=1):
+        return True
+    else:
+        return False
+    
+    
 @login_required
 def addNotify(request, event_id):
 

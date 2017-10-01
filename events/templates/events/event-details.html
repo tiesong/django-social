@@ -14,8 +14,13 @@
             <div class="container">
 
                 <div class="hero-text">
+                    {% if not days %}
                     <p class="event-start-date">From: {{ event.start_date }}</p>
                     <p class="event-end-date">To: {{ event.pub_date }}</p>
+                    {% else %}
+                    <p class="event-start-date">From: {{ event.start_date }}</p>
+                    <p class="event-end-date">To: {{ event.pub_date | date:'h:m a'}}</p>
+                    {% endif %}
                     <h1 class="event.title">{{ event.title }}</h1>
                     <p>posted by <a href="">{{ event.author }}</a></p>
                     {% if next %}

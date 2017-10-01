@@ -266,5 +266,57 @@
             }
         }
 
+        $(document).ready(function () {
+            check_loading();
+            week_num = 1;
+            method = 'index';
+
+            $('#search').click(function () {
+
+                if ($("#search-form").is(':visible')) {
+                    $("#search-form").fadeOut();
+                } else {
+                    $("#search-form").fadeIn();
+                }
+            });
+
+            $('#search_top').click(function () {
+
+                if ($("#search-form").is(':visible')) {
+                    $("#search-form").fadeOut();
+                } else {
+                    $("#search-form").fadeIn();
+                }
+            });
+
+            $(document.body).click(function (e) {
+                //Hide the search bar if visible
+                if (e.target.id !== "searchBar" && e.target.id !== "search" && e.target.id !== "search_top") {
+                    document.getElementById("searchBar").value = "";
+                    $("#search-form").hide();
+                }
+            });
+
+            $("#startdatetime").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',
+                todayBtn: true,
+                autoclose: true,
+            });
+
+            $("#enddatetime").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',
+                todayBtn: true,
+                autoclose: true,
+                useCurrent: false
+            });
+
+            $("#startdatetime").on('dp.change', function (e) {
+                console.log(e.date);
+            });
+            $("#enddatetime").on('dp.change', function (e) {
+                console.log(e.date);
+            });
+        });
+
     </script>
 {% endblock %}
