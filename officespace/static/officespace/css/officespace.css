@@ -214,9 +214,15 @@
     width: 70px;
 }
 
-#deleteModal .modal-footer .btn {
+#deleteModal .modal-footer .btn,
+#titleModal .modal-footer .btn {
     width: 100px;
     display: inline-block;
+}
+
+#bookingTitle {
+    width: 100%;
+    margin: 15px auto;
 }
 
 /* Calendar for Booking */

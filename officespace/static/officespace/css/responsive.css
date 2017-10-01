@@ -252,10 +252,6 @@
 	.footer-col {
 		width: 50%;
 	}
-	/* Modal */
-	#deleteModal .modal-dialog {
-		margin: 80px auto;
-	}
 
 	/* Bookings List */
 	.bookings-list .bookings,
@@ -294,7 +290,9 @@
 		width: 90%;
 		margin: 0 auto;
 	}
-	#createModal .modal-dialog {
+	#createModal .modal-dialog,
+	#titleModal .modal-dialog,
+	#deleteModal .modal-dialog {
 		width: 90% !important;
 		margin-top: 100px;
 	}
