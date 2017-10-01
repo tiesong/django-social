@@ -405,22 +405,18 @@ $(document).ready(function () {
                 } else {
                     calendar.fullCalendar('option', 'selectable', true);
                 }
-                var title = prompt('Booking Title:');
-                if (title)
-                {
-                    calendar.fullCalendar('renderEvent',
-                        {
-                            title: title,
-                            start: start,
-                            end: end,
-                            allDay: false,
-                            editable: true,
-                            color: '#4cc5f7',
-                            className: 'new-booking showing'
-                        },
-                        false
-                    );
-                }
+                calendar.fullCalendar('renderEvent',
+                    {
+                        id: '12345',
+                        start: start,
+                        end: end,
+                        allDay: false,
+                        editable: true,
+                        color: '#4cc5f7',
+                        className: 'new-booking showing'
+                    },
+                    false
+                );
                 calendar.fullCalendar('unselect');
             },
             editable: false,
@@ -432,11 +428,46 @@ $(document).ready(function () {
                 if (element.hasClass('new-booking')) {
                     var start_date = moment(event.start._d).tz("UTC").format();
                     var end_date = moment(event.end._d).tz("UTC").format();
-                    title = event.title;
-                    new_button = '<button type="button" class="pull-right btn btn-transparent-dark book-room">Book Room</button>';
-                    $('.booking-create .bookings-action .book-room').remove();
-                    $(new_button).insertBefore('.booking-create .bookings-action .clearfix');
-                    $('.booking-create .bookings-action button.book-room').click(function() {
+
+                    if ($("#titleModal").length > 0)
+                        return;
+
+                    var modalHtml = '<div class="modal fade" id="titleModal" tabindex="-1" role="dialog" aria-hidden="true"> \
+                        <div class="modal-dialog"> \
+                            <div class="modal-content"> \
+                                <div class="modal-header"> \
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> \
+                                    <h3 class="modal-title">Booking Title</h3> \
+                                </div> \
+                                <div class="modal-body"> \
+                                    <input type="text" id="bookingTitle"> \
+                                </div> \
+                                <div class="modal-footer"> \
+                                    <button type="button" id="booking_create" class="btn btn-dark text-center">Book</button> \
+                                    <button type="button" class="btn btn-transparent-dark" data-dismiss="modal">Cancel</button> \
+                                </div> \
+                            </div> \
+                        </div> \
+                    </div>';
+
+                    $(modalHtml).insertAfter("#createModal");
+
+                    $('#titleModal').modal('show');
+
+                    $('#titleModal').on('hidden.bs.modal', function() {
+                        if (!$(this).data('created'))
+                            calendar.fullCalendar( 'removeEvents', '12345' );
+                        $("#titleModal").remove();
+                    });
+
+                    $('#booking_create').click(function() {
+                        var title = $('#bookingTitle').val()
+                        if (title == '') {
+                            alert('Please enter the Title.');
+                            return;
+                        }
+                        $('#titleModal').data('created', true);
+                        $('#titleModal').modal('hide');
                         var room_id = $('.bookings-option #search_room').val();
                         if (start_date != '' && end_date != '') {
                             $.ajax({
@@ -491,6 +522,7 @@ $(document).ready(function () {
                                 },
                                 error: function(e) {
                                     console.log(e);
+                                    $('#titleModal').modal('hide');
                                 }
                             });
                         }
@@ -512,7 +544,6 @@ $(document).ready(function () {
                             // end_book: end_book
                         },
                         success: function(result) {
-                            $('.booking-create .bookings-action .book-room').remove();
                             $.each(result, function(index, value) {
                                 if (value[0] == 'true') {
                                     events.push({
@@ -538,7 +569,6 @@ $(document).ready(function () {
                         }
                     });
                 } else {
-                    $('.booking-create .bookings-action .book-room').remove();
                     callback(events);
                 }
             }
@@ -547,26 +577,5 @@ $(document).ready(function () {
     $('.bookings-action .start-over').click(function() {
         window.location.href = "/officespace/create";
     });
-
-    // var path = window.location.href;
-    // if (path.indexOf("type=search") >= 0) {
-    //     $('.bookings-option .choose-room').css({'opacity': '0.3', 'cursor': 'pointer'});
-    //     $('.bookings-option .choose-time').css({'opacity': '1', 'cursor': 'default'});
-    //     $('.bookings-option .choose-time .form-group input#search_time').attr('disabled', false);
-    //     $('.bookings-option .choose-room select').attr('disabled', true);
-    //     $('.bookings-option .choose-room select').val('');
-    //     $('.booking .choose-time').show();
-    //     $('.booking .choose-room').hide();
-    // }
-    //
-    // if (path.indexOf("room_type") >= 0) {
-    //     $('.bookings-option .choose-room').css({'opacity': '0.3', 'cursor': 'pointer'});
-    //     $('.bookings-option .choose-time').css({'opacity': '1', 'cursor': 'default'});
-    //     $('.bookings-option .choose-time .form-group input#search_time').attr('disabled', false);
-    //     $('.bookings-option .choose-room select').attr('disabled', true);
-    //     $('.bookings-option .choose-room select').val('');
-    //     $('.booking .choose-time').show();
-    //     $('.booking .choose-room').hide();
-    // }
 
 });
