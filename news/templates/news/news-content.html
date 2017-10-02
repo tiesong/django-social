@@ -6,7 +6,6 @@
         <div id="article_{{ news_article.id }}" class="news-single-item">
             <div class="news-single-thumb">
 
-{#                <img src="{{ news_article.article | safe | previewImage }}" alt="">#}
                 <img src="{{ news_article.portal_image }}" alt="">
 
             </div>
@@ -17,7 +16,7 @@
                 <p class="news-description">
                     {{ news_article.article | snippet }}</p>
 
-                <a href="{{ news_article.id }}" class="read-more">Keep reading &rarr;</a>
+                <a href="{{ news_article.id }}-{{ news_article.title| slugify }}" class="read-more">Keep reading &rarr;</a>
             </div>
         </div><!-- /.news-single-item -->
     {% endfor %}

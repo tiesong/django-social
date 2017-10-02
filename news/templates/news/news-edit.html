@@ -151,7 +151,7 @@
                                        href="{{ next }}">Cancel</a>
                                     {% else %}
                                     <a class="btn btn-transparent-dark" type="button"
-                                       href="/news/{{news_article.id}}">Cancel</a>
+                                       href="/news/{{news_article.id}}-{{ news_article.title|slugify }}">Cancel</a>
                                     {% endif %}
                                 </div>
                             </div>

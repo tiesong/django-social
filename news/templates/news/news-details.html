@@ -84,7 +84,7 @@
                                 <div class="event-item">
                                     <p class="event-date">{{ related_news.pub_date|date:"M d, Y" }}</p>
                                     <h2 class="event-name"><a
-                                            href="/news/{{ related_news.id }}">{{ related_news.title|slice:":60" }}</a>
+                                            href="/news/{{ related_news.id }}-{{ related_news.title|slugify }}">{{ related_news.title|slice:":60" }}</a>
                                     </h2>
                                     <a href="/c/people/{{ related_news.owner.id }}" class="event-attending">posted
                                         by {{ related_news.owner.first_name }}</a>
