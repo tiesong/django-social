@@ -287,7 +287,8 @@ def edit(request, news_article_url):
 
 
 @login_required
-def delete(request, news_article_id):
+def delete(request, news_article_url):
+    news_article_id = news_article_url.split('-')[0]
     news_article = News.objects.get(id=news_article_id)
     news_article.delete()
     
