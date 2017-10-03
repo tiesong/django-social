@@ -22,9 +22,9 @@
 
         <div class="hero-text">
             <p class="news-category">NEWS // {{ feature_list.0.category.all|first }}</p>
-            <h1 class="hero-title">{{ feature_list.0.title }}</h1>
-            <p>by <a href="#" class="no-underline">{{ feature_list.0.owner.username }}</a></p>
-            <a href="{{ feature_list.0.id }}" class="read-more">Keep reading &rarr;</a>
+            <a href="{{ feature_list.0.id }}-{{ feature_list.0.title| slugify }}" style="color: white"><h1 class="hero-title">{{ feature_list.0.title }}</h1></a>
+            <p>by <a href="/c/people/{{ feature_list.0.owner.id }}">{{ feature_list.0.owner.username }}</a></p>
+            <a href="{{ feature_list.0.id }}-{{ feature_list.0.title| slugify }}" class="read-more">Keep reading &rarr;</a>
         </div>
 
     </div>
@@ -46,10 +46,10 @@
                         <div class="col-sm-6">
 
                             <p class="news-category">NEWS // {{ feature_list.1.category.all|first }}</p>
-                            <h2 class="news-title">{{ feature_list.1.title }}</h2>
-                            <p class="posted-by">by <a href="#">{{ feature_list.1.owner.username }}</a></p>
+                            <a href="{{ feature_list.1.id }}-{{ feature_list.1.title| slugify }}" style="color: white"><h2 class="news-title">{{ feature_list.1.title }}</h2></a>
+                            <p class="posted-by">by <a href="/c/people/{{ feature_list.1.owner.id }}">{{ feature_list.1.owner.username }}</a></p>
                             <p class="news-description">{{ feature_list.1.article|safe|shortsnippet }}</p>
-                            <a href="{{ feature_list.1.id }}" class="read-more">Keep reading &rarr;</a>
+                            <a href="{{ feature_list.1.id }}-{{ feature_list.1.title| slugify }}" class="read-more">Keep reading &rarr;</a>
 
                         </div>
                     {% endif %}
@@ -57,10 +57,10 @@
                         <div class="col-sm-6">
 
                             <p class="news-category">NEWS // {{ feature_list.2.category.all|first }}</p>
-                            <h2 class="news-title">{{ feature_list.2.title }}</h2>
-                            <p class="posted-by">by <a href="#">{{ feature_list.2.owner.username }}</a></p>
+                            <a href="{{ feature_list.2.id }}-{{ feature_list.2.title| slugify }}" style="color: white"><h2 class="news-title">{{ feature_list.2.title }}</h2></a>
+                            <p class="posted-by">by <a href="/c/people/{{ feature_list.2.owner.id }}">{{ feature_list.2.owner.username }}</a></p>
                             <p class="news-description">{{ feature_list.2.article|safe|shortsnippet }}</p>
-                            <a href="{{ feature_list.2.id }}" class="read-more">Keep reading &rarr;</a>
+                            <a href="{{ feature_list.2.id }}-{{ feature_list.2.title| slugify }}" class="read-more">Keep reading &rarr;</a>
 
                         </div>
                     {% endif %}
