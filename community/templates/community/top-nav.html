@@ -24,6 +24,7 @@
                 <li {% if company_page %}class="active"{% endif %}><a href="/c/companies">Companies</a></li>
                 <li {% if not company_page %}class="active"{% endif %}><a href="/c/people">People</a></li>
                 <li><a href="/officespace">Officespace</a></li>
+                <li><a href="/perks">Perks</a></li>
                 {% for page in navbar_pages %}
                     <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
                 {% endfor %}
