@@ -211,13 +211,14 @@ def edit(request, news_article_url):
     if not request.user.is_superuser:
         if not news_article.owner:
             return redirect('detail', news_article_url=news_article_url)
-        elif (request.user.id != news_article.owner.id):
+        elif request.user.id != news_article.owner.id:
             return redirect('detail', news_article_url=news_article_url)
     
     related_news = News.objects.filter().order_by('-pub_date')[0:4]
     try:
         next_url = request.GET['next']
-    except:
+    except Exception as e:
+        print('Error: {}'.format(e))
         next_url = False
     
     categories = Category.objects.all()
