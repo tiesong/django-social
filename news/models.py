@@ -3,9 +3,7 @@ from __future__ import unicode_literals
 
 from bs4 import BeautifulSoup
 from tinymce.models import HTMLField
-
 from django.contrib.auth.models import User
-
 from django.db import models
 
 
