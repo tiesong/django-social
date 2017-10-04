@@ -104,7 +104,6 @@ def search(request):
     :param request:
     :return:
     """
-    
     keyword = request.GET.get('keyword', "")
     page_number = request.GET.get('pg_num', 0)
     keyword = str(keyword).replace("-", " ")
