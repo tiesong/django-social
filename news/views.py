@@ -1,17 +1,10 @@
 # Create your views here.
-import json
-
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.template import loader
 from django.db.models import Q
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from .models import News, Category
-from bs4 import BeautifulSoup
 import datetime
-
-from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -21,7 +14,6 @@ def index(request):
     total_articles = news_list.count()
     
     per = Paginator(news_list, 5)
-    # total_page = per.count()
     first_page = per.page(1)
     navbar_pages = News.objects.filter(display_in_navbar=True)
     
@@ -114,8 +106,8 @@ def search(request):
         }
         return render(request, 'news/news-content.html', context)
     
-    news_list = News.objects.filter(Q(title__icontains=keyword) | Q(article__icontains=keyword)).order_by('-pub_date') \
-        .exclude(is_page=True).distinct()
+    news_list = News.objects.filter(Q(title__icontains=keyword) | Q(article__icontains=keyword)) \
+        .order_by('-pub_date').exclude(is_page=True).distinct()
     print('news_list: {}'.format(news_list))
     per = Paginator(news_list, 5)
     
@@ -290,7 +282,5 @@ def delete(request, news_article_url):
     news_article_id = news_article_url.split('-')[0]
     news_article = News.objects.get(id=news_article_id)
     news_article.delete()
-    
-    context = {}
     
     return redirect('/dashboard')
