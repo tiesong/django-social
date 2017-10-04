@@ -1,168 +1,262 @@
 {% extends 'dashboard/base.html' %}
 {% block content %}
-{% load staticfiles %}
+    {% load staticfiles %}
 
-<script>
-    tinymce.init({
-        selector: '#description',
-        plugins: 'image',
-        extended_valid_elements: 'img[class|src|border=0|alt|title|width|height]',
-        image_description: false,
-        image_dimensions: false,
-        file_picker_types: 'image',
-        content_css: "{% static 'community/css/community.css' %}",
-        file_picker_callback: function (callback, value, meta) {
-            var input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
+    <script>
+        tinymce.init({
+            selector: '#description',
+            plugins: 'image',
+            extended_valid_elements: 'img[class|src|border=0|alt|title|width|height]',
+            image_description: false,
+            image_dimensions: false,
+            file_picker_types: 'image',
+            content_css: "{% static 'community/css/community.css' %}",
+            file_picker_callback: function (callback, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
 
-            input.onchange = function () {
-                var file = this.files[0];
-                var reader = new FileReader();
-                reader.readAsDataURL(file);
+                input.onchange = function () {
+                    var file = this.files[0];
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
 
-                reader.onload = function () {
-                    var id = 'blobid' + (new Date()).getTime();
-                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                    var base64 = reader.result.split(',')[1];
-                    var blobInfo = blobCache.create(id, file, base64);
-                    blobCache.add(blobInfo);
+                    reader.onload = function () {
+                        var id = 'blobid' + (new Date()).getTime();
+                        var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        var base64 = reader.result.split(',')[1];
+                        var blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
 
-                    callback(blobInfo.blobUri(), {title: file.name});
+                        callback(blobInfo.blobUri(), {title: file.name});
+                    };
                 };
-            };
-            input.click();
-        },
-        height: 500
-    });
+                input.click();
+            },
+            height: 500
+        });
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('.avatar')
-                    .attr('src', e.target.result)
-                    .width(130)
-                    .height(130);
-            };
-            reader.readAsDataURL(input.files[0]);
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.avatar')
+                        .attr('src', e.target.result)
+                        .width(130)
+                        .height(130);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
         }
-    }
 
-    var everythingLoaded = setInterval(function () {
-        if (/loaded|complete/.test(document.readyState)) {
-            clearInterval(everythingLoaded);
-            init(); // this is the function that gets called when everything is loaded
+        var everythingLoaded = setInterval(function () {
+            if (/loaded|complete/.test(document.readyState)) {
+                clearInterval(everythingLoaded);
+                init(); // this is the function that gets called when everything is loaded
+            }
+        }, 10);
+
+        function init() {
+
+            $('.bootstrap-tagsinput')[1].style.height = '116px';
         }
-    }, 10);
 
-    function init() {
+    </script>
+    <div id="main" class="site-main admin-page">
 
-        $('.bootstrap-tagsinput')[1].style.height = '116px';
-    }
+        <section class="profile-content">
 
-</script>
-<div id="main" class="site-main admin-page">
+            <div class="container container-960">
 
-    <section class="profile-content">
+                <div class="row">
 
-        <div class="container container-960">
+                    <form method="post" id="profile_edit_form" enctype="multipart/form-data">
+                        {% csrf_token %}
 
-            <div class="row">
-
-                <form method="post" id="profile_edit_form" enctype="multipart/form-data">
-                    {% csrf_token %}
-
-                    <h2 class="admin-page-title ">Add New User</h2>
-                    {% if exist_status %}
-                        <div class="alert alert-danger alert-dismissable fade in">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            A user already exists on the site with that email.
-                        </div>
-                    {% endif %}
-                    <div class="header-section">
-                        <div class="profile-thumb pull-left">
-                            <img src="{% static 'community/img/company-profile.jpg' %}" alt="" width="130" height="130" class="avatar">
-                            <input type="file" id="upload_avatar" name="avatar" onchange="readURL(this);" accept="image/*" class="form-control">
-                            <span class="trans-back"><span class="glyphicon glyphicon-camera camera"></span></span>
-                        </div>
-                        <div class="profile-title pull-left">
-                            <input type="text" name="name" class="form-control" placeholder="Full Name" value="{{first_name}}{% if last_name %} {{last_name}}{% endif %}">
-                            <input type="text" name="tagline" class="form-control" placeholder="Tagline" value="{{tagline}}">
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-
-                    <div class="col-sm-8 description-section">
-                        <h3>Tags</h3>
-                        <input type="text" class="tags form-control" name="tags" value="">
-                        <h4 class="mb-30">
-                            <small>Available tags: {{ all_tags }}</small>
-                        </h4>
-                        <h3>Description</h3>
-                        <textarea id="description" name="description">{{description}}</textarea>
-                    </div>
-
-                    <div class="col-sm-4 details-section">
-                        <div class="user-details mb-30 form-horizontal">
-                            <h3>Details</h3>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Email:</label>
-                                <div class="col-sm-9">
-                                    <input type="email" name="email" class="form-control col-sm-10" required value="{{email}}">
-                                </div>
+                        <h2 class="admin-page-title ">Add New User</h2>
+                        {% if exist_status %}
+                            <div class="alert alert-danger alert-dismissable fade in">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                A user already exists on the site with that email.
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Phone:</label>
-                                <div class="col-sm-9">
-                                    <input type="tel" name="phone" class="form-control" value="{{phone}}">
-                                </div>
+                        {% endif %}
+                        <div class="header-section">
+                            <div class="profile-thumb pull-left">
+                                <img src="{% static 'community/img/company-profile.jpg' %}" alt="" width="130"
+                                     height="130" class="avatar">
+                                <input type="file" id="upload_avatar" name="avatar" onchange="readURL(this);"
+                                       accept="image/*" class="form-control">
+                                <span class="trans-back"><span class="glyphicon glyphicon-camera camera"></span></span>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Website:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="website" class="form-control" value="{{website}}">
-                                </div>
+                            <div class="profile-title pull-left">
+                                <input type="text" name="name" class="form-control" placeholder="Full Name"
+                                       value="{{ first_name }}{% if last_name %} {{ last_name }}{% endif %}">
+                                <input type="text" name="tagline" class="form-control" placeholder="Tagline"
+                                       value="{{ tagline }}">
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Twitter:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="twitter" class="form-control" value="{{twitter}}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Facebook:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="facebook" class="form-control" value="{{facebook}}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">LinkedIn:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="linkedin" class="form-control" value="{{linkedin}}">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Company:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="companytags form-control" name="companies" value="" >
-                                </div>
-                            </div>
-
+                            <div class="clearfix"></div>
                         </div>
 
-                        <div class="edit-actions">
-                            <input type="submit" class="btn btn-transparent-dark edit-save" value="Save">
-                            <a href="{% url 'users' %}" class="btn btn-transparent-dark">Cancel</a>
+                        <div class="col-sm-8 description-section">
+                            <h3>Tags</h3>
+                            <input type="text" class="tags form-control" name="tags" value="">
+                            <h4 class="mb-30">
+                                <small>Available tags: {{ all_tags }}</small>
+                            </h4>
+                            <h3>Description</h3>
+                            <textarea id="description" name="description">{{ description }}</textarea>
                         </div>
-                    </div>
-                </form>
-            </div>
 
-        </div><!-- /.container -->
+                        <div class="col-sm-4 details-section">
+                            <div class="user-details mb-30 form-horizontal">
+                                <h3>Details</h3>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Email:</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" name="email" class="form-control col-sm-10" required
+                                               value="{{ email }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Phone:</label>
+                                    <div class="col-sm-9">
+                                        <input type="tel" name="phone" class="form-control" value="{{ phone }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Website:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="website" class="form-control" value="{{ website }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Twitter:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="twitter" class="form-control" value="{{ twitter }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Facebook:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="facebook" class="form-control" value="{{ facebook }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">LinkedIn:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="linkedin" class="form-control" value="{{ linkedin }}">
+                                    </div>
+                                </div>
 
-    </section><!-- /.event-details-content -->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Company:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="companytags form-control" name="companies" value="">
+                                    </div>
+                                </div>
 
-</div><!-- /#main -->
+                            </div>
+
+                            <div class="edit-actions">
+                                <input type="submit" class="btn btn-transparent-dark edit-save" value="Save">
+                                <a href="{% url 'users' %}" class="btn btn-transparent-dark">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div><!-- /.container -->
+
+        </section><!-- /.event-details-content -->
+
+    </div><!-- /#main -->
+{% endblock %}
+{% block customscript %}
+    <script>
+        var DataSet;
+        var Result;
+        var prevSpanNum = 0;
+        $.ajax({
+            url: '/c/list_companies/',
+            dataType: 'json',
+            success: function (result) {
+                Result = DataSet = result;
+
+                ResetTagsInput(result);
+            }
+        });
+
+        function ResetTagsInput(result) {
+            var tags = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                local: result
+            });
+            tags.initialize();
+            $('.companytags').tagsinput({
+                typeaheadjs: {
+                    name: 'tags',
+                    source: tags
+                },
+                freeInput: true
+            });
+        }
+
+        var profile_id = "{{ user.id }}";
+        console.log('profile_id', profile_id);
+        $.ajax({
+            url: '/c/tags/',
+            data: {profile_company: profile_id},
+            dataType: 'json',
+            success: function (result) {
+                $.each(result, function (key, value) {
+
+                    $('.companytags').tagsinput('add', value.tag_name);
+                });
+            }
+        });
+
+        /* Form Submission Prevent for Enterkey */
+        $('#profile_edit_form').on('keyup keypress', function (e) {
+            var keyCode = e.keyCode || e.which;
+            if (keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        var everythingLoaded = setInterval(function () {
+            if (/loaded|complete/.test(document.readyState)) {
+                console.log('loaded')
+                clearInterval(everythingLoaded);
+                init(); // this is the function that gets called when everything is loaded
+            }
+        }, 10);
+
+        function init() {
+
+            $('.bootstrap-tagsinput')[1].style.height = '116px';
+
+            $('.user-details .tt-input').on('input', function () {
+
+                console.log('changed');
+                if ($('.user-details .tt-input').val() !== "") {
+                    $('.user-details .tt-menu').css('display', "block");
+                    if (($('.user-details .tt-menu .tt-dataset').children()).length === 0) {
+                        $('.user-details .tt-menu .tt-dataset').append('<div class="tt-suggestion tt-selectable">' + 'Add New Company' + '</div>');
+
+
+                        $('.user-details .tt-suggestion.tt-selectable').on('click', function () {
+
+                            var freeinput = $('.user-details .tt-input').val();
+                            $('.companytags').tagsinput('add', freeinput);
+                        })
+
+                    }
+                }
+            });
+
+        }
+
+    </script>
 {% endblock %}
