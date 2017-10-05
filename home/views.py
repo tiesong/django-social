@@ -9,7 +9,6 @@ from news.models import News, Category
 
 # Create your views here.
 def index(request):
-
     if request.user.is_authenticated():
         return HttpResponseRedirect('/officespace')
     else:
@@ -17,41 +16,44 @@ def index(request):
             feature_list = News.objects.order_by('-pub_date').order_by('-feature_rank')[0]
         except:
             feature_list = False
-
+        
         email = password = ''
-
-
+        
         if request.POST:
-            #collect all potential field inputs
+            # collect all potential field inputs
             logout(request)
             email = request.POST['login-email']
             password = request.POST['login-password']
             print(email, password)
-            try: #we try logging a user in first
+            try:  # we try logging a user in first
                 username = User.objects.get(email=email.lower()).username
                 user = authenticate(username=username, password=password)
-
+                
                 if user is not None:
                     if user.is_active:
                         login(request, user)
                         return HttpResponseRedirect('/officespace/')
                     else:
-                        #user is not in the system
-                        request.session['error_message'] = "It looks like you're account has been deactivated. Please contact site admin for assistance."
+                        # user is not in the system
+                        request.session[
+                            'error_message'] = "It looks like you're account has been deactivated. Please contact site admin for assistance."
                         return HttpResponseRedirect('/error?login=fail')
                 else:
-                    request.session['error_message'] = "Sorry, the username and/or password combination could not be found. Please try again."
+                    request.session[
+                        'error_message'] = "Sorry, the username and/or password combination could not be found. Please try again."
                     return HttpResponseRedirect('/error?login=fail')
-
-            except: #if logging in fails, let's try signing them up
-                request.session['error_message'] = "Sorry, the username and/or password combination could not be found. Please try again."
+            
+            except:  # if logging in fails, let's try signing them up
+                request.session[
+                    'error_message'] = "Sorry, the username and/or password combination could not be found. Please try again."
                 return HttpResponseRedirect('/error?login=fail')
-
+        
         context = {
             'feature_list': feature_list,
         }
-
+        
         return render(request, 'home/index.html', context)
+
 
 def signup(request):
     try:
@@ -62,7 +64,8 @@ def signup(request):
             signup_password = request.POST['signup-password']
             username = signup_firstname.lower() + signup_lastname.lower()
             if len(User.objects.filter(email=signup_email)) > 0:
-                request.session['error_message'] = "A user already exists on the site with that email. Perhaps try logging in?"
+                request.session[
+                    'error_message'] = "A user already exists on the site with that email. Perhaps try logging in?"
                 return HttpResponseRedirect('/error?signup=fail')
             else:
                 user = User.objects.create_user(username=username, email=signup_email, first_name=signup_firstname,
@@ -71,13 +74,14 @@ def signup(request):
                 user.save()
                 login(request, user)
                 return HttpResponseRedirect('/officespace/')
-
+        
         else:
             request.session['error_message'] = "Sorry. Something unexpected happened, please try again. (request)"
             return HttpResponseRedirect('/error?signup=fail')
-    except: #if logging in fails, let's try signing them up
+    except:  # if logging in fails, let's try signing them up
         request.session['error_message'] = "Sorry. Something unexpected happened, please try again. (exception)"
         return HttpResponseRedirect('/error?signup=fail')
+
 
 def error(request):
     return render(request, 'home/error.html')
