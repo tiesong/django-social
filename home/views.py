@@ -59,12 +59,13 @@ def signup(request):
             signup_lastname = request.POST['signup-lastname']
             signup_email = request.POST['signup-email']
             signup_password = request.POST['signup-password']
-
+            username = signup_firstname.lower() + signup_lastname.lower()
             if len(User.objects.filter(email=signup_email)) > 0:
                 request.session['error_message'] = "A user already exists on the site with that email. Perhaps try logging in?"
                 return HttpResponseRedirect('/error?signup=fail')
             else:
-                user = User.objects.create_user(username=signup_email, email=signup_email, first_name=signup_firstname, last_name=signup_lastname)
+                user = User.objects.create_user(username=username, email=signup_email, first_name=signup_firstname,
+                                                last_name=signup_lastname, password=signup_password)
                 user.is_active = False
                 user.save()
                 login(request, user)
