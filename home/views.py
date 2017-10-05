@@ -65,6 +65,8 @@ def signup(request):
                 return HttpResponseRedirect('/error?signup=fail')
             else:
                 user = User.objects.create_user(username=signup_email, email=signup_email, first_name=signup_firstname, last_name=signup_lastname)
+                user.is_active = False
+                user.save()
                 login(request, user)
                 return HttpResponseRedirect('/officespace/')
 

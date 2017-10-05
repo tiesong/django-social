@@ -1,5 +1,5 @@
 # Create your views here.
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -139,6 +139,32 @@ def user_create(request):
             raise e
     
     return render(request, 'dashboard/users_create_dashboard.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def user_active(request, pk):
+    """
+    Set user signed up as active
+    :param request:
+    :return:
+    """
+    user = User.objects.filter(pk=pk).get()
+    user.is_active = True
+    user.save()
+    return JsonResponse({'result': 'active'})
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def user_inactive(request, pk):
+    """
+    Set user signed up as inactive
+    :param request:
+    :return:
+    """
+    user = User.objects.filter(pk=pk).get()
+    user.is_active = False
+    user.save()
+    return JsonResponse({'result': 'inactive'})
 
 
 @user_passes_test(lambda u: u.is_superuser)

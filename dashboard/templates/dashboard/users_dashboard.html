@@ -1,85 +1,184 @@
 {% extends 'dashboard/base.html' %}
 {% block content %}
-{% load staticfiles %}
-<div id="main" class="site-main admin-page">
+    {% load staticfiles %}
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
 
-    <section class="events-list">
+        .switch input {
+            display: none;
+        }
 
-        <div class="container container-960">
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-        	<h1 class="admin-page-title">Users</h1>
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-            <div class="events-filter mb-20">
-				<ul class="list-unstyled">
-					<li class="ml-0"><a href="{% url 'user_create' %}">+ Add new user</a></li>
-				</ul>
-			</div>
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
 
-			<div class="clearfix"></div>
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
 
-			<div class="table-responsive">
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
 
-				<table class="admin-table table">
-					<thead>
-						<tr>
-							<th>Username</th>
-							<th>Email</th>
-							<th class="text-left">Firstname</th>
-							<th class="text-left">Lastname</th>
-							<th class="text-left">Last active</th>
-						</tr>
-					</thead>
-					<tbody>
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
 
-					{% for profile in user_list %}
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+    <div id="main" class="site-main admin-page">
 
-						<tr data-value="{{ profile.user.id }}">
-							<td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img"><a href="/c/people/{{profile.user.id}}">{{profile.user.username}}</a></td>
-							<td class="user-email">{{ profile.user.email }}</td>
-							<td class="text-left">{{ profile.user.first_name }}</td>
-							<td class="text-left">{{ profile.user.last_name }}</td>
-                            {% if profile.invitation_status and not profile.user.last_login %}
-                                <td class="text-left">Sent invitation email</td>
-                            {% elif not profile.invitation_status %}
-                                <td class="text-left"><a href="{% url 'user_invitation' %}?username={{profile.user.username}}&email={{profile.user.email}}&user_id={{profile.user.id}}" class="invitationEmail">Invite to join</a></td>
-                            {% else %}
-							    <td class="text-left">{{ profile.user.last_login }}</td>
-                            {% endif %}
-						</tr>
+        <section class="events-list">
 
-					{% endfor %}
+            <div class="container container-960">
 
-					</tbody>
-				</table>
+                <h1 class="admin-page-title">Users</h1>
 
-			</div><!-- /.table-responsive -->
+                <div class="events-filter mb-20">
+                    <ul class="list-unstyled">
+                        <li class="ml-0"><a href="{% url 'user_create' %}">+ Add new user</a></li>
+                    </ul>
+                </div>
 
-			<nav aria-label="News list navigation">
-                <ul class="pagination text-center">
-                    <li class="pull-left text-pagination">
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&larr; Prev Page</span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li class="pull-right text-pagination">
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">Next Page &rarr;</span>
-                        </a>
-                    </li>
-                </ul>
-                <p class="total-items">201 total items</p>
-            </nav>
+                <div class="clearfix"></div>
+
+                <div class="table-responsive">
+
+                    <table class="admin-table table">
+                        <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th class="text-left">Firstname</th>
+                            <th class="text-left">Lastname</th>
+                            <th class="text-left">Active</th>
+                            <th class="text-left">Last active</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for profile in user_list %}
+
+                            <tr data-value="{{ profile.user.id }}">
+                                <td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img"><a
+                                        href="/c/people/{{ profile.user.id }}">{{ profile.user.username }}</a></td>
+                                <td class="user-email">{{ profile.user.email }}</td>
+                                <td class="text-left">{{ profile.user.first_name }}</td>
+                                <td class="text-left">{{ profile.user.last_name }}</td>
+                                <td class="text-left">
+                                    <label class="switch">
+                                        {% if profile.user.is_active %}
+                                            <input onchange="setActive({{ profile.user.id }}, this)" type="checkbox"
+                                                   checked>
+                                        {% else %}
+                                            <input type="checkbox" onchange="setActive({{ profile.user.id }}, this)">
+                                        {% endif %}
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                                {% if profile.invitation_status and not profile.user.last_login %}
+                                    <td class="text-left">Sent invitation email</td>
+                                {% elif not profile.invitation_status %}
+                                    <td class="text-left"><a
+                                            href="{% url 'user_invitation' %}?username={{ profile.user.username }}&email={{ profile.user.email }}&user_id={{ profile.user.id }}"
+                                            class="invitationEmail">Invite to join</a></td>
+                                {% else %}
+                                    <td class="text-left">{{ profile.user.last_login }}</td>
+                                {% endif %}
+                            </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div><!-- /.table-responsive -->
+
+                <nav aria-label="News list navigation">
+                    <ul class="pagination text-center">
+                        <li class="pull-left text-pagination">
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&larr; Prev Page</span>
+                            </a>
+                        </li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">6</a></li>
+                        <li class="pull-right text-pagination">
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">Next Page &rarr;</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="total-items">201 total items</p>
+                </nav>
 
 
-        </div><!-- /.container-fluid -->
+            </div><!-- /.container-fluid -->
 
-    </section><!-- /.events-list -->
+        </section><!-- /.events-list -->
 
-</div><!-- /#main -->
+    </div><!-- /#main -->
+{% endblock %}
+{% block customscript %}
+    <script>
+        function setActive(userId, obj) {
+
+            if (obj.checked) {
+                $.ajax({
+                    url: '/dashboard/users/' + userId + '/active',
+                    dataType: 'json',
+                    success: function (result) {
+                        console.log(result)
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    url: '/dashboard/users/' + userId + '/inactive',
+                    dataType: 'json',
+                    success: function (result) {
+                        console.log(result)
+                    }
+                });
+            }
+        }
+    </script>
 {% endblock %}
