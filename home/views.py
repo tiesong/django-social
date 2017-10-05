@@ -26,10 +26,11 @@ def index(request):
             logout(request)
             email = request.POST['login-email']
             password = request.POST['login-password']
-
+            print(email, password)
             try: #we try logging a user in first
                 username = User.objects.get(email=email.lower()).username
                 user = authenticate(username=username, password=password)
+
                 if user is not None:
                     if user.is_active:
                         login(request, user)
