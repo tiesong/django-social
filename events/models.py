@@ -17,7 +17,7 @@ class Event(models.Model):
     start_date = models.DateTimeField('start date', null=True)
 
     description = HTMLField(blank=True)
-
+    featured_image = models.ImageField(upload_to='events_images/%Y/%m/%d/', null=True, blank=True)
     pub_date = models.DateTimeField('date published', null=True)
 
     featured = models.BooleanField(default=False)

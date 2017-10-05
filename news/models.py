@@ -23,6 +23,7 @@ class News(models.Model):
     article = HTMLField(blank=True)
     pub_date = models.DateTimeField('date published')
     featured = models.BooleanField(default=False)
+    featured_image = models.ImageField(upload_to='news_images/%Y/%m/%d/', null=True, blank=True)
     public = models.BooleanField(default=False)
     is_page = models.BooleanField(default=False, blank=True)
     display_in_navbar = models.BooleanField(default=False, blank=True)
