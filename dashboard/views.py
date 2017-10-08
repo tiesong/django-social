@@ -168,6 +168,32 @@ def user_inactive(request, pk):
 
 
 @user_passes_test(lambda u: u.is_superuser)
+def news_active(request, pk):
+    """
+    Set user signed up as active
+    :param request:
+    :return:
+    """
+    article = News.objects.filter(pk=pk).get()
+    article.public = True
+    article.save()
+    return JsonResponse({'result': 'active'})
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def news_inactive(request, pk):
+    """
+    Set user signed up as inactive
+    :param request:
+    :return:
+    """
+    article = News.objects.filter(pk=pk).get()
+    article.public = False
+    article.save()
+    return JsonResponse({'result': 'active'})
+
+
+@user_passes_test(lambda u: u.is_superuser)
 def user_invitation(request):
     to_email = request.GET['email']
     to_email = str(to_email).replace(" ", "+")

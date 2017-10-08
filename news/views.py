@@ -1,10 +1,34 @@
 # Create your views here.
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from functools import wraps
+
+from django.urls import reverse
+from django.utils.decorators import available_attrs
+
 from .models import News, Category
 import datetime
+
+
+def check_public(view_func):
+    def _decorator(request, *args, **kwargs):
+        news_article_url = kwargs['news_article_url']
+
+        if not news_article_url:
+            return redirect('/')
+
+        news_article_id = news_article_url.split('-')[0]
+        news_article = News.objects.get(id=news_article_id)
+        if news_article.public or request.user.is_authenticated():
+            response = view_func(request, *args, **kwargs)
+            return response
+        else:
+            return HttpResponseRedirect('/')
+
+    return wraps(view_func)(_decorator)
 
 
 # Create your views here.
@@ -126,8 +150,12 @@ def search(request):
     return render(request, 'news/news-content.html', context)
 
 
-@login_required
+@check_public
 def detail(request, news_article_url):
+    if request.user.is_authenticated():
+        logged = True
+    else:
+        logged = False
     news_article_id = news_article_url.split('-')[0]
     news_article = News.objects.get(id=news_article_id)
     related_news = News.objects.filter().exclude(is_page=True).order_by('-pub_date')[0:4]
@@ -143,6 +171,7 @@ def detail(request, news_article_url):
         'navbar_pages': navbar_pages,
         'news_article': news_article,
         'related_news': related_news,
+        'logged': logged,
         'next': next_url,
     }
     
