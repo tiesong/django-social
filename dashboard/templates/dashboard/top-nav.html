@@ -1,0 +1,68 @@
+{% load staticfiles %}
+<div class="top-nav">
+
+    <div class="container container-960">
+
+        <a href="/" class="site-logo" rel="home"><img src="{% static 'dashboard/img/logo.png' %}" alt=""
+                                                      srcset="{% static 'dashboard/img/logo.png' %}" 1x,
+            "{% static 'dashboard/assets/img/logo@2x.png' %}" 2x"></a>
+
+        <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
+            <span class="lines line-top"></span>
+            <span class="lines line-middle"></span>
+            <span class="lines line-bottom"></span>
+        </button><!-- /.lines-button -->
+
+        <nav id="primary-navigation" class="site-navigation">
+
+            <a href="/" class="site-logo visible-xs" rel="home"><img src="assets/img/logo.png" alt=""
+                                                                              srcset="assets/img/logo.png 1x, assets/img/logo@2x.png 2x"></a>
+
+            <ul>
+                {% if 'rooms' in request.path %}
+                    <li><a href="/dashboard">Content</a></li>
+                    <li class="active"><a href="{% url 'rooms' %}">Officespace</a></li>
+                    <li><a href="{% url 'users' %}">Users</a></li>
+                {% elif 'users' in request.path %}
+                    <li><a href="/dashboard">Content</a></li>
+                    <li><a href="{% url 'rooms' %}">Officespace</a></li>
+                    <li class="active"><a href="{% url 'users' %}">Users</a></li>
+                {% else %}
+                    <li class="active"><a href="/dashboard">Content</a></li>
+                    <li><a href="{% url 'rooms' %}">Officespace</a></li>
+                    <li><a href="{% url 'users' %}">Users</a></li>
+                {% endif %}
+
+                <!--<li><a href="#">Settings</a></li>
+                <li><a href="#">Announcements</a></li>-->
+            </ul>
+
+        </nav><!-- /.site-navigation -->
+
+        <div class="user-profile dropdown">
+
+            <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
+                <div class="user-profile-thumb">
+                     {% if request.user.profile.image %}
+                        <img src="{{ request.user.profile.image.url }}" alt="">
+                    {% else %}
+                        <img src="{% static 'community/img/avatar.jpg' %}" alt="">
+                    {% endif %}
+                    <span class="visible-xs caret"></span></div>
+                <div class="user-profile-meta hidden-xs">
+                    <div class="user-profile-meta-inner">
+                        Admin <br> {{ request.user.username }}
+                    </div>
+                </div>
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
+                <li><a href="/c/people/{{ request.user.id }}">Profile</a></li>
+                <li class="logout-btn"><a href="/logout">Logout</a></li>
+            </ul>
+
+        </div><!-- /.user-profile -->
+
+    </div><!-- /.container -->
+
+</div><!-- /.top-nav -->

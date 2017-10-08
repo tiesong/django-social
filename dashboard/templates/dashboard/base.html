@@ -47,66 +47,8 @@
 <body>
 
     <header id="masthead" class="site-header event-list-header">
+    {% include 'dashboard/top-nav.html' %}
 
-        <div class="top-nav">
-
-            <div class="container container-960">
-
-                <a href="/" class="site-logo" rel="home"><img src="{% static 'dashboard/img/logo.png' %}" alt="" srcset="{% static 'dashboard/img/logo.png' %}" 1x, "{% static 'dashboard/assets/img/logo@2x.png' %}" 2x"></a>
-
-                <button class="lines-button x toggle-menu" type="button" id="toggle-menu">
-                    <span class="lines line-top"></span>
-                    <span class="lines line-middle"></span>
-                    <span class="lines line-bottom"></span>
-                </button><!-- /.lines-button -->
-
-                <nav id="primary-navigation" class="site-navigation">
-
-                    <a href="index.html" class="site-logo visible-xs" rel="home"><img src="assets/img/logo.png" alt="" srcset="assets/img/logo.png 1x, assets/img/logo@2x.png 2x"></a>
-
-                    <ul>
-                        {% if 'rooms' in request.path %}
-                            <li><a href="/dashboard">Content</a></li>
-                            <li class="active"><a href="{% url 'rooms' %}">Officespace</a></li>
-                            <li><a href="{% url 'users' %}">Users</a></li>
-                        {% elif 'users' in request.path %}
-                            <li><a href="/dashboard">Content</a></li>
-                            <li><a href="{% url 'rooms' %}">Officespace</a></li>
-                            <li class="active"><a href="{% url 'users' %}">Users</a></li>
-                        {% else %}
-                            <li class="active"><a href="/dashboard">Content</a></li>
-                            <li><a href="{% url 'rooms' %}">Officespace</a></li>
-                            <li><a href="{% url 'users' %}">Users</a></li>
-                        {% endif %}
-
-                        <!--<li><a href="#">Settings</a></li>
-                        <li><a href="#">Announcements</a></li>-->
-                    </ul>
-
-                </nav><!-- /.site-navigation -->
-
-                <div class="user-profile dropdown">
-
-                    <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                        <div class="user-profile-thumb"><img src="{% static 'dashboard/img/avatar.jpg' %}" alt=""> <span class="visible-xs caret"></span></div>
-                        <div class="user-profile-meta hidden-xs">
-                        	<div class="user-profile-meta-inner">
-                        		Admin <br> Nick Byrne
-                        	</div>
-                        </div>
-                    </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
-                        <li><a href="#" data-toggle="modal" data-target="#edit-profile-modal">Profile</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li class="logout-btn"><a href="#">Logout</a></li>
-                    </ul>
-
-                </div><!-- /.user-profile -->
-
-            </div><!-- /.container -->
-
-        </div><!-- /.top-nav -->
 
     </header><!-- /#header -->
 
