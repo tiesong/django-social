@@ -18,7 +18,7 @@ def check_public(view_func):
         news_article_url = kwargs['news_article_url']
 
         if not news_article_url:
-            return redirect('/')
+            return HttpResponseRedirect('/')
 
         news_article_id = news_article_url.split('-')[0]
         news_article = News.objects.get(id=news_article_id)
@@ -153,9 +153,9 @@ def search(request):
 @check_public
 def detail(request, news_article_url):
     if request.user.is_authenticated():
-        logged = True
-    else:
         logged = False
+    else:
+        logged = True
     news_article_id = news_article_url.split('-')[0]
     news_article = News.objects.get(id=news_article_id)
     related_news = News.objects.filter().exclude(is_page=True).order_by('-pub_date')[0:4]
