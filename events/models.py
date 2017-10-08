@@ -15,11 +15,10 @@ class Event(models.Model):
     title = models.CharField(max_length=150)
     # image = models.ImageField(upload_to='event_images/%Y/%m/%d/', null=True, blank=True)
     start_date = models.DateTimeField('start date', null=True)
-
+    public = models.BooleanField(default=False)
     description = HTMLField(blank=True)
     featured_image = models.ImageField(upload_to='events_images/%Y/%m/%d/', null=True, blank=True)
     pub_date = models.DateTimeField('date published', null=True)
-
     featured = models.BooleanField(default=False)
     event_url = models.CharField(max_length=150, null=True)
 

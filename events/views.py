@@ -1,5 +1,8 @@
 # Create your views here.
+from functools import wraps
+
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
@@ -11,6 +14,22 @@ from news.models import News
 from django.contrib.auth.models import User
 from notifications.signals import notify
 
+
+def check_public(view_func):
+    def _decorator(request, *args, **kwargs):
+        event_id = kwargs['event_id']
+
+        if not event_id:
+            return HttpResponseRedirect('/')
+
+        event_article = Event.objects.get(id=event_id)
+        if event_article.public or request.user.is_authenticated():
+            response = view_func(request, *args, **kwargs)
+            return response
+        else:
+            return HttpResponseRedirect('/')
+
+    return wraps(view_func)(_decorator)
 
 # Create your views here.
 
@@ -154,7 +173,7 @@ def update(request):
     return render(request, 'events/event-content.html', context)
 
 
-@login_required
+@check_public
 def detail(request, event_id):
     """
     Event Detail.
@@ -162,6 +181,11 @@ def detail(request, event_id):
     :param event_id:
     :return:
     """
+    if request.user.is_authenticated():
+        logged = False
+    else:
+        logged = True
+
     notify_id = request.GET.get('notify', None)
     try:
         next_url = request.GET['next']
@@ -197,6 +221,7 @@ def detail(request, event_id):
         'event': event,
         'navbar_pages': navbar_pages,
         'next': next_url,
+        'logged': logged,
         'days': days
     }
     return render(request, 'events/event-details.html', context)

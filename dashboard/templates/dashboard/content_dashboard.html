@@ -1,110 +1,210 @@
 {% extends 'dashboard/base.html' %}
 {% block content %}
-{% load staticfiles %}
-<div id="main" class="site-main admin-page">
+    {% load staticfiles %}
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 45px;
+            height: 15px;
+        }
 
-    <section class="events-list">
+        .switch input {
+            display: none;
+        }
 
-        <div class="container container-960">
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: grey;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-        	<h1 class="admin-page-title">Content</h1>
-		
-			<div class="events-filter mb-20">
-				<ul class="list-unstyled">
-					<li class="ml-0"><a href="/dashboard">News</a></li>
-					<li><a href="perks">Perks</a></li>
-					<li><a href="events">Events</a></li>
-					<!--<li><a href="#">Startups</a></li>
-					<li><a href="#">Jobs</a></li>
-					<li><a href="#">Companies</a></li>-->
-				</ul>
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 15px;
+            width: 15px;
+            left: 3px;
+            bottom: 0px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-				<!-- old search bar for dashboard
-				<form>
-					<div class="search-wrapper">
-						<input type="text" class="search-control" placeholder="Search...">
-					</div>
-				</form>
-				-->
-			</div><!-- /.events-filter -->
-			<div class="events-filter mb-20">
-				<ul class="list-unstyled">
-					<li class="ml-0"><a href="/news/create?next=/dashboard">+ Create new news article</a></li>
-				</ul>
-			</div>
+        input:checked + .slider {
+            background-color: #00c108;
+        }
 
-			<div class="clearfix"></div>
+        input:focus + .slider {
+            box-shadow: 0 0 1px white;
+        }
 
-			<div class="table-responsive">
-			
-				<table class="admin-table table">
-					<thead> 
-						<tr> 
-							<th>Title <span class="caret"></span></th> 
-							<th>Author</th> 
-							<th class="text-right">Date published</th> 
-							<th class="text-right">Published</th> 
-							<th class="text-right">Actions</th> 
-						</tr> 
-					</thead> 
-					<tbody> 
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
 
-					{% for news in news_list %}
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 20px;
+        }
 
-						<tr> 
-							<td><img src="{% static 'dashboard/img/article.png' %}" alt="" class="title-img"> {{news.title|truncatechars:30}}</td> 
-							<td>{{news.owner.username}}</td> 
-							<td class="text-right">{{ news.pub_date }}</td> 
-							<td class="text-right">
-								<a href="#" class="opt-published">&#10003;</a>
-							</td>
-							<td class="text-right">
-								<div class="table-actions">
-									<!-- View -->
-									<a href="/news/{{news.id}}-{{ news.title|slugify }}?next=/dashboard"><img src="{% static 'dashboard/img/view.png' %}" alt="" srcset="{% static 'dashboard/img/view.png' %} 1x, {% static 'dashboard/img/view@2x.png' %} 2x"></a>
-									
-									<!-- Edit -->
-									<a href="/news/{{news.id}}-{{ news.title|slugify }}/edit?next=/dashboard"><img src="{% static 'dashboard/img/edit.png' %}" alt="" srcset="{% static 'dashboard/img/edit.png' %}" 1x, "{% static 'dashboard/assets/img/edit@2x.png' %}" 2x></a>
-									
-									<!-- Delete -->
-									<a href="/news/{{news.id}}-{{ news.title|slugify }}/delete"><img src="{% static 'dashboard/img/trash.png' %}" alt="" srcset="{% static 'dashboard/img/trash.png' %} 1x, {% static 'dashboard/img/trash@2x.png' %} 2x"></a>
-								</div>
-							</td>
-						</tr> 
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+    <div id="main" class="site-main admin-page">
 
-					{% endfor %}
+        <section class="events-list">
 
-					</tbody> 
-				</table>
+            <div class="container container-960">
 
-			</div><!-- /.table-responsive -->
-			
-			<nav aria-label="News list navigation">
-                <ul class="pagination text-center">
-                    <li class="pull-left text-pagination">
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&larr; Prev Page</span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li class="pull-right text-pagination">
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">Next Page &rarr;</span>
-                        </a>
-                    </li>
-                </ul>
-                <p class="total-items">201 total items</p>
-            </nav>
+                <h1 class="admin-page-title">Content</h1>
+
+                <div class="events-filter mb-20">
+                    <ul class="list-unstyled">
+                        <li class="ml-0"><a href="/dashboard">News</a></li>
+                        <li><a href="perks">Perks</a></li>
+                        <li><a href="events">Events</a></li>
+                        <!--<li><a href="#">Startups</a></li>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Companies</a></li>-->
+                    </ul>
+
+                    <!-- old search bar for dashboard
+                    <form>
+                        <div class="search-wrapper">
+                            <input type="text" class="search-control" placeholder="Search...">
+                        </div>
+                    </form>
+                    -->
+                </div><!-- /.events-filter -->
+                <div class="events-filter mb-20">
+                    <ul class="list-unstyled">
+                        <li class="ml-0"><a href="/news/create?next=/dashboard">+ Create new news article</a></li>
+                    </ul>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="table-responsive">
+
+                    <table class="admin-table table">
+                        <thead>
+                        <tr>
+                            <th>Title <span class="caret"></span></th>
+                            <th>Author</th>
+                            <th class="text-right">Date published</th>
+                            <th class="text-center">Published</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for news in news_list %}
+
+                            <tr>
+                                <td><img src="{% static 'dashboard/img/article.png' %}" alt=""
+                                         class="title-img"> {{ news.title|truncatechars:30 }}</td>
+                                <td>{{ news.owner.username }}</td>
+                                <td class="text-right">{{ news.pub_date }}</td>
+                                <td class="text-center">
+                                    <label class="switch">
+                                        {% if news.public %}
+                                            <input onchange="setActive({{ news.id}}, this)" type="checkbox"
+                                                   checked>
+                                        {% else %}
+                                            <input type="checkbox" onchange="setActive({{ news.id }}, this)">
+                                        {% endif %}
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                                <td class="text-right">
+                                    <div class="table-actions">
+                                        <!-- View -->
+                                        <a href="/news/{{ news.id }}-{{ news.title|slugify }}?next=/dashboard"><img
+                                                src="{% static 'dashboard/img/view.png' %}" alt=""
+                                                srcset="{% static 'dashboard/img/view.png' %} 1x, {% static 'dashboard/img/view@2x.png' %} 2x"></a>
+
+                                        <!-- Edit -->
+                                        <a href="/news/{{ news.id }}-{{ news.title|slugify }}/edit?next=/dashboard"><img
+                                                src="{% static 'dashboard/img/edit.png' %}" alt=""
+                                                srcset="{% static 'dashboard/img/edit.png' %}" 1x,
+                                            "{% static 'dashboard/assets/img/edit@2x.png' %} 2x"></a>
+
+                                        <!-- Delete -->
+                                        <a href="/news/{{ news.id }}-{{ news.title|slugify }}/delete"><img
+                                                src="{% static 'dashboard/img/trash.png' %}" alt=""
+                                                srcset="{% static 'dashboard/img/trash.png' %} 1x, {% static 'dashboard/img/trash@2x.png' %} 2x"></a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div><!-- /.table-responsive -->
+
+                <nav aria-label="News list navigation">
+                    <ul class="pagination text-center">
+                        <li class="pull-left text-pagination">
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&larr; Prev Page</span>
+                            </a>
+                        </li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">6</a></li>
+                        <li class="pull-right text-pagination">
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">Next Page &rarr;</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="total-items">201 total items</p>
+                </nav>
 
 
-        </div><!-- /.container-fluid -->
-        
-    </section><!-- /.events-list -->
+            </div><!-- /.container-fluid -->
 
-</div><!-- /#main -->
+        </section><!-- /.events-list -->
+
+    </div><!-- /#main -->
+{% endblock %}
+{% block customscript %}
+    <script>
+        function setActive(newsId, obj) {
+
+            if (obj.checked) {
+                $.ajax({
+                    url: '/dashboard/news/' + newsId + '/active',
+                    dataType: 'json',
+                    success: function (result) {
+                        console.log(result)
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    url: '/dashboard/news/' + newsId + '/inactive',
+                    dataType: 'json',
+                    success: function (result) {
+                        console.log(result)
+                    }
+                });
+            }
+        }
+    </script>
 {% endblock %}
