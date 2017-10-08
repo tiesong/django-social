@@ -4,6 +4,19 @@
 
         <div class="container container-960">
 
+            <a href="/" class="site-logo" rel="home"><img src="{% static 'home/img/logo.png' %}" alt=""
+                                                                   srcset="{% static 'home/img/logo.png' %} 1x, {% static 'home/img/logo@2x.png' %} 2x"></a>
+
+
+        </div><!-- /.container -->
+
+    </div><!-- /.top-nav -->
+
+{% else %}
+    <div class="top-nav">
+
+        <div class="container container-960">
+
             <a href="/" class="site-logo" rel="home"><img src="{% static 'news/assets/img/logo.png' %}" alt=""
                                                           srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
 
@@ -58,16 +71,4 @@
             </div><!-- /.user-profile -->
         </div><!-- /.top-nav -->
     </div>
-{% else %}
-    <div class="top-nav">
-
-        <div class="container container-960">
-
-            <a href="/" class="site-logo" rel="home"><img src="{% static 'home/img/logo.png' %}" alt=""
-                                                                   srcset="{% static 'home/img/logo.png' %} 1x, {% static 'home/img/logo@2x.png' %} 2x"></a>
-
-
-        </div><!-- /.container -->
-
-    </div><!-- /.top-nav -->
 {% endif %}
