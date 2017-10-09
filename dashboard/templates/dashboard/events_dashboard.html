@@ -147,26 +147,27 @@
 			</div><!-- /.table-responsive -->
 
 			<nav aria-label="News list navigation">
-                <ul class="pagination text-center">
-                    <li class="pull-left text-pagination">
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&larr; Prev Page</span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li class="pull-right text-pagination">
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">Next Page &rarr;</span>
-                        </a>
-                    </li>
-                </ul>
-                <p class="total-items">201 total items</p>
-            </nav>
+                    <ul class="pagination text-center">
+                        <li class="pull-left text-pagination">
+                                <a href="?previous={{ pg_num}}" aria-label="Previous">
+                                <span aria-hidden="true">&larr; Prev Page</span>
+                            </a>
+                        </li>
+                        {% for i in total_pages %}
+                            {% if pg_num == forloop.counter %}
+                                <li class="active"><a href="?pg_num={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+                            {% else %}
+                                <li><a href="?pg_num={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        <li class="pull-right text-pagination">
+                            <a href="?next={{ pg_num }}" aria-label="Next">
+                                <span aria-hidden="true">Next Page &rarr;</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="total-items">{{ total_count }} total items</p>
+                </nav>
 
 
         </div><!-- /.container-fluid -->
