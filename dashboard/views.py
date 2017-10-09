@@ -42,7 +42,8 @@ def index(request):
 
     else:
         pg_num = 1
-
+    
+    print('pg_num: {}'.format(pg_num))
     try:
         first_page = per.page(pg_num)
     except Exception as e:

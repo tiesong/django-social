@@ -168,7 +168,7 @@
                             {% endif %}
                         </li>
                         {% for i in total_pages %}
-                            {% if pg_num == i %}
+                            {% if pg_num == forloop.counter %}
                                 <li class="active"><a href="?pg_num={{ forloop.counter }}">{{ forloop.counter }}</a></li>
                             {% else %}
                                 <li><a href="?pg_num={{ forloop.counter }}">{{ forloop.counter }}</a></li>
