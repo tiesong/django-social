@@ -6,6 +6,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.urls import reverse
 from django.contrib.auth.models import User
+import math
+
 from news.models import News
 from perks.models import Perks
 from events.models import Event
@@ -19,10 +21,65 @@ from django.contrib.auth.hashers import make_password
 @user_passes_test(lambda u: u.is_superuser)
 def index(request):
     news_list = News.objects.all().order_by('-pub_date')
+    total_articles = news_list.count()
+    per = Paginator(news_list, 15)
+
+    previous_num = request.GET.get('previous', None)
+    next_num = request.GET.get('next', None)
+    if (total_articles/15) > round(total_articles/15):
+        total_pages = int(total_articles/15) + 1
+    else:
+        total_pages = int(total_articles/15)
+
+    if next_num:
+        pg_num = int(next_num) + 1
+        if pg_num > total_pages:
+            pg_num -= 1
+    elif previous_num:
+        pg_num = int(previous_num) - 1
+        if pg_num < 1:
+            pg_num = 1
+
+    else:
+        pg_num = 1
+
+    try:
+        first_page = per.page(pg_num)
+    except Exception as e:
+        print('Error: {}'.format(e))
+        first_page = per.page(pg_num)
+
     context = {
-        'news_list': news_list,
+        'news_list': first_page,
+        'total_pages': range(total_pages),
+        'total_count': total_articles,
+        'pg_num': pg_num
     }
     return render(request, 'dashboard/content_dashboard.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def update(request):
+    page_number = request.GET.get('pg_num', 0)
+
+    news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
+    per = Paginator(news_list, 5)
+
+    try:
+        per_page = per.page(int(page_number))
+        print('per page;{}'.format(per_page))
+
+    except Exception as e:
+        print('Error: {}'.format(e))
+        context = {
+            'news_list': False,
+        }
+        return render(request, 'news/news-content.html', context)
+
+    context = {
+        'news_list': per_page,
+    }
+    return render(request, 'news/news-content.html', context)
 
 
 @user_passes_test(lambda u: u.is_superuser)
