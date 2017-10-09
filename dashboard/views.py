@@ -31,12 +31,9 @@ def index(request):
     else:
         total_pages = int(total_articles/15)
 
-    if pg_num:
-        pg_num = int(pg_num)
-    else:
-        pg_num = 1
-    
+    pg_num = int(pg_num) if pg_num else 1
     print('pg_num: {}'.format(pg_num))
+    
     try:
         first_page = per.page(pg_num)
     except Exception as e:
@@ -82,25 +79,14 @@ def perks(request):
     total_articles = news_list.count()
     per = Paginator(news_list, 15)
 
-    previous_num = request.GET.get('previous', None)
-    next_num = request.GET.get('next', None)
+    pg_num = request.GET.get('pg_num', None)
+
     if (total_articles / 15) > round(total_articles / 15):
         total_pages = int(total_articles / 15) + 1
     else:
         total_pages = int(total_articles / 15)
 
-    if next_num:
-        pg_num = int(next_num) + 1
-        if pg_num > total_pages:
-            pg_num -= 1
-    elif previous_num:
-        pg_num = int(previous_num) - 1
-        if pg_num < 1:
-            pg_num = 1
-
-    else:
-        pg_num = 1
-
+    pg_num = int(pg_num) if pg_num else 1
     print('pg_num: {}'.format(pg_num))
     try:
         first_page = per.page(pg_num)
@@ -121,9 +107,32 @@ def perks(request):
 @user_passes_test(lambda u: u.is_superuser)
 def users(request):
     user_list = Profile.objects.all().order_by('user__username')
+    total_articles = user_list.count()
+    per = Paginator(user_list, 15)
+
+    pg_num = request.GET.get('pg_num', None)
+
+    if (total_articles / 15) > round(total_articles / 15):
+        total_pages = int(total_articles / 15) + 1
+    else:
+        total_pages = int(total_articles / 15)
+
+    pg_num = int(pg_num) if pg_num else 1
+    print('pg_num: {}'.format(pg_num))
+
+    try:
+        first_page = per.page(pg_num)
+    except Exception as e:
+        print('Error: {}'.format(e))
+        first_page = per.page(pg_num)
+
     context = {
-        'user_list': user_list,
+        'user_list': first_page,
+        'total_pages': range(total_pages),
+        'total_count': total_articles,
+        'pg_num': pg_num
     }
+    
     return render(request, 'dashboard/users_dashboard.html', context)
 
 
@@ -339,24 +348,15 @@ def events(request):
     total_articles = event_list.count()
     per = Paginator(event_list, 15)
 
-    previous_num = request.GET.get('previous', None)
-    next_num = request.GET.get('next', None)
+    pg_num = request.GET.get('pg_num', None)
+
     if (total_articles / 15) > round(total_articles / 15):
         total_pages = int(total_articles / 15) + 1
     else:
         total_pages = int(total_articles / 15)
 
-    if next_num:
-        pg_num = int(next_num) + 1
-        if pg_num > total_pages:
-            pg_num -= 1
-    elif previous_num:
-        pg_num = int(previous_num) - 1
-        if pg_num < 1:
-            pg_num = 1
-
-    else:
-        pg_num = 1
+    pg_num = int(pg_num) if pg_num else 1
+    print('pg_num: {}'.format(pg_num))
 
     print('pg_num: {}'.format(pg_num))
     try:
@@ -378,9 +378,32 @@ def events(request):
 @user_passes_test(lambda u: u.is_superuser)
 def rooms(request):
     room_list = Room.objects.all().order_by('category')
+    total_articles = room_list.count()
+    per = Paginator(room_list, 15)
+
+    pg_num = request.GET.get('pg_num', None)
+
+    if (total_articles / 15) > round(total_articles / 15):
+        total_pages = int(total_articles / 15) + 1
+    else:
+        total_pages = int(total_articles / 15)
+    
+    pg_num = int(pg_num) if pg_num else 1
+    print('pg_num: {}'.format(pg_num))
+    
+    try:
+        first_page = per.page(pg_num)
+    except Exception as e:
+        print('Error: {}'.format(e))
+        first_page = per.page(pg_num)
+
     context = {
-        'room_list': room_list,
+        'room_list': first_page,
+        'total_pages': range(total_pages),
+        'total_count': total_articles,
+        'pg_num': pg_num
     }
+
     return render(request, 'dashboard/rooms_dashboard.html', context)
 
 
