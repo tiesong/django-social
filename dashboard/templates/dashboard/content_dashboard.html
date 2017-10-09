@@ -157,15 +157,9 @@
                 <nav aria-label="News list navigation">
                     <ul class="pagination text-center">
                         <li class="pull-left text-pagination">
-                            {% if total_pages.count == pg_num %}
-                            <a href="?previous={{ pg_num}}" aria-label="Previous" disabled>
-                                <span aria-hidden="true">&larr; Prev Page</span>
-                            </a>
-                            {% else %}
                                 <a href="?previous={{ pg_num}}" aria-label="Previous">
                                 <span aria-hidden="true">&larr; Prev Page</span>
                             </a>
-                            {% endif %}
                         </li>
                         {% for i in total_pages %}
                             {% if pg_num == forloop.counter %}
