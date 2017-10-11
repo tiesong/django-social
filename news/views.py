@@ -37,6 +37,11 @@ def index(request):
     news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
     total_articles = news_list.count()
     
+    if (total_articles/5) > round(total_articles/5):
+        total_pages = int(total_articles/5) + 1
+    else:
+        total_pages = int(total_articles/5)
+        
     per = Paginator(news_list, 5)
     first_page = per.page(1)
     navbar_pages = News.objects.filter(display_in_navbar=True)
@@ -49,7 +54,8 @@ def index(request):
     try:
         feature_list = News.objects.order_by('-pub_date').exclude(is_page=True).order_by('-feature_rank')[0:3]
     
-    except:
+    except Exception as e:
+        print('Exception: {}'.format(e))
         feature_list = False
     
     context = {
@@ -58,6 +64,7 @@ def index(request):
         'featured_news_list': featured_news_list,
         'feature_list': feature_list,
         'total_articles': total_articles,
+        'total_pages': total_pages,
         'category_list': category_list,
         'navbar_pages': navbar_pages,
     }

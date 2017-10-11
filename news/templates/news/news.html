@@ -116,12 +116,12 @@
 
                 <nav aria-label="Events list navigation" style="display: block;">
                     <ul class="pagination">
-                        <li class="text-pagination">
+                        <li class="text-pagination" id="previous_page">
                             <a href="javascript:previous_week();" aria-label="Previous">
                                 <span aria-hidden="true">&larr; Prev Page</span>
                             </a>
                         </li>
-                        <li class="text-pagination">
+                        <li class="text-pagination" id="next_page">
                             <a href="javascript:next_week();" aria-label="Next">
                                 <span aria-hidden="true">Next Page &rarr;</span>
                             </a>
@@ -233,14 +233,14 @@
 
     <script>
         var pg_num;
-        var totalPage;
+        var totalPages;
         var method;
         var value;
 
         $(document).ready(function () {
             check_loading();
             pg_num = 1;
-            totalPage = "{{ total_page }}";
+            totalPages = "{{ total_pages }}";
             // visible or invisible search box.
             $('#search').click(function () {
                 console.log('search');
@@ -337,21 +337,33 @@
         }
 
         function previous_week() {
-            console.log(pg_num);
-            if (pg_num < 0) {
-                console.log('no page');
+            var previous_element = $('#previous_page').children();
+            var next_element = $('#next_page').children();
+            if (pg_num === 1) {
+                $('#previous_page').unbind('click');
+                previous_element[0].style.color = 'grey'
             }
             else {
+                previous_element[0].style.color = '';
+                next_element[0].style.color = '';
                 pg_num--;
                 update_item();
             }
         }
 
         function next_week() {
-            console.log(pg_num);
-            pg_num++;
-            update_item();
-
+            var next_element = $('#next_page').children();
+            var previous_element = $('#previous_page').children();
+            if (pg_num > parseInt(totalPages)){
+                $('#next_page').unbind('click');
+                next_element[0].style.color = 'grey'
+            }
+            else {
+                next_element[0].style.color = '';
+                previous_element[0].style.color = '';
+                pg_num++;
+                update_item();
+            }
         }
 
         function clickAllArticles() {
