@@ -272,6 +272,8 @@ def edit(request, news_article_url):
         try:
             body = request.POST['body']
             title = request.POST['title']
+            published = request.GET.get("publish", None)
+            print('published: {}'.format(published))
             if next_url:
                 pub_date = request.POST['pub_date']
             
@@ -298,6 +300,8 @@ def edit(request, news_article_url):
             news_article.category.add(tag)
             news_article.is_page = is_page
             news_article.display_in_navbar = display_in_navbar
+            if published:
+                news_article.public = True
             if next_url:
                 news_article.pub_date = pub_date
             
