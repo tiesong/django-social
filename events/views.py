@@ -13,7 +13,7 @@ from .models import Event
 from news.models import News
 from django.contrib.auth.models import User
 from notifications.signals import notify
-
+from django.utils import timezone
 
 def check_public(view_func):
     def _decorator(request, *args, **kwargs):
@@ -43,59 +43,76 @@ def index(request):
     """
 
     week = int(request.GET.get('week_num', 0))
-    next_week = week + 1
-    previous_week = week - 1
-
-    # this sets up for a 10 day event view window in the template
-    base_date = datetime.now() + timedelta(week * 7)
-    limit_date = datetime.now() + timedelta(7 + week * 7)
-
-    event_list = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
-        'start_date')
-
-    event_top_list = Event.objects.all().order_by('-start_date')[1:3]
-
+    event_list = Event.objects.order_by('start_date')
     event_all = Event.objects.all()
     user_all = User.objects.all().count()
     event_featured = Event.objects.filter(featured=True)
     event_count = len(event_all)
     navbar_pages = News.objects.filter(display_in_navbar=True)
+    
+    if len(event_list):
+        # next_week = week + 1
+        # previous_week = week - 1
+        # this sets up for a 10 day event view window in the template
+        base_date = timezone.now()
+        print(base_date)
+        limit_date = timezone.now() + timedelta(7)
+    
+        event_list_filter = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
+            'start_date')
+    
+        event_top_list = Event.objects.all().order_by('-start_date')[1:3]
+    
+        context = {
 
-    context = {
-        'next_week': next_week,
-        'previous_week': previous_week,
-        'event_top_list': event_top_list,
-        'event_all': event_list,
-        'event_featured': event_featured,
-        'event_count': event_count,
-        'user_all': user_all,
-        'navbar_pages': navbar_pages,
-    }
+            'event_top_list': event_top_list,
+            'event_all': event_list_filter,
+            'event_featured': event_featured,
+            'event_count': event_count,
+            'user_all': user_all,
+            'navbar_pages': navbar_pages,
+            'previous_page': True if base_date > event_list[0].start_date else False,
+            'next_page': True if limit_date < event_list[len(event_list) - 1].start_date else False
+            
+        }
+    else:
+        context = {
+
+            'event_top_list': False,
+            'event_all': False,
+            'event_featured': event_featured,
+            'event_count': event_count,
+            'user_all': user_all,
+            'navbar_pages': navbar_pages,
+            'next_page': False,
+            'previous_page': False
+        
+        }
 
     return render(request, 'events/event-list.html', context)
 
 
 @login_required
 def new(request):
-    base_date = datetime.now()
-    limit_date = datetime.now() + timedelta(7)
+    base_date = timezone.now()
+    limit_date = timezone.now() + timedelta(7)
 
     event_list = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
-        'start_date')
-
+        '-start_date')
+    
     if len(event_list):
-
         context = {
-            'event_all': event_list
+            'event_all': event_list,
+            'next_page': False,
+            'previous_page': False
         }
-
-        return render(request, 'events/event-content.html', context)
-
     else:
         context = {
-            'event_all': False
+            'event_all': False,
+            'next_page': False,
+            'previous_page': False
         }
-        return render(request, 'events/event-content.html', context)
+    return render(request, 'events/event-content.html', context)
 
 
 @login_required
@@ -107,20 +124,21 @@ def feature(request):
     if len(event_list):
         base_date = event_list[0].start_date + timedelta(week * 7)
         limit_date = event_list[0].start_date + timedelta(7 + week * 7)
-        event_list = Event.objects.filter(featured=True).filter(start_date__gte=base_date).filter(
+        
+        event_list_filter = Event.objects.filter(featured=True).filter(start_date__gte=base_date).filter(
             start_date__lte=limit_date).order_by('start_date')
         context = {
-
-            'event_all': event_list
+            'event_all': event_list_filter,
+            'previous_page': True if base_date > event_list[0].start_date else False,
+            'next_page': True if limit_date < event_list[len(event_list)-1].start_date else False
         }
-
-        return render(request, 'events/event-content.html', context)
-
     else:
         context = {
-            'event_all': False
+            'event_all': False,
+            'next_page': False,
+            'previous_page': False
         }
-        return render(request, 'events/event-content.html', context)
+    return render(request, 'events/event-content.html', context)
 
 
 @login_required
@@ -141,17 +159,21 @@ def search(request):
     if len(event_list):
         base_date = event_list[0].start_date + timedelta(week * 7)
         limit_date = event_list[0].start_date + timedelta(7 + week * 7)
-
-        event_list = Event.objects.filter(title__icontains=keyword).filter(start_date__gte=base_date) \
+        
+        event_list_filter = Event.objects.filter(title__icontains=keyword).filter(start_date__gte=base_date) \
             .filter(start_date__lte=limit_date).order_by('start_date')
 
         context = {
-            'event_all': event_list
+            'event_all': event_list_filter,
+            'previous_page': True if base_date > event_list[0].start_date else False,
+            'next_page': True if limit_date < event_list[len(event_list) - 1].start_date else False
         }
 
     else:
         context = {
-            'event_all': False
+            'event_all': False,
+            'next_page': False,
+            'previous_page': False
         }
 
     return render(request, 'events/event-content.html', context)
@@ -160,15 +182,27 @@ def search(request):
 @login_required
 def update(request):
     week = int(request.GET.get('week_num', 0))
-    base_date = datetime.now() + timedelta(week * 7)
-    limit_date = datetime.now() + timedelta(7 + week * 7)
-
-    event_list = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
-        'start_date')
-
-    context = {
-        'event_all': event_list
-    }
+    
+    event_list = Event.objects.order_by('start_date')
+    
+    if len(event_list):
+        base_date = timezone.now() + timedelta(week * 7)
+        limit_date = timezone.now() + timedelta(7 + week * 7)
+        
+        event_list_filter = Event.objects.filter(start_date__gte=base_date).filter(start_date__lte=limit_date).order_by(
+            'start_date')
+    
+        context = {
+            'event_all': event_list_filter,
+            'previous_page': True if base_date > event_list[0].start_date else False,
+            'next_page': True if limit_date < event_list[len(event_list) - 1].start_date else False
+        }
+    else:
+        context = {
+            'event_all': False,
+            'next_page': False,
+            'previous_page': False
+        }
 
     return render(request, 'events/event-content.html', context)
 

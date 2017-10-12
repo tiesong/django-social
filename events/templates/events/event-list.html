@@ -89,23 +89,9 @@
                 <div id="event_items">
                     {% include 'events/event-content.html' %}
 
-                </div>
-                <nav id="weekEvent" aria-label="Events list navigation" style="display: block;">
-                    <ul class="pagination">
-                        <li class="text-pagination">
-                            <a href="javascript:previous_week();" aria-label="Previous">
-                                <span aria-hidden="true">&larr; Prev Week</span>
-                            </a>
-                        </li>
-                        <li class="text-pagination">
-                            <a href="javascript:next_week();" aria-label="Next">
-                                <span aria-hidden="true">Next Week &rarr;</span>
-                            </a>
-                        </li>
-                    </ul>
 
-                </nav>
 
+</div>
             </div><!-- /.container-fluid -->
         </section><!-- /.events-list -->
 
@@ -268,7 +254,6 @@
 
         $("#startdatetime").on('change', function (e) {
             $('#enddatetime').data("datetimepicker").startDate = new Date(e.target.value);
-
         });
         $("#enddatetime").on('change', function (e) {
             $('#startdatetime').data("datetimepicker").endDate = new Date(e.target.value);

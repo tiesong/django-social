@@ -24,5 +24,20 @@
     {% endfor %}
 
 {% else %}
-    <p id="weekNone" >Nothing this week!</p>
+    <p id="weekNone">Nothing this week!</p>
 {% endif %}
+<nav id="weekEvent" aria-label="Events list navigation" style="display: block;">
+    <ul class="pagination">
+        <li class="text-pagination">
+            <a href="javascript:previous_week();" aria-label="Previous" {% if not previous_page %}style="pointer-events: none"{% else %}{% endif %}>
+                <span aria-hidden="true" {% if not previous_page %}style="color: grey"{% else %}{% endif %}>&larr; Prev Week</span>
+            </a>
+        </li>
+        <li class="text-pagination">
+            <a href="javascript:next_week();" aria-label="Next" {% if not next_page %}style="pointer-events: none"{% else %}{% endif %}>
+                <span aria-hidden="true" {% if not next_page %}style="color: grey"{% else %}{% endif %}>Next Week &rarr;</span>
+            </a>
+        </li>
+    </ul>
+
+</nav>
