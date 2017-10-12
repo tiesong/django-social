@@ -7,12 +7,12 @@
     <link href="{% static 'news/css/news-custom.css' %}" rel="stylesheet">
     <body>
 
-    {% if primary_feature %}
-        <header id="masthead" class="site-header" style="background:{{ primary_feature.featured_image }} no-repeat center / cover;">
-    {% else %}
+{#    {% if primary_feature %}#}
+{#        <header id="masthead" class="site-header" style="background:{{ primary_feature.featured_image }} no-repeat center / cover;">#}
+{#    {% else %}#}
         <header id="masthead" class="site-header"
                 style="background:{% static 'news/img/ybf-bg.jpg' %} no-repeat center / cover;">
-    {% endif %}
+{#    {% endif %}#}
 
 {% include 'news/top-nav.html' %}
 
