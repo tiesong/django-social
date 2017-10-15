@@ -39,7 +39,7 @@ def index(request):
         news_list = News.objects.filter(public=True).order_by('-pub_date').exclude(is_page=True)
     total_articles = news_list.count()
     
-    if (total_articles/5) > round(total_articles/5):
+    if (total_articles/5) > int(total_articles/5):
         total_pages = int(total_articles/5) + 1
     else:
         total_pages = int(total_articles/5)
