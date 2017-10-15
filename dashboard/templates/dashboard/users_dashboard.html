@@ -117,7 +117,7 @@
                                             href="{% url 'user_invitation' %}?username={{ profile.user.username }}&email={{ profile.user.email }}&user_id={{ profile.user.id }}"
                                             class="invitationEmail">Invite to join</a></td>
                                 {% else %}
-                                    <td class="text-left">{{ profile.user.last_login }}</td>
+                                    <td class="text-left">{{ profile.user.last_login |date:'Y-m-d H:i' }}</td>
                                 {% endif %}
                             </tr>
 
