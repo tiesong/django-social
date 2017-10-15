@@ -132,7 +132,7 @@ def users(request):
         'total_count': total_articles,
         'pg_num': pg_num
     }
-    
+    print('user context: {}'.format(context))
     return render(request, 'dashboard/users_dashboard.html', context)
 
 
