@@ -209,13 +209,12 @@ def update(request):
             event_list_filter = Event.objects.filter(public=True).filter(start_date__gte=base_date).filter(
                 start_date__lte=limit_date).order_by(
                 'start_date')
-            print('event list filter: {}'.format(event_list_filter))
         context = {
             'event_all': event_list_filter,
             'previous_page': True if base_date > event_list[0].start_date else False,
             'next_page': True if limit_date < event_list[len(event_list) - 1].start_date else False
         }
-        print('context: {}'.format(context))
+
     else:
         context = {
             'event_all': False,
