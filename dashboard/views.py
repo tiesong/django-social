@@ -26,7 +26,7 @@ def index(request):
 
     pg_num = request.GET.get('pg_num', None)
     
-    if (total_articles/15) > round(total_articles/15):
+    if (total_articles/15) > int(total_articles/15):
         total_pages = int(total_articles/15) + 1
     else:
         total_pages = int(total_articles/15)
@@ -81,7 +81,7 @@ def perks(request):
 
     pg_num = request.GET.get('pg_num', None)
 
-    if (total_articles / 15) > round(total_articles / 15):
+    if (total_articles / 15) > int(total_articles / 15):
         total_pages = int(total_articles / 15) + 1
     else:
         total_pages = int(total_articles / 15)
@@ -351,7 +351,7 @@ def events(request):
 
     pg_num = request.GET.get('pg_num', None)
 
-    if (total_articles / 15) > round(total_articles / 15):
+    if (total_articles / 15) > int(total_articles / 15):
         total_pages = int(total_articles / 15) + 1
     else:
         total_pages = int(total_articles / 15)
@@ -384,7 +384,7 @@ def rooms(request):
 
     pg_num = request.GET.get('pg_num', None)
 
-    if (total_articles / 15) > round(total_articles / 15):
+    if (total_articles / 15) > int(total_articles / 15):
         total_pages = int(total_articles / 15) + 1
     else:
         total_pages = int(total_articles / 15)
