@@ -21,7 +21,12 @@ def index(request):
 
     news_list = Perks.objects.all().order_by('-pub_date')
     total_articles = news_list.count()
-
+    
+    if (total_articles/5) > int(total_articles/5):
+        total_pages = int(total_articles/5) + 1
+    else:
+        total_pages = int(total_articles/5)
+        
     per = Paginator(news_list, 5)
     # total_page = per.count()
     first_page = per.page(1)
@@ -44,6 +49,7 @@ def index(request):
         'featured_news_list': featured_news_list,
         'feature_list': feature_list,
         'total_articles': total_articles,
+        'total_pages': total_pages,
         'category_list': category_list,
         'navbar_pages': navbar_pages,
     }
