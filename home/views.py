@@ -9,9 +9,11 @@ from news.models import News, Category
 
 # Create your views here.
 def index(request):
+    
     if request.user.is_authenticated():
         return HttpResponseRedirect('/officespace')
     else:
+        active_status = request.GET.get('active', None)
         try:
             feature_list = News.objects.order_by('-pub_date').order_by('-feature_rank')[0]
         except:
@@ -48,9 +50,16 @@ def index(request):
                     'error_message'] = "Sorry, the username and/or password combination could not be found. Please try again."
                 return HttpResponseRedirect('/error?login=fail')
         
-        context = {
-            'feature_list': feature_list,
-        }
+        if active_status is None:
+            context = {
+                'feature_list': feature_list,
+                'active_status': True
+            }
+        else:
+            context = {
+                'feature_list': feature_list,
+                'active_status': False
+            }
         
         return render(request, 'home/index.html', context)
 
@@ -73,8 +82,8 @@ def signup(request):
                 user.is_active = False
                 user.save()
                 login(request, user)
-                return HttpResponseRedirect('/officespace/')
-        
+                # return HttpResponseRedirect('/officespace/')
+                return HttpResponseRedirect('/?active=false')
         else:
             request.session['error_message'] = "Sorry. Something unexpected happened, please try again. (request)"
             return HttpResponseRedirect('/error?signup=fail')

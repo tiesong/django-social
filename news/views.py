@@ -32,7 +32,6 @@ def check_public(view_func):
 
 
 # Create your views here.
-@login_required
 def index(request):
     news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
     total_articles = news_list.count()

@@ -1,0 +1,24 @@
+{% load staticfiles %}
+
+<div class="top-nav">
+
+    <div class="container container-960">
+
+        <a href="/" class="site-logo" rel="home"><img src="{% static 'home/img/logo.png' %}" alt=""
+                                                      srcset="{% static 'home/img/logo.png' %} 1x, {% static 'home/img/logo@2x.png' %} 2x"></a>
+
+        <nav id="primary-navigation" class="site-navigation">
+
+            <a href="/" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}"
+                                                                     alt=""
+                                                                     srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+            <ul>
+                <li class="active"><a href="/news">News</a></li>
+                <li><a href="/events">Events</a></li>
+            </ul>
+
+        </nav><!-- /.site-navigation -->
+
+    </div><!-- /.container -->
+
+</div><!-- /.top-nav -->

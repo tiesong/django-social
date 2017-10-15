@@ -34,7 +34,6 @@ def check_public(view_func):
 # Create your views here.
 
 
-@login_required
 def index(request):
     """
     Index
