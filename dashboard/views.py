@@ -112,11 +112,12 @@ def users(request):
 
     pg_num = request.GET.get('pg_num', None)
 
-    if (total_articles / 15) > round(total_articles / 15):
+    if (total_articles / 15) > int(total_articles / 15):
         total_pages = int(total_articles / 15) + 1
     else:
         total_pages = int(total_articles / 15)
 
+    print('total_pages: {}'.format(total_pages))
     pg_num = int(pg_num) if pg_num else 1
     print('pg_num: {}'.format(pg_num))
 
