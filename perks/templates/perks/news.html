@@ -233,14 +233,14 @@
 
     <script>
         var pg_num;
-        var totalPage;
+        var totalPages;
         var method;
         var value;
 
         $(document).ready(function () {
             check_loading();
             pg_num = 1;
-            totalPage = "{{ total_page }}";
+            totalPages = "{{ total_pages }}";
             // visible or invisible search box.
             $('#search').click(function () {
                 console.log('search');
