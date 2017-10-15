@@ -33,7 +33,10 @@ def check_public(view_func):
 
 # Create your views here.
 def index(request):
-    news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
+    if request.user.is_authenticated:
+        news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
+    else:
+        news_list = News.objects.filter(public=True).order_by('-pub_date').exclude(is_page=True)
     total_articles = news_list.count()
     
     if (total_articles/5) > round(total_articles/5):
@@ -70,11 +73,13 @@ def index(request):
     return render(request, 'news/news.html', context)
 
 
-@login_required
 def update(request):
     page_number = request.GET.get('pg_num', 0)
     
-    news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
+    if request.user.is_authenticated:
+        news_list = News.objects.all().order_by('-pub_date').exclude(is_page=True)
+    else:
+        news_list = News.objects.filter(public=True).order_by('-pub_date').exclude(is_page=True)
     per = Paginator(news_list, 5)
     
     try:
@@ -94,14 +99,16 @@ def update(request):
     return render(request, 'news/news-content.html', context)
 
 
-@login_required
 def category(request):
     print('category')
     category_name = request.GET.get('category')
     page_number = request.GET.get('pg_num', 0)
     category_name = str(category_name).replace("-", " ")
     tag = Category.objects.filter(tag=category_name).first()
-    news_list = News.objects.filter(category=tag).order_by('-pub_date').exclude(is_page=True)
+    if request.user.is_authenticated:
+        news_list = News.objects.filter(category=tag).order_by('-pub_date').exclude(is_page=True)
+    else:
+        news_list = News.objects.filter(category=tag).filter(public=True).order_by('-pub_date').exclude(is_page=True)
     per = Paginator(news_list, 5)
     
     try:
@@ -119,10 +126,9 @@ def category(request):
     return render(request, 'news/news-content.html', context)
 
 
-@login_required
 def search(request):
     """
-
+    Search news.
     :param request:
     :return:
     """
@@ -135,10 +141,12 @@ def search(request):
             'news_list': False,
         }
         return render(request, 'news/news-content.html', context)
-    
-    news_list = News.objects.filter(Q(title__icontains=keyword) | Q(article__icontains=keyword)) \
-        .order_by('-pub_date').exclude(is_page=True).distinct()
-    print('news_list: {}'.format(news_list))
+    if request.user.is_authenticated:
+        news_list = News.objects.filter(Q(title__icontains=keyword) | Q(article__icontains=keyword)) \
+            .order_by('-pub_date').exclude(is_page=True).distinct()
+    else:
+        news_list = News.objects.filter(public=True).filter(Q(title__icontains=keyword) | Q(article__icontains=keyword)) \
+            .order_by('-pub_date').exclude(is_page=True).distinct()
     per = Paginator(news_list, 5)
     
     try:
@@ -158,10 +166,7 @@ def search(request):
 
 @check_public
 def detail(request, news_article_url):
-    if request.user.is_authenticated():
-        logged = False
-    else:
-        logged = True
+
     news_article_id = news_article_url.split('-')[0]
     news_article = News.objects.get(id=news_article_id)
     related_news = News.objects.filter().exclude(is_page=True).order_by('-pub_date')[0:4]
@@ -177,7 +182,6 @@ def detail(request, news_article_url):
         'navbar_pages': navbar_pages,
         'news_article': news_article,
         'related_news': related_news,
-        'logged': logged,
         'next': next_url,
     }
     

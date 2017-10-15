@@ -35,40 +35,54 @@
                 <ul>
                     <li class="active"><a href="/news">News</a></li>
                     <li><a href="/events">Events</a></li>
-                    <li><a href="/c/companies">Companies</a></li>
-                    <li><a href="/c/people">People</a></li>
-                    <li><a href="/officespace">Officespace</a></li>
-                    <li><a href="/perks">Perks</a></li>
-                    {% for page in navbar_pages %}
-                        <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
-                    {% endfor %}
+                    {% if user.is_authenticated %}
+                        <li><a href="/c/companies">Companies</a></li>
+                        <li><a href="/c/people">People</a></li>
+                        <li><a href="/officespace">Officespace</a></li>
+                        <li><a href="/perks">Perks</a></li>
+                        {% for page in navbar_pages %}
+                            <li><a href="/news/{{ page.id }}">{{ page.title }}</a></li>
+                        {% endfor %}
+                    {% endif %}
                 </ul>
 
             </nav><!-- /.site-navigation -->
 
             <div class="user-profile dropdown">
                 <a class="dropdown-toggle" id="user-dropdown-menu" data-toggle="dropdown" aria-expanded="true">
-                    <div class="user-profile-thumb">
+                    {% if user.is_authenticated %}
+                        <div class="user-profile-thumb">
 
-                        {% if request.user.profile.image %}
-                            <img src="{{ request.user.profile.image.url }}" alt="">
-                        {% else %}
-                            <img src="{% static 'news/img/avatar.png' %}" alt="">
-                        {% endif %}
+                            {% if request.user.profile.image %}
+                                <img src="{{ request.user.profile.image.url }}" alt="">
+                            {% else %}
+                                <img src="{% static 'news/img/avatar.png' %}" alt="">
+                            {% endif %}
 
-                        <span class="visible-xs caret"></span></div>
+                            <span class="visible-xs caret"></span></div>
+                    {% endif %}
                     <div class="user-profile-meta hidden-xs">
                         <div class="user-profile-meta-inner">
-                            {{ request.user.username }}
+                            {% if user.is_authenticated %}
+                                {{ request.user.username }}
+                            {% else %}
+                                <button class="btn btn-transparent-white" type="button" data-toggle="modal"
+                            data-target="#login-modal">Sign in
+                    </button>
+
+                            {% endif %}
                         </div>
                     </div>
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
-                    <li><a href="/c/people/{{ request.user.id }}">Profile</a></li>
-                    <!--<li><a href="#">Settings</a></li>-->
-                    <li class="logout-btn"><a href="/logout">Logout</a></li>
-                </ul>
+                {% if user.is_authenticated %}
+                    <ul class="dropdown-menu" aria-labelledby="user-dropdown-menu">
+                        <li><a href="/c/people/{{ request.user.id }}">Profile</a></li>
+                        <!--<li><a href="#">Settings</a></li>-->
+                        <li class="logout-btn"><a href="/logout">Logout</a></li>
+                    </ul>
+                {% endif %}
             </div><!-- /.user-profile -->
         </div><!-- /.top-nav -->
     </div>
+    {% include 'news/modal/login-signup.html' %}
 {% endif %}
