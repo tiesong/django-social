@@ -59,7 +59,7 @@ def index(request):
     except Exception as e:
         print('Exception: {}'.format(e))
         feature_list = False
-    
+    print('primary_features: {}'.format(primary_feature))
     context = {
         'news_list': first_page,
         'primary_feature': primary_feature,

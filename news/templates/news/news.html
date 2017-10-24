@@ -3,36 +3,69 @@
 
     {% load staticfiles %}
     {% load app_filter %}
+    <style>
+        .site-header {
+        {% if primary_feature %}
+            background: url(/media/{{ primary_feature.featured_image}}) no-repeat center / cover;
+        {% else %}
+            background: url({% static 'news/img/ybf-bg.jpg' %}) no-repeat center / cover;
+        {% endif %}
+            height: 480px;
+            position: relative;
+        }
 
+        .featured-news:before{
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+        {% if feature_list.1.featured_image %}
+            background: url(/media/{{ feature_list.1.featured_image }}) no-repeat center / cover;
+        {% else %}
+            background: url({% static 'news/img/bg-tmp.jpg' %}) no-repeat center / cover;
+        {% endif %}
+            z-index: -1;
+        }
+        .featured-news:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            {% if feature_list.2.featured_image %}
+            background: url(/media/{{ feature_list.2.featured_image }}) no-repeat center / cover;
+        {% else %}
+            background: url({% static 'news/img/bg-tmp.jpg' %}) no-repeat center / cover;
+        {% endif %}
+            z-index: -1;
+        }
+    </style>
     <link href="{% static 'news/css/news-custom.css' %}" rel="stylesheet">
     <body>
 
-{#    {% if primary_feature %}#}
-{#        <header id="masthead" class="site-header" style="background:{{ primary_feature.featured_image }} no-repeat center / cover;">#}
-{#    {% else %}#}
-        <header id="masthead" class="site-header"
-                style="background:{% static 'news/img/ybf-bg.jpg' %} no-repeat center / cover;">
-{#    {% endif %}#}
+    <header id="masthead" class="site-header">
 
-{% include 'news/top-nav.html' %}
+        {% include 'news/top-nav.html' %}
 
-<div class="hero event-details-hero">
+        <div class="hero event-details-hero">
 
-    <div class="container">
+            <div class="container">
 
-        <div class="hero-text">
-            <p class="news-category">NEWS // {{ feature_list.0.category.all|first }}</p>
-            <a href="{{ feature_list.0.id }}-{{ feature_list.0.title| slugify }}" style="color: white"><h1 class="hero-title">{{ feature_list.0.title }}</h1></a>
-            <p>by <a href="/c/people/{{ feature_list.0.owner.id }}">{{ feature_list.0.owner.username }}</a></p>
-            <a href="{{ feature_list.0.id }}-{{ feature_list.0.title| slugify }}" class="read-more">Keep reading &rarr;</a>
+                <div class="hero-text">
+                    <p class="news-category">NEWS // {{ feature_list.0.category.all|first }}</p>
+                    <a href="{{ feature_list.0.id }}-{{ feature_list.0.title| slugify }}" style="color: white"><h1
+                            class="hero-title">{{ feature_list.0.title }}</h1></a>
+                    <p>by <a href="/c/people/{{ feature_list.0.owner.id }}">{{ feature_list.0.owner.username }}</a></p>
+                    <a href="{{ feature_list.0.id }}-{{ feature_list.0.title| slugify }}" class="read-more">Keep reading
+                        &rarr;</a>
+                </div>
+
+            </div>
+
         </div>
 
-    </div>
-
-</div>
-
-</header><!-- /#header -->
-
+    </header><!-- /#header -->
 
     <div id="main" class="site-main">
 
@@ -46,22 +79,28 @@
                         <div class="col-sm-6">
 
                             <p class="news-category">NEWS // {{ feature_list.1.category.all|first }}</p>
-                            <a href="{{ feature_list.1.id }}-{{ feature_list.1.title| slugify }}" style="color: white"><h2 class="news-title">{{ feature_list.1.title }}</h2></a>
-                            <p class="posted-by">by <a href="/c/people/{{ feature_list.1.owner.id }}">{{ feature_list.1.owner.username }}</a></p>
+                            <a href="{{ feature_list.1.id }}-{{ feature_list.1.title| slugify }}" style="color: white">
+                                <h2 class="news-title">{{ feature_list.1.title }}</h2></a>
+                            <p class="posted-by">by <a
+                                    href="/c/people/{{ feature_list.1.owner.id }}">{{ feature_list.1.owner.username }}</a>
+                            </p>
                             <p class="news-description">{{ feature_list.1.article|safe|shortsnippet }}</p>
-                            <a href="{{ feature_list.1.id }}-{{ feature_list.1.title| slugify }}" class="read-more">Keep reading &rarr;</a>
+                            <a href="{{ feature_list.1.id }}-{{ feature_list.1.title| slugify }}" class="read-more">Keep
+                                reading &rarr;</a>
 
                         </div>
                     {% endif %}
                     {% if feature_list.2 %}
                         <div class="col-sm-6">
-
                             <p class="news-category">NEWS // {{ feature_list.2.category.all|first }}</p>
-                            <a href="{{ feature_list.2.id }}-{{ feature_list.2.title| slugify }}" style="color: white"><h2 class="news-title">{{ feature_list.2.title }}</h2></a>
-                            <p class="posted-by">by <a href="/c/people/{{ feature_list.2.owner.id }}">{{ feature_list.2.owner.username }}</a></p>
+                            <a href="{{ feature_list.2.id }}-{{ feature_list.2.title| slugify }}" style="color: white">
+                                <h2 class="news-title">{{ feature_list.2.title }}</h2></a>
+                            <p class="posted-by">by <a
+                                    href="/c/people/{{ feature_list.2.owner.id }}">{{ feature_list.2.owner.username }}</a>
+                            </p>
                             <p class="news-description">{{ feature_list.2.article|safe|shortsnippet }}</p>
-                            <a href="{{ feature_list.2.id }}-{{ feature_list.2.title| slugify }}" class="read-more">Keep reading &rarr;</a>
-
+                            <a href="{{ feature_list.2.id }}-{{ feature_list.2.title| slugify }}" class="read-more">Keep
+                                reading &rarr;</a>
                         </div>
                     {% endif %}
 
@@ -86,7 +125,7 @@
                                     {% for category in category_list %}
                                         {% if  category != "" %}
                                             <li class="user-tags"><a href="javascript:void(0)"
-                                                   onclick="clickTag('{{ category }}');">{{ category }}</a></li>
+                                                                     onclick="clickTag('{{ category }}');">{{ category }}</a></li>
                                         {% endif %}
                                     {% endfor %}
                                 </ul>
@@ -94,16 +133,16 @@
                             <a href="javascript:void(0)" class="all-events pull-right" onclick="clickAllArticles();">All
                                 Articles...</a>
                         </div>
-                            <div id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
-                                <div class="row">
-                                    <div class="controls">
-                                        <input id="searchBar" class="form-control" type="text" placeholder="keyword..."
-                                               onkeyup="realFilter(event)"
-                                               style="width: 100%; "/>
-                                    </div>
+                        <div id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
+                            <div class="row">
+                                <div class="controls">
+                                    <input id="searchBar" class="form-control" type="text" placeholder="keyword..."
+                                           onkeyup="realFilter(event)"
+                                           style="width: 100%; "/>
                                 </div>
-
                             </div>
+
+                        </div>
                     </div>
                 </div>
 
@@ -242,6 +281,7 @@
             pg_num = 1;
             totalPages = "{{ total_pages }}";
             // visible or invisible search box.
+
             $('#search').click(function () {
                 console.log('search');
 
@@ -259,8 +299,6 @@
                     $("#search-form").hide();
                 }
             });
-
-
         });
 
         function check_loading() {
@@ -354,7 +392,7 @@
         function next_week() {
             var next_element = $('#next_page').children();
             var previous_element = $('#previous_page').children();
-            if (pg_num > parseInt(totalPages)){
+            if (pg_num > parseInt(totalPages)) {
                 $('#next_page').unbind('click');
                 next_element[0].style.color = 'grey'
             }
