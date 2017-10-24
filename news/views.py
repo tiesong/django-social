@@ -49,12 +49,10 @@ def index(request):
     navbar_pages = News.objects.filter(display_in_navbar=True)
     
     # Return three articles to render in the featured articles fields in template
-    featured_news_list = News.objects.filter(featured=True).exclude(is_page=True).order_by('-pub_date')[1:3]
-    # primary_feature = News.objects.order_by('-pub_date').exclude(is_page=True).order_by('feature_rank')[0]
     category_list = Category.objects.all()
     
     try:
-        feature_list = News.objects.order_by('-pub_date').exclude(is_page=True).order_by('feature_rank')[0:3]
+        feature_list = News.objects.filter(featured=True).exclude(is_page=True).order_by('-pub_date')[0:3]
     
     except Exception as e:
         print('Exception: {}'.format(e))
@@ -62,8 +60,6 @@ def index(request):
     
     context = {
         'news_list': first_page,
-        # 'primary_feature': primary_feature,
-        'featured_news_list': featured_news_list,
         'feature_list': feature_list,
         'total_articles': total_articles,
         'total_pages': total_pages,
