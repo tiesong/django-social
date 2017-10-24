@@ -38,7 +38,7 @@ def index(request):
     category_list = Category.objects.all()
 
     try:
-        feature_list = Perks.objects.order_by('-pub_date').order_by('-feature_rank')[0:3]
+        feature_list = Perks.objects.order_by('-pub_date').order_by('feature_rank')[0:3]
 
     except:
         feature_list = False

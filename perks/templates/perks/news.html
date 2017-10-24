@@ -4,9 +4,9 @@
     {% load staticfiles %}
     {% load app_filter %}
 <style>
-        .site-header {
-        {% if primary_feature.featured_image %}
-            background: url(/media/{{ primary_feature.featured_image}}) no-repeat center / cover;
+         .site-header {
+        {% if feature_list.0.featured_image %}
+            background: url({{ feature_list.0.featured_image.url }}) no-repeat center / cover;
         {% else %}
             background: url({% static 'news/img/ybf-bg.jpg' %}) no-repeat center / cover;
         {% endif %}
@@ -21,7 +21,7 @@
             width: 50%;
             height: 100%;
         {% if feature_list.1.featured_image %}
-            background: url(/media/{{ feature_list.1.featured_image }}) no-repeat center / cover;
+            background: url({{ feature_list.1.featured_image.url }}) no-repeat center / cover;
         {% else %}
             background: url({% static 'news/img/bg-tmp.jpg' %}) no-repeat center / cover;
         {% endif %}
@@ -34,7 +34,7 @@
             width: 50%;
             height: 100%;
             {% if feature_list.2.featured_image %}
-            background: url(/media/{{ feature_list.2.featured_image }}) no-repeat center / cover;
+            background: url({{ feature_list.2.featured_image.url }}) no-repeat center / cover;
         {% else %}
             background: url({% static 'news/img/bg-tmp.jpg' %}) no-repeat center / cover;
         {% endif %}
