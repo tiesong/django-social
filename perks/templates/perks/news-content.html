@@ -5,9 +5,11 @@
     {% for news_article in news_list %}
         <div id="article_{{ news_article.id }}" class="news-single-item">
             <div class="news-single-thumb">
-
-{#                <img src="{{ news_article.article | safe | previewImage }}" alt="">#}
+            {% if news_article.featured and news_article.featured_image %}
+                <img src="{{ news_article.featured_image.url}}" alt="">
+                {% else %}
                 <img src="{{ news_article.portal_image }}" alt="">
+                {% endif %}
 
             </div>
             <div class="news-single-content">
