@@ -5,8 +5,8 @@
     {% load app_filter %}
     <style>
         .site-header {
-        {% if primary_feature.featured_image %}
-            background: url(/media/{{ primary_feature.featured_image}}) no-repeat center / cover;
+        {% if feature_list.0.featured_image %}
+            background: url(/media/{{ feature_list.0.featured_image}}) no-repeat center / cover;
         {% else %}
             background: url({% static 'news/img/ybf-bg.jpg' %}) no-repeat center / cover;
         {% endif %}
