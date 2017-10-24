@@ -6,7 +6,7 @@
     <style>
         .site-header {
         {% if feature_list.0.featured_image %}
-            background: url({{ MEDIA_URL }}{{ feature_list.0.featured_image }}) no-repeat center / cover;
+            background: url({{ feature_list.0.featured_image.url }}) no-repeat center / cover;
         {% else %}
             background: url({% static 'news/img/ybf-bg.jpg' %}) no-repeat center / cover;
         {% endif %}
@@ -21,7 +21,7 @@
             width: 50%;
             height: 100%;
         {% if feature_list.1.featured_image %}
-            background: url({{ MEDIA_URL }}{{ feature_list.1.featured_image }}) no-repeat center / cover;
+            background: url({{ feature_list.1.featured_image.url }}) no-repeat center / cover;
         {% else %}
             background: url({% static 'news/img/bg-tmp.jpg' %}) no-repeat center / cover;
         {% endif %}
@@ -34,7 +34,7 @@
             width: 50%;
             height: 100%;
             {% if feature_list.2.featured_image %}
-            background: url({{ MEDIA_URL }}{{ feature_list.2.featured_image }}) no-repeat center / cover;
+            background: url({{ feature_list.2.featured_image.url }}) no-repeat center / cover;
         {% else %}
             background: url({% static 'news/img/bg-tmp.jpg' %}) no-repeat center / cover;
         {% endif %}
@@ -53,7 +53,7 @@
             <div class="container">
 
                 <div class="hero-text">
-                    <p class="news-category">NEWS // {{ feature_list.0.category.all|first }}</p>
+                    <p class="news-category">NEWS // {{ MEDIA_URL }}{{ feature_list.0.category.all|first }}</p>
                     <a href="{{ feature_list.0.id }}-{{ feature_list.0.title| slugify }}" style="color: white"><h1
                             class="hero-title">{{ feature_list.0.title }}</h1></a>
                     <p>by <a href="/c/people/{{ feature_list.0.owner.id }}">{{ feature_list.0.owner.username }}</a></p>
