@@ -52,7 +52,7 @@ def index(request):
     category_list = Category.objects.all()
     
     try:
-        feature_list = News.objects.filter(featured=True).exclude(is_page=True).order_by('-pub_date')[0:3]
+        feature_list = News.objects.filter(featured=True).exclude(is_page=True).order_by('-pub_date')[1:3]
     
     except Exception as e:
         print('Exception: {}'.format(e))
