@@ -6,7 +6,7 @@
     <style>
         .site-header {
         {% if feature_list.0.featured_image %}
-            background: url({{ feature_list.0.featured_image }}) no-repeat center / cover;
+            background: url({{ MEDIA_URL }}{{ feature_list.0.featured_image }}) no-repeat center / cover;
         {% else %}
             background: url({% static 'news/img/ybf-bg.jpg' %}) no-repeat center / cover;
         {% endif %}
@@ -21,7 +21,7 @@
             width: 50%;
             height: 100%;
         {% if feature_list.1.featured_image %}
-            background: url({{ feature_list.1.featured_image }}) no-repeat center / cover;
+            background: url({{ MEDIA_URL }}{{ feature_list.1.featured_image }}) no-repeat center / cover;
         {% else %}
             background: url({% static 'news/img/bg-tmp.jpg' %}) no-repeat center / cover;
         {% endif %}
@@ -34,7 +34,7 @@
             width: 50%;
             height: 100%;
             {% if feature_list.2.featured_image %}
-            background: url({{ feature_list.2.featured_image }}) no-repeat center / cover;
+            background: url({{ MEDIA_URL }}{{ feature_list.2.featured_image }}) no-repeat center / cover;
         {% else %}
             background: url({% static 'news/img/bg-tmp.jpg' %}) no-repeat center / cover;
         {% endif %}
