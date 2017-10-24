@@ -3,7 +3,44 @@
 
     {% load staticfiles %}
     {% load app_filter %}
+<style>
+        .site-header {
+        {% if primary_feature.featured_image %}
+            background: url(/media/{{ primary_feature.featured_image}}) no-repeat center / cover;
+        {% else %}
+            background: url({% static 'news/img/ybf-bg.jpg' %}) no-repeat center / cover;
+        {% endif %}
+            height: 480px;
+            position: relative;
+        }
 
+        .featured-news:before{
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+        {% if feature_list.1.featured_image %}
+            background: url(/media/{{ feature_list.1.featured_image }}) no-repeat center / cover;
+        {% else %}
+            background: url({% static 'news/img/bg-tmp.jpg' %}) no-repeat center / cover;
+        {% endif %}
+            z-index: -1;
+        }
+        .featured-news:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            {% if feature_list.2.featured_image %}
+            background: url(/media/{{ feature_list.2.featured_image }}) no-repeat center / cover;
+        {% else %}
+            background: url({% static 'news/img/bg-tmp.jpg' %}) no-repeat center / cover;
+        {% endif %}
+            z-index: -1;
+        }
+    </style>
     <link href="{% static 'news/css/news-custom.css' %}" rel="stylesheet">
     <body>
 
@@ -32,7 +69,6 @@
 </div>
 
 </header><!-- /#header -->
-
 
     <div id="main" class="site-main">
 
@@ -90,13 +126,10 @@
                                         {% endif %}
                                     {% endfor %}
                                 </ul>
-                                </span>
+                            </span>
                             <a href="javascript:void(0)" class="all-events pull-right" onclick="clickAllArticles();">All
                                 Articles...</a>
                         </div>
-
-
-
                             <div id="search-form" class="container col-sm-12" style="display: none; padding-left: 7%">
                                 <div class="row">
                                     <div class="controls">
@@ -105,9 +138,7 @@
                                                style="width: 100%; "/>
                                     </div>
                                 </div>
-
                             </div>
-
                     </div>
                 </div>
 
@@ -370,7 +401,6 @@
             method = "index";
             pg_num = 1;
             update_item();
-
         }
     </script>
 
