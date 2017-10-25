@@ -11,7 +11,7 @@
         <div class="bookings">
         	<div class="bookings-option">
         		<div class="choose-room pull-left col-xs-12 col-sm-5 col-md-5 well">
-        			<span>Choose by Room</span>
+        			<span>Filter rooms</span>
         			<select class="form-control" id="search_room" disabled>
         				<option value=""></option>
                         {% for room in rooms %}
@@ -19,17 +19,17 @@
                         {% endfor %}
         			</select>
         		</div>
-        		<div class="choose-time pull-right col-xs-12 col-sm-6 col-md-6 well">
-        			<span>Choose by Time</span>
-                    <form method="get" action="{% url 'booking_create' %}?type=search" id="form_search_time">
-            			<div class="form-group">
-                            <input type="hidden" value="search" name="type" />
-        					<input type=text class="form-control" name="date_start" id="time_start" required placeholder="Start time" {% if start_date != '' and end_date != '' %}value="{{ start_date_value }}"{% endif %}>&nbsp&nbsp&nbspto&nbsp&nbsp
-        					<input type="text" class="form-control" name="date_end" id="time_end" required placeholder="End time" {% if start_date != '' and end_date != '' %}value="{{ end_date_value }}"{% endif %}>
-                            <input type="submit" class="btn btn-transparent-dark" id="search_time" value="Search">
-            			</div>
-                    </form>
-        		</div>
+{#        		<div class="choose-time pull-right col-xs-12 col-sm-6 col-md-6 well">#}
+{#        			<span>Choose by Time</span>#}
+{#                    <form method="get" action="{% url 'booking_create' %}?type=search" id="form_search_time">#}
+{#            			<div class="form-group">#}
+{#                            <input type="hidden" value="search" name="type" />#}
+{#        					<input type=text class="form-control" name="date_start" id="time_start" required placeholder="Start time" {% if start_date != '' and end_date != '' %}value="{{ start_date_value }}"{% endif %}>&nbsp&nbsp&nbspto&nbsp&nbsp#}
+{#        					<input type="text" class="form-control" name="date_end" id="time_end" required placeholder="End time" {% if start_date != '' and end_date != '' %}value="{{ end_date_value }}"{% endif %}>#}
+{#                            <input type="submit" class="btn btn-transparent-dark" id="search_time" value="Search">#}
+{#            			</div>#}
+{#                    </form>#}
+{#        		</div>#}
                 <div class="clearfix"></div>
         	</div>
             {% if start_date != '' and end_date != '' %}
