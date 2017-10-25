@@ -296,6 +296,7 @@ def edit(request, news_article_url):
             news_article.article = body
             news_article.title = title
             news_article.feature_rank = feature_rank
+            news_article.featured = True if feature_rank != 0 else False
             news_article.category.add(tag)
             news_article.is_page = is_page
             news_article.display_in_navbar = display_in_navbar
