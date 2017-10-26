@@ -14,6 +14,8 @@ from django.db.models import Q
 
 # Create your views here.
 navbar_pages = News.objects.filter(display_in_navbar=True)
+
+
 def create(request):
     room_type = ''
     start_date = ''
@@ -39,8 +41,9 @@ def create(request):
             rooms = Room.objects.filter(category=cat)
     elif request.GET.get('room_id'):
         room_id = request.GET['room_id']
-        # start_book = request.GET['start_book']
-        # end_book = request.GET['end_book']
+        print('room_id: {}'.format(room_id))
+        start_book = request.GET['start_book']
+        end_book = request.GET['end_book']
         room = Room.objects.get(pk=room_id)
         bookings = Booking.objects.filter(room=room)
         response = []
@@ -111,6 +114,42 @@ def create(request):
 
     return render(request, 'officespace/create.html', context)
 
+
+def bookings(request):
+    """
+    Return bookings list
+    :param request:
+    :return:
+    """
+    if request.POST:
+        room_ids = request.POST['room_id'].split(",")
+        start_book = request.POST['start_book']
+        end_book = request.POST['end_book']
+        response = []
+        
+        if "all" in room_ids:  # select all
+            room_ids = Room.objects.values_list('id', flat=True)
+        elif "none" in room_ids:  # select none
+            room_ids = []
+        
+        for room_id in room_ids:
+            room = Room.objects.get(pk=room_id)
+            bookings = Booking.objects.filter(room=room, owner=request.user)
+            
+            for booking in bookings:
+                if request.user == booking.owner:
+                    owner = 'true'
+                else:
+                    owner = 'false'
+                title = booking.title
+                start_book = booking.start_book
+                end_book = booking.end_book
+                response.append([owner, title, start_book, end_book])
+        response = json.dumps(response, default=datetime_handler)
+    
+        return HttpResponse(response)
+    
+    
 class BookingList(ListView):
     model = Booking
     template_name = 'officespace/bookings.html'

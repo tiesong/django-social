@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<div class="modal fade" id="titleModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                <h2 class="modal-title">Confirm Booking</h2>
+            </div>
+
+            <div class="modal-body">
+                <div class="create-event-form">
+                    <div class="form-group">
+                        <label for="selectRoom">Select Room</label>
+                        <select id="selectRoom" class="form-control">
+                            {% for room in rooms %}
+                                <option value="{{ room.id }}">{{ room.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <p></P>
+                    <br>
+                    <div class="form-group">
+                        <label for="bookingTitle">Booking Title</label>
+                        <input type="text" id="bookingTitle" name="bookingTitle" class="form-control">
+                        <p></p>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="booking_create" class="btn btn-dark text-center">Book</button>
+
+                <button type="button" class="btn btn-transparent-dark" data-dismiss="modal">Cancel</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

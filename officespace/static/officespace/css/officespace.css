@@ -177,7 +177,7 @@
 }
 
 .bookings-option .choose-room {
-    opacity: 0.3;
+    opacity: 1;
 }
 .bookings-option .choose-room:hover {
     opacity: 1 !important;
