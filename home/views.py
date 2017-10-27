@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from news.models import News, Category
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+from anymail.message import attach_inline_image_file
 
 
 # Create your views here.
@@ -82,7 +85,8 @@ def signup(request):
                 user.is_active = False
                 user.save()
                 login(request, user)
-                # return HttpResponseRedirect('/officespace/')
+                send_email("Pending", signup_email)
+                send_email("Admin", signup_email)
                 return HttpResponseRedirect('/?active=false')
         else:
             request.session['error_message'] = "Sorry. Something unexpected happened, please try again. (request)"
@@ -94,3 +98,57 @@ def signup(request):
 
 def error(request):
     return render(request, 'home/error.html')
+
+
+def send_email(type, email):
+    """
+    Send email to admin or user.
+    :param email:
+    :return:
+    """
+    if type == "Pending":
+        msg = EmailMultiAlternatives(
+            subject="Account Pending Notification",
+            body="Your account is pending approval, please wait for admin approval.",
+            from_email="no_reply@teamedup.com.au",
+            to=[email])
+        
+        # Include an inline image in the html:
+        logo_cid = attach_inline_image_file(msg, "https://teamedup-ybf.s3.amazonaws.com/static/officespace/assets/img/logo.png")
+        
+        # Optional Anymail extensions:
+        msg.tags = ["Pending"]
+        msg.track_clicks = True
+        
+    elif type == "Admin":
+        msg = EmailMultiAlternatives(
+            subject="Waiting for approval",
+            body="a new user has signed up and their account is pending approval.\n"
+                 " Account email is " + email,
+            from_email="no_reply@teamedup.com.au",
+            to=["youdontseemehaha@gmail.com"])
+    
+        # Include an inline image in the html:
+        logo_cid = attach_inline_image_file(msg,
+                                            "https://teamedup-ybf.s3.amazonaws.com/static/officespace/assets/img/logo.png")
+    
+        # Optional Anymail extensions:
+        msg.tags = ["Approving"]
+        msg.track_clicks = True
+        
+    else:
+        msg = EmailMultiAlternatives(
+            subject="Your account has already been approved",
+            body="Your account has been approved by admin",
+            from_email="no_reply@teamedup.com.au",
+            to=[email])
+    
+        # Include an inline image in the html:
+        logo_cid = attach_inline_image_file(msg,
+                                            "https://teamedup-ybf.s3.amazonaws.com/static/officespace/assets/img/logo.png")
+    
+        # Optional Anymail extensions:
+        msg.tags = ["Approved"]
+        msg.track_clicks = True
+        
+    msg.send()
