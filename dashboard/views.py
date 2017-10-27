@@ -13,7 +13,7 @@ from perks.models import Perks
 from events.models import Event
 from officespace.models import Room
 from community.models import Profile, Tag, Company
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 
@@ -245,6 +245,7 @@ def user_active(request, pk):
     user = User.objects.filter(pk=pk).get()
     user.is_active = True
     user.save()
+    send_email(user.username, user.email)
     return JsonResponse({'result': 'active'})
 
 
@@ -458,3 +459,25 @@ def room_delete(request, pk):
     room.delete()
     context = {}
     return redirect('/dashboard/rooms')
+
+
+def send_email(username=None, email=None):
+    """
+    Send email to admin or user.
+    :param email:
+    :return:
+    """
+    print('sending mail')
+    try:
+        msg = EmailMultiAlternatives(
+            subject="Your account has already been approved",
+            body="Your account has been approved by admin",
+            from_email="no_reply@teamedup.com.au",
+            to=[username + "<" + email + ">"])
+        
+        msg.tags = ["Approved"]
+        msg.track_clicks = True
+    
+        msg.send()
+    except Exception as e:
+        print('Exception: {}'.format(e))
