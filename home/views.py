@@ -12,7 +12,6 @@ from anymail.message import attach_inline_image_file
 
 # Create your views here.
 def index(request):
-    
     if request.user.is_authenticated():
         return HttpResponseRedirect('/officespace')
     else:
@@ -86,8 +85,8 @@ def signup(request):
                 user.save()
                 login(request, user)
                 
-                send_email("Pending", signup_email)
-                send_email("Admin", signup_email)
+                send_email("Pending", username, signup_email)
+                send_email("Admin", username, signup_email)
                 return HttpResponseRedirect('/?active=false')
         else:
             request.session['error_message'] = "Sorry. Something unexpected happened, please try again. (request)"
@@ -101,7 +100,7 @@ def error(request):
     return render(request, 'home/error.html')
 
 
-def send_email(type, email):
+def send_email(type, username, email):
     """
     Send email to admin or user.
     :param email:
@@ -114,7 +113,7 @@ def send_email(type, email):
                 subject="Account Pending Notification",
                 body="Your account is pending approval, please wait for admin approval.",
                 from_email="no_reply@teamedup.com.au",
-                to=[email])
+                to=[username + "<" + email + ">"])
             
             # Include an inline image in the html:
             # logo_cid = attach_inline_image_file(msg, "")
@@ -122,15 +121,15 @@ def send_email(type, email):
             # Optional Anymail extensions:
             msg.tags = ["Pending"]
             msg.track_clicks = True
-            
+        
         elif type == "Admin":
             msg = EmailMultiAlternatives(
                 subject="Waiting for approval",
                 body="a new user has signed up and their account is pending approval.\n"
                      " Account email is " + email,
                 from_email="no_reply@teamedup.com.au",
-                to=["youdontseemehaha@gmail.com"])
-        
+                to=["Admin <youdontseemehaha@gmail.com>"])
+            
             # Include an inline image in the html:
             # logo_cid = attach_inline_image_file(msg,
             #                                     "https://teamedup-ybf.s3.amazonaws.com/static/officespace/assets/img/logo.png")
@@ -138,14 +137,14 @@ def send_email(type, email):
             # Optional Anymail extensions:
             msg.tags = ["Approving"]
             msg.track_clicks = True
-            
+        
         else:
             msg = EmailMultiAlternatives(
                 subject="Your account has already been approved",
                 body="Your account has been approved by admin",
                 from_email="no_reply@teamedup.com.au",
-                to=[email])
-        
+                to=[username + "<" + email + ">"])
+            
             # Include an inline image in the html:
             # logo_cid = attach_inline_image_file(msg,
             #                                     "https://teamedup-ybf.s3.amazonaws.com/static/officespace/assets/img/logo.png")
@@ -153,7 +152,7 @@ def send_email(type, email):
             # Optional Anymail extensions:
             msg.tags = ["Approved"]
             msg.track_clicks = True
-            
+        
         msg.send()
     except Exception as e:
         print('Exception: {}'.format(e))
