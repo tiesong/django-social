@@ -123,7 +123,7 @@ def send_email(type=None, username=None, email=None):
             print('admin email')
             msg = EmailMultiAlternatives(
                 subject="Waiting for approval",
-                body="a new user has signed up and their account is pending approval.\n"
+                body="a new user has signed up and their account is pending approval.\n\n\n"
                      " Account email is " + email + "\n"
                      " User Name is " + username,
                 from_email="no_reply@teamedup.com.au",
