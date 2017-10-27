@@ -10,6 +10,8 @@ admin.autodiscover()
 
 import home.views, news.views
 
+
+
 # Examples:
 # url(r'^$', 'gettingstarted.views.home', name='home'),
 # url(r'^blog/', include('blog.urls')),
@@ -24,8 +26,10 @@ urlpatterns = [
 
     url(r'^$', home.views.index, name='index'),
     url(r'^error/', home.views.error, name='error'),
-    url(r'^404/$', defaults.page_not_found),
-    url(r'^500/$', defaults.server_error),
+    url(r'^404/$', home.views.handler404),
+    url(r'^500/$', home.views.handler500),
+    url(r'^400/$', home.views.handler400),
+    url(r'^403/$', home.views.handler403),
     url(r'^signup/', home.views.signup, name='signup'),
 	url(r'^tinymce/', include('tinymce.urls')),
     url(r'^news/', include('news.urls')),

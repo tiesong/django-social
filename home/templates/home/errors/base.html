@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% load staticfiles %}
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Butter Factory - Error</title>
+
+    <meta name="description"
+          content="At YBF, we have one goal: To maximise the success of startups that call YBF ... we've designed and built an ecosystem to maximise your startups' success.">
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- Favicon
+    ================================================== -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'news/img/favicon.ico' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'news/img/favicon.ico' %}">
+
+    <!-- Stylesheets
+    ================================================== -->
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'news/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'news/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'news/css/responsive.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <header id="masthead" class="site-header event-list-header">
+    <div class="top-nav">
+
+    <div class="container container-960">
+
+        <a href="/" class="site-logo" rel="home"><img src="{% static 'home/img/logo.png' %}" alt=""
+                                                      srcset="{% static 'home/img/logo.png' %} 1x, {% static 'home/img/logo@2x.png' %} 2x"></a>
+
+        <nav id="primary-navigation" class="site-navigation">
+
+            <a href="/" class="site-logo visible-xs" rel="home"><img src="{% static 'news/img/logo.png' %}"
+                                                                     alt=""
+                                                                     srcset="{% static 'news/img/logo.png' %} 1x, {% static 'news/img/logo@2x.png' %} 2x"></a>
+        </nav><!-- /.site-navigation -->
+
+    </div><!-- /.container -->
+
+</div><!-- /.top-nav -->
+
+    </header><!-- /#header -->
+
+
+{% block content %}
+{% endblock %}
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="{% static 'news/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'news/js/script.js' %}"></script>
+
+</body>
+</html>

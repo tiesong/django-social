@@ -52,6 +52,7 @@ if os.environ.get('DJANGO_PRODUCTION'):
 else:
     DEBUG = False
 
+
 # Application definition
 
 INSTALLED_APPS = (
