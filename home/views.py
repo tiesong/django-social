@@ -122,7 +122,7 @@ def send_email(type=None, username=None, email=None):
             msg.tags = ["Pending"]
             msg.track_clicks = True
         
-        elif type == "Admin":
+        else:
             msg = EmailMultiAlternatives(
                 subject="Waiting for approval",
                 body="a new user has signed up and their account is pending approval.\n"
@@ -132,21 +132,6 @@ def send_email(type=None, username=None, email=None):
                 to=["Admin<youdontseemehaha@gmail.com>"])
             
             msg.tags = ["Approving"]
-            msg.track_clicks = True
-        
-        else:
-            msg = EmailMultiAlternatives(
-                subject="Your account has already been approved",
-                body="Your account has been approved by admin",
-                from_email="no_reply@teamedup.com.au",
-                to=[username + "<" + email + ">"])
-            
-            # Include an inline image in the html:
-            # logo_cid = attach_inline_image_file(msg,
-            #                                     "https://teamedup-ybf.s3.amazonaws.com/static/officespace/assets/img/logo.png")
-            #
-            # Optional Anymail extensions:
-            msg.tags = ["Approved"]
             msg.track_clicks = True
         
         msg.send()
