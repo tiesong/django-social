@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
 
     url(r'^$', home.views.index, name='index'),
-    url(r'^error/', home.views.error, name='error'),
+    url(r'^error/', home.views.handler500, name='error'),
     url(r'^signup/', home.views.signup, name='signup'),
 	url(r'^tinymce/', include('tinymce.urls')),
     url(r'^news/', include('news.urls')),
