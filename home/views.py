@@ -117,7 +117,7 @@ def send_email(type, email):
                 to=[email])
             
             # Include an inline image in the html:
-            logo_cid = attach_inline_image_file(msg, "https://teamedup-ybf.s3.amazonaws.com/static/officespace/assets/img/logo.png")
+            # logo_cid = attach_inline_image_file(msg, "")
             
             # Optional Anymail extensions:
             msg.tags = ["Pending"]
@@ -132,9 +132,9 @@ def send_email(type, email):
                 to=["youdontseemehaha@gmail.com"])
         
             # Include an inline image in the html:
-            logo_cid = attach_inline_image_file(msg,
-                                                "https://teamedup-ybf.s3.amazonaws.com/static/officespace/assets/img/logo.png")
-        
+            # logo_cid = attach_inline_image_file(msg,
+            #                                     "https://teamedup-ybf.s3.amazonaws.com/static/officespace/assets/img/logo.png")
+            #
             # Optional Anymail extensions:
             msg.tags = ["Approving"]
             msg.track_clicks = True
@@ -147,9 +147,9 @@ def send_email(type, email):
                 to=[email])
         
             # Include an inline image in the html:
-            logo_cid = attach_inline_image_file(msg,
-                                                "https://teamedup-ybf.s3.amazonaws.com/static/officespace/assets/img/logo.png")
-        
+            # logo_cid = attach_inline_image_file(msg,
+            #                                     "https://teamedup-ybf.s3.amazonaws.com/static/officespace/assets/img/logo.png")
+            #
             # Optional Anymail extensions:
             msg.tags = ["Approved"]
             msg.track_clicks = True
