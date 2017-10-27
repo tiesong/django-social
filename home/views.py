@@ -97,7 +97,7 @@ def signup(request):
 
 
 def error(request):
-    return render(request, 'home/error.html')
+    return render(request, 'home/error.html', status=404)
 
 
 def send_email(type=None, username=None, email=None):
