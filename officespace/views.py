@@ -148,8 +148,26 @@ def bookings(request):
         response = json.dumps(response, default=datetime_handler)
     
         return HttpResponse(response)
-    
-    
+    else:
+        date_start = request.GET['date_start']
+        date_end = request.GET['date_end']
+        print(date_start, date_end)
+        bookings = Booking.objects.filter(Q(start_book__lte=date_start)& Q(end_book__gte=date_start)|
+                                          Q(start_book__lte=date_end) & Q(end_book__gte=date_end))
+                            
+        available_room = []
+        print('bookings:{}'.format(bookings))
+        for item in bookings:
+            if len(available_room) !=0:
+                if {'id': item.room.id, 'name': item.room.name} in available_room:
+                    continue
+            available_room.append({'id': item.room.id, 'name': item.room.name})
+
+        response = json.dumps(available_room, default=datetime_handler)
+        print('response: {}'.format(response))
+        return HttpResponse(response)
+        
+        
 class BookingList(ListView):
     model = Booking
     template_name = 'officespace/bookings.html'

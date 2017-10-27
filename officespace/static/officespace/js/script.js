@@ -425,82 +425,115 @@ function create_booking() {
             if (element.hasClass('new-booking')) {
                 var start_date = moment(event.start._d).tz("UTC").format();
                 var end_date = moment(event.end._d).tz("UTC").format();
+                $.ajax({
+                    url: '/officespace/booking',
+                    dataType: 'json',
+                    data: {
+                        date_start: start_date,
+                        date_end: end_date
+                    },
+                    success: function (result) {
+                        var all_options=0;
+                        var disabled_options=0;
+                        $("#available_room").hide();
+                        $("#selectRoom option").each(function()
+                            {
+                                all_options ++;
+                                $(this).attr('disabled', false)
+                            });
 
-                $('#titleModal').modal('show');
+                        $.each(result, function (i, value) {
+                            $("#selectRoom option").filter(function () {
 
-                $('#titleModal').on('hidden.bs.modal', function () {
-                    if (!$(this).data('created'))
-                        calendar.fullCalendar('removeEvents', '12345');
-                    // $("#titleModal").remove();
-                });
-
-                $('#booking_create').click(function () {
-                    var title = $('#bookingTitle').val();
-                    if (title == '') {
-                        alert('Please enter the Title.');
-                        return;
-                    }
-                    $('#titleModal').data('created', true);
-                    $('#titleModal').modal('hide');
-                    var room_id = $('#selectRoom').val();
-                    if (start_date != '' && end_date != '') {
-                        $.ajax({
-                            url: '/officespace/create',
-                            type: 'POST',
-                            dataType: 'json',
-                            data: {
-                                room_id: room_id,
-                                date_start: start_date,
-                                date_end: end_date,
-                                title: title
-                            },
-                            success: function (result) {
-                                var room = result[0];
-                                var title = result[1];
-                                var start = result[2];
-                                var end = result[3];
-                                if (start.indexOf('T') > 0) {
-                                    start_ = start.replace(/\+.*/g, ' UTC');
-                                    _start = start.replace(/[^\dT]/g, '').replace('0000', '');
-                                } else {
-                                    start_ = start + ' UTC';
-                                    _start = start.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
+                                if ((this.value).toString() === value.id.toString()){
+                                    disabled_options ++;
+                                    return true;
                                 }
-                                if (end.indexOf('T') > 0) {
-                                    end_ = end.replace(/\+.*/g, ' UTC');
-                                    _end = end.replace(/[^\dT]/g, '').replace('0000', '');
-                                } else {
-                                    end_ = end + ' UTC';
-                                    _end = end.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
-                                }
-                                var google_link = 'https://www.google.com/calendar/render?action=TEMPLATE' +
-                                    '&text=' + title +
-                                    '&details=Room: ' + room +
-                                    '&location=Your Butter Factory' +
-                                    '&dates=' + _start + '/' + _end;
-                                var iCal_link = 'http://addtocalendar.com/atc/ical?f=m' +
-                                    '&e[0][date_start]=' + _start +
-                                    '&e[0][date_end]=' + _end +
-                                    '&e[0][timezone]=UTC' +
-                                    '&e[0][title]=' + title +
-                                    '&e[0][description]=Room: ' + room +
-                                    '&e[0][location]=Your Butter Factory' +
-                                    '&e[0][privacy]=public';
-                                $('#createModal .modal-body .gCal').attr('href', google_link);
-                                $('#createModal .modal-body .iCal').attr('href', iCal_link);
-                                $('#createModal .modal-body .oCal').attr('href', iCal_link);
-                                $('#createModal .modal-body .title').html(title);
-                                $('#createModal .modal-body .time').html(start_ + ' - ' + end_);
-                                $('#createModal .modal-body .room').html(room);
-                                $('#createModal').modal('show');
-                            },
-                            error: function (e) {
-                                console.log(e);
-                                $('#titleModal').modal('hide');
+                                return false;
+                            }).prop('disabled', true)
+                        });
+                        console.log(all_options, disabled_options)
+                        if ((all_options -1) === disabled_options){
+                            $("#available_room").show()
+                        }
+                        $('#titleModal').modal('show');
+
+                        $('#titleModal').on('hidden.bs.modal', function () {
+                            if (!$(this).data('created'))
+                                calendar.fullCalendar('removeEvents', '12345');
+                            // $("#titleModal").remove();
+                        });
+
+                        $('#booking_create').click(function () {
+                            var title = $('#bookingTitle').val();
+                            if (title == '') {
+                                alert('Please enter the Title.');
+                                return;
+                            }
+                            $('#titleModal').data('created', true);
+                            $('#titleModal').modal('hide');
+                            var room_id = $('#selectRoom').val();
+                            if (start_date != '' && end_date != '') {
+                                $.ajax({
+                                    url: '/officespace/create',
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {
+                                        room_id: room_id,
+                                        date_start: start_date,
+                                        date_end: end_date,
+                                        title: title
+                                    },
+                                    success: function (result) {
+                                        var room = result[0];
+                                        var title = result[1];
+                                        var start = result[2];
+                                        var end = result[3];
+                                        if (start.indexOf('T') > 0) {
+                                            start_ = start.replace(/\+.*/g, ' UTC');
+                                            _start = start.replace(/[^\dT]/g, '').replace('0000', '');
+                                        } else {
+                                            start_ = start + ' UTC';
+                                            _start = start.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
+                                        }
+                                        if (end.indexOf('T') > 0) {
+                                            end_ = end.replace(/\+.*/g, ' UTC');
+                                            _end = end.replace(/[^\dT]/g, '').replace('0000', '');
+                                        } else {
+                                            end_ = end + ' UTC';
+                                            _end = end.replace(/-(\d+)\s/g, '$1T').replace(/[^\dT]/g, '') + '00';
+                                        }
+                                        var google_link = 'https://www.google.com/calendar/render?action=TEMPLATE' +
+                                            '&text=' + title +
+                                            '&details=Room: ' + room +
+                                            '&location=Your Butter Factory' +
+                                            '&dates=' + _start + '/' + _end;
+                                        var iCal_link = 'http://addtocalendar.com/atc/ical?f=m' +
+                                            '&e[0][date_start]=' + _start +
+                                            '&e[0][date_end]=' + _end +
+                                            '&e[0][timezone]=UTC' +
+                                            '&e[0][title]=' + title +
+                                            '&e[0][description]=Room: ' + room +
+                                            '&e[0][location]=Your Butter Factory' +
+                                            '&e[0][privacy]=public';
+                                        $('#createModal .modal-body .gCal').attr('href', google_link);
+                                        $('#createModal .modal-body .iCal').attr('href', iCal_link);
+                                        $('#createModal .modal-body .oCal').attr('href', iCal_link);
+                                        $('#createModal .modal-body .title').html(title);
+                                        $('#createModal .modal-body .time').html(start_ + ' - ' + end_);
+                                        $('#createModal .modal-body .room').html(room);
+                                        $('#createModal').modal('show');
+                                    },
+                                    error: function (e) {
+                                        console.log(e);
+                                        $('#titleModal').modal('hide');
+                                    }
+                                });
                             }
                         });
                     }
                 });
+
             }
         },
         events: function (start, end, timezone, callback) {

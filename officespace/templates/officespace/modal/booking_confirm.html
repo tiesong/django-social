@@ -12,15 +12,16 @@
                 <div class="create-event-form">
                     <div class="form-group">
                         <label for="selectRoom">Select Room</label>
-                        {% if rooms %}
+
                             <select id="selectRoom" class="form-control">
+                                    <option value="none"></option>
                                 {% for room in rooms %}
                                     <option value="{{ room.id }}">{{ room.name }}</option>
                                 {% endfor %}
                             </select>
-                        {% else %}
-                            <label style="color: #ba2121" >No Rooms Available</label>
-                        {% endif %}
+
+                            <label style="color: #ba2121;" id="available_room" >No Rooms Available</label>
+
                     </div>
 
                     <p></P>
