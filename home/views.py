@@ -107,6 +107,7 @@ def send_email(type, email):
     :param email:
     :return:
     """
+    print('sending mail')
     try:
         if type == "Pending":
             msg = EmailMultiAlternatives(
