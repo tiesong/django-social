@@ -85,6 +85,7 @@ def signup(request):
                 user.is_active = False
                 user.save()
                 login(request, user)
+                
                 send_email("Pending", signup_email)
                 send_email("Admin", signup_email)
                 return HttpResponseRedirect('/?active=false')
