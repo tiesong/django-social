@@ -85,7 +85,7 @@ def signup(request):
                 user.save()
                 login(request, user)
                 
-                send_email("Pending", username, signup_email)
+                send_email("User", username, signup_email)
                 send_email("Admin", username, signup_email)
                 return HttpResponseRedirect('/?active=false')
         else:
@@ -100,7 +100,7 @@ def error(request):
     return render(request, 'home/error.html')
 
 
-def send_email(type, username, email):
+def send_email(type=None, username=None, email=None):
     """
     Send email to admin or user.
     :param email:
@@ -108,7 +108,7 @@ def send_email(type, username, email):
     """
     print('sending mail')
     try:
-        if type == "Pending":
+        if type == "User":
             msg = EmailMultiAlternatives(
                 subject="Account Pending Notification",
                 body="Your account is pending approval, please wait for admin approval.",
@@ -126,15 +126,11 @@ def send_email(type, username, email):
             msg = EmailMultiAlternatives(
                 subject="Waiting for approval",
                 body="a new user has signed up and their account is pending approval.\n"
-                     " Account email is " + email,
+                     " Account email is " + email + "\n"
+                     " User Name is " + username,
                 from_email="no_reply@teamedup.com.au",
-                to=["Admin <youdontseemehaha@gmail.com>"])
+                to=["Admin<youdontseemehaha@gmail.com>"])
             
-            # Include an inline image in the html:
-            # logo_cid = attach_inline_image_file(msg,
-            #                                     "https://teamedup-ybf.s3.amazonaws.com/static/officespace/assets/img/logo.png")
-            #
-            # Optional Anymail extensions:
             msg.tags = ["Approving"]
             msg.track_clicks = True
         
