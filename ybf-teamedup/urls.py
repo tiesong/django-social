@@ -3,7 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import RedirectView
 from django.contrib.auth import views as auth_views
-
+from django.views import defaults
 from django.contrib import admin
 import notifications.urls
 admin.autodiscover()
@@ -23,7 +23,9 @@ urlpatterns = [
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
 
     url(r'^$', home.views.index, name='index'),
-    url(r'^error/', home.views.handler500, name='error'),
+    url(r'^error/', home.views.error, name='error'),
+    url(r'^404/$', defaults.page_not_found),
+    url(r'^500/$', defaults.server_error),
     url(r'^signup/', home.views.signup, name='signup'),
 	url(r'^tinymce/', include('tinymce.urls')),
     url(r'^news/', include('news.urls')),
@@ -36,7 +38,4 @@ urlpatterns = [
     url(r'^officespace/', include('officespace.urls')),
     url('^', include('django.contrib.auth.urls')),
     url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-handler404 = home.views.handler404
-handler500 = home.views.handler500
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
