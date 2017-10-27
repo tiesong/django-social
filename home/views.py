@@ -106,23 +106,21 @@ def send_email(type=None, username=None, email=None):
     :param email:
     :return:
     """
-    print('sending mail')
+    
     try:
         if type == "User":
+            print('user email')
             msg = EmailMultiAlternatives(
                 subject="Account Pending Notification",
                 body="Your account is pending approval, please wait for admin approval.",
                 from_email="no_reply@teamedup.com.au",
                 to=[username + "<" + email + ">"])
             
-            # Include an inline image in the html:
-            # logo_cid = attach_inline_image_file(msg, "")
-            
             # Optional Anymail extensions:
             msg.tags = ["Pending"]
-            msg.track_clicks = True
         
         else:
+            print('admin email')
             msg = EmailMultiAlternatives(
                 subject="Waiting for approval",
                 body="a new user has signed up and their account is pending approval.\n"
@@ -132,7 +130,6 @@ def send_email(type=None, username=None, email=None):
                 to=["Admin<youdontseemehaha@gmail.com>"])
             
             msg.tags = ["Approving"]
-            msg.track_clicks = True
         
         msg.send()
     except Exception as e:
