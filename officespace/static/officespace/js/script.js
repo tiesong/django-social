@@ -375,6 +375,7 @@ $(document).ready(function () {
     $(".chosen-select").chosen().change(function (ev, data) {
 
     });
+    create_booking()
 
 });
 
@@ -393,6 +394,7 @@ function create_booking() {
         eventLimit: true,
         selectable: true,
         selectHelper: true,
+
         select: function (start, end, allDay) {
             if ($('.fc-event-container .showing').hasClass('showing')) {
                 return;
@@ -416,8 +418,8 @@ function create_booking() {
         },
         editable: false,
         allDaySlot: false,
-        eventOverlap: false,
-        selectOverlap: false,
+        eventOverlap: true,
+        selectOverlap: true,
         longPressDelay: 300,
         eventRender: function (event, element) {
             if (element.hasClass('new-booking')) {
@@ -506,6 +508,7 @@ function create_booking() {
             var start_book = moment(start._d).tz("UTC").format();
             var end_book = moment(end._d).tz("UTC").format();
             var events = [];
+
             if (room_id != '') {
                 $.ajax({
                     type: 'POST',
@@ -519,6 +522,7 @@ function create_booking() {
                     },
                     success: function (result) {
                         $.each(result, function (index, value) {
+
                             if (value[0] == 'true') {
                                 events.push({
                                     title: value[1],

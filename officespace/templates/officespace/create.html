@@ -13,9 +13,8 @@
                 <div class="choose-room pull-left col-xs-12 col-sm-5 col-md-5 well">
                     <span>Select rooms</span>
                     <select class="form-control chosen-select" data-placeholder="Begin typing a name to filter..."
-                            id="search_room" name="test" multiple>
-                        <option value=""></option>
-                        <option value="all" style="font-weight: 700">Select All</option>
+                            id="search_room" name="test" multiple >
+                        <option value="all" selected="selected" style="font-weight: 700">Select All</option>
                         {% for room in rooms %}
                             <option value="{{ room.id }}">{{ room.name }}</option>
                         {% endfor %}
@@ -82,9 +81,4 @@
     </div>
     {% include "officespace/modal/booking_create.html" %}
     {% include "officespace/modal/booking_confirm.html" %}
-{% endblock %}
-{% block customscript %}
-    <script>
-    create_booking()
-    </script>
 {% endblock %}
