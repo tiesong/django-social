@@ -4,42 +4,7 @@
     {% load staticfiles %}
     {% load app_filter %}
     <style>
-        .site-header {
-        {% if feature_list.0.featured_image %}
-            background: url({{ feature_list.0.featured_image.url }}) no-repeat center / cover;
-        {% else %}
-            background: url({% static 'news/img/ybf-bg.jpg' %}) no-repeat center / cover;
-        {% endif %}
-            height: 480px;
-            position: relative;
-        }
 
-        .featured-news:before{
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 50%;
-            height: 100%;
-        {% if feature_list.1.featured_image %}
-            background: url({{ feature_list.1.featured_image.url }}) no-repeat center / cover;
-        {% else %}
-            background: url({% static 'news/img/bg-tmp.jpg' %}) no-repeat center / cover;
-        {% endif %}
-            z-index: -1;
-        }
-        .featured-news:after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 50%;
-            height: 100%;
-            {% if feature_list.2.featured_image %}
-            background: url({{ feature_list.2.featured_image.url }}) no-repeat center / cover;
-        {% else %}
-            background: url({% static 'news/img/bg-tmp.jpg' %}) no-repeat center / cover;
-        {% endif %}
-            z-index: -1;
-        }
     </style>
     <link href="{% static 'news/css/news-custom.css' %}" rel="stylesheet">
     <body>
