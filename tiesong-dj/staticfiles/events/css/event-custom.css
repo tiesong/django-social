@@ -1,0 +1,153 @@
+/* Create the blue navigation bar */
+.navbar {
+    background-color: #000000;
+}
+
+/* Define how each icon button should look like */
+.notify_button {
+    font-size: 25px;
+    color: white;
+
+    display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+    position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+    float: right;
+    margin-right: 14px;
+
+}
+
+/* Make the badge float in the top right corner of the button */
+.notify_button__badge {
+    background-color: #fa3e3e;
+    border-radius: 2px;
+    color: white;
+    padding: 0px 3px;
+    font-size: 10px;
+    position: absolute; /* Position the badge within the relatively positioned button */
+    top: 0;
+    right: 0;
+}
+
+img.resize {
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.loader {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+/**
+* AddToCalendar Blue Style
+* http://addtocalendar.com
+*/
+
+.atcb-link,
+.atcb-link:hover,
+.atcb-link:active,
+.atcb-link:focus {
+    color: #272534;
+
+}
+
+.atcb-list {
+    width: 170px;
+    border: 1px solid rgb(186, 186, 186);
+    border-radius: 2px;
+    box-shadow: 0 0 5px #AAA;
+}
+
+.atcb-list,
+.atcb-item {
+    background: #fff;
+    color: #000;
+}
+
+.atcb-item, .atcb-item-link {
+    line-height: 1.3em;
+    vertical-align: middle;
+    zoom: 1;
+}
+
+.atcb-item-link,
+.atcb-item-link:hover,
+.atcb-item-link:active,
+.atcb-item-link:focus {
+    color: #000;
+    font-size: 14px;
+    text-decoration: none;
+    outline: none;
+    padding: 5px 15px;
+}
+
+.atcb-item-link:hover,
+.atcb-item-link:active,
+.atcb-item-link:focus {
+    color: #fff;
+}
+
+.atcb-item.hover,
+.atcb-item:hover {
+    background: rgb(66, 129, 244);
+}
