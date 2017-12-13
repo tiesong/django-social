@@ -182,7 +182,8 @@ if os.environ.get('DJANGO_PRODUCTION'):
 
     # Static files
     STATICFILES_LOCATION = 'static'
-    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+    # STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+    STATIC_URL = '/static/'
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
     # Setting Media files

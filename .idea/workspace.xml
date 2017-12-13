@@ -2,8 +2,79 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a9082a1-8c27-42eb-a761-c705e4664084" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/settings.py" afterPath="$PROJECT_DIR$/tiesong-dj/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/base.css" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/base.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/changelists.css" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/changelists.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/dashboard.css" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/dashboard.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/fonts.css" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/fonts.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/forms.css" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/forms.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/login.css" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/login.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/rtl.css" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/rtl.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/widgets.css" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/css/widgets.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/fonts/README.txt" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/fonts/README.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/LICENSE" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/README.txt" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/README.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/calendar-icons.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/calendar-icons.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-addlink.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-addlink.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-alert.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-alert.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-calendar.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-calendar.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-changelink.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-changelink.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-clock.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-clock.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-deletelink.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-deletelink.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-no.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-no.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-unknown-alt.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-unknown-alt.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-unknown.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-unknown.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-yes.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/icon-yes.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/inline-delete.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/inline-delete.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/search.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/search.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/selector-icons.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/selector-icons.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/sorting-icons.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/sorting-icons.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/tooltag-add.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/tooltag-add.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/tooltag-arrowright.svg" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/img/tooltag-arrowright.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/SelectBox.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/SelectBox.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/SelectFilter2.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/SelectFilter2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/actions.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/actions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/actions.min.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/actions.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/admin/DateTimeShortcuts.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/admin/DateTimeShortcuts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/admin/RelatedObjectLookups.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/admin/RelatedObjectLookups.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/calendar.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/calendar.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/cancel.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/cancel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/change_form.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/change_form.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/collapse.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/collapse.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/collapse.min.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/collapse.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/core.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/core.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/inlines.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/inlines.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/inlines.min.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/inlines.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/jquery.init.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/jquery.init.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/popup_response.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/popup_response.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/prepopulate.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/prepopulate.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/prepopulate.min.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/prepopulate.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/prepopulate_init.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/prepopulate_init.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/timeparse.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/timeparse.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/urlify.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/urlify.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/vendor/jquery/LICENSE-JQUERY.txt" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/vendor/jquery/LICENSE-JQUERY.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/vendor/jquery/jquery.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/vendor/jquery/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/vendor/jquery/jquery.min.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/vendor/jquery/jquery.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/vendor/xregexp/LICENSE-XREGEXP.txt" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/vendor/xregexp/LICENSE-XREGEXP.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/vendor/xregexp/xregexp.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/vendor/xregexp/xregexp.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/vendor/xregexp/xregexp.min.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/admin/js/vendor/xregexp/xregexp.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/django_tinymce/init_tinymce.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/django_tinymce/init_tinymce.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/django_tinymce/jquery-1.9.1.min.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/django_tinymce/jquery-1.9.1.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/events/css/style.css" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/events/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/home/css/style.css" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/home/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/autolink/editor_plugin_src.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/autolink/editor_plugin_src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/autoresize/editor_plugin_src.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/autoresize/editor_plugin_src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/example_dependency/editor_plugin_src.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/example_dependency/editor_plugin_src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/inlinepopups/skins/clearlooks2/window.css" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/inlinepopups/skins/clearlooks2/window.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/lists/editor_plugin_src.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/lists/editor_plugin_src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/preview/editor_plugin_src.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/preview/editor_plugin_src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/style/props.htm" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/style/props.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/style/readme.txt" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/style/readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/tabfocus/editor_plugin_src.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/tabfocus/editor_plugin_src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/table/editor_plugin_src.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/plugins/table/editor_plugin_src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/themes/advanced/js/color_picker.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/themes/advanced/js/color_picker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/tiny_mce_popup.js" afterPath="$PROJECT_DIR$/tiesong-dj/staticfiles/tiny_mce/tiny_mce_popup.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -90,53 +161,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="141" column="0" lean-forward="true" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+            <state relative-caret-position="304">
+              <caret line="58" column="10" lean-forward="false" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tiesong-dj/urls.py">
+        <entry file="file://$PROJECT_DIR$/community/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="people_list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/community/templates/community/people_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="99" column="32" lean-forward="false" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="top-nav.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/officespace/templates/officespace/top-nav.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="23" column="42" lean-forward="false" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/officespace/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="26" lean-forward="false" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+            <state relative-caret-position="74">
+              <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -144,38 +183,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tiesong-dj/templates/registration/base.html">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/community/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="134" column="0" lean-forward="true" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+            <state relative-caret-position="-425">
+              <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="responsive.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/events/static/events/css/responsive.css">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/news/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+            <state relative-caret-position="2672">
+              <caret line="187" column="4" lean-forward="false" selection-start-line="187" selection-start-column="4" selection-end-line="187" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="responsive.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/officespace/static/officespace/css/responsive.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="83" column="43" lean-forward="false" selection-start-line="83" selection-start-column="43" selection-end-line="83" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post_to_twitter.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../djang1venv/Lib/site-packages/django_social_share/templates/django_social_share/templatetags/post_to_twitter.html">
+      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/community/static/community/js/tinymce/langs/readme.md">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
               <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
@@ -184,12 +213,58 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tiesong-dj/staticfiles/community/css/style.css">
+      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/community/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-303">
-              <caret line="1316" column="26" lean-forward="true" selection-start-line="1316" selection-start-column="26" selection-end-line="1316" selection-end-column="26" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="e#22#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/news/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tiesong-dj/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="178" column="56" lean-forward="false" selection-start-line="178" selection-start-column="56" selection-end-line="178" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tiesong-dj/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="261">
+              <caret line="39" column="26" lean-forward="false" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -213,8 +288,10 @@
       <find>/sta</find>
       <find>face</find>
       <find>share</find>
-      <find>commu</find>
       <find>Share</find>
+      <find>produc</find>
+      <find>commu</find>
+      <find>root</find>
       <find>people</find>
     </findStrings>
   </component>
@@ -239,6 +316,7 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/afa1ab07-3519-40af-8afe-702ecd9a767a/console.sql" />
         <option value="$PROJECT_DIR$/tiesong-dj/wsgi.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/tiesong-dj/settings.py" />
       </list>
     </option>
   </component>
@@ -326,28 +404,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="staticfiles" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -384,184 +440,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="media" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="perks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="perks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="perks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="perks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="perks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="officespace" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="officespace" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="officespace" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="officespace" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="officespace" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="officespace" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="officespace" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="news" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -576,11 +454,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="news" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templatetags" />
+              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -594,41 +468,65 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="community" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiesong-dj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="community" />
+              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiesong-dj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiesong-dj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiesong-dj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiesong-dj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -641,10 +539,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="community" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -667,6 +561,14 @@
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="SearchEverywhereHistoryKey" value="people&#9;FILE&#9;file://D:/work/python/myenv/tiesong-dj/community/templates/community/people_list.html&#10;linkedin&#9;null&#9;null&#10;twitter&#9;FILE&#9;file://D:/work/python/djang1venv/Lib/site-packages/django_social_share/templates/django_social_share/templatetags/post_to_twitter.html&#10;social-share&#9;null&#9;null&#10;wsgi&#9;null&#9;null" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\work\python\myenv\tiesong-dj\community\static" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\work\python\myenv\tiesong-dj\community" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -1012,35 +914,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/events/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/events/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/TEAM_VENV/local/lib/python2.7/site-packages/django/apps/config.py" />
     <entry file="file://$PROJECT_DIR$/events/serializers.py" />
     <entry file="file://$PROJECT_DIR$/events/apps.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1107,21 +980,6 @@
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/a9efb95a/ac552d9d-d3c5-4ffe-95dd-922c81a030ee/main.notifications_notification" />
-    <entry file="file://$PROJECT_DIR$/community/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2496">
-          <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/news/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/home/templates/home/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2208">
@@ -1159,16 +1017,6 @@
         <state relative-caret-position="510">
           <caret line="37" column="28" lean-forward="false" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#22#31#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1265,7 +1113,7 @@
     <entry file="file://$PROJECT_DIR$/tiesong-dj/templates/registration/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
-          <caret line="134" column="0" lean-forward="true" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+          <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1273,7 +1121,7 @@
     <entry file="file://$PROJECT_DIR$/events/static/events/css/responsive.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
-          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1289,7 +1137,7 @@
     <entry file="file://$PROJECT_DIR$/../../djang1venv/Lib/site-packages/django_social_share/templates/django_social_share/templatetags/post_to_twitter.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1297,7 +1145,7 @@
     <entry file="file://$PROJECT_DIR$/tiesong-dj/staticfiles/community/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-303">
-          <caret line="1316" column="26" lean-forward="true" selection-start-line="1316" selection-start-column="26" selection-end-line="1316" selection-end-column="26" />
+          <caret line="1316" column="26" lean-forward="false" selection-start-line="1316" selection-start-column="26" selection-end-line="1316" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1315,17 +1163,7 @@
         <state relative-caret-position="119">
           <caret line="7" column="26" lean-forward="false" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tiesong-dj/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1340,8 +1178,88 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="141" column="0" lean-forward="true" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+        <state relative-caret-position="304">
+          <caret line="58" column="10" lean-forward="false" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tiesong-dj/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="178" column="56" lean-forward="false" selection-start-line="178" selection-start-column="56" selection-end-line="178" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/community/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-425">
+          <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/community/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/community/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tiesong-dj/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="39" column="26" lean-forward="false" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#22#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/news/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/news/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2672">
+          <caret line="187" column="4" lean-forward="false" selection-start-line="187" selection-start-column="4" selection-end-line="187" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/community/static/community/js/tinymce/langs/readme.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
