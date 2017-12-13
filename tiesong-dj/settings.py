@@ -166,8 +166,8 @@ NOTIFICATIONS_USE_JSONFIELD=True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, '../tiesong-dj/staticfiles')
-
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+print(STATIC_ROOT)
 APP_Filters = (os.path.join(PROJECT_ROOT, 'templatetags'))
 
 # S3 bucket serving media files.
@@ -181,20 +181,22 @@ if os.environ.get('DJANGO_PRODUCTION'):
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
     # Static files
-    STATICFILES_LOCATION = 'static'
+    STATICFILES_LOCATION = ''
     # STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
-    STATIC_URL = '/static/'
+    STATIC_URL = '//'
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
     # Setting Media files
-    MEDIAFILES_LOCATION = 'media'
+    MEDIAFILES_LOCATION = ''
     MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 else:
+    print("---no pro---")
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+    print(PROJECT_ROOT)
 two_months = datetime.timedelta(days=61)
 date_two_months_later = datetime.date.today() + two_months
 expires = date_two_months_later.strftime("%A, %d %B %Y 20:00:00 GMT")
