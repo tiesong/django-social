@@ -2,656 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a9082a1-8c27-42eb-a761-c705e4664084" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/css/bootstrap-tagsinput.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/css/community.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/css/responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Bold.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Bold.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Bold.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Bold.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Bold.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Light.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Light.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Light.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Light.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Light.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Medium.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Medium.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Medium.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Medium.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Medium.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/Apercu-Regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/article.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/article@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/avatar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/bg-tmp.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/company-profile.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/edit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/edit@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/event_detail.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/logo@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/news-tmp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/phones.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/prof-tmp1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/prof-tmp2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/prof-tmp3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/search.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/search@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/startup-logo-tmp.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/trash.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/trash@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/view.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/view@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/img/ybf-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/bootstrap-tagsinput.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/custom.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/jquery.tinymce.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/langs/readme.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/license.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/advlist/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/anchor/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/autolink/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/autoresize/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/autosave/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/bbcode/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/charmap/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/code/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/codesample/css/prism.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/codesample/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/colorpicker/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/contextmenu/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/directionality/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-cool.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-cry.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-frown.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-smile.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-wink.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/img/smiley-yell.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/emoticons/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/fullpage/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/fullscreen/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/help/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/help/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/hr/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/image/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/imagetools/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/importcss/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/insertdatetime/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/legacyoutput/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/link/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/lists/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/media/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/nonbreaking/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/noneditable/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/pagebreak/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/paste/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/preview/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/print/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/save/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/searchreplace/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/spellchecker/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/tabfocus/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/table/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/template/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/textcolor/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/textpattern/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/toc/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/visualblocks/css/visualblocks.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/visualblocks/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/visualchars/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/plugins/wordcount/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/content.inline.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/content.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/fonts/tinymce.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/fonts/tinymce.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/fonts/tinymce.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/fonts/tinymce.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/img/anchor.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/img/loader.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/img/object.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/img/trans.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/skins/lightgray/skin.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/themes/inlite/theme.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/themes/modern/theme.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/tinymce/tinymce.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dashboard/static/dashboard/js/validator.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/css/bootstrap-datetimepicker.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/css/event-custom.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/css/responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Bold.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Bold.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Bold.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Bold.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Bold.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Light.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Light.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Light.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Light.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Light.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Medium.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Medium.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Medium.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Medium.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Medium.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/Apercu-Regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/article.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/article@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/avatar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/bell.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/bg-tmp.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/company-profile.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/edit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/edit@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/event_detail.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/logo@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/news-tmp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/phones.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/prof-tmp1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/prof-tmp2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/prof-tmp3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/search.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/search@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/startup-logo-tmp.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/trash.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/trash@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/view.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/view@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/img/ybf-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/bootstrap-datetimepicker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/bootstrap-datetimepicker.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/bootstrapdatetimepicker.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/event-details..js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/event-page-search.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/eventsscript.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/moment.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/custom.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/jquery.tinymce.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/langs/readme.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/license.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/advlist/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/anchor/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/autolink/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/autoresize/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/autosave/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/bbcode/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/charmap/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/code/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/codesample/css/prism.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/codesample/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/colorpicker/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/contextmenu/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/directionality/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-cool.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-cry.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-frown.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-smile.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-wink.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/img/smiley-yell.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/emoticons/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/fullpage/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/fullscreen/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/help/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/help/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/hr/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/image/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/imagetools/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/importcss/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/insertdatetime/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/legacyoutput/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/link/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/lists/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/media/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/nonbreaking/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/noneditable/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/pagebreak/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/paste/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/preview/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/print/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/save/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/searchreplace/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/spellchecker/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/tabfocus/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/table/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/template/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/textcolor/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/textpattern/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/toc/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/visualblocks/css/visualblocks.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/visualblocks/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/visualchars/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/plugins/wordcount/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/content.inline.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/content.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/fonts/tinymce.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/fonts/tinymce.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/fonts/tinymce.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/fonts/tinymce.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/img/anchor.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/img/loader.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/img/object.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/img/trans.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/skins/lightgray/skin.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/themes/inlite/theme.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/themes/modern/theme.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/events/static/events/js/tinymce/tinymce.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/css/bootstrap-datetimepicker.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/css/news-custom.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/css/popup.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/css/responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/css/simplePagination.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Bold.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Bold.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Bold.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Bold.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Bold.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Light.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Light.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Light.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Light.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Light.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Medium.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Medium.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Medium.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Medium.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Medium.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/Apercu-Regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/article.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/article@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/avatar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/avatar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/bg-tmp.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/company-profile.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/edit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/edit@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/event_detail.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/logo@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/news-tmp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/phones.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/prof-tmp1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/prof-tmp2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/prof-tmp3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/search.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/search@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/startup-logo-tmp.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/trash.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/trash@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/view.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/view@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/img/ybf-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/bootstrap-datetimepicker.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/newsscript.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/pagenation/jquery.simplePagination.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/custom.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/jquery.tinymce.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/langs/readme.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/license.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/advlist/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/anchor/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/autolink/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/autoresize/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/autosave/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/bbcode/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/charmap/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/code/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/codesample/css/prism.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/codesample/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/colorpicker/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/contextmenu/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/directionality/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-cool.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-cry.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-frown.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-smile.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-wink.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/img/smiley-yell.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/emoticons/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/fullpage/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/fullscreen/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/help/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/help/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/hr/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/image/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/imagetools/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/importcss/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/insertdatetime/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/legacyoutput/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/link/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/lists/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/media/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/nonbreaking/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/noneditable/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/pagebreak/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/paste/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/preview/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/print/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/save/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/searchreplace/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/spellchecker/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/tabfocus/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/table/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/template/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/textcolor/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/textpattern/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/toc/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/visualblocks/css/visualblocks.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/visualblocks/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/visualchars/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/plugins/wordcount/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/content.inline.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/content.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/fonts/tinymce.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/fonts/tinymce.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/fonts/tinymce.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/fonts/tinymce.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/img/anchor.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/img/loader.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/img/object.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/img/trans.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/skins/lightgray/skin.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/themes/inlite/theme.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/themes/modern/theme.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/static/news/js/tinymce/tinymce.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/css/bootstrap-datetimepicker.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/css/dataTables.bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/css/font-awesome.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/css/fullcalendar.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/css/officespace.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/css/responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Bold.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Bold.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Bold.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Bold.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Bold.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Light.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Light.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Light.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Light.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Light.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Medium.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Medium.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Medium.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Medium.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Medium.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/Apercu-Regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/fontawesome-webfont.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/fontawesome-webfont.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/fontawesome-webfont.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/fontawesome-webfont.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/fontawesome-webfont.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/article.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/article@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/avatar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/bg-tmp.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/company-profile.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/edit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/edit@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/event_detail.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/logo@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/news-tmp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/phones.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/prof-tmp1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/prof-tmp2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/prof-tmp3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/search.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/search@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/startup-logo-tmp.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/trash.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/trash@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/view.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/view@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/img/ybf-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/js/bootstrap-datetimepicker.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/js/dataTables.bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/js/fullcalendar.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/js/jquery.dataTables.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/js/jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/js/moment-timezone-with-data.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/js/moment.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/officespace/static/officespace/js/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/css/bootstrap-datetimepicker.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/css/perks-custom.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/css/popup.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/css/responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/css/simplePagination.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Bold.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Bold.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Bold.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Bold.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Bold.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Light.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Light.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Light.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Light.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Light.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Medium.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Medium.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Medium.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Medium.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Medium.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/Apercu-Regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/article.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/article@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/avatar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/avatar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/bg-tmp.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/company-profile.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/edit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/edit@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/event_detail.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/logo@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/news-tmp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/phones.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/prof-tmp1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/prof-tmp2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/prof-tmp3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/search.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/search@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/startup-logo-tmp.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/trash.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/trash@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/view.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/view@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/img/ybf-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/bootstrap-datetimepicker.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/newsscript.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/pagenation/jquery.simplePagination.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/custom.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/jquery.tinymce.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/langs/readme.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/license.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/advlist/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/anchor/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/autolink/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/autoresize/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/autosave/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/bbcode/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/charmap/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/code/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/codesample/css/prism.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/codesample/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/colorpicker/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/contextmenu/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/directionality/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-cool.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-cry.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-frown.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-smile.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-wink.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/img/smiley-yell.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/emoticons/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/fullpage/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/fullscreen/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/help/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/help/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/hr/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/image/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/imagetools/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/importcss/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/insertdatetime/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/legacyoutput/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/link/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/lists/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/media/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/nonbreaking/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/noneditable/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/pagebreak/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/paste/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/preview/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/print/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/save/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/searchreplace/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/spellchecker/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/tabfocus/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/table/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/template/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/textcolor/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/textpattern/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/toc/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/visualblocks/css/visualblocks.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/visualblocks/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/visualchars/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/plugins/wordcount/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/content.inline.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/content.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/fonts/tinymce.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/fonts/tinymce.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/fonts/tinymce.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/fonts/tinymce.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/img/anchor.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/img/loader.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/img/object.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/img/trans.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/skins/lightgray/skin.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/themes/inlite/theme.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/themes/modern/theme.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/perks/static/perks/js/tinymce/tinymce.min.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tiesong-dj/settings.py" afterPath="$PROJECT_DIR$/tiesong-dj/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/templates/events/base.html" afterPath="$PROJECT_DIR$/events/templates/events/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/templates/events/event-content.html" afterPath="$PROJECT_DIR$/events/templates/events/event-content.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/templates/events/event-details.html" afterPath="$PROJECT_DIR$/events/templates/events/event-details.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/templates/events/event-edit.html" afterPath="$PROJECT_DIR$/events/templates/events/event-edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/templates/events/event-list.html" afterPath="$PROJECT_DIR$/events/templates/events/event-list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/templates/events/event_show.html" afterPath="$PROJECT_DIR$/events/templates/events/event_show.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/templates/events/top-nav.html" afterPath="$PROJECT_DIR$/events/templates/events/top-nav.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -738,110 +96,72 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/community/urls.py">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/events/templates/events/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/community/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+            <state relative-caret-position="51">
+              <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tiesong-dj/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-              <folding>
-                <element signature="e#333#342#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/news/templatetags/__init__.py">
+      <file leaf-file-name="event-content.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/events/templates/events/event-content.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app_filter.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/news/templatetags/app_filter.py">
+      <file leaf-file-name="event-details.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/events/templates/events/event-details.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-102">
-              <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+            <state relative-caret-position="51">
+              <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/community/static/community/js/tinymce/langs/readme.md">
+      <file leaf-file-name="event-edit.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/events/templates/events/event-edit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="event-list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/events/templates/events/event-list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="event_show.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/events/templates/events/event_show.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="top-nav.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/events/templates/events/top-nav.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
               <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/perks/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-444">
-              <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
-              <folding>
-                <element signature="e#26#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/news/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/perks/templates/perks/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="92" lean-forward="false" selection-start-line="14" selection-start-column="92" selection-end-line="14" selection-end-column="92" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="staticfiles.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../djang1venv/Lib/site-packages/django/contrib/staticfiles/templatetags/staticfiles.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -889,11 +209,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/events/urls.py" />
-        <option value="$PROJECT_DIR$/events/templates/events/event-details.html" />
         <option value="$PROJECT_DIR$/events/forms.py" />
         <option value="$PROJECT_DIR$/events/models.py" />
         <option value="$PROJECT_DIR$/events/serializers.py" />
-        <option value="$PROJECT_DIR$/events/templates/events/event-list.html" />
         <option value="$PROJECT_DIR$/events/static/events/css/style.css" />
         <option value="$PROJECT_DIR$/events/views.py" />
         <option value="$PROJECT_DIR$/ybf-teamedup/settings.py" />
@@ -903,8 +221,14 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/afa1ab07-3519-40af-8afe-702ecd9a767a/console.sql" />
         <option value="$PROJECT_DIR$/tiesong-dj/wsgi.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/events/templates/events/top-nav.html" />
         <option value="$PROJECT_DIR$/tiesong-dj/settings.py" />
+        <option value="$PROJECT_DIR$/events/templates/events/base.html" />
+        <option value="$PROJECT_DIR$/events/templates/events/event-content.html" />
+        <option value="$PROJECT_DIR$/events/templates/events/event-details.html" />
+        <option value="$PROJECT_DIR$/events/templates/events/event-edit.html" />
+        <option value="$PROJECT_DIR$/events/templates/events/event-list.html" />
+        <option value="$PROJECT_DIR$/events/templates/events/event_show.html" />
+        <option value="$PROJECT_DIR$/events/templates/events/top-nav.html" />
       </list>
     </option>
   </component>
@@ -938,8 +262,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -994,15 +318,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="perks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiesong-dj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="tiesong-dj" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="staticfiles" />
+              <option name="myItemId" value="events" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiesong-dj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiesong-dj" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="perks" />
+              <option name="myItemId" value="events" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1335,9 +687,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25321338" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25899744" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1345,7 +696,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37146702" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2678331" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2678331" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38896367" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1428,31 +779,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/home/templates/home/modal/signup_thanks.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ybf-teamedup/staticfiles/news/css/style.3407f9db26b6.css" />
-    <entry file="file://$PROJECT_DIR$/news/templates/news/top-nav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="8" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ybf-teamedup/urls.py" />
-    <entry file="file://$PROJECT_DIR$/ybf-teamedup/settings.py" />
-    <entry file="file://$PROJECT_DIR$/community/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="37" column="28" lean-forward="false" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1513,7 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1524,13 +849,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/officespace/static/officespace/css/responsive.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="83" column="43" lean-forward="false" selection-start-line="83" selection-start-column="43" selection-end-line="83" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/officespace/static/officespace/css/responsive.css" />
     <entry file="file://$PROJECT_DIR$/../../djang1venv/Lib/site-packages/django_social_share/templates/django_social_share/templatetags/post_to_twitter.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1659,24 +978,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/news/static/news/img/logo.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/news/static/news/img/logo.png" />
     <entry file="file://$PROJECT_DIR$/home/templates/home/top-nav.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/events/templates/events/top-nav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="25" lean-forward="false" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1684,9 +990,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#22#31#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1702,7 +1005,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="134">
           <caret line="515" column="0" lean-forward="false" selection-start-line="515" selection-start-column="0" selection-end-line="515" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1718,7 +1020,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/perks/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-444">
+        <state relative-caret-position="357">
           <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
           <folding>
             <element signature="e#26#37#0" expanded="true" />
@@ -1736,7 +1038,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/community/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="272">
           <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
           <folding />
         </state>
@@ -1744,10 +1046,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/community/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
+        <state relative-caret-position="136">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1757,7 +1059,7 @@
         <state relative-caret-position="221">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="23" />
           <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#0#27#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1772,7 +1074,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tiesong-dj/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
+        <state relative-caret-position="2975">
           <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
           <folding>
             <element signature="e#333#342#0" expanded="true" />
@@ -1790,13 +1092,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/news/templatetags/app_filter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
+        <state relative-caret-position="153">
           <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/community/static/community/js/tinymce/langs/readme.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/templates/events/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/templates/events/event-content.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/templates/events/event-details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/templates/events/event-edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/templates/events/event-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/templates/events/event_show.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/templates/events/top-nav.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
